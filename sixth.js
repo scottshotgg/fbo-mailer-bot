@@ -12,7 +12,6 @@ var db = new sqlite3.Database('fbo.db');
 // SendMail for emailing the updates
 var sendmail = require('sendmail')();
 
-
 function getDateInfo(date) {
   var d = new Date(date);
   console.log("date", d.getDate());
@@ -41,35 +40,25 @@ var data = nightmare
   })
   .wait('.list')
   .evaluate(function() {
-    var table = document.getElementsByClassName('list')[0].children[0].children;
-    var links = document.getElementsByClassName('lst-lnk-notice');
-    //for (row in table) {
-    //var table = document.getElementsByClassName('lst-cl');
+    var attributeList = ["Name", "BAA", "Classification", "Agency", "Office", "Location", "Type", "Date", "Link"];
 
-    var data = new Array();
-
-    for (var i = 1; i < table.length; i++) {
-      // var oppo =      table[i].cells[0].innerText.split('\n')[0];
-      // var location =  table[i].cells[1].innerText.split('\n')[0];
-      // var type =      table[i].cells[2].innerText.split('\n')[0];
-      // var date =      table[i].cells[0].innerText.split('\n')[0];
-      var runArray = new Array();
-
-      // ***** map this instead
-      for (var value = 0; value < 4; value++) {
-        //runArray[value] = table[i].cells[value].innerText;
-        runArray.push(table[i].cells[value].innerText.split('\n'));
+    return Array.prototype.slice.call(document.getElementsByClassName('lst-rw')).map(
+      function(row) {
+        return Object.assign(...(row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href).map(
+          function(item, index) {
+          //console.log({[informationMap[index]]: item});
+            return {[attributeList[index]]: item};
+          }
+        )));
       }
-      runArray.push(links[i - 1].href);
-      data.push(runArray);
-    }
-
-    return data;
-  })
+    )
+  }, db)
   .end()
   .then(function(data) {
 
     console.log(data);
+
+    return;
     
     var stmt = db.prepare("insert into fbodata values (?, ?, ?, ?, ?, ?, ?, ?)");
 
@@ -103,17 +92,17 @@ var data = nightmare
             console.log(htmlStringjs);
           }
 
-          sendmail({
-            from: 'FBO-spider-bot',
-            to: 'scg104020@utdallas.edu',
-            subject: newEntries.length + ' New Opportunities Scanned',
-            html: htmlString + "</div>",
-          },  
-            function(err, reply) {
-              console.log(err && err.stack);
-              console.dir(reply);
-            }
-          );
+          // sendmail({
+          //   from: 'FBO-spider-bot',
+          //   to: 'scg104020@utdallas.edu',
+          //   subject: newEntries.length + ' New Opportunities Scanned',
+          //   html: htmlString + "</div>",
+          // },  
+          //   function(err, reply) {
+          //     console.log(err && err.stack);
+          //     console.dir(reply);
+          //   }
+          // );
         }
       });
     })

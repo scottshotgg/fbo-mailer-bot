@@ -1,0 +1,1 @@
+rm -f fbo.db && DEBUG=nightmare node sixth.js 
