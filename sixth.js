@@ -23,7 +23,7 @@ db.serialize(function() {
   // db.run("create table fbodata (opportunity text not null unique, location text, type text, date text)", null, function(error) {
   //     console.log(error);
   // });
-  db.run("create table fbodata (Name text not null, BAA text not null unique, Agency text, Office text, Location text, Type text, Date text, Link text)");
+  db.run("create table fbodata (Name text not null, BAA text not null unique, Classification text, Agency text, Office text, Location text, Type text, Date text, Link text)");
 });
 
 
@@ -40,74 +40,46 @@ var data = nightmare
   })
   .wait('.list')
   .evaluate(function() {
+    // Try returning Object.keys(db or stmt) and see what we get
     var attributeList = ["Name", "BAA", "Classification", "Agency", "Office", "Location", "Type", "Date", "Link"];
 
     return Array.prototype.slice.call(document.getElementsByClassName('lst-rw')).map(
       function(row) {
-        return Object.assign(...(row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href).map(
-          function(item, index) {
-          //console.log({[informationMap[index]]: item});
-            return {[attributeList[index]]: item};
-          }
-        )));
+        // return Object.assign(...(row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href).map(
+        //   function(item, index) {
+        //   //console.log({[informationMap[index]]: item});
+        //     return {[attributeList[index]]: item};
+        //   }
+        // )));
+        return row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href);
       }
     )
-  }, db)
+  })
   .end()
   .then(function(data) {
+    var stmt = db.prepare("insert into fbodata values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    console.log(data);
+    var htmlString;
+    var htmlStringjs;
 
-    return;
-    
-    var stmt = db.prepare("insert into fbodata values (?, ?, ?, ?, ?, ?, ?, ?)");
-
-    var newEntries = new Array();
-
-    db.serialize(function() {
-      for (row in data) {
-        var i = 0;
-        console.log("\n\nstmt.run", data[row][0][0], data[row][0][1], data[row][1][0], data[row][1][1], data[row][1][2], data[row][2][0], data[row][3][0], data[row][4]);
-
-        stmt.run(data[row][0][0], data[row][0][1], data[row][1][0], data[row][1][1], data[row][1][2], data[row][2][0], data[row][3][0], data[row][4], function(error) {
+    db.serialize(function(htmlString) {
+      //data.map(function(item, index, htmlString) {
+        for (piece of data) {
+         stmt.run(Object.values(piece), function(error, htmlString) {
+          //console.log("htmlString: ", htmlString);
           console.log("stmt.run error:", error);
+          console.log(data[this.lastID - 1]);
           if(error == null) {
-            newEntries.push(data[this.lastID - 1]);
+            //return item[0] + "<br><a href=\"" + item[8] + "\">" + item[8] + "</a><br><br><br>";
+            //console.log(item[0] + "\n<a href=\"" + item[8] + "\">" + item[8] + "</a>\n\n\n");
+            //htmlString += piece[0] + "\n<a href=\"" + piece[8] + "\">" + piece[8] + "</a>\n\n\n";
+            htmlString += piece[0] + "\n<a href=\"" + piece[8] + "\">" + piece[8] + "</a>\n\n\n";
+            //return item[0] + "\n<a href=\"" + item[8] + "\">" + item[8] + "</a>\n\n\n";
           }
+          console.log("AfterIf:", htmlString);
         });
-      }
-    stmt.finalize(function() {
-        console.log("finalized");
-        console.log(newEntries.length + ' New Opportunities');
-        //console.log(newEntries);
-
-        if (newEntries.length != 0) {
-
-          var htmlString = "<div>";
-          var htmlStringjs = "";
-
-          for (var j = 0; j < newEntries.length; j++) {
-            htmlString += newEntries[j][0][0] + "<br><a href=\"" + newEntries[j][4] + "\">" + newEntries[j][4] + "</a><br><br><br>";
-            htmlStringjs += newEntries[j][0][0] + "\n<a href=\"" + newEntries[j][4] + "\">" + newEntries[j][4] + "</a>\n\n\n";
-            console.log(htmlStringjs);
-          }
-
-          // sendmail({
-          //   from: 'FBO-spider-bot',
-          //   to: 'scg104020@utdallas.edu',
-          //   subject: newEntries.length + ' New Opportunities Scanned',
-          //   html: htmlString + "</div>",
-          // },  
-          //   function(err, reply) {
-          //     console.log(err && err.stack);
-          //     console.dir(reply);
-          //   }
-          // );
-        }
-      });
+      };
     })
-    
-    return newEntries;
   })
   .catch(function (error) {
     console.error('Search failed:', error);
