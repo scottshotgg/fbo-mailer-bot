@@ -1,1 +1,7 @@
-rm -f fbo.db && DEBUG=nightmare node spider.js 
+rm -f fbo.db
+DEBUG=nightmare node spider.js 
+wait
+sudo cp -r ../fboscraper/* /var/ftp/fboscraper/
+wait
+sudo chown nobody:nogroup /var/ftp/fboscraper
+sudo chown nobody:nogroup /var/ftp/fboscraper/*
