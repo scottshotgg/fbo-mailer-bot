@@ -11,8 +11,6 @@
 
 - Save the webpage as a file
 
-- Export to CSV
-
 - Clean up code
 
 - Reverse IDs; bottom up count

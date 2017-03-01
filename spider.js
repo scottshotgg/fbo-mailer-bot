@@ -17,7 +17,7 @@ var fs = require('fs');
 
 //var emailList = ['scg104020', 'ajn160130', 'mjk052000'];
 var emailList = ['scg104020'];
-var send = true;
+var send = false;
 var d = new Date();
 
 function sendEmail(string, length) {
@@ -53,9 +53,7 @@ function makeTableRowHTML(row) {
 
 function getDateInfo(date) {
   var d = new Date(date);
-  console.log("date", d.getDate());
-  console.log("month", d.getMonth() + 1);
-  console.log("year", d.getFullYear());
+  return [d.getMonth() + 1, d.getDate(), d.getFullYear()];
 }
 
 db.serialize(function() {
@@ -136,11 +134,24 @@ var data = nightmare
                            </html>`;
 
     var tableLength = 0;
+    var writeStream = fs.createWriteStream("file.csv");
+
+    writeStream.on('finish', () => {
+      console.log('All writes are now complete.');
+      writeStream.close();
+      console.log("csv file was created!");
+    });
+
+    var headers = ["Title", "BAA", "Classification", "Agency", "Office", "Location", "Type", "Date", "Link", "File"];
+
+    writeStream.write(headers.join(',') + '\n');
 
     db.serialize(function(htmlString) {
       //data.map(function(item, index, htmlString) {
-
         data.map(function(piece) {
+          console.log(piece);
+          console.log(getDateInfo(piece[7]));
+          writeStream.write(piece.map(ele => '"' + ele + '"').slice(0, 7).join(',') + ',"' + getDateInfo(piece[7]).join('-') + '",' + '"' + piece[8] + '"' + '\n');
         //for (var piece of data) {
           stmt.run(piece, function(error) {
           //console.log("htmlString: ", htmlString);
@@ -151,15 +162,16 @@ var data = nightmare
             //console.log(item[0] + "\n<a href=\"" + item[8] + "\">" + item[8] + "</a>\n\n\n");
             //htmlString += piece[0] + "\n<a href=\"" + piece[8] + "\">" + piece[8] + "</a>\n\n\n";
             //console.log(piece);
-            tableRow = makeTableRowHTML(piece);
-            //console.log(tableRow, "\n\n\n");
-            tableRows += tableRow;
+            tableRows = makeTableRowHTML(piece);
             tableLength += 1;
             //htmlString += piece[0] + "\n<a href=\"" + piece[8] + "\">" + piece[8] + "</a>\n\n\n";
             //return item[0] + "\n<a href=\"" + item[8] + "\">" + item[8] + "</a>\n\n\n";
           }
         });
       });
+
+      writeStream.end();
+
       stmt.finalize(function() {
         var tableHTMLString = tableBeginning + tableRows + tableEnding;
 

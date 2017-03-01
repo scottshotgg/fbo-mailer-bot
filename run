@@ -1,1 +1,1 @@
-rm -f fbo.db && DEBUG=nightmare node sixth.js 
+rm -f fbo.db && DEBUG=nightmare node spider.js 
