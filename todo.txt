@@ -1,0 +1,20 @@
+##### TODO LIST #####
+
+
+- Change type of Date from string to date
+
+- Make the spider more efficient by figuring out how to do database accesses within the spider
+
+- Find a scheduler
+	-- http://stackoverflow.com/questions/20897528/schedule-a-job-for-every-5-minutes
+	-- https://github.com/node-schedule/node-schedule
+
+- Save the webpage as a file
+
+- Export to CSV
+
+- Clean up code
+
+- Reverse IDs; bottom up count
+
+- Make the website
