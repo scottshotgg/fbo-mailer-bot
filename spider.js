@@ -161,10 +161,11 @@ var data = nightmare
 
     writeStream.write(tableHeaders.join(',') + '\n');
 
+    var rows = new Array();
+
     db.serialize(function() {
       //data.map(function(item, index, htmlString) {
         data.map(function(piece) {
-          console.log(piece);
           piece[7] = getDateInfo(piece[7]).join('/');
           writeStream.write(piece.map(ele => '"' + ele + '"').join(',') + '\n');
         //for (var piece of data) {
@@ -173,11 +174,12 @@ var data = nightmare
           console.log("stmt.run error:", error);
           //console.log(data[this.lastID - 1]);
           if(error == null) {
-            tableRows += makeTableRowHTML(piece);
-            tableLength += 1
+            rows.push(piece);
           }
         });
       });
+
+
 
       writeStream.end();
 
@@ -185,6 +187,13 @@ var data = nightmare
       var downloadThisFile = '<a href="ftp://anonymous@10.201.40.178/fboscraper/FBODatabase.csv" download>Download this file</a>' + '<br><br>';  
 
       stmt.finalize(function() {
+        console.log(rows);
+
+        for(row of rows) {
+          tableRows += makeTableRowHTML(row);
+          tableLength += 1
+        }
+
         var tableHTMLString = tableBeginning + tableRows + tableEnding;
 
         fs.writeFile("table.html", htmlHeading + 'FBO Database entries <br>' + downloadThisFile + tableHTMLString, function(err) {
