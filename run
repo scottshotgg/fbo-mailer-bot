@@ -1,7 +1,12 @@
-rm -f fbo.db
-DEBUG=nightmare node spider.js 
+DATE=`date +%d-%m-%Y:%H:%M:%S`
+echo $DATE
+#DEBUG=nightmare node spider.js 2>&1 | tee logs/log+$DATE
+DEBUG=nightmare node spider.js
+
 wait
+
 sudo cp -r ../fboscraper/* /var/ftp/fboscraper/
 wait
+
 sudo chown nobody:nogroup /var/ftp/fboscraper
 sudo chown nobody:nogroup /var/ftp/fboscraper/*
