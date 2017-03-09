@@ -193,8 +193,8 @@ function scrapeFBOData() {
             });
         });
 
-        var viewThisFile = '<a href="ftp://' + serverAddress + '/fboscraper/table.html" download>View and download this file</a>' + '<br><br>';
-        var downloadThisFile = '<a href="ftp://anonymous@' + serverAddress + '/fboscraper/FBODatabase.csv" download>Download this file</a>' + '<br><br>';  
+        var viewThisFile = '<a href="ftp://' + serverAddress + '/fbo-mailer-bot/table.html" download>View and download this file</a>' + '<br><br>';
+        var downloadThisFile = '<a href="ftp://anonymous@' + serverAddress + '/fbo-mailer-bot/FBODatabase.csv" download>Download this file</a>' + '<br><br>';  
 
         stmt.finalize(function() {
           //console.log(rows);

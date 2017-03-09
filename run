@@ -5,8 +5,8 @@ DEBUG=nightmare node spider.js
 
 wait
 
-sudo cp -r ../fboscraper/* /var/ftp/fboscraper/
+sudo cp -r . /var/ftp/fbo-mailer-bot/
 wait
 
-sudo chown nobody:nogroup /var/ftp/fboscraper
-sudo chown nobody:nogroup /var/ftp/fboscraper/*
+sudo chown nobody:nogroup /var/ftp/fbo-mailer-bot
+sudo chown nobody:nogroup /var/ftp/fbo-mailer-bot/*
