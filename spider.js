@@ -17,6 +17,7 @@ var fs = require('fs');
 // Using this to do the cron work since I don't want to mess with cron in Linux and this is more portable
 //var CronJob = require('cron').CronJob;
 
+// Set up the console stamp
 require( "console-stamp" )( console, {
     metadata: function () {
         return ("[" + (process.memoryUsage().rss  / 1000000).toFixed(2) + " MB]");
@@ -61,33 +62,15 @@ function createLink(link, text) {
 
 
 function makeTableRowHTML(row) {
-  //for(column of columns) {
-  //  console.log(column, attributeList.indexOf(column)); 
-  //}
+ var returnString = '<tr><td><center>' + createLink(row[row.length - 1], row[0]) + '</center></td>' + columnIndexs.slice(1, columnIndexs.length - 1).map(function(index) {
+    return '<td><center>' + row[index] + '</center></td>';
+  }).join('') + '</tr>';
 
-  var newRow = new Array();
-  var returnString = "";
+  console.log(typeof(returnString));
 
-  // for (value of array) {
-  //   newRow.push(row[value]);
-  // }
-
-
-  var returnString = '<tr><td><center>' + createLink(row[row.length - 1], row[0]) + '</center></td>';
-
-    for(index of columnIndexs.slice(1, columnIndexs.length - 1)) {
-      returnString += '<td><center>' + row[index] + '</center></td>';
-    }
-
-  returnString += '</tr>';
+  console.log(row + "\n\n" + returnString + "\n\n\n");
 
   return returnString;
-
-
-
-
-  //return '<tr><td><center>' + createLink(newRow[newRow.length - 1], newRow[0]) + '</center></td>' + '\n<td><center>' + newRow[1] + '</center></td><td><center>\n' + newRow[2] + '</center></td>\n' + '</tr>'
-  //return '<tr><th><a href="' + newRow[newRow.length - 1] + '">' + newRow[0] + '</a>' + '</th>' + '\n<th>' + newRow.slice(1, newRow.length - 2).join('</th><th>\n') + '</tr>';
 }
 
 
@@ -140,7 +123,7 @@ function scrapeFBOData() {
     .then(function(data) {
       var stmt = db.prepare("insert into fbodata (Title, BAA, Classification, Agency, Office, Location, Type, Date, Link) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-      console.log(data);
+      //console.log(data);
 
       // get the date with the function so its cleaner
       var emailBody = "FBO updates for " + getDateInfo().join('/') + '<br>';
@@ -229,9 +212,18 @@ function scrapeFBOData() {
 
               tableRows += makeTableRowHTML(row);
             }
+            console.log(tableRows);
             writeStream.end();
 
+
+
+
+
+
+
             var tableHTMLString = tableBeginning + tableRows + tableEnding;
+
+            console.log(tableHTMLString);
 
             fs.writeFile("table.html", htmlHeading + 'FBO Database entries <br>' + downloadThisFile + tableHTMLString, function(err) {
               if(err) {
@@ -265,12 +257,11 @@ db.serialize(function() {
 scrapeFBOData();
 
 
-/*
-var job = new CronJob({
-  cronTime: '00 30 16 * * 1-5',
-  onTick: scrapeFBOData,
-  start: true,
-  timeZone: 'America/Chicago',
-  runOnInit: true
-});
-*/
+
+// var job = new CronJob({
+//   cronTime: '00 00 8 * * 1-5',
+//   onTick: scrapeFBOData,
+//   start: true,
+//   timeZone: 'America/Chicago',
+// //  runOnInit: true
+// });
