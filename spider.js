@@ -29,6 +29,8 @@ require( "console-stamp" )( console, {
     }
 } );
 
+var serverAddress = '10.201.40.178';
+
 //var emailList = ['scg104020', 'ajn160130', 'mjk052000', 'vaf140130'];
 var emailList = ['scg104020'];
 var send = true;
@@ -72,7 +74,6 @@ function makeTableRowHTML(row) {
 
   return returnString;
 }
-
 
 function getDateInfo(date) {
   var d;
@@ -192,9 +193,8 @@ function scrapeFBOData() {
             });
         });
 
-
-        var viewThisFile = '<a href="ftp://10.201.40.178/fboscraper/table.html" download>View and download this file</a>' + '<br><br>';
-        var downloadThisFile = '<a href="ftp://anonymous@10.201.40.178/fboscraper/FBODatabase.csv" download>Download this file</a>' + '<br><br>';  
+        var viewThisFile = '<a href="ftp://' + serverAddress + '/fboscraper/table.html" download>View and download this file</a>' + '<br><br>';
+        var downloadThisFile = '<a href="ftp://anonymous@' + serverAddress + '/fboscraper/FBODatabase.csv" download>Download this file</a>' + '<br><br>';  
 
         stmt.finalize(function() {
           //console.log(rows);
