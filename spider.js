@@ -29,7 +29,8 @@ require( "console-stamp" )( console, {
     }
 } );
 
-var serverAddress = '10.201.40.178';
+//var serverAddress = '10.201.40.178';
+var serverAddress = 'arc-fbobot.utdallas.edu:8080';
 
 //var emailList = ['scg104020', 'ajn160130', 'mjk052000', 'vaf140130'];
 var emailList = ['scg104020'];
@@ -193,8 +194,9 @@ function scrapeFBOData() {
             });
         });
 
-        var viewThisFile = '<a href="ftp://' + serverAddress + '/fbo-mailer-bot/table.html" download>View and download this file</a>' + '<br><br>';
-        var downloadThisFile = '<a href="ftp://anonymous@' + serverAddress + '/fbo-mailer-bot/FBODatabase.csv" download>Download this file</a>' + '<br><br>';  
+        var viewThisFile = '<a href="http://' + serverAddress + '/fbo-mailer-bot/table.html" download>View and download this file</a>' + '<br><br>';
+        //var downloadThisFile = '<a href="ftp://anonymous@' + serverAddress + '/fbo-mailer-bot/FBODatabase.csv" download>Download this file</a>' + '<br><br>';  
+        var downloadThisFile = '<a href="http://' + serverAddress + '/fbo-mailer-bot/FBODatabase.csv" download>Download this file</a>' + '<br><br>';  
 
         stmt.finalize(function() {
           //console.log(rows);
