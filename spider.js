@@ -65,16 +65,21 @@ function createLink(link, text) {
 
 
 function makeTableRowHTML(row) {
- var returnString = '<tr><td><center>' + createLink(row[row.length - 1], row[0]) + '</center></td>' + columnIndexs.slice(1, columnIndexs.length - 1).map(function(index) {
-    return '<td><center>' + row[index] + '</center></td>';
-  }).join('') + '</tr>';
+  var returnString;
 
-  console.log(typeof(returnString));
+  if (typeof(row) == 'object') {
+    var returnString = '<tr><td><center>' + createLink(row.Link, row.Title) + '</center></td>' + [row.Agency, row.BAA, row.Date].map(function(data) {
+      return '<td><center>' + data + '</center></td>';
+    }).join('') + '</tr>';
 
-  console.log(row + "\n\n" + returnString + "\n\n\n");
+  } else {
+    var returnString = '<tr><td><center>' + createLink(row[row.length - 1], row[0]) + '</center></td>' + columnIndexs.slice(1, columnIndexs.length - 1).map(function(index) {
+      return '<td><center>' + row[index] + '</center></td>';
+    }).join('') + '</tr>';
+  }
 
   return returnString;
-}
+} 
 
 function getDateInfo(date) {
   var d;
@@ -85,6 +90,23 @@ function getDateInfo(date) {
   }
 
   return [d.getMonth() + 1, d.getDate(), d.getFullYear()];
+}
+
+function createIndexFile(htmlHeading, tableBeginning, tableEnding) {
+  var downloadThisFile = 'FBO Database entries <br><a href="http://' + serverAddress + '/index" download>Download this file</a>';
+
+  db.serialize(function() {
+    db.all('select * from fbodata limit 40', function(err, rows) {
+      var tableHTMLString = tableBeginning + rows.reverse().map(makeTableRowHTML).join('') + tableEnding;
+
+      fs.writeFile("index.html", htmlHeading + downloadThisFile + tableHTMLString, function(err) {
+        if(err) {
+          return console.log(err);
+        }
+        console.log("table.html was saved!");
+      });
+    });
+  });
 }
 
 
@@ -125,9 +147,6 @@ function scrapeFBOData() {
     .then(function(data) {
       var stmt = db.prepare("insert into fbodata (Title, BAA, Classification, Agency, Office, Location, Type, Date, Link) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-      //console.log(data);
-
-      // get the date with the function so its cleaner
       var emailBody = "FBO updates for " + getDateInfo().join('/') + '<br>';
 
       var htmlHeading = `<!DOCTYPE html>
@@ -147,8 +166,7 @@ function scrapeFBOData() {
 
 
       var tableBeginning = `
-
-                            <table style="width:100%; font-size:18px; font-face:bold;">
+                            <div style="padding: 2.5%"><table style="width:100%; font-size:18px; font-face:bold;">
                             <tr>`;
 
       var tableHeaders = columns.slice(0, columns.length - 1);
@@ -166,9 +184,10 @@ function scrapeFBOData() {
       var tableRows =       "";
 
 
-      var tableEnding =     `\n</table>
-                             </body>
-                             </html>`;
+      var tableEnding =    `\n</table>
+                            </div>
+                            </body>
+                            </html>`;
 
       var tableLength = 0;
 
@@ -194,15 +213,17 @@ function scrapeFBOData() {
             });
         });
 
-        var viewThisFile = '<a href="http://' + serverAddress + '/fbo-mailer-bot/table.html" download>View and download this file</a>' + '<br><br>';
+        var viewThisFile = '<a href="http://' + serverAddress + '/index.html" download>View and download this file</a>' + '<br><br>';
         //var downloadThisFile = '<a href="ftp://anonymous@' + serverAddress + '/fbo-mailer-bot/FBODatabase.csv" download>Download this file</a>' + '<br><br>';  
-        var downloadThisFile = '<a href="http://' + serverAddress + '/fbo-mailer-bot/FBODatabase.csv" download>Download this file</a>' + '<br><br>';  
+        var downloadThisFile = '<a href="http://' + serverAddress + '/index" download>Download this file</a>';  
 
         stmt.finalize(function() {
           //console.log(rows);
 
           if(send && tableLength > 0) {
 
+            // Write CSV File
+            // Fix CSV stuff
             var writeStream = fs.createWriteStream("FBODatabase.csv");
             writeStream.write(tableHeaders.join(',') + '\n');
             writeStream.on('finish', () => { writeStream.close(); });
@@ -211,34 +232,38 @@ function scrapeFBOData() {
             for(row of rows.reverse()) {
               row[7] = getDateInfo(row[7]).join('/');
               writeStream.write([lastID--].concat(row.map(ele => '"' + ele + '"')).join(',') + '\n');
-
-              tableRows += makeTableRowHTML(row);
             }
             console.log(tableRows);
             writeStream.end();
+          
 
 
 
+            // Create index.html File
 
 
 
 
             var tableHTMLString = tableBeginning + tableRows + tableEnding;
-
+            createIndexFile(htmlHeading, tableBeginning, tableEnding);
+            /*
             console.log(tableHTMLString);
 
-            fs.writeFile("table.html", htmlHeading + 'FBO Database entries <br>' + downloadThisFile + tableHTMLString, function(err) {
+            fs.writeFile("index.html", htmlHeading +  + downloadThisFile + tableHTMLString, function(err) {
               if(err) {
                 return console.log(err);
               }
               console.log("table.html was saved!");
             });
-            
+            */
+
             sendEmail(htmlHeading + emailBody + viewThisFile + tableHTMLString, tableLength);
           } else {
             console.log("\n\nNothing new scraped, nothing new to see. :(");
           }
         });
+
+        db.close();
       })
     })
     .catch(function (error) {
