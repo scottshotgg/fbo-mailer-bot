@@ -14,6 +14,9 @@ var sendmail = require('sendmail')();
 // For writing the HTML files
 var fs = require('fs');
 
+// For converting the JSON to CSV
+var json2csv = require('json2csv');
+
 // Using this to do the cron work since I don't want to mess with cron in Linux and this is more portable
 //var CronJob = require('cron').CronJob;
 
@@ -67,7 +70,7 @@ function createLink(link, text) {
 function makeTableRowHTML(row) {
   var returnString;
 
-  if (typeof(row) == 'object') {
+  if (!Array.isArray(row)) {
     var returnString = '<tr><td><center>' + createLink(row.Link, row.Title) + '</center></td>' + [row.Agency, row.BAA, row.Date].map(function(data) {
       return '<td><center>' + data + '</center></td>';
     }).join('') + '</tr>';
@@ -81,6 +84,7 @@ function makeTableRowHTML(row) {
   return returnString;
 } 
 
+
 function getDateInfo(date) {
   var d;
   if(date == undefined) {
@@ -92,19 +96,40 @@ function getDateInfo(date) {
   return [d.getMonth() + 1, d.getDate(), d.getFullYear()];
 }
 
-function createIndexFile(htmlHeading, tableBeginning, tableEnding) {
+
+function createFiles(htmlHeading, tableBeginning, tableEnding) {
   var downloadThisFile = 'FBO Database entries <br><a href="http://' + serverAddress + '/index" download>Download this file</a>';
 
   db.serialize(function() {
-    db.all('select * from fbodata limit 40', function(err, rows) {
-      var tableHTMLString = tableBeginning + rows.reverse().map(makeTableRowHTML).join('') + tableEnding;
+    // Extract entire database
+    db.all('select * from fbodata', function(err, rows) {
+
+      // Latest entries up
+      rows.reverse();
+
+      // Write index.html file
+      var tableHTMLString = tableBeginning + rows.slice(0, 41).map(makeTableRowHTML).join('') + tableEnding;
 
       fs.writeFile("index.html", htmlHeading + downloadThisFile + tableHTMLString, function(err) {
         if(err) {
           return console.log(err);
         }
-        console.log("table.html was saved!");
+        console.log("index.html was saved!");
       });
+
+
+      //Write FBODatabase.csv file
+      var csvString = rows.map(row => Object.values(row).join(', '));
+
+      console.log(csvString);
+
+      fs.writeFile("FBODatabase.csv", htmlHeading + downloadThisFile + tableHTMLString, function(err) {
+        if(err) {
+          return console.log(err);
+        }
+        console.log("FBODatabase.csv was saved!");
+      });
+
     });
   });
 }
@@ -206,6 +231,7 @@ function scrapeFBOData() {
               console.log("stmt.run error:", error);
               //console.log(data[this.lastID - 1]);
               if(error == null) {
+                //console.log(rows);
                 rows.push(piece);
                 tableLength += 1
                 lastID = this.lastID;
@@ -214,7 +240,6 @@ function scrapeFBOData() {
         });
 
         var viewThisFile = '<a href="http://' + serverAddress + '/index.html" download>View and download this file</a>' + '<br><br>';
-        //var downloadThisFile = '<a href="ftp://anonymous@' + serverAddress + '/fbo-mailer-bot/FBODatabase.csv" download>Download this file</a>' + '<br><br>';  
         var downloadThisFile = '<a href="http://' + serverAddress + '/index" download>Download this file</a>';  
 
         stmt.finalize(function() {
@@ -222,42 +247,13 @@ function scrapeFBOData() {
 
           if(send && tableLength > 0) {
 
-            // Write CSV File
-            // Fix CSV stuff
-            var writeStream = fs.createWriteStream("FBODatabase.csv");
-            writeStream.write(tableHeaders.join(',') + '\n');
-            writeStream.on('finish', () => { writeStream.close(); });
-
-            // use .reverse() on this
-            for(row of rows.reverse()) {
-              row[7] = getDateInfo(row[7]).join('/');
-              writeStream.write([lastID--].concat(row.map(ele => '"' + ele + '"')).join(',') + '\n');
-            }
-            console.log(tableRows);
-            writeStream.end();
-          
-
-
-
-            // Create index.html File
-
-
-
-
-            var tableHTMLString = tableBeginning + tableRows + tableEnding;
-            createIndexFile(htmlHeading, tableBeginning, tableEnding);
-            /*
-            console.log(tableHTMLString);
-
-            fs.writeFile("index.html", htmlHeading +  + downloadThisFile + tableHTMLString, function(err) {
-              if(err) {
-                return console.log(err);
-              }
-              console.log("table.html was saved!");
+            // Create new index and CSV files if there are updates available
+            db.serialize(function() {
+              createFiles(htmlHeading, tableBeginning, tableEnding);
             });
-            */
 
-            sendEmail(htmlHeading + emailBody + viewThisFile + tableHTMLString, tableLength);
+            // Send email and only include the rows that need to be updated
+            sendEmail(htmlHeading + emailBody + viewThisFile + tableBeginning + rows.reverse().map(makeTableRowHTML).join('') + tableEnding, tableLength);
           } else {
             console.log("\n\nNothing new scraped, nothing new to see. :(");
           }
