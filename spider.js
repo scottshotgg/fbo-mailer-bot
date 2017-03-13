@@ -14,9 +14,6 @@ var sendmail = require('sendmail')();
 // For writing the HTML files
 var fs = require('fs');
 
-// For converting the JSON to CSV
-var json2csv = require('json2csv');
-
 // Using this to do the cron work since I don't want to mess with cron in Linux and this is more portable
 //var CronJob = require('cron').CronJob;
 
