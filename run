@@ -1,19 +1,19 @@
 DATE=`date +%d-%m-%Y:%H:%M:%S`
 echo $DATE
-if [ $1 == "server" ]; then
+
+if [ "$1" == "server" ]; then
 	#xvfb-run DEBUG=nightmare node spider.js 2>&1 | tee logs/log+$DATE
 	xvfb-run DEBUG=nightmare node spider.js
 else
 	#DEBUG=nightmare node spider.js 2>&1 | tee logs/log+$DATE
 	DEBUG=nightmare node spider.js
+fi
 
 wait
 
-sudo cp -r . /var/ftp/fbo-mailer-bot/
-wait
-
-if [ $1 = "server" ]; then
+if [ "$1" == "server" ]; then
 	cp index.html /var/www/html/index.html
 else
 	sudo chown nobody:nogroup /var/ftp/fbo-mailer-bot
 	sudo chown nobody:nogroup /var/ftp/fbo-mailer-bot/*
+fi
