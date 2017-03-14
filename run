@@ -17,7 +17,9 @@ wait
 
 if [ "$1" = "deploy" ]; then
 	cp index.html /var/www/html/index.html
+	cp FBODatabase.csv /var/www/html/FBODatabase.csv
 else
+	sudo cp -r . /var/ftp/fbo-mailer-bot
 	sudo chown nobody:nogroup /var/ftp/fbo-mailer-bot
 	sudo chown nobody:nogroup /var/ftp/fbo-mailer-bot/*
 fi

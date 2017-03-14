@@ -106,7 +106,7 @@ function getDateInfo(date) {
 
 
 function createFiles(htmlHeading, tableBeginning, tableEnding) {
-  var downloadThisFile = 'FBO Database entries <br><a href="http://' + serverAddress + '/index" download>Download this file</a>';
+  var downloadThisFile = '<center><h1>FBO Database entries</h1><br><a href="http://' + serverAddress + '/FBODatabase.csv" download>Download this file</a><center>';
 
   db.serialize(function() {
     // Extract entire database
@@ -131,7 +131,7 @@ function createFiles(htmlHeading, tableBeginning, tableEnding) {
 
       console.log(csvString);
 
-      fs.writeFile("FBODatabase.csv", htmlHeading + downloadThisFile + tableHTMLString, function(err) {
+      fs.writeFile("FBODatabase.csv", columns.slice(0, columns.length - 2).join(',') + csvString, function(err) {
         if(err) {
           return console.log(err);
         }
@@ -186,20 +186,35 @@ function scrapeFBOData() {
                             <html>
                             <head>
                             <style>
+
                               table, th, td {
                                   border: 1px solid black;
                                   border-collapse: collapse;
                               }
+
                               th, td {
-                                  padding: 10px;
+                                  padding: 15px;
                               }
+
+                              th {
+                                font-size: 22px;
+                              }
+
+                              td {
+                                font-size:18px;
+                              }
+
+                              td:last-child {
+                                width: 120px;
+                              }
+
                             </style>
                             </head>
                             <body>`;
 
 
       var tableBeginning = `
-                            <div style="padding: 2.5%"><table style="width:100%; font-size:18px; font-face:bold;">
+                            <div style="padding: 2.5%"><table style="width:100%; font-face:bold;">
                             <tr>`;
 
       var tableHeaders = columns.slice(0, columns.length - 1);
@@ -248,7 +263,6 @@ function scrapeFBOData() {
         });
 
         var viewThisFile = '<a href="http://' + serverAddress + '/index.html" download>View and download this file</a>' + '<br><br>';
-        var downloadThisFile = '<a href="http://' + serverAddress + '/index" download>Download this file</a>';  
 
         stmt.finalize(function() {
           //console.log(rows);
