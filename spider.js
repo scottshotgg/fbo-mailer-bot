@@ -32,11 +32,13 @@ require( "console-stamp" )( console, {
 
 //var serverAddress = '10.201.40.178';
 var serverAddress = 'arc-fbobot.utdallas.edu:8080';
-
+var emailList = ['scg104020'];
 if (process.argv[2] == "deploy") {
-  var emailList = ['scg104020', 'ajn160130', 'mjk052000', 'vaf140130'];
-} else {  
-  var emailList = ['scg104020'].concat(process.argv[5]);
+   emailList.concat(['ajn160130', 'mjk052000', 'vaf140130']);
+}
+ 
+if (process.argv[4].length > 0) {
+  emailList.concat(process.argv[5]);
 }
 
 var specialMessageAddition = '';
@@ -180,7 +182,7 @@ function scrapeFBOData() {
     .then(function(data) {
       var stmt = db.prepare("insert into fbodata (Title, BAA, Classification, Agency, Office, Location, Type, Date, Link) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-      var emailBody = "FBO updates for " + getDateInfo().join('/') + '<br>';
+      var emailBody = '<center><h1>FBO Database entries</h1><br>';
 
       var htmlHeading = `<!DOCTYPE html>
                             <html>
@@ -212,16 +214,49 @@ function scrapeFBOData() {
                             </head>
                             <body>`;
 
+      var htmlEmailHeading = `<!DOCTYPE html>
+                            <html>
+                            <head>
+                            <style>
+
+                              table, th, td {
+                                  border: 1px solid black;
+                                  border-collapse: collapse;
+                              }
+
+                              th, td {
+                                  padding: 15px;
+                              }
+
+                              th {
+                                font-size: 20px;
+                              }
+
+                              td {
+                                font-size:15px;
+                              }
+
+                              td:last-child {
+                                width: 120px;
+                              }
+
+                            </style>
+                            </head>
+                            <body>`;
 
       var tableBeginning = `
-                            <div style="padding: 2.5%"><table style="width:100%; font-face:bold;">
-                            <tr>`;
+                            <div style=""><table style="width:100%; font-face:bold;">
+                            <tr><br><br>`;
 
       var tableHeaders = columns.slice(0, columns.length - 1);
 
-      for (header of tableHeaders) {
-        tableBeginning += '\n<th><b>' + header + '</b></th>';
-      }
+      //for (header of tableHeaders) {
+      //  tableBeginning += '\n<th><b>' + header + '</b></th>';
+      //}
+
+      tableBeginning += tableHeaders.slice(0, tableHeaders.length - 1).map(header => '<th><b>' + header + '</b></th>').join('\n') + '\n<th style="min-width: 120px;"><b>' + tableHeaders[tableHeaders.length - 1] + '</b></th>';
+
+      console.log(tableBeginning);
 
       // Add a blank line between the column heading and the rest of the tuples
       tableBeginning +=    `\n</tr>
@@ -275,7 +310,7 @@ function scrapeFBOData() {
             });
 
             // Send email and only include the rows that need to be updated
-            sendEmail(htmlHeading + emailBody + viewThisFile + tableBeginning + rows.reverse().map(makeTableRowHTML).join('') + tableEnding, tableLength);
+            sendEmail(htmlEmailHeading + emailBody + viewThisFile + tableBeginning + rows.reverse().map(makeTableRowHTML).join('') + tableEnding, tableLength);
           } else {
             console.log("\n\nNothing new scraped, nothing new to see. :(");
           }
