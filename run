@@ -1,7 +1,11 @@
 DATE=`date +%d-%m-%Y:%H:%M:%S`
 echo $DATE
-#DEBUG=nightmare node spider.js 2>&1 | tee logs/log+$DATE
-DEBUG=nightmare node spider.js
+if [ $1 == "server" ]; then
+	#xvfb-run DEBUG=nightmare node spider.js 2>&1 | tee logs/log+$DATE
+	xvfb-run DEBUG=nightmare node spider.js
+else
+	#DEBUG=nightmare node spider.js 2>&1 | tee logs/log+$DATE
+	DEBUG=nightmare node spider.js
 
 wait
 
