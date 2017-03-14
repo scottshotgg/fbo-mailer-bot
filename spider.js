@@ -30,20 +30,26 @@ require( "console-stamp" )( console, {
 } );
 
 
+
+
+
+
 //var serverAddress = '10.201.40.178';
 var serverAddress = 'arc-fbobot.utdallas.edu:8080';
+
 var emailList = ['scg104020'];
 if (process.argv[2] == "deploy") {
    emailList.concat(['ajn160130', 'mjk052000', 'vaf140130']);
 }
  
-if (process.argv[4].length > 0) {
-  emailList.concat(process.argv[5]);
+if (process.argv[5] != undefined && process.argv[5].length > 0) {
+  emailList.push(process.argv[5]);
+  console.log(emailList);
 }
 
 var specialMessageAddition = '';
 if (process.argv[3].length > 0) {
-  specialMessageAddition = '<div style="width: 700px;"><b>ADMIN MESSAGE:</b><br>' + process.argv[3] + '</div>' + '<br><br>';
+  specialMessageAddition = '<div style="width: 700px;"><b><h3>Announcement:</h3></b>' + process.argv[3] + '</div><br><br><br>';
 }
 
 var forceEmailSend = parseInt(process.argv[4]) || 0;
@@ -55,14 +61,22 @@ var columnIndexs = columns.map(function(column) {
   return attributeList.indexOf(column);
 });
 
+var parentElements = [];
+var parentElementsInnerText = [];
 
-function sendEmail(body, length) {
+
+var checkList = ['A -- Research & Development', '541712 -- Research and Development in the Physical, Engineering, and Life Sciences (except Biotechnology)', 'Combined Synopsis/Solicitation'];
+  
+
+
+
+function sendEmail(heading, body, length) {
 
   sendmail({
-    from: 'FBO-Opportunities-Mailer',
+    from: 'FBO-Mailer-Bot',
     to: emailList.map(email => email + '@utdallas.edu'),
     subject: length + ' NEW FBO Opportunities Found - ' + getDateInfo().join('/'),
-    html: specialMessageAddition + body
+    html: heading + specialMessageAddition + body
   },  
     function(err, reply) {
       console.log(err && err.stack);
@@ -144,24 +158,39 @@ function createFiles(htmlHeading, tableBeginning, tableEnding) {
   });
 }
 
+function getAttributes() {
+  parentElements = [].slice.call(document.getElementsByClassName('input-checkbox'))
+  parentElementsInnerText = parentElements.map(element => element.labels[0].innerText);
+}
+
+
+function checkAttribute(name) {
+  parentElements[parentElementsInnerText.indexOf(name)].checked = true;
+}
+
+
+function pressSubmitButton() {
+  document.getElementsByName('dnf_opt_submit')[1].click();
+}
+
 
 function scrapeFBOData() {
-
   console.log('\n\n' + new Date() + '\n\n');
 
-
-  var nightmare = new Nightmare();
-
-  var data = nightmare
+  nightmare
     .goto('https://www.fbo.gov/index?s=opportunity&tab=search&mode=list')
     //.type('#search_form_input_homepage', 'github nightmare')
     //.click('#search_button_homepage')
-    .evaluate(function() {
-      document.getElementById('dnf_class_values_procurement_notice__classification_code___79_check').checked=true;
-      document.getElementById('dnf_class_values_procurement_notice__naics_code___0220065_check').checked=true;
-      document.getElementById('dnf_class_values_procurement_notice__procurement_type___k_check').checked=true;
+    .evaluate(function(checkList) {
+      parentElements = [].slice.call(document.getElementsByClassName('input-checkbox'))
+      parentElementsInnerText = parentElements.map(element => element.labels[0].innerText);
+
+      checkList.forEach(function(name) {
+        parentElements[parentElementsInnerText.indexOf(name)].checked = true;
+      });
+
       document.getElementsByName('dnf_opt_submit')[1].click();
-    })
+    }, checkList)
     .wait('.list')
     .evaluate(function(attributeList) {
       // Try returning Object.keys(db or stmt) and see what we get
@@ -245,7 +274,7 @@ function scrapeFBOData() {
                             <body>`;
 
       var tableBeginning = `
-                            <div style=""><table style="width:100%; font-face:bold;">
+                            <div style=""><table style="min-width: 1000px; max-width: 1200px; width: 65%; font-face: bold;">
                             <tr><br><br>`;
 
       var tableHeaders = columns.slice(0, columns.length - 1);
@@ -268,6 +297,13 @@ function scrapeFBOData() {
 
 
       var tableEnding =    `\n</table>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div align="left" style="padding-left: 35%" id="search_parameters">Search Parameters: <br><br>` + checkList.map(function(element, index) { return '<div align="left">' + ++index + ". " + element + '</div>'}).join('') + `</div>
+                            <br>
+                            <br>
                             </div>
                             </body>
                             </html>`;
@@ -310,7 +346,7 @@ function scrapeFBOData() {
             });
 
             // Send email and only include the rows that need to be updated
-            sendEmail(htmlEmailHeading + emailBody + viewThisFile + tableBeginning + rows.reverse().map(makeTableRowHTML).join('') + tableEnding, tableLength);
+            sendEmail(htmlEmailHeading, emailBody + viewThisFile + tableBeginning + rows.reverse().map(makeTableRowHTML).join('') + tableEnding, tableLength);
           } else {
             console.log("\n\nNothing new scraped, nothing new to see. :(");
           }
