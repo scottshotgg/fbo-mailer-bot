@@ -1,21 +1,23 @@
 DATE=`date +%d-%m-%Y:%H:%M:%S`
 echo $DATE
 
-if [ "$1" = "server" ]; then
+echo $4
+
+if [ "$1" = "deploy" ]; then
 	cd /home/fborobo/fbo-mailer-bot/
-	#DEBUG=nightmare node spider.js 2>&1 | tee logs/log+$DATE
-	DEBUG=nightmare node spider.js
+	DEBUG=nightmare node spider.js $1 "" 0 $4 2>&1 | tee logs/log+$DATE
+	#DEBUG=nightmare node spider.js $1 "" 0 $4
 else
 	cd /home/scottshotgg/Development/fbo-mailer-bot/
-	#DEBUG=nightmare node spider.js 2>&1 | tee logs/log+$DATE
-	DEBUG=nightmare node spider.js
+	#DEBUG=nightmare node spider.js debug "$2" $3 $4 2>&1 | tee logs/log+$DATE
+	DEBUG=nightmare node spider.js debug "$2" $3 $4
 fi
 
 wait
 
-if [ "$1" = "server" ]; then
+if [ "$1" = "deploy" ]; then
 	cp index.html /var/www/html/index.html
 else
-	chown nobody:nogroup /var/ftp/fbo-mailer-bot
-	chown nobody:nogroup /var/ftp/fbo-mailer-bot/*
+	sudo chown nobody:nogroup /var/ftp/fbo-mailer-bot
+	sudo chown nobody:nogroup /var/ftp/fbo-mailer-bot/*
 fi

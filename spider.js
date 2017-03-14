@@ -29,12 +29,19 @@ require( "console-stamp" )( console, {
     }
 } );
 
+
 //var serverAddress = '10.201.40.178';
 var serverAddress = 'arc-fbobot.utdallas.edu:8080';
 
-//var emailList = ['scg104020', 'ajn160130', 'mjk052000', 'vaf140130'];
-var emailList = ['scg104020'];
-var send = true;
+if (process.argv[2] == "deploy") {
+  var emailList = ['scg104020', 'ajn160130', 'mjk052000', 'vaf140130'];
+} else {  
+  var emailList = ['scg104020'].concat(process.argv[5]);
+}
+
+var specialMessageAddition = '<div style="width: 700px;"><b>ADMIN MESSAGE:</b><br>' + process.argv[3] + '</div>' + '<br><br>';
+
+var forceEmailSend = parseInt(process.argv[4]) || 0;
 
 var columns       = ['Title', 'BAA', 'Agency', 'Date', 'Link'];
 var attributeList = ['Title', 'BAA', 'Classification', 'Agency', 'Office', 'Location', 'Type', 'Date', 'Link'];
@@ -45,11 +52,12 @@ var columnIndexs = columns.map(function(column) {
 
 
 function sendEmail(body, length) {
+
   sendmail({
     from: 'FBO-Opportunities-Mailer',
     to: emailList.map(email => email + '@utdallas.edu'),
-    subject: length + ' NEW FBO Opportunities Found - Updates for ' + getDateInfo().join('/'),
-    html: body
+    subject: length + ' NEW FBO Opportunities Found - ' + getDateInfo().join('/'),
+    html: specialMessageAddition + body
   },  
     function(err, reply) {
       console.log(err && err.stack);
@@ -242,7 +250,7 @@ function scrapeFBOData() {
         stmt.finalize(function() {
           //console.log(rows);
 
-          if(send && tableLength > 0) {
+          if(tableLength > 0 || forceEmailSend == 1) {
 
             // Create new index and CSV files if there are updates available
             db.serialize(function() {
