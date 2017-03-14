@@ -8,5 +8,8 @@ wait
 sudo cp -r . /var/ftp/fbo-mailer-bot/
 wait
 
-sudo chown nobody:nogroup /var/ftp/fbo-mailer-bot
-sudo chown nobody:nogroup /var/ftp/fbo-mailer-bot/*
+if [ $1 = "server" ]; then
+	cp index.html /var/www/html/index.html
+else
+	sudo chown nobody:nogroup /var/ftp/fbo-mailer-bot
+	sudo chown nobody:nogroup /var/ftp/fbo-mailer-bot/*
