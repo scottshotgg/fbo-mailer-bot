@@ -47,7 +47,7 @@ if (process.argv[3].length > 0) {
 var forceEmailSend = parseInt(process.argv[4]) || 0;
 
 var columns       = ['Title', 'BAA', 'Agency', 'Date', 'Link'];
-var attributeList = ['Title', 'BAA', 'Classification', 'Agency', 'Office', 'Location', 'Type', 'Date', 'Link'];
+var attributeList = ['Title', 'BAA', 'Classification', 'Agency', 'Office', 'Location', 'Type', 'Date', 'Link', 'File'];
 
 var columnIndexs = columns.map(function(column) {
   return attributeList.indexOf(column);
@@ -127,11 +127,11 @@ function createFiles(htmlHeading, tableBeginning, tableEnding) {
 
 
       //Write FBODatabase.csv file
-      var csvString = rows.map(row => Object.values(row).join(', '));
+      var csvString = rows.map(row => '\n' + Object.values(row).map(value => '"' + value + '"').join(', '));
 
       console.log(csvString);
 
-      fs.writeFile("FBODatabase.csv", columns.slice(0, columns.length - 2).join(',') + csvString, function(err) {
+      fs.writeFile("FBODatabase.csv", ['ID'].concat(attributeList).join(',') + csvString, function(err) {
         if(err) {
           return console.log(err);
         }
