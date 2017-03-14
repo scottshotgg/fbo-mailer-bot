@@ -39,7 +39,10 @@ if (process.argv[2] == "deploy") {
   var emailList = ['scg104020'].concat(process.argv[5]);
 }
 
-var specialMessageAddition = '<div style="width: 700px;"><b>ADMIN MESSAGE:</b><br>' + process.argv[3] + '</div>' + '<br><br>';
+var specialMessageAddition = '';
+if (process.argv[3].length > 0) {
+  specialMessageAddition = '<div style="width: 700px;"><b>ADMIN MESSAGE:</b><br>' + process.argv[3] + '</div>' + '<br><br>';
+}
 
 var forceEmailSend = parseInt(process.argv[4]) || 0;
 
