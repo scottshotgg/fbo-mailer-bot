@@ -29,8 +29,10 @@ require( "console-stamp" )( console, {
     }
 } );
 
-
-
+var i = 0;
+process.argv.forEach(function(arg) {
+  console.log(i++, arg);
+})
 
 
 
@@ -145,7 +147,7 @@ function createFiles(htmlHeading, tableBeginning, tableEnding) {
       //Write FBODatabase.csv file
       var csvString = rows.map(row => '\n' + Object.values(row).map(value => '"' + value + '"').join(', '));
 
-      console.log(csvString);
+      //console.log(csvString);
 
       fs.writeFile("FBODatabase.csv", ['ID'].concat(attributeList).join(',') + csvString, function(err) {
         if(err) {
@@ -301,7 +303,7 @@ function scrapeFBOData() {
                             <br>
                             <br>
                             <br>
-                            <div align="left" style="padding-left: 35%" id="search_parameters">Search Parameters: <br><br>` + checkList.map(function(element, index) { return '<div align="left">' + ++index + ". " + element + '</div>'}).join('') + `</div>
+                            <div align="left" style="padding-left: 35%" id="search_parameters">The above was generated using the following search criteria: <br><br>` + checkList.map(function(element, index) { return '<div align="left">' + ++index + ". " + element + '</div>'}).join('') + `</div>
                             <br>
                             <br>
                             </div>
