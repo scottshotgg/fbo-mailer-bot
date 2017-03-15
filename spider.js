@@ -291,8 +291,8 @@ function scrapeFBOData(client) {
       var emailBody = '<center><h1>FBO Database entries</h1><br></center>';
 
       var tableBeginning = `
-                            <center><div style=""><table style="min-width: 1000px; max-width: 1200px; width: 65%; font-face: bold;">
-                            <tr><br><br>`;
+                            <center><div style=""><table id="example" class="uk-table uk-table-hover uk-table-striped" style="min-width: 1000px; max-width: 1200px; width: 65%; font-face: bold;">
+                            <br><br><thead><tr>`;
 
       var tableHeaders = columns.slice(0, columns.length - 1);
 
@@ -300,12 +300,13 @@ function scrapeFBOData(client) {
       //  tableBeginning += '\n<th><b>' + header + '</b></th>';
       //}
 
-      tableBeginning += tableHeaders.slice(0, tableHeaders.length - 1).map(header => '<th><b>' + header + '</b></th>').join('\n') + '\n<th style="min-width: 120px;"><b>' + tableHeaders[tableHeaders.length - 1] + '</b></th>';
+      tableBeginning += tableHeaders.slice(0, tableHeaders.length - 1).map(header => '<th>' + header + '</th>').join('\n') + '\n<th style="min-width: 120px;"><b>' + tableHeaders[tableHeaders.length - 1] + '</b></th>';
 
       console.log(tableBeginning);
 
       // Add a blank line between the column heading and the rest of the tuples
-      tableBeginning +=    `\n</tr>
+      tableBeginning +=    `\n</tr></thead>
+                            <tbody>
                             <tr style="height:22px;">
                             <td colspan="10"></td>
                             </tr>`;
@@ -313,7 +314,8 @@ function scrapeFBOData(client) {
       var tableRows =       "";
 
 
-      var tableEnding =    `\n</table>
+      var tableEnding =    `\n</tbody>
+                            </table>
                             <br>
                             <br>
                             <br>
