@@ -135,7 +135,7 @@ function getDateInfo(date) {
 
 
 function createFiles(htmlHeading, tableBeginning, tableEnding) {
-  var downloadThisFile = '<center><h1>FBO Database entries</h1><br><a href="http://' + serverAddress + '/FBODatabase.csv" download>Download this file</a><center>';
+  var downloadThisFile = '<center><h1>FBO Database entries</h1><br><a href="' + serverAddress + '/FBODatabase.csv" download>Download this file</a><center>';
 
   db.serialize(function() {
     // Extract entire database
