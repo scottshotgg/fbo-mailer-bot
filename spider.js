@@ -35,7 +35,7 @@ process.argv.forEach(function(arg) {
 })
 
 //var serverAddress = '10.201.40.178';
-var serverAddress = 'http://arc-fbobot.utdallas.edu:8080';
+var serverAddress = 'arc-fbobot.utdallas.edu:8080';
 
 var emailList = ['scg104020'];
 if (process.argv[2] == "deploy") {
