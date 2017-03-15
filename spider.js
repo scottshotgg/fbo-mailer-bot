@@ -20,7 +20,7 @@ var fs = require('fs');
 // Set up the console stamp
 require( "console-stamp" )( console, {
     metadata: function () {
-        return ("[" + (process.memoryUsage().rss  / 1000000).toFixed(2) + " MB]");
+        return ("[" + (process.memoryUsage().rss  / 1000000).toFixed(2) + " MB] " + (new Error).lineNumber);
     },
     colors: {
         stamp:    "yellow",
@@ -33,8 +33,6 @@ var i = 0;
 process.argv.forEach(function(arg) {
   console.log(i++, arg);
 })
-
-
 
 //var serverAddress = '10.201.40.178';
 var serverAddress = 'arc-fbobot.utdallas.edu:8080';
@@ -67,16 +65,28 @@ var parentElements = [];
 var parentElementsInnerText = [];
 
 
-var checkList = ['A -- Research & Development', '541712 -- Research and Development in the Physical, Engineering, and Life Sciences (except Biotechnology)', 'Combined Synopsis/Solicitation'];
-  
 
+// Small client class
+class Client {
+  constructor(name, checkList) {
+    this.Name = name;
+    this.SearchCriteria = checkList; 
+  }
+}
 
+// Store this stuff in a DB table
+var people = ['jensen'];
+var checkList = [['A -- Research & Development', '541712 -- Research and Development in the Physical, Engineering, and Life Sciences (except Biotechnology)', 'Combined Synopsis/Solicitation']];
+
+// Make the clientMap using the stuff from the DB
+var clientMap = people.map(function(person, index) {
+  return new Client(person, checkList[index]);
+});
 
 function sendEmail(heading, body, length) {
-
   sendmail({
     from: 'FBO-Mailer-Bot',
-    to: emailList.map(email => email + '@utdallas.edu'),
+    to: emailList.map(email => email + '@utdallas.edu'), 
     subject: length + ' NEW FBO Opportunities Found - ' + getDateInfo().join('/'),
     html: heading + specialMessageAddition + body
   },  
@@ -89,7 +99,7 @@ function sendEmail(heading, body, length) {
 
 
 function createLink(link, text) {
-  return '<a href="' + link + '">' + text + '</a>'
+  return '<a href="http://' + link + '">' + text + '</a>'
 }
 
 
@@ -147,8 +157,6 @@ function createFiles(htmlHeading, tableBeginning, tableEnding) {
       //Write FBODatabase.csv file
       var csvString = rows.map(row => '\n' + Object.values(row).map(value => '"' + value + '"').join(', '));
 
-      //console.log(csvString);
-
       fs.writeFile("FBODatabase.csv", ['ID'].concat(attributeList).join(',') + csvString, function(err) {
         if(err) {
           return console.log(err);
@@ -167,6 +175,7 @@ function getAttributes() {
 
 
 function checkAttribute(name) {
+  // Try to change this to be subString
   parentElements[parentElementsInnerText.indexOf(name)].checked = true;
 }
 
@@ -176,23 +185,25 @@ function pressSubmitButton() {
 }
 
 
-function scrapeFBOData() {
+function scrapeFBOData(client) {
   console.log('\n\n' + new Date() + '\n\n');
 
+    console.log("clientMap:", clientMap);
   nightmare
     .goto('https://www.fbo.gov/index?s=opportunity&tab=search&mode=list')
     //.type('#search_form_input_homepage', 'github nightmare')
     //.click('#search_button_homepage')
-    .evaluate(function(checkList) {
+
+    .evaluate(function(client) {
       parentElements = [].slice.call(document.getElementsByClassName('input-checkbox'))
       parentElementsInnerText = parentElements.map(element => element.labels[0].innerText);
 
-      checkList.forEach(function(name) {
-        parentElements[parentElementsInnerText.indexOf(name)].checked = true;
+      client.SearchCriteria.forEach(function(attr) {
+        parentElements[parentElementsInnerText.indexOf(attr)].checked = true;
       });
 
       document.getElementsByName('dnf_opt_submit')[1].click();
-    }, checkList)
+    }, client)
     .wait('.list')
     .evaluate(function(attributeList) {
       // Try returning Object.keys(db or stmt) and see what we get
@@ -213,7 +224,6 @@ function scrapeFBOData() {
     .then(function(data) {
       var stmt = db.prepare("insert into fbodata (Title, BAA, Classification, Agency, Office, Location, Type, Date, Link) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-      var emailBody = '<center><h1>FBO Database entries</h1><br>';
 
       var htmlHeading = `<!DOCTYPE html>
                             <html>
@@ -275,8 +285,11 @@ function scrapeFBOData() {
                             </head>
                             <body>`;
 
+
+      var emailBody = '<center><h1>FBO Database entries</h1><br></center>';
+
       var tableBeginning = `
-                            <div style=""><table style="min-width: 1000px; max-width: 1200px; width: 65%; font-face: bold;">
+                            <center><div style=""><table style="min-width: 1000px; max-width: 1200px; width: 65%; font-face: bold;">
                             <tr><br><br>`;
 
       var tableHeaders = columns.slice(0, columns.length - 1);
@@ -303,10 +316,11 @@ function scrapeFBOData() {
                             <br>
                             <br>
                             <br>
-                            <div align="left" style="padding-left: 35%" id="search_parameters">The above was generated using the following search criteria: <br><br>` + checkList.map(function(element, index) { return '<div align="left">' + ++index + ". " + element + '</div>'}).join('') + `</div>
+                            <div align="left" style="padding-left: 35%" id="search_parameters">The above was generated using the following search criteria: <br><br>` + client.SearchCriteria.map(function(element, index) { return '<div align="left">' + ++index + ". " + element + '</div>'}).join('') + `</div>
                             <br>
                             <br>
                             </div>
+                            </center>
                             </body>
                             </html>`;
 
@@ -335,7 +349,8 @@ function scrapeFBOData() {
             });
         });
 
-        var viewThisFile = '<a href="http://' + serverAddress + '/index.html" download>View and download this file</a>' + '<br><br>';
+        //var viewThisFile = '<a href="http://' + serverAddress + '">View and download this file</a>' + '<br><br>';
+        var viewThisFile = '<center>' + createLink(serverAddress, 'View and download full database') + '</center><br><br>'
 
         stmt.finalize(function() {
           //console.log(rows);
@@ -348,7 +363,7 @@ function scrapeFBOData() {
             });
 
             // Send email and only include the rows that need to be updated
-            sendEmail(htmlEmailHeading, emailBody + viewThisFile + tableBeginning + rows.reverse().map(makeTableRowHTML).join('') + tableEnding, tableLength);
+            sendEmail(htmlHeading, emailBody + viewThisFile + tableBeginning + rows.reverse().map(makeTableRowHTML).join('') + tableEnding, tableLength);
           } else {
             console.log("\n\nNothing new scraped, nothing new to see. :(");
           }
@@ -372,7 +387,10 @@ db.serialize(function() {
    });
 });
 
-scrapeFBOData();
+
+clientMap.forEach(function(client) {
+  scrapeFBOData(client);
+});
 
 
 
