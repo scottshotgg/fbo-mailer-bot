@@ -155,10 +155,10 @@ function createFiles(htmlHeading, tableBeginning, tableEnding) {
 
 
       //Write FBODatabase.csv file
-      var csvString = rows.map(row => Object.values(row).map(value => '"' + value + '"').join(','));
+      var csvString = rows.map(row => Object.values(row).map(value => '"' + value + '"').join(',\n'));
       console.log(csvString);
 
-      fs.writeFile("FBODatabase.csv", ([':ID'].concat(attributeList).join(',')).toString() + ',' + csvString), function(err) {
+      fs.writeFile("FBODatabase.csv", ([':ID'].concat(attributeList).join(',')).toString() + ',\n' + csvString), function(err) {
         if(err) {
           return console.log(err);
         }
