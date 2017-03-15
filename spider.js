@@ -35,7 +35,7 @@ process.argv.forEach(function(arg) {
 })
 
 //var serverAddress = '10.201.40.178';
-var serverAddress = 'arc-fbobot.utdallas.edu:8080';
+var serverAddress = 'http://arc-fbobot.utdallas.edu:8080';
 
 var emailList = ['scg104020'];
 if (process.argv[2] == "deploy") {
@@ -99,7 +99,7 @@ function sendEmail(heading, body, length) {
 
 
 function createLink(link, text) {
-  return '<a href="http://' + link + '">' + text + '</a>'
+  return '<a href="' + link + '">' + text + '</a>'
 }
 
 
@@ -115,6 +115,7 @@ function makeTableRowHTML(row) {
     var returnString = '<tr><td><center>' + createLink(row[row.length - 1], row[0]) + '</center></td>' + columnIndexs.slice(1, columnIndexs.length - 1).map(function(index) {
       return '<td><center>' + row[index] + '</center></td>';
     }).join('') + '</tr>';
+    console.log(returnString);
   }
 
   return returnString;
