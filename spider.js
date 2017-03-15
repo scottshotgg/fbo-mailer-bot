@@ -140,12 +140,15 @@ function createFiles(htmlHeading, tableBeginning, tableEnding) {
   db.serialize(function() {
     // Extract entire database
     db.all('select * from fbodata', function(err, rows) {
+      //return;
 
       // Latest entries up
       rows.reverse();
 
       // Write index.html file
-      var tableHTMLString = tableBeginning + rows.slice(0, 41).map(makeTableRowHTML).join('') + tableEnding;
+      var tableHTMLString = rows.map(makeTableRowHTML).join('') + tableEnding;
+
+      console.log(tableHTMLString);
 
       fs.writeFile("index.html", htmlHeading + downloadThisFile + tableHTMLString, function(err) {
         if(err) {
@@ -184,6 +187,34 @@ function checkAttribute(name) {
 
 function pressSubmitButton() {
   document.getElementsByName('dnf_opt_submit')[1].click();
+}
+
+
+function writeIndexFile(file, rows, attributes) {
+  db.serialize(function() {
+    // Extract entire database
+    db.all('select * from fbodata', function(err, rows) {
+      var rowsHTML = rows.reverse().map(makeTableRowHTML).join('');
+
+      var nn = new Nightmare()
+        .goto('file:///home/scottshotgg/Development/fbo-mailer-bot/' + file)
+        .evaluate(function(file, rowsHTML, attributes) {
+          $('thead')[0].innerHTML = attributes;
+          $('tbody')[0].innerHTML = rowsHTML;
+
+          return $('html')[0].outerHTML
+        }, file, rowsHTML, attributes)
+        .end()
+        .then(function(data) {
+          fs.writeFile("index.template.test", data, function(err) {
+            if(err) {
+              return console.log(err);
+            }
+            console.log(" ****** index.template.test was saved!");
+          });
+        });
+    });
+  });
 }
 
 
@@ -302,7 +333,7 @@ function scrapeFBOData(client) {
 
       tableBeginning += tableHeaders.slice(0, tableHeaders.length - 1).map(header => '<th>' + header + '</th>').join('\n') + '\n<th style="min-width: 120px;"><b>' + tableHeaders[tableHeaders.length - 1] + '</b></th>';
 
-      console.log(tableBeginning);
+      //console.log(tableBeginning);
 
       // Add a blank line between the column heading and the rest of the tuples
       tableBeginning +=    `\n</tr></thead>
@@ -353,17 +384,19 @@ function scrapeFBOData(client) {
             });
         });
 
+
         //var viewThisFile = '<a href="http://' + serverAddress + '">View and download this file</a>' + '<br><br>';
         var viewThisFile = '<center>' + createLink(serverAddress, 'View and download full database') + '</center><br><br>'
 
         stmt.finalize(function() {
-          //console.log(rows);
+          console.log("rows", rows);
 
           if(tableLength > 0 || forceEmailSend == 1) {
 
             // Create new index and CSV files if there are updates available
             db.serialize(function() {
-              createFiles(htmlHeading, tableBeginning, tableEnding);
+              //createFiles(htmlHeading, tableBeginning, tableEnding);
+              writeIndexFile('index.template', rows, tableBeginning);
             });
 
             // Send email and only include the rows that need to be updated
@@ -390,6 +423,10 @@ db.serialize(function() {
        console.log("Table Creation Error:", error);
    });
 });
+
+//writeIndexTemplate('index.template');
+
+//return;
 
 
 clientMap.forEach(function(client) {
