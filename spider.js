@@ -118,7 +118,7 @@ function makeTableRowHTML(row) {
   var returnString;
 
   if (!Array.isArray(row)) {
-    var returnString = '<tr><td><center>' + createLink(row.Link, row.Title) + '</center></td>' + [row.Agency, row.BAA, row.Date].map(function(data) {
+    var returnString = '<tr><td><center>' + createLink(row.Link, row.Title) + '</center></td>' + [row.BAA, row.Agency, row.Date].map(function(data) {
       return '<td><center>' + data + '</center></td>';
     }).join('') + '</tr>';
 
@@ -223,7 +223,7 @@ function injectHTML(template, rows, client) {
           $('#search_parameters')[0].innerHTML = client.SearchCriteria.map((ele, index) => (index + 1) + '. ' + ele).join('<br>');
           $('#date')[0].innerHTML = 'Generated on ' + (new Date());
           // might need to change some file stuff here
-          $('#download')[0].href = 'http://arc-fbobot.utdallas.edu:8080/' + filePath + 'FBODatabase.csv> download';
+          $('#download')[0].href = 'http://arc-fbobot.utdallas.edu:8080/' + filePath + 'FBODatabase.csv';
           indexHTML = $('html')[0].outerHTML;
 
           // Inject email.html elements

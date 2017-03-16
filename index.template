@@ -58,7 +58,7 @@
         <h1>FBO Database</h1>
       </div>
       <br>
-      <a id="download" href="http://arc-fbobot.utdallas.edu:8080/FBODatabase.csv" download>Download this file</a>
+      <a id="download" href="http://arc-fbobot.utdallas.edu:8080/FBODatabase.csv">Download this file</a>
       <div id="table_encap" style="min-width: 800px; max-width: 1400px; width: 80%;">
         <br>
         <table id="fbo_table" class="uk-table uk-table-hover uk-table-striped" cellspacing="0" style="width: 100%;">
