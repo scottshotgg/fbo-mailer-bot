@@ -85,7 +85,7 @@ if (process.argv[3] == "deploy") {
    emails = ['arc@lists.utdallas.edu'];
 }
 console.log(emails);
-emails = ['scg104020@utdallas.edu'];
+var emails = ['scg104020@utdallas.edu'];
 
 var checkList = [['A -- Research & Development', '541712 -- Research and Development in the Physical, Engineering, and Life Sciences (except Biotechnology)', 'Combined Synopsis/Solicitation']];
 
