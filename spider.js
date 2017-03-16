@@ -42,11 +42,6 @@ var templateFile = 'index.template';
 process.argv[2] == 'server' ? templateFile = 'file:///home/fborobo/fbo-mailer-bot/' + templateFile : templateFile = 'file:///home/scottshotgg/Development/fbo-mailer-bot/' + templateFile;
 
 console.log(templateFile);
-
-var emailList = ['scg104020'];
-if (process.argv[3] == "deploy") {
-   emailList.concat(['ajn160130', 'mjk052000', 'vaf140130']);
-}
  
 if (process.argv[6] != undefined && process.argv[6].length > 0) {
   emailList.push(process.argv[6]);
@@ -86,6 +81,12 @@ class Client {
 // Store this stuff in a DB table
 var clients = [''];
 var emails = ['scg104020@utdallas.edu'];
+if (process.argv[3] == "deploy") {
+   emails = ['arc@lists.utdallas.edu'];
+}
+console.log(emails);
+emails = ['scg104020@utdallas.edu'];
+
 var checkList = [['A -- Research & Development', '541712 -- Research and Development in the Physical, Engineering, and Life Sciences (except Biotechnology)', 'Combined Synopsis/Solicitation']];
 
 // Make the clientMap using the stuff from the DB
