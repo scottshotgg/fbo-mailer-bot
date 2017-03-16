@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html>
-
-  <!-- RESOURCES -->
-    <!-- LINKS -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/datatables.min.css"/>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/uikit.min.css"/>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.uikit.min.css"/>
+<html><!-- RESOURCES --><!-- LINKS --><head><link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/datatables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/uikit.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.uikit.min.css">
 
     <!-- SCRIPTS -->
   <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript">
@@ -24,7 +19,7 @@
     });
   </script>
 
-  <head>
+  
 
     <!-- CSS STYLING -->
     <style>
@@ -58,11 +53,14 @@
         <h1>FBO Database</h1>
       </div>
       <br>
-      <a id="download" href="http://arc-fbobot.utdallas.edu:8080/FBODatabase.csv" download>Download this file</a>
+      <a id="download" href="http://arc-fbobot.utdallas.edu:8080/index.html" download="">View and Download the full database</a>
       <div id="table_encap" style="min-width: 800px; max-width: 1400px; width: 80%;">
         <br>
-        <table id="fbo_table" class="uk-table uk-table-hover uk-table-striped" cellspacing="0" style="width: 100%;">
-          <thead></thead>
+        <table id="fbo_table" class="uk-table uk-table-hover uk-table-striped dataTable" cellspacing="0" style="width: 100%;">
+          <thead><tr><th>Title</th>
+<th>BAA</th>
+<th>Agency</th>
+<th style="min-width: 120px;">Date</th></tr></thead>
           <tbody></tbody>
         </table>
       </div>
@@ -74,13 +72,11 @@
         </div>
         <div id="search_parameters_container" style="display: table; margin: 0px auto;">
           <br>
-          <span id="search_parameters" text-align="left">
-          </span>
+          <span id="search_parameters" text-align="left">1. A -- Research &amp; Development<br>2. 541712 -- Research and Development in the Physical, Engineering, and Life Sciences (except Biotechnology)<br>3. Combined Synopsis/Solicitation</span>
         </div>
       </div>
       <br><br><br><br><br>
-      <div id="date" align="center">
-      </div>
+      <div id="date" align="center">Generated on Thu Mar 16 2017 16:24:48 GMT-0500 (CDT)</div>
       <br>
-  </body>
-</html>
+  
+</body></html>

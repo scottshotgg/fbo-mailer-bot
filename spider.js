@@ -37,22 +37,28 @@ process.argv.forEach(function(arg) {
 //var serverAddress = '10.201.40.178';
 var serverAddress = 'http://arc-fbobot.utdallas.edu:8080';
 
+var templateFile = 'index.template';
+
+process.argv[2] == 'server' ? templateFile = 'file:///home/fborobo/fbo-mailer-bot/' + templateFile : templateFile = 'file:///home/scottshotgg/Development/fbo-mailer-bot/' + templateFile;
+
+console.log(templateFile);
+
 var emailList = ['scg104020'];
-if (process.argv[2] == "deploy") {
+if (process.argv[3] == "deploy") {
    emailList.concat(['ajn160130', 'mjk052000', 'vaf140130']);
 }
  
-if (process.argv[5] != undefined && process.argv[5].length > 0) {
-  emailList.push(process.argv[5]);
+if (process.argv[6] != undefined && process.argv[6].length > 0) {
+  emailList.push(process.argv[6]);
   console.log(emailList);
 }
 
 var specialMessageAddition = '';
-if (process.argv[3].length > 0) {
-  specialMessageAddition = '<div style="width: 700px;"><b><h3>Announcement:</h3></b>' + process.argv[3] + '</div><br><br><br>';
+if (process.argv[4].length > 0) {
+  specialMessageAddition = '<div style="width: 700px;"><b><h3>Announcement:</h3></b>' + process.argv[4] + '</div><br><br><br>';
 }
 
-var forceEmailSend = parseInt(process.argv[4]) || 0;
+var forceEmailSend = parseInt(process.argv[5]) || 0;
 
 var columns       = ['Title', 'BAA', 'Agency', 'Date', 'Link'];
 var attributeList = ['Title', 'BAA', 'Classification', 'Agency', 'Office', 'Location', 'Type', 'Date', 'Link', 'File'];
@@ -68,27 +74,32 @@ var parentElementsInnerText = [];
 
 // Small client class
 class Client {
-  constructor(name, checkList) {
+  constructor(name, email, checkList) {
     this.Name = name;
-    this.SearchCriteria = checkList; 
+    this.Email = email;
+    this.SearchCriteria = checkList;
+    // this should probably reference a root dir 
+    (name == '') ? (this.Path = '') : (this.Path = 'clients/' + name + '/');
   }
 }
 
 // Store this stuff in a DB table
-var people = ['jensen'];
+var clients = [''];
+var emails = ['scg104020@utdallas.edu'];
 var checkList = [['A -- Research & Development', '541712 -- Research and Development in the Physical, Engineering, and Life Sciences (except Biotechnology)', 'Combined Synopsis/Solicitation']];
 
 // Make the clientMap using the stuff from the DB
-var clientMap = people.map(function(person, index) {
-  return new Client(person, checkList[index]);
+var clientMap = clients.map(function(client, index) {
+  return new Client(client, emails[index], checkList[index]);
 });
 
-function sendEmail(heading, body, length) {
+function sendEmail(email, html, length) {
   sendmail({
     from: 'FBO-Mailer-Bot',
-    to: emailList.map(email => email + '@utdallas.edu'), 
+    //to: emailList.map(email => email + '@utdallas.edu'), 
+    to: email,
     subject: length + ' NEW FBO Opportunities Found - ' + getDateInfo().join('/'),
-    html: heading + specialMessageAddition + body
+    html: html
   },  
     function(err, reply) {
       console.log(err && err.stack);
@@ -134,45 +145,6 @@ function getDateInfo(date) {
 }
 
 
-function createFiles(htmlHeading, tableBeginning, tableEnding) {
-  var downloadThisFile = '<center><h1>FBO Database entries</h1><br><a href="' + serverAddress + '/FBODatabase.csv" download>Download this file</a><center>';
-
-  db.serialize(function() {
-    // Extract entire database
-    db.all('select * from fbodata', function(err, rows) {
-      //return;
-
-      // Latest entries up
-      rows.reverse();
-
-      // Write index.html file
-      var tableHTMLString = rows.map(makeTableRowHTML).join('') + tableEnding;
-
-      console.log(tableHTMLString);
-
-      fs.writeFile("index.html", htmlHeading + downloadThisFile + tableHTMLString, function(err) {
-        if(err) {
-          return console.log(err);
-        }
-        console.log("index.html was saved!");
-      });
-
-
-      //Write FBODatabase.csv file
-      var csvString = rows.map(row => Object.values(row).map(value => '"' + value + '"').join(','));
-      console.log(csvString);
-
-      fs.writeFile("FBODatabase.csv", (['DB ID'].concat(attributeList).join(',')).toString() + '\n' + csvString.join('\n')), function(err) {
-        if(err) {
-          return console.log(err);
-        }
-        console.log("FBODatabase.csv was saved!");
-      };
-
-    });
-  });
-}
-
 function getAttributes() {
   parentElements = [].slice.call(document.getElementsByClassName('input-checkbox'))
   parentElementsInnerText = parentElements.map(element => element.labels[0].innerText);
@@ -190,28 +162,83 @@ function pressSubmitButton() {
 }
 
 
-function writeIndexFile(file, rows, attributes) {
+function createFile(filePath, html) {
+  fs.writeFile(filePath, html, (err) => {
+      if(err) {
+      return console.log(err);
+    }
+
+    console.log('******' + filePath + 'was saved!');
+  });
+}
+
+
+function makeDir(path) {
+  console.log(path);
+  console.log('path ' + path);
+  if (!fs.existsSync(path)) {
+      fs.mkdir(path, (err, folder) => {
+      if (err) throw err;
+        console.log("Created folder", folder);
+    });
+  }
+}
+
+
+function createCSVFile(path, rows) {
+  //Write FBODatabase.csv file
+  var csvString = rows.map(row => Object.values(row).map(value => '"' + value + '"').join(','));
+  console.log(csvString);
+
+  fs.writeFile(path + "FBODatabase.csv", (['DB ID'].concat(attributeList).join(',')).toString() + '\n' + csvString.join('\n')), (err) => {
+      if(err) {
+        return console.log(err);
+    }
+    console.log(" ****** FBODatabase.csv was saved!");
+  };
+}
+
+
+function injectHTML(template, rows, client) {
   db.serialize(function() {
+    var rowsLength = rows.length;
     // Extract entire database
     db.all('select * from fbodata', function(err, rows) {
-      var rowsHTML = rows.reverse().map(makeTableRowHTML).join('');
+      createCSVFile(client.Path, rows); 
+
+      var completeRowsHTML = rows.reverse().map(makeTableRowHTML);
+
+      var tableColumns = columns.slice(0, columns.length - 1);
+      var tableHeader = tableColumns.slice(0, tableColumns.length - 1).map(header => '<th>' + header + '</th>').join('\n') + '\n<th style="min-width: 120px;">' + tableColumns[tableColumns.length - 1] + '</th>';
+      var filePath = (client.Name == '' ? '' : 'clients/' + client.Name + '/');
 
       var nn = new Nightmare()
-        .goto('file:///home/scottshotgg/Development/fbo-mailer-bot/' + file)
-        .evaluate(function(file, rowsHTML, attributes) {
-          $('thead')[0].innerHTML = attributes;
-          $('tbody')[0].innerHTML = rowsHTML;
+        .goto(template)
+        .evaluate(function(template, completeRowsHTML, tableHeader, client, rowsLength) {
+          var filePath = client.Path;
 
-          return $('html')[0].outerHTML
-        }, file, rowsHTML, attributes)
+          // Inject index.html elements
+          $('thead')[0].innerHTML = tableHeader;
+          $('tbody')[0].innerHTML = completeRowsHTML.join('');
+          $('#search_parameters')[0].innerHTML = client.SearchCriteria.map((ele, index) => (index + 1) + '. ' + ele).join('<br>');
+          $('#date')[0].innerHTML = 'Generated on ' + (new Date());
+          // might need to change some file stuff here
+          $('#download')[0].href = 'http://arc-fbobot.utdallas.edu:8080/' + filePath + 'FBODatabase.csv> download';
+          indexHTML = $('html')[0].outerHTML;
+
+          // Inject email.html elements
+          $('#download')[0].href = 'http://arc-fbobot.utdallas.edu:8080/' + filePath + 'index.html';
+          $('#download')[0].innerText = 'View and Download the full database';
+          $('tbody')[0].innerHTML = completeRowsHTML.splice(0, rowsLength).join('');
+          emailHTML = $('html')[0].outerHTML;
+
+          return {'Index': indexHTML, 'Email': emailHTML};
+        }, template, completeRowsHTML, tableHeader, client, rowsLength)
         .end()
-        .then(function(data) {
-          fs.writeFile("index.template.test", data, function(err) {
-            if(err) {
-              return console.log(err);
-            }
-            console.log(" ****** index.template.test was saved!");
-          });
+        .then(function(html) {
+          createFile(filePath + 'index.html', html.Index);
+          createFile(filePath + 'email.html', html.Email);
+          sendEmail(client.Email, html.Email, rowsLength);
         });
     });
   });
@@ -221,12 +248,11 @@ function writeIndexFile(file, rows, attributes) {
 function scrapeFBOData(client) {
   console.log('\n\n' + new Date() + '\n\n');
 
-    console.log("clientMap:", clientMap);
-  nightmare
+  console.log("client:", client);
+  
+  // might be able to use another instance to alleviate the repetitive fetching of the checkboxes
+  var nightmare = new Nightmare({ show: true })
     .goto('https://www.fbo.gov/index?s=opportunity&tab=search&mode=list')
-    //.type('#search_form_input_homepage', 'github nightmare')
-    //.click('#search_button_homepage')
-
     .evaluate(function(client) {
       parentElements = [].slice.call(document.getElementsByClassName('input-checkbox'))
       parentElementsInnerText = parentElements.map(element => element.labels[0].innerText);
@@ -239,9 +265,6 @@ function scrapeFBOData(client) {
     }, client)
     .wait('.list')
     .evaluate(function(attributeList) {
-      // Try returning Object.keys(db or stmt) and see what we get
-      //var attributeList = ['Title', 'BAA', 'Classification', 'Agency', 'Office', 'Location', 'Type', 'Date', 'Link'];
-
       return Array.prototype.slice.call(document.getElementsByClassName('lst-rw')).map(
         function(row) {
           // return Object.assign(...(row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href).map(
@@ -257,113 +280,7 @@ function scrapeFBOData(client) {
     .then(function(data) {
       var stmt = db.prepare("insert into fbodata (Title, BAA, Classification, Agency, Office, Location, Type, Date, Link) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-
-      var htmlHeading = `<!DOCTYPE html>
-                            <html>
-                            <head>
-                            <style>
-
-                              table, th, td {
-                                  border: 1px solid black;
-                                  border-collapse: collapse;
-                              }
-
-                              th, td {
-                                  padding: 15px;
-                              }
-
-                              th {
-                                font-size: 22px;
-                              }
-
-                              td {
-                                font-size:18px;
-                              }
-
-                              td:last-child {
-                                width: 120px;
-                              }
-
-                            </style>
-                            </head>
-                            <body>`;
-
-      var htmlEmailHeading = `<!DOCTYPE html>
-                            <html>
-                            <head>
-                            <style>
-
-                              table, th, td {
-                                  border: 1px solid black;
-                                  border-collapse: collapse;
-                              }
-
-                              th, td {
-                                  padding: 15px;
-                              }
-
-                              th {
-                                font-size: 20px;
-                              }
-
-                              td {
-                                font-size:15px;
-                              }
-
-                              td:last-child {
-                                width: 120px;
-                              }
-
-                            </style>
-                            </head>
-                            <body>`;
-
-
-      var emailBody = '<center><h1>FBO Database entries</h1><br></center>';
-
-      var tableBeginning = `
-                            <center><div style=""><table id="example" class="uk-table uk-table-hover uk-table-striped" style="min-width: 1000px; max-width: 1200px; width: 65%; font-face: bold;">
-                            <br><br><thead><tr>`;
-
-      var tableHeaders = columns.slice(0, columns.length - 1);
-
-      //for (header of tableHeaders) {
-      //  tableBeginning += '\n<th><b>' + header + '</b></th>';
-      //}
-
-      tableBeginning += tableHeaders.slice(0, tableHeaders.length - 1).map(header => '<th>' + header + '</th>').join('\n') + '\n<th style="min-width: 120px;"><b>' + tableHeaders[tableHeaders.length - 1] + '</b></th>';
-
-      //console.log(tableBeginning);
-
-      // Add a blank line between the column heading and the rest of the tuples
-      tableBeginning +=    `\n</tr></thead>
-                            <tbody>
-                            <tr style="height:22px;">
-                            <td colspan="10"></td>
-                            </tr>`;
-
-      var tableRows =       "";
-
-
-      var tableEnding =    `\n</tbody>
-                            </table>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <div align="left" style="padding-left: 35%" id="search_parameters">The above was generated using the following search criteria: <br><br>` + client.SearchCriteria.map(function(element, index) { return '<div align="left">' + ++index + ". " + element + '</div>'}).join('') + `</div>
-                            <br>
-                            <br>
-                            </div>
-                            </center>
-                            </body>
-                            </html>`;
-
       var tableLength = 0;
-
-      // fill this in
-      var oldCSVName = "";
-
       var rows = new Array();
       var lastID = 1;
 
@@ -384,23 +301,9 @@ function scrapeFBOData(client) {
             });
         });
 
-
-        //var viewThisFile = '<a href="http://' + serverAddress + '">View and download this file</a>' + '<br><br>';
-        var viewThisFile = '<center>' + createLink(serverAddress, 'View and download full database') + '</center><br><br>'
-
         stmt.finalize(function() {
-          console.log("rows", rows);
-
           if(tableLength > 0 || forceEmailSend == 1) {
-
-            // Create new index and CSV files if there are updates available
-            db.serialize(function() {
-              //createFiles(htmlHeading, tableBeginning, tableEnding);
-              writeIndexFile('index.template', rows, tableBeginning);
-            });
-
-            // Send email and only include the rows that need to be updated
-            sendEmail(htmlHeading, emailBody + viewThisFile + tableBeginning + rows.reverse().map(makeTableRowHTML).join('') + tableEnding, tableLength);
+            injectHTML(templateFile, rows, client);
           } else {
             console.log("\n\nNothing new scraped, nothing new to see. :(");
           }
@@ -424,21 +327,13 @@ db.serialize(function() {
    });
 });
 
-//writeIndexTemplate('index.template');
-
-//return;
-
+makeDir('clients/complete');
 
 clientMap.forEach(function(client) {
+  if(client.Path != '') {
+    makeDir(client.Path);
+  }
+  
+  // we really need to make a producer consumer thing
   scrapeFBOData(client);
 });
-
-
-
-// var job = new CronJob({
-//   cronTime: '00 00 8 * * 1-5',
-//   onTick: scrapeFBOData,
-//   start: true,
-//   timeZone: 'America/Chicago',
-// //  runOnInit: true
-// });
