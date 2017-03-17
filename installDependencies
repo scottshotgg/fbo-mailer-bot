@@ -1,2 +1,2 @@
 echo "Installing dependencies..."
-npm install sqlite3 nightmare sendmail console-stamp electron
+npm install sqlite3 nightmare sendmail console-stamp electron mongodb

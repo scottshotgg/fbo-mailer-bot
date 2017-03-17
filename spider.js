@@ -14,6 +14,10 @@ var sendmail = require('sendmail')();
 // For writing the HTML files
 var fs = require('fs');
 
+// MongoDB for the database
+var MongoClient = require('mongodb').MongoClient;
+
+
 // Using this to do the cron work since I don't want to mess with cron in Linux and this is more portable
 //var CronJob = require('cron').CronJob;
 
@@ -267,17 +271,31 @@ function scrapeFBOData(client) {
     .evaluate(function(attributeList) {
       return Array.prototype.slice.call(document.getElementsByClassName('lst-rw')).map(
         function(row) {
-          // return Object.assign(...(row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href).map(
-          //   function(item, index) {
-          //     return {[attributeList[index]]: item};
-          //   }
-          // )));
-          return row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href);
+          return Object.assign(...(row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href).map(
+            function(item, index) {
+              return {[attributeList[index]]: item};
+            }
+          )));
+          //return row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href);
         }
       )
     }, attributeList)
     .end()
     .then(function(data) {
+      data.reverse().forEach(function(row, index) {
+        row.ID = getNextSequence("userid");
+        mongoDBEmitter.emit('insert', row);
+      });
+    })
+    /*
+    .then(function(data) {
+
+      //insertMongoDB(data);
+      //console.log(data);
+      
+
+      //return;
+
       var stmt = db.prepare("insert into fbodata (Title, BAA, Classification, Agency, Office, Location, Type, Date, Link) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
       var tableLength = 0;
@@ -315,19 +333,103 @@ function scrapeFBOData(client) {
     .catch(function (error) {
       console.error('Search failed:', error);
     });
+    */
 }
 
 
 /* ===================  THIS IS THE CODE YOU ARE LOOKING FOR  =================== */
 /* ===================  THIS IS WHERE EVERYTHING STARTS       =================== */
 
+
+/*
 db.serialize(function() {
   db.run("create table fbodata (ID integer primary key, Title text not null, BAA text not null unique, Classification text, Agency text, Office text, Location text, Type text, Date text, Link text, File string)", function(error) {
+       console.log("Table Creation Error:", error);
+   });
+  db.run("create table clients (ID integer primary key, Name text not null, Email text not null unique, SearchCriteria text )", function(error) {
        console.log("Table Creation Error:", error);
    });
 });
 
 makeDir('clients/complete');
+*/
+//connectMongoDB();
+
+
+var fbodataCollection;
+var mongo;
+
+const EventEmitter = require('events');
+class DBEmitter extends EventEmitter {}
+const mongoDBEmitter = new DBEmitter();
+mongoDBEmitter.on('insert', (row) => {
+  console.log(row, this);
+  insertMongoDB(row);
+});
+
+
+function connectMongoDB() {
+  // Connect to the db    
+  MongoClient.connect("mongodb://localhost:27017/fbodata", function(err, mdb) {
+      if(!err) {
+        console.log('Connected');
+        mongo = mdb;
+        createCollection();
+      } else {
+        console.log(err);
+      }
+    });
+}
+
+
+function insertMongoDB(row) {
+  //console.log(fbodataCollection);
+  fbodataCollection.insert(row);
+}
+
+function createCollection() {
+  console.log('We are connected');
+
+  /*
+  mdb.createCollection('test', function(err, collection) {
+    if(!err) {
+      console.log('Created the collection', collection);
+    } else {
+      console.log(err);
+    }
+  });
+  //mdb.test.insert({'name': 'itsme'});
+  */
+
+  var countersCollection = mongo.collection('counters');
+  countersCollection.insert(
+    { _id: "userid",
+      seq: 0 }, 
+      function(err, records) {
+      });
+
+  fbodataCollection = mongo.collection('fbodata');
+  //collection.insert({'test': 'bite my shiny metal ass'});
+  //fbodataCollection.insert();
+}
+
+
+function getNextSequence(name) {
+   var ret = mongo.collections('counters')
+   ret.findAndModify(
+          {
+            query: { _id: name },
+            update: { $inc: { seq: 1 } },
+            new: true
+          }
+   );
+
+   return ret.seq;
+}
+
+connectMongoDB();
+
+
 
 clientMap.forEach(function(client) {
   if(client.Path != '') {
