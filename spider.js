@@ -69,6 +69,7 @@ var columnIndexs = columns.map(function(column) {
 var parentElements = [];
 var parentElementsInnerText = [];
 
+var lastMongoID = 0;
 
 
 // Small client class
@@ -283,7 +284,8 @@ function scrapeFBOData(client) {
     .end()
     .then(function(data) {
       data.reverse().forEach(function(row, index) {
-        row.ID = getNextSequence("userid");
+        row.ID = lastMongoID + index + 1;
+        //row._id = row.BAA;
         mongoDBEmitter.emit('insert', row);
       });
     })
@@ -362,15 +364,15 @@ var mongo;
 const EventEmitter = require('events');
 class DBEmitter extends EventEmitter {}
 const mongoDBEmitter = new DBEmitter();
+
 mongoDBEmitter.on('insert', (row) => {
-  console.log(row, this);
   insertMongoDB(row);
 });
 
 
 function connectMongoDB() {
   // Connect to the db    
-  MongoClient.connect("mongodb://localhost:27017/fbodata", function(err, mdb) {
+  MongoClient.connect("mongodb://localhost:27017/fbo-mailer", function(err, mdb) {
       if(!err) {
         console.log('Connected');
         mongo = mdb;
@@ -383,48 +385,51 @@ function connectMongoDB() {
 
 
 function insertMongoDB(row) {
-  //console.log(fbodataCollection);
-  fbodataCollection.insert(row);
+  //getNextSequence('userid', row);
+  console.log(row);
+  fbodataCollection.insert(row, function(err, object) {
+    if(err) {
+      console.log('error!', err);
+    }
+  });
 }
 
 function createCollection() {
   console.log('We are connected');
 
-  /*
-  mdb.createCollection('test', function(err, collection) {
-    if(!err) {
-      console.log('Created the collection', collection);
-    } else {
-      console.log(err);
-    }
-  });
-  //mdb.test.insert({'name': 'itsme'});
-  */
-
-  var countersCollection = mongo.collection('counters');
-  countersCollection.insert(
+  mongo.collection('counters').insert(
     { _id: "userid",
       seq: 0 }, 
       function(err, records) {
-      });
+    }
+  );
 
   fbodataCollection = mongo.collection('fbodata');
-  //collection.insert({'test': 'bite my shiny metal ass'});
-  //fbodataCollection.insert();
+  fbodataCollection.createIndex({'BAA': 1}, {unique: true});
+
+  getLastMongoID();
+}
+
+function getLastMongoID() {
+  fbodataCollection.find({}).sort({'ID': -1}).limit(1).next().then(function(value) {
+    lastMongoID = value.ID;
+  });
 }
 
 
-function getNextSequence(name) {
-   var ret = mongo.collections('counters')
-   ret.findAndModify(
-          {
-            query: { _id: name },
-            update: { $inc: { seq: 1 } },
-            new: true
+function getNextSequence(name, row) {
+   var ret = mongo.collection('counters').findAndModify(
+          { _id: name },
+          undefined,
+          { $inc: { seq: 1 } },
+          function(err, object) {
+            if(!err) {
+              row.ID = object.value.seq;
+              console.log(row);
+              fbodataCollection.insert(row);
+            }
           }
    );
-
-   return ret.seq;
 }
 
 connectMongoDB();
