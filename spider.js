@@ -283,11 +283,32 @@ function scrapeFBOData(client) {
     }, attributeList)
     .end()
     .then(function(data) {
-      data.reverse().forEach(function(row, index) {
+
+
+      /*
+      let requests = [1,2,3].map((item) => {
+          return new Promise((resolve) => {
+            asyncFunction(item, resolve);
+          });
+      })
+
+      Promise.all(requests).then(() => console.log('done'));
+    */
+
+      /*
+      var rdata = data.reverse();
+
+      rdata.slice(0, data.length - 1).map((row, index) => {
         row.ID = lastMongoID + index + 1;
-        //row._id = row.BAA;
-        mongoDBEmitter.emit('insert', row);
+        mongoDBEmitter.emit('insert', row, ++index);
       });
+
+      mongoDBEmitter.emit('insert_last', rdata[rdata.length - 1], rdata.length);
+      */
+
+      mongoDBEmitter.emit('insert', data.reverse());
+
+
     })
     /*
     .then(function(data) {
@@ -365,33 +386,64 @@ const EventEmitter = require('events');
 class DBEmitter extends EventEmitter {}
 const mongoDBEmitter = new DBEmitter();
 
-mongoDBEmitter.on('insert', (row) => {
-  insertMongoDB(row);
+mongoDBEmitter.on('insert', (rows) => {
+
+
+  /*
+      let requests = [1,2,3].map((item) => {
+          return new Promise((resolve) => {
+            asyncFunction(item, resolve);
+          });
+      })
+
+      Promise.all(requests).then(() => console.log('done'));
+    */
+
+  let rowPromises = rows.map((row, index) => {
+    row.ID = index;
+    return new Promise((resolve) => {
+      insertMongoDB(row);
+    });
+  });
+
+  Promise.all(rowPromises).then(() => console.log('done'));
+  console.log('donnenneneneneneneeeeee');
+
+  
 });
 
 
 function connectMongoDB() {
   // Connect to the db    
   MongoClient.connect("mongodb://localhost:27017/fbo-mailer", function(err, mdb) {
-      if(!err) {
-        console.log('Connected');
-        mongo = mdb;
-        createCollection();
-      } else {
-        console.log(err);
-      }
-    });
-}
-
-
-function insertMongoDB(row) {
-  //getNextSequence('userid', row);
-  console.log(row);
-  fbodataCollection.insert(row, function(err, object) {
-    if(err) {
-      console.log('error!', err);
+    if(!err) {
+      console.log('Connected');
+      mongo = mdb;
+      createCollection();
+    } else {
+      console.log(err);
     }
   });
+}
+
+var rows = new Array();
+var tableLength = 0;
+
+function insertMongoDB(row) {
+  
+  console.log(row);
+  /*
+  fbodataCollection.insert(row, function(err, object) {
+    if(err) {
+      //console.log(err);
+    } else {
+      console.log('Succeeded:', object);
+      rows.push(object);
+      tableLength += 1;
+    }
+  });
+  */
+  return fbodataCollection.insert(row);
 }
 
 function createCollection() {
