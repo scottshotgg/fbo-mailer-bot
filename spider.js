@@ -2,7 +2,7 @@
 
 // NightmareJS for the spider construction
 var Nightmare = require('nightmare');       
-var nightmare = Nightmare({ show: true });
+//var nightmare = Nightmare({ show: true });
 
 // SQLite3 for the database
 var sqlite3 = require('sqlite3').verbose();
@@ -22,9 +22,38 @@ var MongoClient = require('mongodb').MongoClient;
 //var CronJob = require('cron').CronJob;
 
 // Set up the console stamp
+    // Line number stuff
+  Object.defineProperty(global, '__stack', {
+    get: function(){
+      var orig = Error.prepareStackTrace;
+      Error.prepareStackTrace = function(_, stack){ return stack; };
+      var err = new Error;
+      Error.captureStackTrace(err, arguments.callee);
+      var stack = err.stack;
+      Error.prepareStackTrace = orig;
+      return stack;
+    }
+  });
+
+  Object.defineProperty(global, '__line', {
+    get: function(){
+      return __stack[3].getLineNumber();
+    }
+  });
+
+  Object.defineProperty(global, '__function', {
+    get: function() {
+        return __stack[3].getFunctionName();
+    }
+  });
+
+
 require( "console-stamp" )( console, {
+
     metadata: function () {
-        return ("[" + (process.memoryUsage().rss  / 1000000).toFixed(2) + " MB] " + (new Error).lineNumber);
+        var funcout = __function;
+
+        return ('[ RAM: ' + (process.memoryUsage().rss  / 1000000).toFixed(2) + ' MB | caller: ' + __function + ' | line: ' + __line + ' ]');
     },
     colors: {
         stamp:    "yellow",
@@ -33,9 +62,9 @@ require( "console-stamp" )( console, {
     }
 } );
 
-var i = 0;
-process.argv.forEach(function(arg) {
-  console.log(i++, arg);
+
+process.argv.forEach(function(arg, index) {
+  console.log(index, arg);
 })
 
 //var serverAddress = '10.201.40.178';
@@ -47,9 +76,10 @@ process.argv[2] == 'server' ? templateFile = 'file:///home/fborobo/fbo-mailer-bo
 
 console.log(templateFile);
  
+var emails = ['scg104020@utdallas.edu'];
 if (process.argv[6] != undefined && process.argv[6].length > 0) {
-  emailList.push(process.argv[6]);
-  console.log(emailList);
+  emails.push(process.argv[6]);
+  //console.log(emailList);
 }
 
 var specialMessageAddition = '';
@@ -85,9 +115,8 @@ class Client {
 
 // Store this stuff in a DB table
 var clients = [''];
-var emails = ['scg104020@utdallas.edu'];
 if (process.argv[3] == "deploy") {
-   emails = ['arc@lists.utdallas.edu'];
+   emails.push(['arc@lists.utdallas.edu']);
 }
 console.log(emails);
 
@@ -193,7 +222,7 @@ function makeDir(path) {
 function createCSVFile(path, rows) {
   //Write FBODatabase.csv file
   var csvString = rows.map(row => Object.values(row).map(value => '"' + value + '"').join(','));
-  console.log(csvString);
+  //console.log(csvString);
 
   fs.writeFile(path + "FBODatabase.csv", (['DB ID'].concat(attributeList).join(',')).toString() + '\n' + csvString.join('\n')), (err) => {
       if(err) {
@@ -204,20 +233,22 @@ function createCSVFile(path, rows) {
 }
 
 
-function injectHTML(template, rows, client) {
-  db.serialize(function() {
-    var rowsLength = rows.length;
-    // Extract entire database
-    db.all('select * from fbodata', function(err, rows) {
-      createCSVFile(client.Path, rows); 
+function injectHTML(template, rowsLength, client) {
+  // Extract entire database
+  mongo.collection('fbodata').find({}).sort({Date: -1, Title: 1}).toArray().then((results) => {
 
-      var completeRowsHTML = rows.reverse().map(makeTableRowHTML);
+    //console.log(results);
 
-      var tableColumns = columns.slice(0, columns.length - 1);
-      var tableHeader = tableColumns.slice(0, tableColumns.length - 1).map(header => '<th>' + header + '</th>').join('\n') + '\n<th style="min-width: 120px;">' + tableColumns[tableColumns.length - 1] + '</th>';
-      var filePath = (client.Name == '' ? '' : 'clients/' + client.Name + '/');
+    var rowValues = Object.values(results);
+    createCSVFile(client.Path, rowValues);
+    var completeRowsHTML = rowValues.map(makeTableRowHTML);
 
-      var nn = new Nightmare()
+    var tableColumns = columns.slice(0, columns.length - 1);
+    var tableHeader = tableColumns.slice(0, tableColumns.length - 1).map(header => '<th>' + header + '</th>').join('\n') + '\n<th style="min-width: 120px;">' + tableColumns[tableColumns.length - 1] + '</th>';
+    var filePath = (client.Name == '' ? '' : 'clients/' + client.Name + '/');
+
+
+     var nn = new Nightmare({show: false})
         .goto(template)
         .evaluate(function(template, completeRowsHTML, tableHeader, client, rowsLength) {
           var filePath = client.Path;
@@ -246,7 +277,6 @@ function injectHTML(template, rows, client) {
           sendEmail(client.Email, html.Email, rowsLength);
         });
     });
-  });
 }
 
 
@@ -256,7 +286,7 @@ function scrapeFBOData(client) {
   console.log("client:", client);
   
   // might be able to use another instance to alleviate the repetitive fetching of the checkboxes
-  var nightmare = new Nightmare({ show: true })
+  var night = new Nightmare({ show: false })
     .goto('https://www.fbo.gov/index?s=opportunity&tab=search&mode=list')
     .evaluate(function(client) {
       parentElements = [].slice.call(document.getElementsByClassName('input-checkbox'))
@@ -283,80 +313,8 @@ function scrapeFBOData(client) {
     }, attributeList)
     .end()
     .then(function(data) {
-
-
-      /*
-      let requests = [1,2,3].map((item) => {
-          return new Promise((resolve) => {
-            asyncFunction(item, resolve);
-          });
-      })
-
-      Promise.all(requests).then(() => console.log('done'));
-    */
-
-      /*
-      var rdata = data.reverse();
-
-      rdata.slice(0, data.length - 1).map((row, index) => {
-        row.ID = lastMongoID + index + 1;
-        mongoDBEmitter.emit('insert', row, ++index);
-      });
-
-      mongoDBEmitter.emit('insert_last', rdata[rdata.length - 1], rdata.length);
-      */
-
-      mongoDBEmitter.emit('insert', data.reverse());
-
-
-    })
-    /*
-    .then(function(data) {
-
-      //insertMongoDB(data);
-      //console.log(data);
-      
-
-      //return;
-
-      var stmt = db.prepare("insert into fbodata (Title, BAA, Classification, Agency, Office, Location, Type, Date, Link) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-      var tableLength = 0;
-      var rows = new Array();
-      var lastID = 1;
-
-      db.serialize(function() {
-        //data.map(function(item, index, htmlString) {
-          data.reverse().map(function(piece) {
-          //for (var piece of data) {
-            stmt.run(piece, function(error) {
-              //console.log("htmlString: ", htmlString);
-              console.log("stmt.run error:", error);
-              //console.log(data[this.lastID - 1]);
-              if(error == null) {
-                //console.log(rows);
-                rows.push(piece);
-                tableLength += 1
-                lastID = this.lastID;
-              }
-            });
-        });
-
-        stmt.finalize(function() {
-          if(tableLength > 0 || forceEmailSend == 1) {
-            injectHTML(templateFile, rows, client);
-          } else {
-            console.log("\n\nNothing new scraped, nothing new to see. :(");
-          }
-        });
-
-        db.close();
-      })
-    })
-    .catch(function (error) {
-      console.error('Search failed:', error);
+      mongoDBEmitter.emit('insert', data.reverse(), client);
     });
-    */
 }
 
 
@@ -364,20 +322,8 @@ function scrapeFBOData(client) {
 /* ===================  THIS IS WHERE EVERYTHING STARTS       =================== */
 
 
-/*
-db.serialize(function() {
-  db.run("create table fbodata (ID integer primary key, Title text not null, BAA text not null unique, Classification text, Agency text, Office text, Location text, Type text, Date text, Link text, File string)", function(error) {
-       console.log("Table Creation Error:", error);
-   });
-  db.run("create table clients (ID integer primary key, Name text not null, Email text not null unique, SearchCriteria text )", function(error) {
-       console.log("Table Creation Error:", error);
-   });
-});
-
-makeDir('clients/complete');
-*/
-//connectMongoDB();
-
+var newRows = {};
+var tableLength = 0;
 
 var fbodataCollection;
 var mongo;
@@ -386,8 +332,7 @@ const EventEmitter = require('events');
 class DBEmitter extends EventEmitter {}
 const mongoDBEmitter = new DBEmitter();
 
-mongoDBEmitter.on('insert', (rows) => {
-
+mongoDBEmitter.on('insert', (rows, client) => {
 
   /*
       let requests = [1,2,3].map((item) => {
@@ -399,17 +344,45 @@ mongoDBEmitter.on('insert', (rows) => {
       Promise.all(requests).then(() => console.log('done'));
     */
 
-  let rowPromises = rows.map((row, index) => {
+  var rowPromises = rows.map((row, index) => {
     row.ID = index;
-    return new Promise((resolve) => {
-      insertMongoDB(row);
-    });
+    return insertMongoDB(row);
+
+    //return thing.then((value) => {
+      //console.log('hi', value);
+      //return value;
+    //});  
   });
 
-  Promise.all(rowPromises).then(() => console.log('done'));
-  console.log('donnenneneneneneneeeeee');
+  console.log('rowPromises', rowPromises);
 
-  
+
+  Promise.all(rowPromises)
+    .then(results => {
+      injectHTML(templateFile, tableLength, client);
+    });
+
+
+  // rowPromises.then((value) => {
+  //   console.log('rowPromises', value);
+  // })
+
+  /*Promise.resolve(rowPromises)
+    .then((value) => { 
+      console.log('\ndone', value);
+    })
+    .then((value) => {
+      console.log('\ndonerino', value);
+    })
+    .catch((reason) => { 
+      console.log('still gonna do this whole console.log thing...', reason);
+    });*/
+});
+
+mongoDBEmitter.on('close', () => {
+  console.log('closing...');
+
+  mongo.close();
 });
 
 
@@ -426,24 +399,18 @@ function connectMongoDB() {
   });
 }
 
-var rows = new Array();
-var tableLength = 0;
 
 function insertMongoDB(row) {
-  
-  console.log(row);
-  /*
-  fbodataCollection.insert(row, function(err, object) {
-    if(err) {
-      //console.log(err);
-    } else {
-      console.log('Succeeded:', object);
-      rows.push(object);
-      tableLength += 1;
-    }
-  });
-  */
-  return fbodataCollection.insert(row);
+  return fbodataCollection.insert(row)
+    .then(() => {
+    //console.log('pushing one');
+      //newRows[row.ID] = (row);
+      //fbodataCollection.remove(row)
+      tableLength++;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 function createCollection() {
@@ -459,12 +426,19 @@ function createCollection() {
   fbodataCollection = mongo.collection('fbodata');
   fbodataCollection.createIndex({'BAA': 1}, {unique: true});
 
-  getLastMongoID();
+  /*
+  lastID = getLastMongoID().then((thing) => {
+    return thing;
+  });
+  */
+  // Don't think I'll need to resolve the promise again unless the promise is actually to another promise ('is such a thing... even... possible ??? *le alien guy meme face*')
+  lastID = getLastMongoID();
+
 }
 
 function getLastMongoID() {
-  fbodataCollection.find({}).sort({'ID': -1}).limit(1).next().then(function(value) {
-    lastMongoID = value.ID;
+  return fbodataCollection.find({}).sort({'ID': -1}).limit(1).next().then(function(value) {
+    return value.ID;
   });
 }
 
@@ -477,22 +451,76 @@ function getNextSequence(name, row) {
           function(err, object) {
             if(!err) {
               row.ID = object.value.seq;
-              console.log(row);
+              //console.log(row);
               fbodataCollection.insert(row);
             }
           }
    );
 }
 
+
 connectMongoDB();
 
 
 
-clientMap.forEach(function(client) {
-  if(client.Path != '') {
-    makeDir(client.Path);
-  }
+// let clientPromises = clientMap.map((client) => {
+//   if(client.Path != '') {
+//     makeDir(client.Path);
+//   }
   
-  // we really need to make a producer consumer thing
-  scrapeFBOData(client);
+//   // we really need to make a producer consumer thing
+//   return new Promise((resolve) => {
+//     scrapeFBOData(client)
+//   }).then(() => {});
+// });
+// console.log('*************************wait for me************************');
+
+// console.log(clientPromises);
+
+// Promise.all(clientPromises)
+//   .then(() => {
+//     console.log('*************************closing************************');
+//     mongoDBEmitter.close('close');
+//   });
+
+
+/*
+let requests = clientMap.map((client) => {
+    return new Promise((resolve, reject) => {
+      scrapeFBOData(client)
+    });
 });
+
+console.log(requests);
+
+Promise.all(requests).then(() => console.log('done'));
+*/
+function asyncFunction (item, cb) {
+  setTimeout(() => {
+    console.log('done with', item);
+    cb();
+  }, 100);
+}
+
+console.log('clientMap', clientMap[0])
+
+let requests = [1].map((item) => {
+    return new Promise((resolve) => {
+      asyncFunction(item, resolve);
+      scrapeFBOData(clientMap[0])
+    });
+});
+
+
+Promise.all(requests)
+  .then(results => {
+    //injectHTML(templateFile, tableLength, client);
+    console.log(results);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+
+
+

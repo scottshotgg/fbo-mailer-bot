@@ -19,7 +19,7 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
-      var table = $('#fbo_table').DataTable()
+      var table = $('#fbo_table').DataTable();
       table.order( [[3, 'dec'], [0, 'asc']]).draw();
     });
   </script>
