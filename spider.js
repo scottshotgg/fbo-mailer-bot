@@ -56,7 +56,7 @@ require( "console-stamp" )( console, {
         return ('[ RAM: ' + (process.memoryUsage().rss  / 1000000).toFixed(2) + ' MB | caller: ' + __function + ' | line: ' + __line + ' ]');
     },
     colors: {
-        stamp:    "yellow",
+        stamp:    "yellow", 
         label:    "red",
         metadata: "green"
     }
