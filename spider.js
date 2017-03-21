@@ -61,7 +61,7 @@ require( "console-stamp" )( console, {
         metadata: "green"
     }
 } );
-
+ 
 
 process.argv.forEach(function(arg, index) {
   console.log(index, arg);
@@ -114,7 +114,7 @@ class Client {
 }
 
 // Store this stuff in a DB table
-var clients = [''];
+var clients = ['', 'scott'];
 if (process.argv[3] == "deploy") {
    emails.push(['arc@lists.utdallas.edu']);
 }
@@ -124,7 +124,8 @@ var checkList = [['A -- Research & Development', '541712 -- Research and Develop
 
 // Make the clientMap using the stuff from the DB
 var clientMap = clients.map(function(client, index) {
-  return new Client(client, emails[index], checkList[index]);
+  return new Client(client, emails[0], checkList[0]);
+  //return new Client(client, emails[index], checkList[index]);
 });
 
 function sendEmail(email, html, length) {
@@ -461,8 +462,6 @@ function getNextSequence(name, row) {
 
 connectMongoDB();
 
-
-
 // let clientPromises = clientMap.map((client) => {
 //   if(client.Path != '') {
 //     makeDir(client.Path);
@@ -495,6 +494,7 @@ console.log(requests);
 
 Promise.all(requests).then(() => console.log('done'));
 */
+
 function asyncFunction (item, cb) {
   setTimeout(() => {
     console.log('done with', item);
@@ -502,16 +502,16 @@ function asyncFunction (item, cb) {
   }, 100);
 }
 
-console.log('clientMap', clientMap[0])
+console.log('clientMap', clientMap)
 
-let requests = [1].map((item) => {
-    return new Promise((resolve) => {
-      asyncFunction(item, resolve);
-      scrapeFBOData(clientMap[0])
-    });
+let requests = clientMap.map((client) => {
+    if(client.Path != '') {
+      makeDir(client.Path);
+    }
+    scrapeFBOData(client);
 });
 
-
+/*
 Promise.all(requests)
   .then(results => {
     //injectHTML(templateFile, tableLength, client);
@@ -520,7 +520,7 @@ Promise.all(requests)
   .catch((err) => {
     console.log(err);
   });
-
+*/
 
 
 
