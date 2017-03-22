@@ -35,15 +35,17 @@ var MongoClient = require('mongodb').MongoClient;
     }
   });
 
+  var globalStackDrawValue = 3;
+
   Object.defineProperty(global, '__line', {
     get: function() {
-      return __stack[3].getLineNumber();
+      return __stack[globalStackDrawValue].getLineNumber();
     }
   });
 
   Object.defineProperty(global, '__function', {
     get: function() {
-      return __stack[3].getFunctionName();
+      return __stack[globalStackDrawValue].getFunctionName();
     }
   });
 
@@ -114,7 +116,7 @@ class Client {
 }
 
 // Store this stuff in a DB table
-var clients = ['', 'scott'];
+var clients = ['']//, 'scott'];
 if (process.argv[3] == "deploy") {
    emails.push(['arc@lists.utdallas.edu']);
 }
@@ -130,10 +132,10 @@ var clientMap = clients.map(function(client, index) {
 
 function sendEmail(email, html, length) {
   sendmail({
-    from: 'FBO-Mailer-Bot',
-    //to: emailList.map(email => email + '@utdallas.edu'), 
+    from: 'FBO-Mailer-Bot@utdallas.edu',
     to: email,
     subject: length + ' NEW FBO Opportunities Found - ' + getDateInfo().join('/'),
+    text: 'testerinoing',
     html: html
   },  
     function(err, reply) {
@@ -203,7 +205,7 @@ function createFile(filePath, html) {
       return console.log(err);
     }
 
-    console.log('******' + filePath + 'was saved!');
+    console.log('******' + filePath + ' was saved!');
   });
 }
 
@@ -236,7 +238,7 @@ function createCSVFile(path, rows) {
 }
 
 
-function injectHTML(template, rowsLength, client) {
+function injectHTML(template, rowsLength, client, resolve, reject) {
   // Extract entire database
   mongo.collection('fbodata').find({}).sort({Date: -1, Title: 1}).toArray().then((results) => {
 
@@ -278,6 +280,12 @@ function injectHTML(template, rowsLength, client) {
           createFile(filePath + 'index.html', html.Index);
           createFile(filePath + 'email.html', html.Email);
           sendEmail(client.Email, html.Email, rowsLength);
+        })
+        .then(() => {
+          //resolve();
+        })
+        .catch(() => {
+          //reject();
         });
     });
 }
@@ -316,7 +324,7 @@ function scrapeFBOData(client, resolve, reject) {
     }, attributeList)
     .end()
     .then(function(data) {
-      //mongoDBEmitter.emit('insert', data.reverse(), client);
+      mongoDBEmitter.emit('insert', data.reverse(), client);
     })
     .then(function() {
       client.LastRun = new Date().toString();
@@ -346,50 +354,16 @@ class DBEmitter extends EventEmitter {}
 const mongoDBEmitter = new DBEmitter();
 
 mongoDBEmitter.on('insert', (rows, client) => {
-
-  /*
-      let requests = [1,2,3].map((item) => {
-          return new Promise((resolve) => {
-            asyncFunction(item, resolve);
-          });
-      })
-
-      Promise.all(requests).then(() => console.log('done'));
-    */
-
-  var rowPromises = rows.map((row, index) => {
+  Promise.all(rows.map((row, index) => {
     row.ID = index;
-    return insertMongoDB(row);
-
-    //return thing.then((value) => {
-      //console.log('hi', value);
-      //return value;
-    //});  
-  });
-
-  console.log('rowPromises', rowPromises);
-
-
-  Promise.all(rowPromises)
-    .then(results => {
-      injectHTML(templateFile, tableLength, client);
-    });
-
-
-  // rowPromises.then((value) => {
-  //   console.log('rowPromises', value);
-  // })
-
-  /*Promise.resolve(rowPromises)
-    .then((value) => { 
-      console.log('\ndone', value);
-    })
-    .then((value) => {
-      console.log('\ndonerino', value);
-    })
-    .catch((reason) => { 
-      console.log('still gonna do this whole console.log thing...', reason);
-    });*/
+    insertMongoDB(row);
+    }))
+      .then(results => {
+            injectHTML(templateFile, tableLength, client);
+      })
+      .catch(catchresults => {
+        console.log('is this what you want??', catchresults);
+      });
 });
 
 mongoDBEmitter.on('close', () => {
@@ -415,11 +389,10 @@ function connectMongoDB() {
 
 
 function insertMongoDB(row) {
-  return fbodataCollection.insert(row)
+  console.log('inserting...');
+  fbodataCollection.insert(row)
     .then(() => {
-    //console.log('pushing one');
-      //newRows[row.ID] = (row);
-      //fbodataCollection.remove(row)
+      console.log('success');
       tableLength++;
     })
     .catch((err) => {
@@ -440,48 +413,42 @@ function createCollection() {
   fbodataCollection = mongo.collection('fbodata');
   fbodataCollection.createIndex({'BAA': 1}, {unique: true});
 
-  /*
-  lastID = getLastMongoID().then((thing) => {
-    return thing;
-  });
-  */
-  // Don't think I'll need to resolve the promise again unless the promise is actually to another promise ('is such a thing... even... possible ??? *le alien guy meme face*')
   lastID = getLastMongoID();
-
 }
 
 function getLastMongoID() {
-  return fbodataCollection.find({}).sort({'ID': -1}).limit(1).next().then(function(value) {
-    return value.ID;
-  });
+  return fbodataCollection.find({}).sort({'ID': -1}).limit(1).next()
+    .then(value => {
+      return value.ID;
+    })
+    .catch(() => {
+      return 0;
+    });
 }
 
 
 function getNextSequence(name, row) {
-   var ret = mongo.collection('counters').findAndModify(
-          { _id: name },
-          undefined,
-          { $inc: { seq: 1 } },
-          function(err, object) {
-            if(!err) {
-              row.ID = object.value.seq;
-              //console.log(row);
-              fbodataCollection.insert(row);
-            }
-          }
-   );
+  mongo.collection('counters').findAndModify(
+    { _id: name },
+    undefined,
+    { $inc: { seq: 1 } },
+    function(err, object) {
+      if(!err) {
+        row.ID = object.value.seq;
+        //console.log(row);
+        fbodataCollection.insert(row);
+      }
+    });
 }
 
 
 connectMongoDB();
 
-let requests = clientMap.map((client) => {
-    return new Promise((resolve, reject) => {
-      scrapeFBOData(client, resolve, reject);
-    });
-});
-
-Promise.all(requests)
+Promise.all(clientMap.map((client) => {
+      return new Promise((resolve, reject) => {
+        scrapeFBOData(client, resolve, reject);
+      });
+  })) 
   .then((values) => {
     console.log(values);
     values.map((value) => {
@@ -489,7 +456,6 @@ Promise.all(requests)
         console.log(value.Name + ' SUCCESS');
       }
     });
-    mongoDBEmitter.emit('close');
   })
   .catch((values) => {
     console.log(values);
@@ -498,5 +464,7 @@ Promise.all(requests)
         console.log(value.Name + ' FAILED');
       }
     });
+  })
+  .then(() => {
     mongoDBEmitter.emit('close');
   });
