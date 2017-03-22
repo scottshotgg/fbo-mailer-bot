@@ -95,7 +95,7 @@ var clientMap = clients.map(function(client, index) {
 
 function sendEmail(email, html, length) {
   sendmail({
-    from: 'FBO-Mailer-Bot',
+    from: 'FBO-Mailer-Bot@utdallas.edu',
     //to: emailList.map(email => email + '@utdallas.edu'), 
     to: email,
     subject: length + ' NEW FBO Opportunities Found - ' + getDateInfo().join('/'),
