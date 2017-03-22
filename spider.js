@@ -243,8 +243,11 @@ function injectHTML(template, rowsLength, client, resolve, reject) {
   mongo.collection('fbodata').find({}).sort({Date: -1, Title: 1}).toArray().then((results) => {
 
     //console.log(results);
+    //resolve();
 
     var rowValues = Object.values(results);
+    console.log(rowValues);
+
     createCSVFile(client.Path, rowValues);
     var completeRowsHTML = rowValues.map(makeTableRowHTML);
 
@@ -279,14 +282,12 @@ function injectHTML(template, rowsLength, client, resolve, reject) {
         .then(function(html) {
           createFile(filePath + 'index.html', html.Index);
           createFile(filePath + 'email.html', html.Email);
-          sendEmail(client.Email, html.Email, rowsLength);
-        })
-        .then(() => {
-          //resolve();
-        })
-        .catch(() => {
-          //reject();
+          //sendEmail(client.Email, html.Email, rowsLength);
         });
+    })
+    .catch((err) => {
+      console.log('yuh dun messed up m8', err);
+      //reject();
     });
 }
 
@@ -331,7 +332,8 @@ function scrapeFBOData(client, resolve, reject) {
       client.Success = true;
       resolve(client);
     })
-    .catch(function() {
+    .catch(function(err) {
+      console.log('caught error:', err);
       client.LastRun = new Date().toString();
       client.Success = false;
       reject(client);
@@ -354,7 +356,7 @@ class DBEmitter extends EventEmitter {}
 const mongoDBEmitter = new DBEmitter();
 
 mongoDBEmitter.on('insert', (rows, client) => {
-  Promise.all(rows.map((row, index) => {
+  /*Promise.all(rows.map((row, index) => {
     row.ID = index;
     insertMongoDB(row);
     }))
@@ -364,6 +366,20 @@ mongoDBEmitter.on('insert', (rows, client) => {
       .catch(catchresults => {
         console.log('is this what you want??', catchresults);
       });
+  */
+
+  Promise.resolve(insertMongoDB(rows, (err, result) => {
+    console.log('CAN U SEE THIS');
+  }))
+    .then(results => {
+          injectHTML(templateFile, tableLength, client);
+    })
+    .catch(catchresults => {
+      console.log('is this what you want??', catchresults);
+    });
+
+    console.log()
+
 });
 
 mongoDBEmitter.on('close', () => {
@@ -388,9 +404,12 @@ function connectMongoDB() {
 }
 
 
-function insertMongoDB(row) {
+function insertMongoDB(rows) {
   console.log('inserting...');
-  fbodataCollection.insert(row)
+  /*fbodataCollection.insert(row, () => {
+      console.log('ima muhhhfkin callback son');
+    })*/
+  fbodataCollection.insert(rows)
     .then(() => {
       console.log('success');
       tableLength++;
@@ -450,7 +469,7 @@ Promise.all(clientMap.map((client) => {
       });
   })) 
   .then((values) => {
-    console.log(values);
+    console.log('then:', values);
     values.map((value) => {
       if(value.Success) {
         console.log(value.Name + ' SUCCESS');
@@ -458,7 +477,7 @@ Promise.all(clientMap.map((client) => {
     });
   })
   .catch((values) => {
-    console.log(values);
+    console.log('caught:', values);
     values.map((value) => {
       if(!value.Success) {
         console.log(value.Name + ' FAILED');
@@ -466,5 +485,5 @@ Promise.all(clientMap.map((client) => {
     });
   })
   .then(() => {
-    mongoDBEmitter.emit('close');
+    //mongoDBEmitter.emit('close');
   });
