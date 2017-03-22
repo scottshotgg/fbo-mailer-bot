@@ -36,14 +36,14 @@ var MongoClient = require('mongodb').MongoClient;
   });
 
   Object.defineProperty(global, '__line', {
-    get: function(){
+    get: function() {
       return __stack[3].getLineNumber();
     }
   });
 
   Object.defineProperty(global, '__function', {
     get: function() {
-        return __stack[3].getFunctionName();
+      return __stack[3].getFunctionName();
     }
   });
 
@@ -215,6 +215,8 @@ function makeDir(path) {
       fs.mkdir(path, (err, folder) => {
       if (err) throw err;
         console.log("Created folder", folder);
+    }, () => {
+        console.log('stfu');
     });
   }
 }
@@ -281,7 +283,7 @@ function injectHTML(template, rowsLength, client) {
 }
 
 
-function scrapeFBOData(client) {
+function scrapeFBOData(client, resolve, reject) {
   console.log('\n\n' + new Date() + '\n\n');
 
   console.log("client:", client);
@@ -314,7 +316,17 @@ function scrapeFBOData(client) {
     }, attributeList)
     .end()
     .then(function(data) {
-      mongoDBEmitter.emit('insert', data.reverse(), client);
+      //mongoDBEmitter.emit('insert', data.reverse(), client);
+    })
+    .then(function() {
+      client.LastRun = new Date().toString();
+      client.Success = true;
+      resolve(client);
+    })
+    .catch(function() {
+      client.LastRun = new Date().toString();
+      client.Success = false;
+      reject(client);
     });
 }
 
@@ -381,8 +393,7 @@ mongoDBEmitter.on('insert', (rows, client) => {
 });
 
 mongoDBEmitter.on('close', () => {
-  console.log('closing...');
-
+  console.log('closing database : ' + mongo.databaseName + '...');
   mongo.close();
 });
 
@@ -393,9 +404,11 @@ function connectMongoDB() {
     if(!err) {
       console.log('Connected');
       mongo = mdb;
+      console.log(mdb);
       createCollection();
     } else {
       console.log(err);
+      process.exit(1);
     }
   });
 }
@@ -462,65 +475,28 @@ function getNextSequence(name, row) {
 
 connectMongoDB();
 
-// let clientPromises = clientMap.map((client) => {
-//   if(client.Path != '') {
-//     makeDir(client.Path);
-//   }
-  
-//   // we really need to make a producer consumer thing
-//   return new Promise((resolve) => {
-//     scrapeFBOData(client)
-//   }).then(() => {});
-// });
-// console.log('*************************wait for me************************');
-
-// console.log(clientPromises);
-
-// Promise.all(clientPromises)
-//   .then(() => {
-//     console.log('*************************closing************************');
-//     mongoDBEmitter.close('close');
-//   });
-
-
-/*
 let requests = clientMap.map((client) => {
     return new Promise((resolve, reject) => {
-      scrapeFBOData(client)
+      scrapeFBOData(client, resolve, reject);
     });
 });
 
-console.log(requests);
-
-Promise.all(requests).then(() => console.log('done'));
-*/
-
-function asyncFunction (item, cb) {
-  setTimeout(() => {
-    console.log('done with', item);
-    cb();
-  }, 100);
-}
-
-console.log('clientMap', clientMap)
-
-let requests = clientMap.map((client) => {
-    if(client.Path != '') {
-      makeDir(client.Path);
-    }
-    scrapeFBOData(client);
-});
-
-/*
 Promise.all(requests)
-  .then(results => {
-    //injectHTML(templateFile, tableLength, client);
-    console.log(results);
+  .then((values) => {
+    console.log(values);
+    values.map((value) => {
+      if(value.Success) {
+        console.log(value.Name + ' SUCCESS');
+      }
+    });
+    mongoDBEmitter.emit('close');
   })
-  .catch((err) => {
-    console.log(err);
+  .catch((values) => {
+    console.log(values);
+    values.map((value) => {
+      if(!value.Success) {
+        console.log(value.Name + ' FAILED');
+      }
+    });
+    mongoDBEmitter.emit('close');
   });
-*/
-
-
-
