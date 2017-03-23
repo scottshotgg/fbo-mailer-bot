@@ -18,12 +18,43 @@ var fs = require('fs');
 //var CronJob = require('cron').CronJob;
 
 // Set up the console stamp
+    // Line number stuff
+  Object.defineProperty(global, '__stack', {
+    get: function(){
+      var orig = Error.prepareStackTrace;
+      Error.prepareStackTrace = function(_, stack){ return stack; };
+      var err = new Error;
+      Error.captureStackTrace(err, arguments.callee);
+      var stack = err.stack;
+      Error.prepareStackTrace = orig;
+      return stack;
+    }
+  });
+
+  var globalStackDrawValue = 3;
+
+  Object.defineProperty(global, '__line', {
+    get: function() {
+      return __stack[globalStackDrawValue].getLineNumber();
+    }
+  });
+
+  Object.defineProperty(global, '__function', {
+    get: function() {
+      return __stack[globalStackDrawValue].getFunctionName();
+    }
+  });
+
+
 require( "console-stamp" )( console, {
+
     metadata: function () {
-        return ("[" + (process.memoryUsage().rss  / 1000000).toFixed(2) + " MB] " + (new Error).lineNumber);
+        var funcout = __function;
+
+        return ('[ RAM: ' + (process.memoryUsage().rss  / 1000000).toFixed(2) + ' MB | caller: ' + __function + ' | line: ' + __line + ' ]');
     },
     colors: {
-        stamp:    "yellow",
+        stamp:    "yellow", 
         label:    "red",
         metadata: "green"
     }
@@ -54,6 +85,7 @@ if (process.argv[4].length > 0) {
 }
 
 var forceEmailSend = parseInt(process.argv[5]) || 0;
+console.log(forceEmailSend)
 
 var columns       = ['Title', 'BAA', 'Agency', 'Date', 'Link'];
 var attributeList = ['Title', 'BAA', 'Classification', 'Agency', 'Office', 'Location', 'Type', 'Date', 'Link', 'File'];
@@ -65,14 +97,20 @@ var columnIndexs = columns.map(function(column) {
 var parentElements = [];
 var parentElementsInnerText = [];
 
+var searchCriteriaObj = {
+  'Classification Code': 'A -- Research & Development',
+  'Opportunity/Procurement Type': '541712 -- Research and Development in the Physical, Engineering, and Life Sciences (except Biotechnology)',
+  'NAICS Code': 'Combined Synopsis/Solicitation'
+};
+
 
 
 // Small client class
 class Client {
-  constructor(name, email, checkList) {
+  constructor(name, email, searchCriteriaObj) {
     this.Name = name;
     this.Email = email;
-    this.SearchCriteria = checkList;
+    this.SearchCriteria = searchCriteriaObj;
     // this should probably reference a root dir 
     (name == '') ? (this.Path = '') : (this.Path = 'clients/' + name + '/');
   }
@@ -90,7 +128,8 @@ var checkList = [['A -- Research & Development', '541712 -- Research and Develop
 
 // Make the clientMap using the stuff from the DB
 var clientMap = clients.map(function(client, index) {
-  return new Client(client, emails[index], checkList[index]);
+  // searchCriteriaObject needs to be associated per person
+  return new Client(client, emails[index], searchCriteriaObj);
 });
 
 function sendEmail(email, html, length) {
@@ -192,7 +231,7 @@ function createCSVFile(path, rows) {
 
   fs.writeFile(path + "FBODatabase.csv", (['DB ID'].concat(attributeList).join(',')).toString() + '\n' + csvString.join('\n')), (err) => {
       if(err) {
-        return console.log(err);
+        console.log(err);
     }
     console.log(" ****** FBODatabase.csv was saved!");
   };
@@ -220,7 +259,7 @@ function injectHTML(template, rows, client) {
           // Inject index.html elements
           $('thead')[0].innerHTML = tableHeader;
           $('tbody')[0].innerHTML = completeRowsHTML.join('');
-          $('#search_parameters')[0].innerHTML = client.SearchCriteria.map((ele, index) => (index + 1) + '. ' + ele).join('<br>');
+          //$('#search_parameters')[0].innerHTML = Object.values(client.SearchCriteria).map((ele, index) => (index + 1) + '. ' + ele).join('<br>');
           $('#date')[0].innerHTML = 'Generated on ' + (new Date());
           // might need to change some file stuff here
           $('#download')[0].href = 'http://arc-fbobot.utdallas.edu:8080/' + filePath + 'FBODatabase.csv';
@@ -239,7 +278,10 @@ function injectHTML(template, rows, client) {
           createFile(filePath + 'index.html', html.Index);
           createFile(filePath + 'email.html', html.Email);
           sendEmail(client.Email, html.Email, rowsLength);
-        });
+        })
+        .catch((whattosay) => {
+          console.log('is the wtf you want', whattosay);
+        }); 
     });
   });
 }
@@ -254,11 +296,12 @@ function scrapeFBOData(client) {
   var nightmare = new Nightmare({ show: true })
     .goto('https://www.fbo.gov/index?s=opportunity&tab=search&mode=list')
     .evaluate(function(client) {
-      parentElements = [].slice.call(document.getElementsByClassName('input-checkbox'))
-      parentElementsInnerText = parentElements.map(element => element.labels[0].innerText);
+      parentElements = Object.assign(...[].slice.call(document.getElementsByClassName('input-checkbox')).map(element => {
+        return {[element.labels[0].innerText]: element};
+      }));
 
-      client.SearchCriteria.forEach(function(attr) {
-        parentElements[parentElementsInnerText.indexOf(attr)].checked = true;
+      Object.values(client.SearchCriteria).forEach(function(attr) {
+        parentElements[attr].checked = true;
       });
 
       document.getElementsByName('dnf_opt_submit')[1].click();
