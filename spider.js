@@ -301,11 +301,12 @@ function scrapeFBOData(client, resolve, reject) {
   var night = new Nightmare({ show: false })
     .goto('https://www.fbo.gov/index?s=opportunity&tab=search&mode=list')
     .evaluate(function(client) {
-      parentElements = [].slice.call(document.getElementsByClassName('input-checkbox'))
-      parentElementsInnerText = parentElements.map(element => element.labels[0].innerText);
+      parentElements = Object.assign(...[].slice.call(document.getElementsByClassName('input-checkbox')).map(element => {
+        return {[element.labels[0].innerText]: element};
+      }));
 
       client.SearchCriteria.forEach(function(attr) {
-        parentElements[parentElementsInnerText.indexOf(attr)].checked = true;
+        parentElements[attr].checked = true;
       });
 
       document.getElementsByName('dnf_opt_submit')[1].click();

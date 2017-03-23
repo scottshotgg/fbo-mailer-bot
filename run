@@ -8,7 +8,7 @@ if [ "$1" = "server" ]; then
 	cd /home/fborobo/fbo-mailer-bot/
 	DEBUG=nightmare node spider.js "$1" "$2" "$3" $4 "$5" 2>&1 | tee logs/log_$DATE logs/lastlog
 else
-	cd /home/scottshotgg/Development/fbo-mailer-bot/
+	#cd /home/scottshotgg/Development/fbo-mailer-bot/
 	DEBUG=nightmare node spider.js "$1" "$2" "$3" $4 "$5"
 fi
 
