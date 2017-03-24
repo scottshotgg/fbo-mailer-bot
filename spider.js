@@ -312,17 +312,18 @@ function scrapeFBOData(client) {
     .evaluate(function(attributeList) {
       return Array.prototype.slice.call(document.getElementsByClassName('lst-rw')).map(
         function(row) {
-          // return Object.assign(...(row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href).map(
-          //   function(item, index) {
-          //     return {[attributeList[index]]: item};
-          //   }
-          // )));
-          return row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href);
+          return Object.assign(...(row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href).map(
+            function(item, index) {
+              return {[attributeList[index]]: item};
+            }
+          )));
+          //return row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href);
         }
       )
     }, attributeList)
     .end()
     .then(function(data) {
+      console.log(data);
       var stmt = db.prepare("insert into fbodata (Title, SolicitationID, Classification, Agency, Office, Location, Type, Date, Link) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
       var tableLength = 0;
