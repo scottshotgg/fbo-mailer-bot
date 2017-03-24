@@ -87,8 +87,8 @@ if (process.argv[4].length > 0) {
 var forceEmailSend = parseInt(process.argv[5]) || 0;
 console.log(forceEmailSend)
 
-var columns       = ['Title', 'BAA', 'Agency', 'Date', 'Link'];
-var attributeList = ['Title', 'BAA', 'Classification', 'Agency', 'Office', 'Location', 'Type', 'Date', 'Link', 'File'];
+var columns       = ['Title', 'Solicitation ID', 'Agency', 'Date', 'Link'];
+var attributeList = ['Title', 'Solicitation ID', 'Classification', 'Agency', 'Office', 'Location', 'Type', 'Date', 'Link', 'File'];
 
 var columnIndexs = columns.map(function(column) {
   return attributeList.indexOf(column);
@@ -158,7 +158,7 @@ function makeTableRowHTML(row) {
   var returnString;
 
   if (!Array.isArray(row)) {
-    var returnString = '<tr><td><center>' + createLink(row.Link, row.Title) + '</center></td>' + [row.BAA, row.Agency, row.Date].map(function(data) {
+    var returnString = '<tr><td><center>' + createLink(row.Link, row.Title) + '</center></td>' + [row.SolicitationID, row.Agency, row.Date].map(function(data) {
       return '<td><center>' + data + '</center></td>';
     }).join('') + '</tr>';
 
@@ -323,7 +323,7 @@ function scrapeFBOData(client) {
     }, attributeList)
     .end()
     .then(function(data) {
-      var stmt = db.prepare("insert into fbodata (Title, BAA, Classification, Agency, Office, Location, Type, Date, Link) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+      var stmt = db.prepare("insert into fbodata (Title, SolicitationID, Classification, Agency, Office, Location, Type, Date, Link) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
       var tableLength = 0;
       var rows = new Array();
@@ -367,7 +367,7 @@ function scrapeFBOData(client) {
 /* ===================  THIS IS WHERE EVERYTHING STARTS       =================== */
 
 db.serialize(function() {
-  db.run("create table fbodata (ID integer primary key, Title text not null, BAA text not null unique, Classification text, Agency text, Office text, Location text, Type text, Date text, Link text, File string)", function(error) {
+  db.run("create table fbodata (ID integer primary key, Title text not null, SolicitationID text not null unique, Classification text, Agency text, Office text, Location text, Type text, Date text, Link text, File string)", function(error) {
        console.log("Table Creation Error:", error);
    });
 });
