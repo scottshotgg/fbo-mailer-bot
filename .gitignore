@@ -3,4 +3,5 @@ node_modules/
 logs/
 FBODatabase.csv
 index.html
+email.html
 *.log
