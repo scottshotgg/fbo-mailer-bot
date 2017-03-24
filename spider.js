@@ -103,6 +103,7 @@ var searchCriteriaObj = {
   'NAICS Code': 'Combined Synopsis/Solicitation'
 };
 
+console.log('searchCriteriaObj values: ', Object.values(searchCriteriaObj));
 
 
 // Small client class
@@ -260,6 +261,7 @@ function injectHTML(template, rows, client) {
           $('thead')[0].innerHTML = tableHeader;
           $('tbody')[0].innerHTML = completeRowsHTML.join('');
           //$('#search_parameters')[0].innerHTML = Object.values(client.SearchCriteria).map((ele, index) => (index + 1) + '. ' + ele).join('<br>');
+          $('#search_parameters')[0].innerHTML = Object.keys(client.SearchCriteria).map((ele) => '<b>' + ele + ' :</b> ' + client.SearchCriteria[ele]).join('<br>');
           $('#date')[0].innerHTML = 'Generated on ' + (new Date());
           // might need to change some file stuff here
           $('#download')[0].href = 'http://arc-fbobot.utdallas.edu:8080/' + filePath + 'FBODatabase.csv';
