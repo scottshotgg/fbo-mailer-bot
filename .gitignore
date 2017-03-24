@@ -1,6 +1,6 @@
 node_modules/
 *.db
-logs/
+logs
 FBODatabase.csv
 index.html
 email.html
