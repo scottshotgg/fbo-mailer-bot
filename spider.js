@@ -312,12 +312,12 @@ function scrapeFBOData(client) {
     .evaluate(function(attributeList) {
       return Array.prototype.slice.call(document.getElementsByClassName('lst-rw')).map(
         function(row) {
-          return Object.assign(...(row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href).map(
+          /*return Object.assign(...(row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href).map(
             function(item, index) {
               return {[attributeList[index]]: item};
             }
-          )));
-          //return row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href);
+          )));*/
+          return row.innerText.split(/[\n\t]/).concat(row.cells[0].firstElementChild.href);
         }
       )
     }, attributeList)
@@ -334,15 +334,16 @@ function scrapeFBOData(client) {
         //data.map(function(item, index, htmlString) {
           data.reverse().map(function(piece) {
           //for (var piece of data) {
+            console.log(Object.keys(piece));
             stmt.run(piece, function(error) {
               //console.log("htmlString: ", htmlString);
               console.log("stmt.run error:", error);
-              //console.log(data[this.lastID - 1]);
+
               if(error == null) {
                 //console.log(rows);
                 rows.push(piece);
                 tableLength += 1
-                lastID = this.lastID;
+                //lastID = this.lastID;
               }
             });
         });
