@@ -65,12 +65,16 @@ process.argv.forEach(function(arg) {
   console.log(i++, arg);
 })
 
+console.log(__filename);
+return;
+
+
 //var serverAddress = '10.201.40.178';
 var serverAddress = 'http://arc-fbobot.utdallas.edu:8080';
 
 var templateFile = 'index.template';
 
-process.argv[2] == 'server' ? templateFile = 'file:///home/fborobo/fbo-mailer-bot/' + templateFile : templateFile = 'file:///home/scottshotgg/Development/fbo-mailer-bot/' + templateFile;
+process.argv[2] == 'server' ? templateFile = 'file:///home/fborobo/fbo-mailer-bot/' + templateFile : templateFile = 'file://home/scottshotgg/Development/fbo-mailer-bot/' + templateFile;
 
 console.log(templateFile);
  
