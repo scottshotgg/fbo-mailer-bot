@@ -1,7 +1,8 @@
 node_modules/
 *.db
 logs
-FBODatabase.csv
+*.csv
 index.html
 email.html
 *.log
+clients/
