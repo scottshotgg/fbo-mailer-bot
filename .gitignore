@@ -1,7 +1,8 @@
 node_modules/
-fbo.db
-fbo.db.old
-logs/
-FBODatabase.csv
+*.db
+logs
+*.csv
 index.html
+email.html
 *.log
+clients/
