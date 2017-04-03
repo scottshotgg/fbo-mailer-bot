@@ -1,5 +1,6 @@
 node_modules/
-*.db
+fbo.db
+fbo.db.old
 logs/
 FBODatabase.csv
 index.html
