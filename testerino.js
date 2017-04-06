@@ -20,4 +20,4 @@ parseInt(["Jan 09, 2017".split(' ')].map((datesplited) => datesplited[2].concat(
 var datesplit = date1.split(' ');
 
 console.log(parseInt([date1.split(' ')].map((datesplit) => datesplit[2].concat([(months.indexOf(datesplit[0]) + 1).toString()].map((monthInt) => monthInt.length > 1 ? monthInt : '0' + monthInt)).concat(datesplit[1].replace(',', '')))));
- 
+  
