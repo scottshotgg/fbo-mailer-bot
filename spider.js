@@ -103,8 +103,8 @@ var parentElementsInnerText = [];
 
 var searchCriteriaObj = {
   'Classification Code': 'A -- Research & Development',
-  'Opportunity/Procurement Type': '541712 -- Research and Development in the Physical, Engineering, and Life Sciences (except Biotechnology)',
-  'NAICS Code': 'Combined Synopsis/Solicitation'
+  'Opportunity/Procurement Type': 'Combined Synopsis/Solicitation',
+  'NAICS Code': '541712 -- Research and Development in the Physical, Engineering, and Life Sciences (except Biotechnology)'
 };
 
 console.log('searchCriteriaObj values: ', Object.values(searchCriteriaObj));
