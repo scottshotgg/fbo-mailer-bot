@@ -102,9 +102,9 @@ var parentElements = [];
 var parentElementsInnerText = [];
 
 var searchCriteriaObj = {
-  'Classification Code': 'A -- Research & Development',
-  'Opportunity/Procurement Type': 'Combined Synopsis/Solicitation',
-  'NAICS Code': '541712 -- Research and Development in the Physical, Engineering, and Life Sciences (except Biotechnology)'
+  'Classification Code': ['A -- Research & Development'],
+  'Opportunity/Procurement Type': ['Combined Synopsis/Solicitation', 'Presolicitation'],
+  'NAICS Code': ['541712 -- Research and Development in the Physical, Engineering, and Life Sciences (except Biotechnology)']
 };
 
 console.log('searchCriteriaObj values: ', Object.values(searchCriteriaObj));
@@ -306,8 +306,10 @@ function scrapeFBOData(client) {
         return {[element.labels[0].innerText]: element};
       }));
 
-      Object.values(client.SearchCriteria).forEach(function(attr) {
-        parentElements[attr].checked = true;
+      Object.values(client.SearchCriteria).forEach(function(attrValues) {
+        attrValues.forEach(function(attr) {
+          parentElements[attr].checked = true;
+        });
       });
 
       document.getElementsByName('dnf_opt_submit')[1].click();
@@ -384,7 +386,6 @@ clientMap.forEach(function(client) {
   if(client.Path != '') {
     makeDir(client.Path);
   }
-  
   // we really need to make a producer consumer thing
   scrapeFBOData(client);
 });
