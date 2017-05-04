@@ -106,10 +106,10 @@ var lastMongoID = 0;
 
 // Small client class
 class Client {
-  constructor(name, email, checkList) {
+  constructor(name, email, searchCriteriaObj) {
     this.Name = name;
     this.Email = email;
-    this.SearchCriteria = checkList;
+    this.SearchCriteria = searchCriteriaObj;
     // this should probably reference a root dir 
     (name == '') ? (this.Path = '') : (this.Path = 'clients/' + name + '/');
   }
@@ -122,12 +122,16 @@ if (process.argv[3] == "deploy") {
 }
 console.log(emails);
 
-var checkList = [['A -- Research & Development', '541712 -- Research and Development in the Physical, Engineering, and Life Sciences (except Biotechnology)', 'Combined Synopsis/Solicitation']];
+var searchCriteriaObj = {
+  'Classification Code': ['A -- Research & Development'],
+  'Opportunity/Procurement Type': ['Combined Synopsis/Solicitation', 'Presolicitation'],
+  'NAICS Code': ['541712 -- Research and Development in the Physical, Engineering, and Life Sciences (except Biotechnology)']
+};
 
 // Make the clientMap using the stuff from the DB
 var clientMap = clients.map(function(client, index) {
-  return new Client(client, emails[0], checkList[0]);
-  //return new Client(client, emails[index], checkList[index]);
+  // searchCriteriaObject needs to be associated per person
+  return new Client(client, emails[index], searchCriteriaObj);
 });
 
 function sendEmail(email, html, length) {
@@ -264,7 +268,7 @@ function injectHTML(template, rowsLength, client, resolve, reject) {
           // Inject index.html elements
           $('thead')[0].innerHTML = tableHeader;
           $('tbody')[0].innerHTML = completeRowsHTML.join('');
-          $('#search_parameters')[0].innerHTML = client.SearchCriteria.map((ele, index) => (index + 1) + '. ' + ele).join('<br>');
+          $('#search_parameters')[0].innerHTML = Object.keys(client.SearchCriteria).map((ele) => '<b>' + ele + ' :</b> ' + client.SearchCriteria[ele]).join('<br>');
           $('#date')[0].innerHTML = 'Generated on ' + (new Date());
           // might need to change some file stuff here
           $('#download')[0].href = 'http://arc-fbobot.utdallas.edu:8080/' + filePath + 'FBODatabase.csv';
@@ -304,9 +308,10 @@ function scrapeFBOData(client, resolve, reject) {
       parentElements = Object.assign(...[].slice.call(document.getElementsByClassName('input-checkbox')).map(element => {
         return {[element.labels[0].innerText]: element};
       }));
-
-      client.SearchCriteria.forEach(function(attr) {
-        parentElements[attr].checked = true;
+      Object.values(client.SearchCriteria).forEach(function(attrValues) {
+        attrValues.forEach(function(attr) {
+          parentElements[attr].checked = true;
+        });
       });
 
       document.getElementsByName('dnf_opt_submit')[1].click();
