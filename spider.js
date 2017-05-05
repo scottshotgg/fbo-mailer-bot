@@ -3,6 +3,19 @@
 // make event functions
 // make determinators
 
+
+
+
+
+
+// --- USE THIS ---
+// https://www.webniraj.com/2015/03/16/nodejs-scraping-websites-using-request-and-cheerio/
+// ----------------
+
+
+
+
+
 // NightmareJS for the spider construction
 var Nightmare = require('nightmare');       
 //var nightmare = Nightmare({ show: true });
@@ -113,11 +126,71 @@ eventLoopFunctions = {
       //mongoDBEmitter.emit('insert', data.reverse(), client);
       console.log(data);
     })
-
-
-      //.end()
     .catch() 
   },
+
+  // make an event loop for this
+  'scrape': () => {
+    console.log('scraping started: fetching todays postings');
+
+    var pages = new Nightmare({show: true})
+      .goto('https://www.fbo.gov/index?s=opportunity&mode=list&tab=list&tabmode=list&=')
+      .wait('#flt-pstd')
+      .evaluate(() => {
+        document.getElementById('flt-pstd').children[1].selected = true;
+        document.getElementsByClassName('input-submit btn btn_search')[0].click();
+      })
+      // ghetto hack for now, probably wont work on VM or slower
+      .wait(1000)
+      .wait('.list')
+      .evaluate(() => {
+        document.getElementsByName('setPerPage')[0].value = "100";
+        document.getElementsByName('setPerPage')[0].onchange();
+      })
+      .wait(1000)
+      .wait('.list')
+      .evaluate(() => {
+        // get last page number
+        return parseInt(document.getElementsByClassName('lst-pg')[0].lastChild.innerText.replace('[', '').replace(']', ''));
+      })
+      .end()
+      .then((data) => {
+        //console.log(data);
+        //return data;
+      console.log("this is me", data);
+        [...new Array(data).keys()].map((count, index) => {
+          return new Nightmare({show: true})
+            .goto('https://www.fbo.gov/index?s=opportunity&mode=list&tab=list&tabmode=list&pageID=' + count)
+            .wait('#list')
+            .end()
+            .then()
+            .catch();
+          });
+        })
+      .catch();
+
+      /*
+      Promise.resolve(pages)
+        .then(results => {
+              console.log("this is me", results);
+              [...new Array(results).keys()].map((count, index) => {
+                return new Nightmare({show: true})
+                  .goto('https://www.fbo.gov/index?s=opportunity&mode=list&tab=list&tabmode=list&pageID=' + count)
+                  .wait('#list')
+                  .end()
+                  .then()
+                  .catch();
+              });
+        })
+        .catch(catchresults => {
+          console.log('is this what you want??', catchresults);
+        });
+        */
+  },
+
+
+
+
 
   'notdatabase':  () => {
     console.log('bye');
@@ -153,7 +226,11 @@ var clientMap = clients.map(function(client, index) {
 loadEventLoopFunction();
 
 //mainEventLoop.emit('database', {type: 'create', data: 'fbodata'});
-clientMap.map((client, index) => {
-  mainEventLoop.emit('client', client);
-});
+//clientMap.map((client, index) => {
+  //mainEventLoop.emit('scrape');
+//});
+
+mainEventLoop.emit('scrape');
+
+
 
