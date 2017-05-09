@@ -136,85 +136,66 @@ if(process.argv[2] == 'f') {
 			//         return $(this).text().trim()
 			// }).get();
 
-			var conts = $('.lst-cl').contents();
-
-			var contdata = [];
-
-			console.log($(conts[0]).next().attr('href'));
-
-			$('.lst-cl').contents().map(function(i, el) {
-			  if($(this).children().length > 0) {
-			  	$(this).contents().map(function(i, el) {
-			  		//console.log($(el).text().trim());
-			  		var data = $(el).text().trim();
-			  		if(data != '')
-			  			contdata.push(data);
-			  	});
-			  } else {
-			  	//console.log($(this).text().trim());
-				  	var data = $(el).text().trim();
-				  	if(data != '')
-				  		contdata.push(data);
-			  }
-			});
-
-			//console.log(contdata);
-
-			//console.log(conttext);
-
-			//console.log($(conts[0]).text());
-			//console.log($(conts[1]).contents().text());
-			//console.log($(conts[2]).contents());
-
-			// conts.map((index, item) => {
-			// 	console.log($(item).children());
-			// });
-
-			// var text = $('.solt').contents().map((item) => {
-			// 	return $(this);
-			// }).get();
+			//var elements = ['solt', 'soln', 'solcc', 'lst-lnk-notice', 'pagency'];
 
 
-			// THIS WORKS >>>>>
+				// revamp this to just fetch the links and then get everything from the link since it is more straight forward and we already have
+				// to load the link anyways
 
-			// var solt = $('.solt').contents().map((index, item) => {
-			// 	return ($(item).text());
-			// });
+				var rowObjs = [];
+				// ----- first box
+				$('.lst-rw').map((index, item) => {
+					var link;
+					var array = ($($(item).children()[0]).children().children().map((index, item) => {
+						//console.log(index, $(item).text());
 
-			// var soln = $('.soln').contents().map((index, item) => {
-			// 	return ($(item).text());
-			// });
+						link = 'https://www.fbo.gov/' + $(item).parent().attr('href');
+						return $(item).text().trim();
+					}).get());	
 
-			// var solcc = $('.solcc').contents().map((index, item) => {
-			// 	return ($(item).text());
-			// });
-
-
-			// for(var x = 0; x < 100; x++) {
-			// 	console.log(solt[x]);
-			// 	console.log(soln[x]);
-			// 	console.log(solcc[x]);
-			// 	console.log();
-			// }
+					// Insert the unique ID from the database insertion mongo meh ehhh
+					rowObjs.push({'Title': array[0], 'Solicitation ID': array[1], 'Classification Code': array[2], 'Link': link});	
+				});
 
 
-			//console.log(solt);
+				// ---- agency
+				$('.pagency').each((index, item) => {
+					rowObjs[index]['Agency'] = $(item).text().trim();
+				});
 
-			process.exit();
+				// ----- type
+				$('.lst-cl[headers=lh_base_type]').each((index, item) => {
+					rowObjs[index]['Type'] =  $(item).text().trim();
+				});
 
-			$('.solt').map((item, index) => {
-				console.log($());
-			}).get();
+				// ----- dates
+				$('.lst-cl-first_sort').each((index, item) => {
+					rowObjs[index]['Posted Date'] =  $(item)[0]['children'][0]['data'].trim();
+				});
+
+				console.log(rowObjs);
+
+				console.log(rowObjs[0]['Link']);
+
+				req.get({
+				    url: rowObjs[0]['Link'],
+				    headers: {
+				        'User-Agent': 'Super Cool Browser' // optional headers
+				     }
+				  }, function(err, resp, body) {
+					  	var $ = cheerio.load(body);
+
+						console.log(body);
+
+						console.log();
 
 
-			// console.log($($(conts[0]).next().contents()[1]).contents());
+						rowObjs[0]['Set Aside'] = $('#dnf_class_values_procurement_notice__set_aside__widget').text().trim();
+						rowObjs[0]['Synopsis'] = $('#dnf_class_values_procurement_notice__description__widget').text().trim();
+						rowObjs[0]['Point of Contact'] = $('#dnf_class_values_procurement_notice__poc_text__widget').text().trim().split(',').reverse().join(' ');
 
-			// var text = $(conts[0]).next().contents().map(() => {
-			// 	return $(this).text();
-			// }).get();
-
-			// console.log(text);
-
+						console.log(rowObjs[0])
+				  });
 		});
 	});
 
