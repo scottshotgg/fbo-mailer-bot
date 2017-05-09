@@ -142,6 +142,28 @@ if(process.argv[2] == 'f') {
 				// revamp this to just fetch the links and then get everything from the link since it is more straight forward and we already have
 				// to load the link anyways
 
+
+				// var information = Object.assign(...[].slice.call(document.getElementsByClassName('fld-ro')).map((item, index) => {
+				// 	return {[item.children[0].innerText.replace(':', '').trim()]: item.children[1].innerText.trim()}
+				// }).concat($('.agency-name').innerText.split('\n').map((item) => {
+				// 	var itemsplit = item.split(':')
+				// 	return {[itemsplit[0].trim()]: itemsplit[1].trim()}
+				// })))
+
+
+				req.get({
+				    url: 'https://www.fbo.gov/?s=opportunity&mode=form&id=4025738859b0374338abc74c75e82905&tab=core&_cview=0',
+				    headers: {
+				        'User-Agent': 'Super Cool Browser' // optional headers
+				     }
+				}, function(err, resp, body) {
+					var $ = cheerio.load(body);
+					
+					console.log($('.fld-ro'));
+				}
+
+				process.exit();
+
 				var rowObjs = [];
 				// ----- first box
 				$('.lst-rw').map((index, item) => {
@@ -176,6 +198,13 @@ if(process.argv[2] == 'f') {
 				console.log(rowObjs);
 
 				console.log(rowObjs[0]['Link']);
+
+
+				var properties = {
+					'Notice': ''
+				}
+
+
 
 				req.get({
 				    url: rowObjs[0]['Link'],
