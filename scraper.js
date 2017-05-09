@@ -94,7 +94,7 @@ if(process.argv[2] == 'f') {
 
 			var thing = $($('.lst-cnt')[0]).text(); 
 
-			console.log(thing);
+			//console.log(thing);
 
 
 
@@ -158,11 +158,22 @@ if(process.argv[2] == 'f') {
 				     }
 				}, function(err, resp, body) {
 					var $ = cheerio.load(body);
-					
-					console.log($('.fld-ro'));
-				}
 
-				process.exit();
+
+					// put the concat in here and shit
+					// $('#agency-name').children)
+					var fboObj = Object.assign(...[].slice.call($('.fld-ro').map((index, item) => {
+						var ic = $(item).children();
+						return {[$(ic[0]).text().trim().replace(':', '')] : $(ic[1]).text().trim()};
+					})));
+
+					console.log(fboObj)
+
+					process.exit();
+				});
+
+					console.log()
+					console.log()
 
 				var rowObjs = [];
 				// ----- first box

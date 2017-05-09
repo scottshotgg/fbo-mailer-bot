@@ -28,11 +28,11 @@ var PRINT_PREVIEW = 0;
 
 <script type="text/javascript">
 function printPreview() {
-    var w = window.open('/index?print_preview=1&version=1494355484');
+    var w = window.open('/index?print_preview=1&version=1494366214');
 }
 function printQuick() {
     frame = frames['__hiddenframe'+nextFrame()];
-    frame.location.href = '/index?print_preview=1&print_dialog=1&version=1494355484';
+    frame.location.href = '/index?print_preview=1&print_dialog=1&version=1494366214';
 }
 function printMe() {
   if (typeof(window.print) == 'function') {
@@ -188,13 +188,13 @@ function printPreviewNow() {
 <option value="current_set_aside_s-d-asc">Set-Aside (Asc.)</option>
 <option value="current_set_aside_s-d-desc">Set-Aside (Desc.)</option>
 </select>
-</form></span>		<span class="lst-pp">Showing <select name="setPerPage" onchange="self.location.href='?s=opportunity&mode=list&tab=searchresults&tabmode=list&pp='+this.options[this.selectedIndex].value"><option value="20">20</option><option value="30">30</option><option value="40">40</option><option value="50">50</option><option value="60">60</option><option value="70">70</option><option value="80">80</option><option value="90">90</option><option value="100" selected="selected">100</option></select> per page</span>		<span class="lst-pg"><b><u>1</u></b>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=2" title="page 2">2</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=3" title="page 3">3</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=4" title="page 4">4</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=5" title="page 5">5</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=6" title="page 6">6</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=7" title="page 7">7</a>      <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=2" title="next page">&raquo;</a>      <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=1823" title="last page">[1823]</a></span>
+</form></span>		<span class="lst-pp">Showing <select name="setPerPage" onchange="self.location.href='?s=opportunity&mode=list&tab=searchresults&tabmode=list&pp='+this.options[this.selectedIndex].value"><option value="20">20</option><option value="30">30</option><option value="40">40</option><option value="50">50</option><option value="60">60</option><option value="70">70</option><option value="80">80</option><option value="90">90</option><option value="100" selected="selected">100</option></select> per page</span>		<span class="lst-pg"><b><u>1</u></b>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=2" title="page 2">2</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=3" title="page 3">3</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=4" title="page 4">4</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=5" title="page 5">5</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=6" title="page 6">6</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=7" title="page 7">7</a>      <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=2" title="next page">&raquo;</a>      <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=1826" title="last page">[1826]</a></span>
 
 	</div>
-	<span class="lst-cnt">1 - 100 of 182300</span>
+	<span class="lst-cnt">1 - 100 of 182585</span>
 </div>
 
-<table class="list" summary="List of matching items 1 - 100 of 182300">
+<table class="list" summary="List of matching items 1 - 100 of 182585">
 <tr>
   	<th scope="col" class="lst-hd lst-hd-first" id="lh_id">Opportunity</th>
     	<th scope="col" class="lst-hd " id="lh_full_agency_s"><a href="?_psort=full_agency_s-d-asc">Agency/Office/Location <img src="/images/list_sort_descending.gif" border="0" alt="Sort" title="Sort"></a></th>
@@ -207,36 +207,12 @@ function printPreviewNow() {
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=4025738859b0374338abc74c75e82905&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Rock art conservation. </div><div class="soln">L17PS00500 </div><div class="solcc">F -- Natural resources & conservation services </div></a>
+      <a href="?s=opportunity&mode=form&id=b85007b273560808441484f79b536a97&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Trainer Aircraft Maintenance Service </div><div class="soln">JBKAB17001 </div><div class="solcc">J -- Maintenance, repair & rebuilding of equipment </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Department of the Interior </div>Bureau of Land Management<br>Utah Region
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_1" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=307a3f1a652e9cf86986d7cdad0b8c9e&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Energy Management Control System Support Services </div><div class="soln">M6700117Q0027 </div><div class="solcc">H -- Quality control, testing & inspection services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Navy </div>United States Marine Corps<br>MCB Camp Lejeune - RCO
+            <div class="pagency">Department of the Air Force </div>Air Education and Training Command<br>502d Contracting Squadron
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
@@ -251,64 +227,40 @@ function printPreviewNow() {
 
 </tr>
 
+    <tr id="row_1" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=2ef906268656de821e4047b56603c909&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Electronic Vault (E-Vault) </div><div class="soln">GS-08-P-17-JA-C-0004 </div><div class="solcc">Z -- Maintenance, repair, and alteration of real property </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">General Services Administration </div>Public Buildings Service (PBS)<br>R8 Rocky Mtn Region Acquisition Division (47PJ00)
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Presolicitation
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
     <tr id="row_2" class="lst-rw lst-rw-odd">
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=ff467fc1907503037e1cd9cb38b14e2d&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Y--Bonham Roof Project     </div><div class="soln">VA101F17R0256 </div><div class="solcc">Y -- Construction of structures and facilities </div></a>
+      <a href="?s=opportunity&mode=form&id=2d9b37b3fa49eb9f72370d489f0458d5&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">155.52MB (OC-3C) BETWEEN PENTAGON, WASHINGTON, DC, AND ELKWOOD, VA. </div><div class="soln">HC101317QA290 </div><div class="solcc">D -- Information technology services, including telecommunications services </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Department of Veterans Affairs </div>VA Office of Construction & Facilities Management<br>Department of Veterans Affairs Office of Facilities Management
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award / Service-Disabled Veteran-Owned Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_3" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=78c5422a884d14afa3121aa69916670e&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">R--WEMO Route Designation and TMP Updates </div><div class="soln"> </div><div class="solcc">R -- Professional, administrative, and management support services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Interior </div>Bureau of Land Management<br>California  Region
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Justification and Approval (J&A)
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_4" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=6477cdd4d6446f46ca262bf636b184a8&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">V--Lodging for Torrance Day Parade </div><div class="soln">W9124B-17-Q-0991 </div><div class="solcc">V -- Transportation, travel, & relocation services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Army </div>FedBid<br>FedBid.com -- for Department of Army procurements only
+            <div class="pagency">Defense Information Systems Agency </div>Procurement Directorate<br>DITCO-Scott
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
@@ -323,21 +275,69 @@ function printPreviewNow() {
 
 </tr>
 
-    <tr id="row_5" class="lst-rw lst-rw-even">
+    <tr id="row_3" class="lst-rw lst-rw-even">
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=974b89f3a322a27c2fb64ad033670986&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Lakeview 2017 Thinning </div><div class="soln">AG-9AC7-S-17-0091 </div><div class="solcc">F -- Natural resources & conservation services </div></a>
+      <a href="?s=opportunity&mode=form&id=ce9927d6c949053388c52f029bc457bc&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Metal Plating Services </div><div class="soln">FA8224-17-R-RFI-MMXG </div><div class="solcc">11 -- Nuclear ordnance </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Department of Agriculture </div>Forest Service<br>R-5 Northern CA Acquisition Service Area
+            <div class="pagency">Department of the Air Force </div>Air Force Materiel Command<br>AFLCMC / AFSC / AFNWC - HILL AFB
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
       
-            Presolicitation / Total Small Business
+            Sources Sought (Modified)
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_4" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=8e259341ddf42c48f63d825613b2f7e7&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">SMALL BUSINESS EVENTS VENDOR COLLABORATION SF-AIC Multi Agency Industry Day </div><div class="soln">SF-AICMultiAgencyIndustryDay(3) </div><div class="solcc">99 -- Miscellaneous </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">General Services Administration </div>Federal Acquisition Service (FAS)<br>Acquisition Operations Division (9QZ)
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Special Notice
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_5" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=2d9ce8d6abe2a66f656da207b438a31b&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">155.52MB (OC-3C) BETWEEN WASHINGTON, DC, AND ELKWOOD, VA. </div><div class="soln">HC101317QA285 </div><div class="solcc">D -- Information technology services, including telecommunications services </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Information Systems Agency </div>Procurement Directorate<br>DITCO-Scott
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation
       </td>
 
                  <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
@@ -351,12 +351,60 @@ function printPreviewNow() {
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=dc187dce238d2d911772752cf8ae7578&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">16--HANDHOLD STRAP </div><div class="soln">SPE4A717TG065 </div><div class="solcc">16 -- Aircraft components & accessories </div></a>
+      <a href="?s=opportunity&mode=form&id=b23b0ebc31c4676f11b75d99d1fded97&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Pharmaceuticals </div><div class="soln">W81K02-17-T-0192 </div><div class="solcc">65 -- Medical, dental & veterinary equipment &  supplies </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
+            <div class="pagency">Department of the Army </div>U.S. Army Medical Command<br>Western Regional Contracting Office
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Solicitation
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_7" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=72e953fe6820151e4565de5ee09cba3c&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Modifications to Hangar Foam Fire Suppression Systems </div><div class="soln">W912JD-17-B-2000 </div><div class="solcc">J -- Maintenance, repair & rebuilding of equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Army </div>National Guard Bureau<br>101 MSG/MSC, ME ANG
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Special Notice / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_8" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=0235c461f5556ee18898bc033b6c48bd&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Firearm Training Qualification </div><div class="soln">HSCEDM-17-Q-00016 </div><div class="solcc">X -- Lease or rental of facilities </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Homeland Security </div>Immigration & Customs Enforcement<br>ICE-OAQ-DML
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
@@ -371,69 +419,21 @@ function printPreviewNow() {
 
 </tr>
 
-    <tr id="row_7" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=094effc5c9bcab47a0da8dc4c583f6f1&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">16--SUPPORT,DROOP STOP </div><div class="soln">SPE4A717TG059 </div><div class="solcc">16 -- Aircraft components & accessories </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_8" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=d603fd7df623993994c9ffc4c2ae5ea2&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">16--NRP,LAMP C723 </div><div class="soln">SPE4A517TZ185 </div><div class="solcc">16 -- Aircraft components & accessories </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
     <tr id="row_9" class="lst-rw lst-rw-even">
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=8658ee6a63446e33f1530b09cd8e535f&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">16--BRUSH ASSY,ELECTRIC </div><div class="soln">SPE4A717TG057 </div><div class="solcc">16 -- Aircraft components & accessories </div></a>
+      <a href="?s=opportunity&mode=form&id=3a0d754f4ded8727cb28d06f966963d5&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">W--NM030- EP ELEC ROW DOZER RENTALEquipment, Cons </div><div class="soln"> </div><div class="solcc">W -- Lease or Rental of equipment </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
+            <div class="pagency">Department of the Interior </div>Bureau of Land Management<br>New Mexico Region
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
       
-            Combined Synopsis/Solicitation / Service-Disabled Veteran-Owned Small Business
+            Award
       </td>
 
                  <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
@@ -447,17 +447,17 @@ function printPreviewNow() {
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=7a7b6fa5323c5d6b8308a72219f6bf4d&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">15--WINDSHIELD PANEL,AI </div><div class="soln">SPE4A717TG060 </div><div class="solcc">15 -- Aircraft & airframe structural components </div></a>
+      <a href="?s=opportunity&mode=form&id=6e44d83c35487bc8cdd9bf722340b2e7&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Green Laser Equipment Rental </div><div class="soln">N0025917Q0111 </div><div class="solcc">W -- Lease or Rental of equipment </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
+            <div class="pagency">Department of the Navy </div>Naval Supply Systems Command<br>Naval Medical Center
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
       
-            Combined Synopsis/Solicitation
+            Combined Synopsis/Solicitation (Modified)
       </td>
 
                  <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
@@ -471,17 +471,17 @@ function printPreviewNow() {
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=afc9a6ffd393deea04409ed9977d73f4&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">29--TURBOSUPERCHARGER D </div><div class="soln">SPE7L417T2964 </div><div class="solcc">29 -- Engine accessories </div></a>
+      <a href="?s=opportunity&mode=form&id=8ba464b58e7a4544e6d80addd7c7fe32&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Y--Denali C Camp Utility Rehabilitation Phase 6 </div><div class="soln">P17PS00085 </div><div class="solcc">Y -- Construction of structures and facilities </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
+            <div class="pagency">Department of the Interior </div>National Park Service<br>NPS - All Offices
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
       
-            Combined Synopsis/Solicitation
+            Solicitation (Modified) / Total Small Business
       </td>
 
                  <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
@@ -495,17 +495,17 @@ function printPreviewNow() {
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=6c399d33c32160088a0a5548acb3b893&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">41--FILTER ELEMENT,AIR </div><div class="soln">SPE8EB17Q0165 </div><div class="solcc">41 -- Refrigeration, air-conditioning & air circulating equipment </div></a>
+      <a href="?s=opportunity&mode=form&id=3618608b047665ff48647e90bed15144&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Lodging/Meals  </div><div class="soln">W912CL-16-Q-0750 </div><div class="solcc">V -- Transportation, travel, & relocation services </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Troop Support - Medical - BSM
+            <div class="pagency">Department of the Army </div>Army Contracting Command, ECC<br>410th CSB (W912CL) RCC AMERICA
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
       
-            Combined Synopsis/Solicitation
+            Solicitation (Modified)
       </td>
 
                  <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
@@ -519,17 +519,17 @@ function printPreviewNow() {
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=957d9360838bd7b426184ed4e79fa05f&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">40--ROPE,FIBROUS </div><div class="soln">SPE8EE17T1928 </div><div class="solcc">40 -- Rope, cable, chain & fittings </div></a>
+      <a href="?s=opportunity&mode=form&id=eb03b614f6e994af6e2eef997140ff67&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Acoustic Device Countermeasure (ADC) MK 3 and MK 4 </div><div class="soln">N00253-17-R-0001 </div><div class="solcc">58 -- Communication, detection, & coherent radiation equipment </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Troop Support - Medical - BSM
+            <div class="pagency">Department of the Navy </div>Naval Sea Systems Command<br>NUWC Keyport Division
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
       
-            Combined Synopsis/Solicitation / Service-Disabled Veteran-Owned Small Business
+            Special Notice
       </td>
 
                  <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
@@ -543,12 +543,12 @@ function printPreviewNow() {
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=b4a849fcdf68674351f8505e68e6bef5&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">53--O-RING </div><div class="soln">SPE5EC17T0886 </div><div class="solcc">53 -- Hardware & abrasives </div></a>
+      <a href="?s=opportunity&mode=form&id=36fbe8e302971be41eb61bc52db98947&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">POTENTIOMETER </div><div class="soln">N0025317Q0105 </div><div class="solcc">59 -- Electrical and electronic equipment components </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Troop Support - Construction & Equipment - BSM
+            <div class="pagency">Department of the Navy </div>Naval Sea Systems Command<br>NUWC Keyport Division
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
@@ -567,204 +567,12 @@ function printPreviewNow() {
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=aaff8ada6363b5355dc7b73327f4e4f9&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">59--COUPLER,DIRECTIONAL </div><div class="soln">SPE7M517TH511 </div><div class="solcc">59 -- Electrical and electronic equipment components </div></a>
+      <a href="?s=opportunity&mode=form&id=f786ef01be132c8f5780ea70ad085bab&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">J0--Maint/Repair of Miscellaneous Equipm </div><div class="soln"> </div><div class="solcc">J -- Maintenance, repair & rebuilding of equipment </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_16" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=4235ac53d6bcda27acc1c34b238811d0&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">53--SCREW,MACHINE </div><div class="soln">SPE5E217T9829 </div><div class="solcc">53 -- Hardware & abrasives </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Troop Support - Construction & Equipment - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_17" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=abd8e9a07e18db82cf0d05da2f30d880&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">15--FAIRING,AIRCRAFT </div><div class="soln">SPE4A517TZ184 </div><div class="solcc">15 -- Aircraft & airframe structural components </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation / Service-Disabled Veteran-Owned Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_18" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=c6643e20a7322bf786054534ff5723bc&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">10--CABLE ASSEMBLY, FIRING </div><div class="soln">SPE7L417T2963 </div><div class="solcc">10 -- Weapons </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_19" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=5107b6d68afcc11856db241dcc7e7454&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">39--BLOCK,TACKLE </div><div class="soln">SPE8EE17T1926 </div><div class="solcc">39 -- Materials handling equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Troop Support - Medical - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_20" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=a0a62909e605df5dfc4ec7033872b39d&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">RFQP01211700026 BREAD </div><div class="soln">RFQP01211700026 </div><div class="solcc">89 -- Subsistence </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of Justice </div>Bureau of Prisons<br>USP Hazelton
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_21" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=98ae561212ccc5cd865c6f7ff4dc9745&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">DELTA H Treat Heat Oven Maintenance Services </div><div class="soln">FA4877-17-R-0201 </div><div class="solcc">J -- Maintenance, repair & rebuilding of equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Air Force </div>Air Combat Command<br>355 CONS
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_22" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=51e7ae6b0b119adf67ee347b80a22d4b&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Fuel Cell Ventilation Systems </div><div class="soln">FA8534-17-FCVS </div><div class="solcc">41 -- Refrigeration, air-conditioning & air circulating equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Air Force </div>Air Force Materiel Command<br>PK/PZ - Robins AFB
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Sources Sought
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_23" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=14c0ab81ecc3dcdca00281e5e0444aec&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">H--EQUIPMENT AND MATERIALS TESTING- GROUND EFFECT VEHICLES, MOTOR VEHICLES, TRAILERS, AND CYCLES </div><div class="soln"> </div><div class="solcc">H -- Quality control, testing & inspection services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Army </div>Army Contracting Command<br>ACC - WRN (W56HZV)(DTA)
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Contracting Services Office
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
@@ -779,11 +587,1379 @@ function printPreviewNow() {
 
 </tr>
 
+    <tr id="row_16" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=e9878d6faf2bc87e9b2b02b7bd54f97c&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Spare and Repair Parts for the Vehicle Optics Sensor Systems (VOSS) for Medium Mine Protected Vehicles (MMPV) Synopsis  </div><div class="soln">W909MY17RD006 </div><div class="solcc">59 -- Electrical and electronic equipment components </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Army </div>Army Contracting Command<br>ACC - APG (W909MY) Belvoir
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Presolicitation
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_17" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=19aa097cfa03f73e65b31026843bb0d8&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">U.S. Government Seeks to Lease Office and Related Space in Indiana, PA </div><div class="soln">5PA0413 </div><div class="solcc">X -- Lease or rental of facilities </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">General Services Administration </div>Public Buildings Service (PBS)<br>PBS Brokerage Services (47PA05)
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Presolicitation (Modified)
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_18" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=3d48312093a7aee5923c928f3d9ad5ea&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Q--Primary Care Physicians 6 month Base + 1 6-month option    </div><div class="soln">VA24917R0677 </div><div class="solcc">Q -- Medical services </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Veterans Affairs </div>Nashville VAMC<br>Department of Veterans Affairs Medical Center
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation (Modified)
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_19" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=bcb580b8cb045118425f7f2317358383&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">J--Full Service for Getinge Washers/Sterilizers     </div><div class="soln">VA24217N0640 </div><div class="solcc">J -- Maintenance, repair & rebuilding of equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Veterans Affairs </div>Bronx VAMC (NAL)<br>Department of Veterans Affairs
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Sources Sought
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_20" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=226b8425f97604be5b9eae5c20750f07&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">SMALL BUSINESS EVENTS VENDOR COLLABORATION SF-AIC Multi Agency Industry Day </div><div class="soln">SF-AICMultiAgencyIndustryDay(2) </div><div class="solcc">99 -- Miscellaneous </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">General Services Administration </div>Federal Acquisition Service (FAS)<br>Acquisition Operations Division (9QZ)
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Special Notice
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_21" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=6b8261e0e89f3f83d5c6fb3167a824a0&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Sources Sought - 5977-00-019-0679, SPE4A6-17-R-0551, BRUSH,ELECTRICAL CO, 23N ('OHIO CLASS SSBN (TRIDENT)  </div><div class="soln">SPE4A6-17-R-0551 </div><div class="solcc">15 -- Aircraft & airframe structural components </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Sources Sought
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_22" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=3d679af17be44a2c78c1131951559104&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">155.52MB (OC-3) BETWEEN NAVAL OBSERVATORY, WASHINGTON, DC, AND PENTAGON, WASHINGTON, DC. </div><div class="soln">HC101317QA677 </div><div class="solcc">D -- Information technology services, including telecommunications services </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Information Systems Agency </div>Procurement Directorate<br>DITCO-Scott
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation (Modified)
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_23" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=931d7327b2dd0a47250e3af937570144&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Under Bridge Inspection Truck - 30 ft. </div><div class="soln">AG-046W-S-17-0049 </div><div class="solcc">W -- Lease or Rental of equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Agriculture </div>Forest Service<br>R-6 Contracting North - Mt. Hood NF/Columbia River Gorge National Scenic Area
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
     <tr id="row_24" class="lst-rw lst-rw-odd">
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=3349e6eef90bea2170dede273e14ce72&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Biomek ALPS3000 </div><div class="soln">201711422 </div><div class="solcc">66 -- Instruments & laboratory equipment </div></a>
+      <a href="?s=opportunity&mode=form&id=1dad3ca2034ad543aae7bbd654632214&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">REPAIR OVERHEAD DOOR CRUSH SENSORS </div><div class="soln">W912JA17T0051 </div><div class="solcc">Z -- Maintenance, repair, and alteration of real property </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Army </div>National Guard Bureau<br>187 MSG/MSC, AL ANG
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_25" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=72288a4268b892ac47eb3e3201ba7cbf&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">70--PhishMe Solution </div><div class="soln">17-RQ-00730 </div><div class="solcc">70 -- General purpose information technology equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Commerce </div>Office of the Secretary<br>Commerce Acquisition Solutions, Office of the Secretary
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Award / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_26" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=2f9e19ed031254a4eef2f88f7dca3360&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">USCG Inspect Potable Water System for Leaks (USCG Base Kodiak) </div><div class="soln">HSCG87-17-Q-PJT841 </div><div class="solcc">R -- Professional, administrative, and management support services </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Homeland Security </div>United States Coast Guard (USCG)<br>USCG Shore Maintenance Command (SMC)
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation (Modified)
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_27" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=3da8cd60a6e8715adcc9ae6c2abc470e&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">29--FUEL CONTROL,AFTERB </div><div class="soln">SPRTA1-17-R-0349 </div><div class="solcc">29 -- Engine accessories </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Air Force </div>Air Force Materiel Command<br>PK/PZ Tinker AFB
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Solicitation
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_28" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=6d6f7dbf494edad0f7536a5ca03dfa31&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">65--INFUSION PUMPS     </div><div class="soln">VA26217N0907 </div><div class="solcc">65 -- Medical, dental & veterinary equipment &  supplies </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Veterans Affairs </div>Long Beach VANLO<br>Department of Veterans Affairs
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Sources Sought
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_29" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=0fbd2c4424297639f2c17c377344720d&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">65--Endoscope Reprocessor     </div><div class="soln">VA69D17N1054 </div><div class="solcc">65 -- Medical, dental & veterinary equipment &  supplies </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Veterans Affairs </div>VA Great Lakes Healthcare System<br>Department of Veterans Affairs Great Lakes Healthcare System
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Sources Sought
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_30" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=762360f9bda2341bd2bec2f56b10c829&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">REPLACE GLASS IN BLDG. WINDOWS </div><div class="soln">HSCG3717QPQQ166 </div><div class="solcc">J -- Maintenance, repair & rebuilding of equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Homeland Security </div>United States Coast Guard (USCG)<br>Commandant (CG-913), U.S. Coast Guard Headquarters
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Sources Sought / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_31" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=c02728cd2804624085d602060dc5cbbc&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">N--SAVAHCS Home Oxygen/DME Industry Day     </div><div class="soln">VA25817N0453 </div><div class="solcc">N -- Installation of equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Veterans Affairs </div>Phoenix VAMC<br>Carl T. Hayden Department of Veterans Affairs Medical Center
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Sources Sought
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_32" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=a857a801db1b0dca1a29f2a1bcf2a35f&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Podiatry Implants; General Leonard Wood Army Community Hospital </div><div class="soln">W81K00-17-T-0174 </div><div class="solcc">65 -- Medical, dental & veterinary equipment &  supplies </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Army </div>U.S. Army Medical Command<br>REGIONAL HEALTH CONTRACT OFF CENTRAL
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Award
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_33" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=63e584cb97de53dc184c821abd0f18ee&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Counterespionage Division (CED) Support Services </div><div class="soln">HHM402-17-R-0011 </div><div class="solcc">R -- Professional, administrative, and management support services </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Other Defense Agencies </div>Virginia Contracting Activity<br>Virginia Contracting Activity (ZD50)
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Solicitation (Modified) / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_34" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=f114db81c92b54c82e19174b0ebc6391&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">G--Service: Homeless Shelter     </div><div class="soln">VA24817Q0379 </div><div class="solcc">G -- Social services </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Veterans Affairs </div>VA Miami Health Care System<br>Department of Veterans Affairs Miami Health Care System
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Award
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_35" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=60b6f74cb3df599f8a355fd5253d2e2f&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">65--ANESTHESIA MACHINES     </div><div class="soln">VA25617Q0351 </div><div class="solcc">65 -- Medical, dental & veterinary equipment &  supplies </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Veterans Affairs </div>Fayetteville (AR) VAMC<br>Department of Veterans Affairs Medical Center
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Sources Sought
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_36" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=345c5e20bfcb13d2dc3413a21c99eb77&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">S--Grounds Maintenance and Landscaping Services at Naval Air Station Meridian and Joe Williams Outlying Field </div><div class="soln">N6945017R1709 </div><div class="solcc">S -- Utilities and housekeeping services </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Navy </div>Naval Facilities Engineering Command<br>NAVFAC Southeast, Bld 903
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Award / Competitive 8(a)
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_37" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=4663c957b843a9f318ae976429b3e372&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">59--AMPLIFIER,ELECTRONI </div><div class="soln">SPRTA1-17-R-0342 </div><div class="solcc">59 -- Electrical and electronic equipment components </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Air Force </div>Air Force Materiel Command<br>PK/PZ Tinker AFB
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Solicitation
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_38" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=a2a84155de332374d64186026f9914ea&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">U.S. Government Seeks to Lease 12,940 ABOA SF in Harrisburg, Pennsylvania </div><div class="soln">5PA0404 </div><div class="solcc">X -- Lease or rental of facilities </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">General Services Administration </div>Public Buildings Service (PBS)<br>PBS Brokerage Services (47PA05)
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Presolicitation
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_39" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=d338de42048a84d231007e132eff2bfc&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Elevator Maintenance and Related Services </div><div class="soln">GS05P17SAD0007 </div><div class="solcc">J -- Maintenance, repair & rebuilding of equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">General Services Administration </div>Public Buildings Service (PBS)<br>R3 Acquisition Management Division (47PD00)
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Solicitation
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_40" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=be1ab8533ebfa07870f00fb01cb981a8&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">J--Maintenance and repair of containers, packaging, and packing supplies. </div><div class="soln">N0018917Q0059 </div><div class="solcc">J -- Maintenance, repair & rebuilding of equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Navy </div>Naval Supply Systems Command<br>NAVSUP Fleet Logistics Center Norfolk
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Solicitation / Competitive 8(a)
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_41" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=3a681583c900eb98b728dabf45aac287&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Blue Mountain Ranger District Range Fencing Supplies </div><div class="soln">AG-04R3-S-17-0006 </div><div class="solcc">56 -- Construction & building materials </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Agriculture </div>Forest Service<br>R-6 Contracting East - Malheur NF
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Solicitation (Modified)
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_42" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=854d17701c024309f3d6a35782e01ae2&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">SOUTH PORTLAND, ME - REPLACE FIRE ALARM DEVICES </div><div class="soln">HSCGG1-17-B-PRV144 </div><div class="solcc">Z -- Maintenance, repair, and alteration of real property </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Homeland Security </div>United States Coast Guard (USCG)<br>Commanding Officer, USCG Civil Engineering Unit Providence
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Solicitation (Modified) / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_43" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=c9738017a2db262270cb654d12b0e32b&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">CL17124005 MARKET RESEARCH PROJECT </div><div class="soln">CL17124005_MARKET_RESEARCH_PROJECT </div><div class="solcc">25 -- Vehicular equipment components </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Sources Sought
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_44" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=18e4017330d212455cb1b881ac82bc6e&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Joint Threat Emitter Spares and Production </div><div class="soln">JTE_Spares_and_Production </div><div class="solcc">58 -- Communication, detection, & coherent radiation equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Air Force </div>Air Force Materiel Command<br>AFLCMC / AFSC / AFNWC - HILL AFB
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Sources Sought
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_45" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=f3abe5baa14dd6228110542b47488b62&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Reference Standard </div><div class="soln">SPRDL1-17-Q-0340 </div><div class="solcc">66 -- Instruments & laboratory equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Army </div>Defense Logistics Agency Detachment<br>DLA TACOM - Warren Acquisition Center
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation (Modified)
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_46" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=d985310d47690ed2405b4dffa3dbace6&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">GROCERIES FOR P.R. ARMY NATIONAL GUARD ANNUAL TRAINING </div><div class="soln">W912LR-17-T-0043 </div><div class="solcc">89 -- Subsistence </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Army </div>National Guard Bureau<br>USPFO for Puerto Rico
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation (Modified) / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_47" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=c94877a8fade40c00563862bdee06451&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">J--REPLACE SEWAGE LIFT PUMPS - GATE  </div><div class="soln">P17PS00774 </div><div class="solcc">J -- Maintenance, repair & rebuilding of equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Interior </div>National Park Service<br>NPS - All Offices
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Solicitation (Modified) / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_48" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=ee104efc39f59d745addf855e4ad64d0&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">66--PARTICULATE METER </div><div class="soln">SPMYM217Q1914 </div><div class="solcc">66 -- Instruments & laboratory equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Navy </div>Naval Supply Systems Command<br>DLA Maritime PSNS
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Presolicitation / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_49" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=ae0ac6094cd46312c62b4d47a709b7c4&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Mx & Repair Bldg 500  </div><div class="soln">FA4600-16-R-0012 </div><div class="solcc">Z -- Maintenance, repair, and alteration of real property </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Air Force </div>Air Combat Command<br>55 CONS
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation (Modified) / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_50" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=29bb93fcee0d0103b6e660875d5e18f5&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Textbook  </div><div class="soln">HSSS01-17-Q-0127 </div><div class="solcc">76 -- Books, maps & other publications </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Homeland Security </div>United States Secret Service<br>Procurement Division
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_51" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=5e3070222ca14adc047683250d93595a&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Cultural Resources Services for USACE in the Pacific Northwest </div><div class="soln">W9127N-17-R-SS28 </div><div class="solcc">B -- Special studies and analysis - not R&D </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Army </div>U.S. Army Corps of Engineers<br>USACE District, Portland
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Sources Sought
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_52" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=54213e955f79801cb2c718f6f6578702&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">65--Edwards Heart Valve Consignment SF     </div><div class="soln">VA26117Q0356 </div><div class="solcc">65 -- Medical, dental & veterinary equipment &  supplies </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Veterans Affairs </div>VA Palo Alto Health Care System<br>Department of Veterans Affairs Palo Alto Health Care System
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Presolicitation
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_53" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=fdc327699e323ca09cb80b408879aae3&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">S--SOURCES SOUGHT NOTICE FOR MUNITIONS HANDLING AND MANAGEMENT SERVICES FOR NAVY MUNITIONS COMMAND PACIFIC, EAST ASIA DIVISION, DETACHMENT PEARL HARBOR </div><div class="soln">N0060417R3009 </div><div class="solcc">S -- Utilities and housekeeping services </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Navy </div>Naval Supply Systems Command<br>NAVSUP Fleet Logistics Center Pearl
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Sources Sought (Modified)
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_54" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=d80fd3ae2e150d26cdef76cf5b9941d6&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Li-Ion V-Mount Battery Packs </div><div class="soln">DJF-17-1800-PR-0005615 </div><div class="solcc">99 -- Miscellaneous </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Justice </div>Federal Bureau of Investigation<br>Procurement Section
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation / Cancelled
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_55" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=0c613729d51d5422af88be13761fb4de&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">ATDD Internet Connectivity  </div><div class="soln">NRMAC100-17-00787 </div><div class="solcc">D -- Information technology services, including telecommunications services </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Commerce </div>National Oceanic and Atmospheric Administration (NOAA)<br>Office of Oceanic and Atmospheric Research
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_56" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=cc3cad07a07c7f1626ff3e5d75394a97&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">58--MANIFOLD ASSY </div><div class="soln">SPE4A617TQ266 </div><div class="solcc">58 -- Communication, detection, & coherent radiation equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Award / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_57" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=50cf6567071ff655c45f443f2eb2f4be&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">48--VALVE,CHECK </div><div class="soln">SPE7MC17TG432 </div><div class="solcc">48 -- Valves </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Award
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_58" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=c6f9bb5ea25c343e2d1e7a7502ec0a5d&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Y--Building 7 Renovation Project: 654-16-621    </div><div class="soln">VA26117B0393 </div><div class="solcc">Y -- Construction of structures and facilities </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Veterans Affairs </div>Reno VAMC<br>Department of Veterans Affairs Medical Center
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Solicitation (Modified) / Service-Disabled Veteran-Owned Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_59" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=0707c930cda54c6a71510c42fee18f3c&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">ASME Code Tube Pressure Vessels </div><div class="soln">NNM17620468Q </div><div class="solcc">66 -- Instruments & laboratory equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">National Aeronautics and Space Administration </div>Marshall Space Flight Center<br>Office of Procurement
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation (Modified) / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_60" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=a9266870f66b62fb9302e1e4c4e5a9fe&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Install Water Reservoirs in Various Buildings </div><div class="soln">W912LR-17-R-0004 </div><div class="solcc">45 -- Plumbing, heating, & sanitation equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Army </div>National Guard Bureau<br>156 MSG/MSC, PR ANG
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation (Modified) / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_61" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=b3e28aa4724db84b952cf172c5ffac71&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Brand Name or equal VascuTherm 5 ICE/DVT Devices, accessories-(wraps), and warranties </div><div class="soln">W81K00-17-T-0223 </div><div class="solcc">65 -- Medical, dental & veterinary equipment &  supplies </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Army </div>U.S. Army Medical Command<br>REGIONAL HEALTH CONTRACT OFF CENTRAL
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Solicitation / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_62" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=44172bfab7d634c47d1e5f9387c92c63&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">T4 RNA Ligase 2, Truncated RFQ </div><div class="soln">W81XWH17T0239 </div><div class="solcc">65 -- Medical, dental & veterinary equipment &  supplies </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Army </div>U.S. Army Medical Research Acquisition Activity<br>U.S. Army Medical Research Acquisition Activity
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_63" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=64e5bf3eabba5609af0330c252135ce2&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Multiple Award Task Order Contract (MATOC) for Environmental Remediation Services (ERS) </div><div class="soln">W9126G-17-R-0057 </div><div class="solcc">R -- Professional, administrative, and management support services </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Army </div>U.S. Army Corps of Engineers<br>USACE District, Fort Worth
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Presolicitation (Modified) / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_64" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=731503f128ff256487bf101db53a4b25&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Grounds Maintenance Ashley, PA and Wilkes-Barre, PA </div><div class="soln">W15QKN-17-Q-1031 </div><div class="solcc">S -- Utilities and housekeeping services </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Army </div>Army Contracting Command<br>ACC - NJ (W15QKN)
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Sources Sought / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_65" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=7eb4f061e97e38465ca3650adb2ac55c&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">81--ISO Side Opening Ammo Shipping Containers </div><div class="soln">FA8213-17-R-3063 </div><div class="solcc">81 -- Containers, packaging, & packing supplies </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Air Force </div>Air Force Materiel Command<br>AFLCMC / AFSC / AFNWC - HILL AFB
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Presolicitation / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_66" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=eb0836252de2aa70526b26753b2852a0&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Janitorial PR 20098166 </div><div class="soln">HSBP1017Q0060 </div><div class="solcc">S -- Utilities and housekeeping services </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Homeland Security </div>Customs and Border Protection<br>Border Enforcement Contracting Division - Mountain Branch
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Award / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_67" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=dd4a8b75c3104b38deb82a1c8774c90d&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">65--RIGID STERILIZATION CONTAINERS     </div><div class="soln">VA69D17N1052 </div><div class="solcc">65 -- Medical, dental & veterinary equipment &  supplies </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Veterans Affairs </div>VA Great Lakes Healthcare System<br>Department of Veterans Affairs Great Lakes Healthcare System
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Sources Sought
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_68" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=bc6dc303e84b63647f8614eff2b28838&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">PMA-281 DRAFT RFP for Systems Lifecyle Support </div><div class="soln">N00421-17-R-0014 </div><div class="solcc">L -- Technical representative services </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Navy </div>Naval Air Systems Command<br>NAVAIR HQ
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Presolicitation
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_69" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=ad4f7fcde729bb9e42d4663a8bce6741&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">MAINTAIN A CHANNELIZED OC-12 (622.08MB) </div><div class="soln">HC101317QA471 </div><div class="solcc">D -- Information technology services, including telecommunications services </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Information Systems Agency </div>Procurement Directorate<br>DITCO-Scott
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation (Modified)
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_70" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=cc040b3bf23d2d42281e511bd3df3697&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">34--ELECTRODE </div><div class="soln">SPMYM217Q1844 </div><div class="solcc">34 -- Metalworking machinery </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Navy </div>Naval Supply Systems Command<br>DLA Maritime PSNS
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Presolicitation / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_71" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=4be607f76e68a3eed83b004f79c53639&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">53--Screw,Cap,Hexagon H </div><div class="soln">SPE5E217T9836 </div><div class="solcc">53 -- Hardware & abrasives </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Troop Support - Construction & Equipment - BSM
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation / Service-Disabled Veteran-Owned Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_72" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=8d35c6d1adf222618f40483fd5d1caf6&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">TECHNOLOGY TRANSFER OPPORTUNITY: Fabrication of Fiber Metal Laminates with Non-Autoclave Processes: LAR-17165-1 </div><div class="soln">TT50917 </div><div class="solcc">99 -- Miscellaneous </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">National Aeronautics and Space Administration </div>Langley Research Center<br>Office of Procurement
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Special Notice
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_73" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=ef37851d292cca1fa55ea79542b6b01b&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Qiagen- CLCBio renewal </div><div class="soln">2017-09533 </div><div class="solcc">70 -- General purpose information technology equipment </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
@@ -803,21 +1979,21 @@ function printPreviewNow() {
 
 </tr>
 
-    <tr id="row_25" class="lst-rw lst-rw-even">
+    <tr id="row_74" class="lst-rw lst-rw-odd">
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=d8b785abbf1a91e26a55b70a720d8fda&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">25--VEHICULAR BRAKE, STEERING, AXLE, WHEEL, AND TRACK COMPONENTS </div><div class="soln"> </div><div class="solcc">25 -- Vehicular equipment components </div></a>
+      <a href="?s=opportunity&mode=form&id=0787b5cba94116df7e649ee185666770&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Risk Assessment and Threat Analysis Training  </div><div class="soln">PC-17-RFI-054 </div><div class="solcc">U -- Education & training services </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Department of the Army </div>Army Contracting Command<br>ACC - WRN (W56HZV)(DTA)
+            <div class="pagency">Peace Corps </div>Office Of Acquisitions And Contract Management<br>OACM
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
       
-            Award
+            Sources Sought
       </td>
 
                  <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
@@ -827,21 +2003,21 @@ function printPreviewNow() {
 
 </tr>
 
-    <tr id="row_26" class="lst-rw lst-rw-odd">
+    <tr id="row_75" class="lst-rw lst-rw-even">
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=a740e684822e45f808a14da904f2ae33&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">16--Aircraft Landing Gear Components </div><div class="soln"> </div><div class="solcc">16 -- Aircraft components & accessories </div></a>
+      <a href="?s=opportunity&mode=form&id=aa8d3a0505dc2ba42f288612a718b1e6&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Transition from the Navy Commercial Access (NCACS) to the Defense Biometric Identification System (DBIDS) </div><div class="soln">DBIDSAE5-9-17 </div><div class="solcc">C -- Architect and engineering services </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Department of the Army </div>Defense Logistics Agency Detachment<br>DLA Aviation and Missile Command (Aviation)
+            <div class="pagency">Department of the Navy </div>Naval Facilities Engineering Command<br>NAVFAC HQ
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
       
-            Award
+            Special Notice
       </td>
 
                  <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
@@ -851,136 +2027,16 @@ function printPreviewNow() {
 
 </tr>
 
-    <tr id="row_27" class="lst-rw lst-rw-even">
+    <tr id="row_76" class="lst-rw lst-rw-odd">
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=532d50e56b2a7aa5cd6b74ad5aea7e4c&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">53--Bolts </div><div class="soln"> </div><div class="solcc">53 -- Hardware & abrasives </div></a>
+      <a href="?s=opportunity&mode=form&id=d8bdc60a22c063479c10812885abdb62&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Greater Santa Fe Fireshed Cultural Resource Survey-NORTH </div><div class="soln">AG-8379-S-17-0017 </div><div class="solcc">F -- Natural resources & conservation services </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Department of the Army </div>Defense Logistics Agency Detachment<br>DLA Aviation and Missile Command (Aviation)
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_28" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=2984386331f368d562cdf0009d5d549f&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">J -- Facilities Maintenance and Management </div><div class="soln">6FEC-E6-030292-B </div><div class="solcc">J -- Maintenance, repair & rebuilding of equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">General Services Administration </div>Federal Acquisition Service (FAS)<br>IFMIPS
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_29" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=2eaf638f8665016afa1e7560e91affcb&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Lighting Upgrades in Multiple Buildings at Blackwell Job Corps Civilian Conservation Center </div><div class="soln">AG-82A7-S-17-0052 </div><div class="solcc">Z -- Maintenance, repair, and alteration of real property </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of Agriculture </div>Forest Service<br>WO-AQM JC Support
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Solicitation (Modified) / HUBZone
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_30" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=3efd675381ebcd0c0af21811f303029d&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">65--VHA Non-Expendable Medical Equipment (NX) Alaris Infusion Pumps    </div><div class="soln">VA11917Q0034 </div><div class="solcc">65 -- Medical, dental & veterinary equipment &  supplies </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of Veterans Affairs </div>VA Strategic Acquisition Center<br>VA Strategic Acquisition Center
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation (Modified)
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_31" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=4c563a26b0b89436e089bbf42c31b347&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">65--THIS SOLICITATION IS FOR STRYKER PRODUCTS FOR THE VA LOMA LINDA HEALTHCARE SYSTEM. THIS IS A VETERAN-OWNED SMALL BUSINESS SET ASIDE. THIS IS A BRAND NAME ONLY SOLICITATION. THIS IS AN FOB DESTINATION SOLICITATION.  </div><div class="soln">VA26217Q0904 </div><div class="solcc">65 -- Medical, dental & veterinary equipment &  supplies </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of Veterans Affairs </div>Long Beach VANLO<br>Department of Veterans Affairs
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation (Modified) / Veteran-Owned Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_32" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=d14c859ac64db6a5083ae09eb386e339&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">CGC BARRACUDA DOCKSIDE </div><div class="soln">HSCG80-17-Q-P45408B </div><div class="solcc">20 -- Ship and marine equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of Homeland Security </div>United States Coast Guard (USCG)<br>USCG Surface Forces Logistics Center (SFLC) Procurement Branch 1
+            <div class="pagency">Department of Agriculture </div>Forest Service<br>R-3 Southwestern Region/Northern Zone
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
@@ -995,16 +2051,136 @@ function printPreviewNow() {
 
 </tr>
 
-    <tr id="row_33" class="lst-rw lst-rw-even">
+    <tr id="row_77" class="lst-rw lst-rw-even">
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=6850ea5ad59372699fa327c3225c75eb&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Trigno Wireless EMG System </div><div class="soln">N0025917Q0107 </div><div class="solcc">65 -- Medical, dental & veterinary equipment &  supplies </div></a>
+      <a href="?s=opportunity&mode=form&id=52edd9f67b3ab2d50c9161ac2e46ea0f&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">1560-01-358-2799; COWLING </div><div class="soln">1560013582799 </div><div class="solcc">15 -- Aircraft & airframe structural components </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Department of the Navy </div>Bureau of Medicine and Surgery<br>Naval Medical Center San Diego
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Sources Sought
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_78" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=bb92a1c88d7ad87927f9f74364fda302&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">53--SEAL ASSEMBLY,MAGNE </div><div class="soln">SPE5EM17T7925 </div><div class="solcc">53 -- Hardware & abrasives </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Troop Support - Construction & Equipment - BSM
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation / Service-Disabled Veteran-Owned Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_79" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=26568490bf6ef3cbbe31903a83c52c13&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">49--SLING,ENGINE AND TR </div><div class="soln">SPE7L317TH974 </div><div class="solcc">49 -- Maintenance & repair shop equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation / HUBZone
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_80" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=fb800d8dcbafae8b13d2083b6784199c&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">65--Endoscope Storage Cabinet     </div><div class="soln">VA25817N0449 </div><div class="solcc">65 -- Medical, dental & veterinary equipment &  supplies </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Veterans Affairs </div>Phoenix VAMC<br>Carl T. Hayden Department of Veterans Affairs Medical Center
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Sources Sought
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_81" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=3a093472066db1f447088e606a583e94&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">61--CABLE ASSEMBLY,SPEC </div><div class="soln">SPE4A617TV235 </div><div class="solcc">61 -- Electric wire &  power &  distribution equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_82" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=2cf49c61228a5c2207f539c710e8bf86&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">89--Catered Meals for 282nd Unit Training Assemblies </div><div class="soln">W912LD-17-T-0026 </div><div class="solcc">89 -- Subsistence </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Army </div>FedBid<br>FedBid.com -- for Department of Army procurements only
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
@@ -1019,21 +2195,21 @@ function printPreviewNow() {
 
 </tr>
 
-    <tr id="row_34" class="lst-rw lst-rw-odd">
+    <tr id="row_83" class="lst-rw lst-rw-even">
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=edf197b266ef658acfaec49bd81077fc&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">16--SEAT,AIRCRAFT </div><div class="soln">SPE4A717TG056 </div><div class="solcc">16 -- Aircraft components & accessories </div></a>
+      <a href="?s=opportunity&mode=form&id=d2120c196f63423c18f1a899ade6a9d9&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Construction, Maintenance, Environmental & Testing Services (COMETS) </div><div class="soln">NNC17ZFD015R </div><div class="solcc">H -- Quality control, testing & inspection services </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
+            <div class="pagency">National Aeronautics and Space Administration </div>Glenn Research Center<br>Office of Procurement
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
       
-            Combined Synopsis/Solicitation / Total Small Business
+            Combined Synopsis/Solicitation (Modified) / Competitive 8(a)
       </td>
 
                  <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
@@ -1043,21 +2219,21 @@ function printPreviewNow() {
 
 </tr>
 
-    <tr id="row_35" class="lst-rw lst-rw-even">
+    <tr id="row_84" class="lst-rw lst-rw-odd">
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=815552be68570b2b42bc19f5957df222&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">16--WHEEL,LANDING GEAR </div><div class="soln">SPE4A717TG055 </div><div class="solcc">16 -- Aircraft components & accessories </div></a>
+      <a href="?s=opportunity&mode=form&id=40f92328379fd77157bf53f18200f9b8&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">LHA 7 and LPD 28 Fitting Out Availability (FOA) and Post Shakedown Availability (PSA) </div><div class="soln">N00024-17-R-2472 </div><div class="solcc">19 -- Ships, small craft, pontoons & floating docks </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
+            <div class="pagency">Department of the Navy </div>Naval Sea Systems Command<br>NAVSEA HQ
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
       
-            Combined Synopsis/Solicitation / Total Small Business
+            Presolicitation
       </td>
 
                  <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
@@ -1067,21 +2243,21 @@ function printPreviewNow() {
 
 </tr>
 
-    <tr id="row_36" class="lst-rw lst-rw-odd">
+    <tr id="row_85" class="lst-rw lst-rw-even">
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=68621d02de57b108730369abd6c0d230&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">15--EJECTOR ASSEMBLY,WI </div><div class="soln">SPE4A717TG050 </div><div class="solcc">15 -- Aircraft & airframe structural components </div></a>
+      <a href="?s=opportunity&mode=form&id=7879d11d09cea433e06716c1819b8951&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Z--WR/BHB DISTRICT OFFICE FENCE AND WALL </div><div class="soln"> </div><div class="solcc">Z -- Maintenance, repair, and alteration of real property </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
+            <div class="pagency">Department of the Interior </div>Bureau of Land Management<br>Wyoming Region
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
       
-            Combined Synopsis/Solicitation
+            Award
       </td>
 
                  <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
@@ -1091,11 +2267,35 @@ function printPreviewNow() {
 
 </tr>
 
-    <tr id="row_37" class="lst-rw lst-rw-even">
+    <tr id="row_86" class="lst-rw lst-rw-odd">
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=c9760d7c32f52be9acdd768a0d2b3389&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">47--TUBE ASSY </div><div class="soln">SPE7M417T3372 </div><div class="solcc">47 -- Pipe, tubing, hose & fittings </div></a>
+      <a href="?s=opportunity&mode=form&id=80da6f32f4174c8e5a5d0480858003dd&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Air Seal Jacks </div><div class="soln">W912P5-17-T-0039 </div><div class="solcc">99 -- Miscellaneous </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of the Army </div>U.S. Army Corps of Engineers<br>USACE District, Nashville
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Presolicitation / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_87" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=fda16815f64733602d3cdf6fa933c86a&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">59--MICROCIRCUIT,DIGITA </div><div class="soln">SPE7M517TH529 </div><div class="solcc">59 -- Electrical and electronic equipment components </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
@@ -1115,11 +2315,227 @@ function printPreviewNow() {
 
 </tr>
 
-    <tr id="row_38" class="lst-rw lst-rw-odd">
+    <tr id="row_88" class="lst-rw lst-rw-odd">
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=d22382566d337244755c5843eb8a0c39&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">17--COVER ASSY </div><div class="soln">SPE8EF17T2155 </div><div class="solcc">17 -- Aircraft launching, landing & ground handling equipment </div></a>
+      <a href="?s=opportunity&mode=form&id=1299a6b976648e74c9dd0d75a06d3752&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">CGC VIGILANT DRYDOCK </div><div class="soln">CGC_VIGILANT_DD_FY18 </div><div class="solcc">J -- Maintenance, repair & rebuilding of equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Homeland Security </div>United States Coast Guard (USCG)<br>USCG Surface Forces Logistics Center (SFLC) Procurement Branch 1
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Sources Sought
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_89" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=558a09748f9358bf97e92f0b6faa37fe&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">48--SEAT,VALVE </div><div class="soln">SPE7MC17TK390 </div><div class="solcc">48 -- Valves </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_90" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=0d6620e3ebab4e049f5f14a0c18b82c6&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Protective Security Officer (PSO) services throughout the state of North Carolina  </div><div class="soln">HSHQE4-17-R-00003 </div><div class="solcc">S -- Utilities and housekeeping services </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Department of Homeland Security </div>Office of the Chief Procurement Officer<br>Office of Procurement Operations, Federal Protective Service
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Solicitation (Modified)
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_91" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=5e2a966d852dc48251febddef48eb6fc&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">59--AMPLIFIER,RADIO FRE </div><div class="soln">SPE7M117TF600 </div><div class="solcc">59 -- Electrical and electronic equipment components </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_92" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=55675a653b32c5d1418c25e0f86fa70e&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">30--HOUSING,MECHANICAL </div><div class="soln">SPE7L317TH972 </div><div class="solcc">30 -- Mechanical power transmission equipment </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation / HUBZone
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_93" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=1c252b5fde87256c1d85221b107eb168&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">53--GASKET </div><div class="soln">SPE5EJ17T7735 </div><div class="solcc">53 -- Hardware & abrasives </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Troop Support - Construction & Equipment - BSM
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_94" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=66686c3a1c88cf25841f0b4ae0da9068&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">59--CIRCUIT CARD ASSEMB </div><div class="soln">SPE7M517TH532 </div><div class="solcc">59 -- Electrical and electronic equipment components </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_95" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=2c9876ebd45102ad8c0a8ed3cad1cff6&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">31--BUSHING,SLEEVE </div><div class="soln">SPE4A517TZ199 </div><div class="solcc">31 -- Bearings </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_96" class="lst-rw lst-rw-odd">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=4a4a28808819f7d77f5ec2dc6a80adb5&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">59--RESISTOR,VARIABLE,W </div><div class="soln">SPE7M117TF604 </div><div class="solcc">59 -- Electrical and electronic equipment components </div></a>
+</td>
+
+                 <td class="lst-cl " headers="lh_agency_name">
+      
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
+      </td>
+
+                 <td class="lst-cl " headers="lh_base_type">
+      
+            Combined Synopsis/Solicitation / Total Small Business
+      </td>
+
+                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
+      
+            May 09, 2017
+      </td>
+
+</tr>
+
+    <tr id="row_97" class="lst-rw lst-rw-even">
+
+                 <td class="lst-cl lst-cl-first" headers="lh_id">
+      
+      <a href="?s=opportunity&mode=form&id=aa3eb826b5af06225e59c78705f67f85&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">70--CARTRIDGE,TONER </div><div class="soln">SPE8EN17T2245 </div><div class="solcc">70 -- General purpose information technology equipment </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
@@ -1139,1427 +2555,11 @@ function printPreviewNow() {
 
 </tr>
 
-    <tr id="row_39" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=df5ca2a9b395ee1689d88bd9ebf63fa5&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">61--CHARGER,BATTERY </div><div class="soln">SPE7L717T4584 </div><div class="solcc">61 -- Electric wire &  power &  distribution equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_40" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=41a5cce4e7ea9f0d4ee9f326f5ae4476&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">10GB WAVE SERVICE BETWEEN PATUXENT RIVER, MD AND PENTAGON, WASHINGTON DC. </div><div class="soln">HC101316T1127 </div><div class="solcc">D -- Information technology services, including telecommunications services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Information Systems Agency </div>Procurement Directorate<br>DITCO-Scott
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_41" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=954a43d5949cb4af86dcd8e1274b0a2d&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">53--STL - Replace Door Hardware     </div><div class="soln">VA25517Q0540 </div><div class="solcc">53 -- Hardware & abrasives </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of Veterans Affairs </div>VA Heartland Network<br>Department of Veterans Affairs Heartland Network
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Solicitation / Veteran-Owned Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_42" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=bf87ca95af1adfef77f044cf87e605cf&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">23--GOOSENECK FLATDECK TRAILER WITH HYDRAULIC DOVE </div><div class="soln">F17PS00645 </div><div class="solcc">23 -- Ground effects vehicles, motor vehicles, trailers & cycles </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Interior </div>Fish and Wildlife Service<br>CGS-WO
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation (Modified) / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_43" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=062cdeb4b7b0e454375a723b396ab158&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">FY17 MacArthur Lock Embedded Gate Anchorage Replacement at Soo Locks Complex in Sault Ste. Marie, Michigan </div><div class="soln">W911XK-17-R-0006 </div><div class="solcc">Y -- Construction of structures and facilities </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Army </div>U.S. Army Corps of Engineers<br>USACE District, Detroit
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Presolicitation
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_44" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=8ee2a97f24ec2f502c11444131943c7a&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">55--Procurement for lumber, Christiansted National Historic Site </div><div class="soln">SCHRINEW </div><div class="solcc">55 -- Lumber, millwork, plywood & veneer </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Interior </div>National Park Service<br>NPS - All Offices
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_45" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=d3a2cb72a20a5dae24370c130094d36d&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">OPERATION SEA BREEZE 2017 </div><div class="soln">N32205-17-R-3419 </div><div class="solcc">V -- Transportation, travel, & relocation services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Navy </div>Military Sealift Command<br>MSC Norfolk (N32205)
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Solicitation (Modified)
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_46" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=f86ac6a56fea61b06ee1a73269561a2c&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Low Voltage Cabling Services (IDIQ) </div><div class="soln">CPFMD-17-0502 </div><div class="solcc">60 -- Fiber optics materials, components, assemblies & accessories </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">District of Columbia Government </div>District of Columbia Courts<br>Administrative Services Division/Procurement and Contracts Branch
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation (Modified)
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_47" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=2c3c68561345be6a6d972397784160e9&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">S--Regional Refuse Collection Services at Various Location in the Hampton Roads Area  </div><div class="soln">N4008516R2227 </div><div class="solcc">S -- Utilities and housekeeping services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Navy </div>Naval Facilities Engineering Command<br>NAVFAC Mid-Atlantic
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Solicitation (Modified) / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_48" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=326b860fd1de371420224cdede70b54f&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">16--HOUSING ASSY, PUMP </div><div class="soln">N0038317RN188 </div><div class="solcc">16 -- Aircraft components & accessories </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Navy </div>Naval Supply Systems Command<br>NAVSUP Weapon Systems Support Philadelphia PA
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Sources Sought
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_49" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=a088109f1908a949bbe5c70058015335&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Repair by Mill & Pave Falcon Parkway </div><div class="soln">GLEN14_1303 </div><div class="solcc">Z -- Maintenance, repair, and alteration of real property </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Air Force </div>Air Force Space Command<br>50 CONTRACTING SQUADRON
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation / Service-Disabled Veteran-Owned Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_50" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=471a9c438c215bc765ec1742e09c98bc&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">C--Central Region Electrical Study A/E IDIQ Public Announcement Requst for Standard Form (SF) 330   </div><div class="soln">VA10117R0318 </div><div class="solcc">C -- Architect and engineering services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of Veterans Affairs </div>VA Office of Construction & Facilities Management<br>Department of Veterans Affairs Office of Facilities Management
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Presolicitation (Modified) / Service-Disabled Veteran-Owned Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_51" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=47afae2eb24eb9b7bc6c4937adc18c85&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Multi-MIDS BOSS Software </div><div class="soln">N6893617Q0076 </div><div class="solcc">70 -- General purpose information technology equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Navy </div>Naval Air Systems Command<br>Naval Air Warfare Center Weapons Division
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Presolicitation
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_52" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=3f819f6958f5fdfdd8992968c6c3c564&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">POPLAR ISLAND  CELL 5A & 5B TIDAL INLETS </div><div class="soln">W912DR-17-B-0013 </div><div class="solcc">Z -- Maintenance, repair, and alteration of real property </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Army </div>U.S. Army Corps of Engineers<br>USACE District, Baltimore
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Sources Sought (Modified)
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_53" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=32d6fa9887d8036b44c65064cc60f939&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Multiple Award Contract (MAC) Depot Level Preservation </div><div class="soln">N4523A-17-R-0008 </div><div class="solcc">J -- Maintenance, repair & rebuilding of equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Navy </div>Naval Sea Systems Command<br>Puget Sound Naval Shipyard (PSNSY) and IMF
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award / Partial Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_54" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=d1d65459fc7fdda60daca0b541421d36&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Delta H Treat Heat Oven Maintenance Services </div><div class="soln">FA4877-17-Q-0201 </div><div class="solcc">J -- Maintenance, repair & rebuilding of equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Air Force </div>Air Combat Command<br>355 CONS
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation / Cancelled / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_55" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=524c2c0fb049ca98cf348badbfb45830&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">43--BOOSTER PUMP </div><div class="soln">N0040617T0387 </div><div class="solcc">43 -- Pumps &  compressors </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Navy </div>Naval Supply Systems Command<br>NAVSUP Fleet Logistics Center Puget Sound
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Presolicitation / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_56" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=eecae8d1c3453273129649b9639ea412&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">ISO/IEC 17025 Accreditation and Threat Agent Testing Lab Accreditation Program </div><div class="soln">HQ0034-17-R-0120 </div><div class="solcc">R -- Professional, administrative, and management support services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Other Defense Agencies </div>Washington Headquarters Services<br>WHS, Acquisition Directorate
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_57" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=33641f85ff45f78aa40a711b27a7f283&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Notice of intent - sources sought </div><div class="soln">4TN0308 </div><div class="solcc">X -- Lease or rental of facilities </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">General Services Administration </div>Public Buildings Service (PBS)<br>R4 Leasing Division (47PE99)
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Sources Sought
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_58" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=d51731a5c320867b9709d07134a2516d&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">ATEC SLEP Sources Sought  </div><div class="soln">W56HZV-17-R-0046 </div><div class="solcc">38 -- Construction, mining, excavating & highway maintenance equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Army </div>Army Contracting Command<br>ACC - WRN (W56HZV)(DTA)
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Sources Sought
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_59" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=65f2a4df38fc2e29cb240f9f1b448bd6&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Fuel Oil Transducer </div><div class="soln">HSCG80-17-Q-P45F16 </div><div class="solcc">66 -- Instruments & laboratory equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of Homeland Security </div>United States Coast Guard (USCG)<br>USCG Surface Forces Logistics Center (SFLC) Procurement Branch 1
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_60" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=a70b441882ef57f69799fbed54be63b5&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Sources Sought Synopsis </div><div class="soln">17-02132 </div><div class="solcc">29 -- Engine accessories </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Air Force </div>Air Force Materiel Command<br>PK/PZ Tinker AFB
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Sources Sought
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_61" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=6151aacf351c08ca8f72751cd55e9d04&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">LANDING CRAFT, UTILITY (LCU) 1700 </div><div class="soln">N00024-17-R-2462 </div><div class="solcc">19 -- Ships, small craft, pontoons & floating docks </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Navy </div>Naval Sea Systems Command<br>NAVSEA HQ
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Solicitation (Modified) / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_62" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=109bbfede2724a67ef2c34e04a7804de&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">J--Surf Ranger Haul Out, NPS-CHIS </div><div class="soln">P17PS00758 </div><div class="solcc">J -- Maintenance, repair & rebuilding of equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Interior </div>National Park Service<br>NPS - All Offices
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Solicitation / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_63" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=6950664a7e6304159c8f4fcf98fed569&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Digital Asset Management (DAM) </div><div class="soln">LCNLS17Q0026 </div><div class="solcc">R -- Professional, administrative, and management support services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Library of Congress </div>Contracts Services<br>Contracts Services
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation (Modified)
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_64" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=17f1158a0a190ac6e3340f8933546db1&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Z--Ranger Office Electrical and Data Modification </div><div class="soln">P17PS01045 </div><div class="solcc">Z -- Maintenance, repair, and alteration of real property </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Interior </div>National Park Service<br>NPS - All Offices
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Solicitation (Modified) / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_65" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=a5711d34ad0de2ccc4c715ceba8cf4a9&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">25--NOZZLE,WINDOW WASHE </div><div class="soln">SPE7L417T2587 </div><div class="solcc">25 -- Vehicular equipment components </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award / Service-Disabled Veteran-Owned Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_66" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=a21ec06f1df5a6ac06e69e62b1490da5&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">16--PANEL,INTERIOR LINI </div><div class="soln">SPE4A517TN423 </div><div class="solcc">16 -- Aircraft components & accessories </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_67" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=89af1d0bcded098c7d45410ee84ecb38&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">53--NUT,PLAIN,EXTENDED </div><div class="soln">SPE5E817T8347 </div><div class="solcc">53 -- Hardware & abrasives </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Troop Support - Construction & Equipment - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_68" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=4fb3b713d1d4c58ffd64d1a8c17d3475&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">48--VALVE,ROTARY SELECT </div><div class="soln">SPE7MC17TG840 </div><div class="solcc">48 -- Valves </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_69" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=2014f6cd5af0ee641ac1a3a21cd15192&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">16--HEAT SHIELD,WHEEL,A </div><div class="soln">SPE4A717R0453 </div><div class="solcc">16 -- Aircraft components & accessories </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_70" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=8d25089a000c4197a91308253e290b7d&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">15--PANEL,STRUCTURAL,AI </div><div class="soln">SPE4A717TD333 </div><div class="solcc">15 -- Aircraft & airframe structural components </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_71" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=a06ebc0703486be81716c6a293c11dcd&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">30--CHAIN ASSEMBLY </div><div class="soln">SPE7L516T3973 </div><div class="solcc">30 -- Mechanical power transmission equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_72" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=363d1d0b68b7833bbb2552cebbded6d1&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">4 NSN LTC </div><div class="soln">SPE7MX17R0106 </div><div class="solcc">59 -- Electrical and electronic equipment components </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Presolicitation
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_73" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=c26073f80940b2edd5771024f894db26&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">10--RETAINER ASSEMBLY,B </div><div class="soln"> </div><div class="solcc">10 -- Weapons </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_74" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=27b3f967b1cfd13a68e962cb4a6b79ee&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">62--CONTROL,ELECTRIC LI </div><div class="soln">SPE4A617U0213 </div><div class="solcc">62 -- Lighting fixtures & lamps </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_75" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=8de498f3aa6764539b861e7781decb8e&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">39--BOX,TOTE </div><div class="soln">SPE8EF17T0016 </div><div class="solcc">39 -- Materials handling equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Troop Support - Construction & Equipment - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_76" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=eef56617e655611dd752c021c2df16f1&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">INSULATION BLANKET </div><div class="soln">SPE4A717R1003 </div><div class="solcc">16 -- Aircraft components & accessories </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Sources Sought
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_77" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=961c52db4c65a77bcd6bd5c904ebbf57&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Repair Sanitary Sewer System </div><div class="soln">GLEN15_3303 </div><div class="solcc">45 -- Plumbing, heating, & sanitation equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Air Force </div>Air Force Space Command<br>50 CONTRACTING SQUADRON
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation / HUBZone
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_78" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=696b7383bfaeabedfd9aaa335c3aa3b5&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Shipping and Storage Container </div><div class="soln">SPRDL1-17-Q-0437 </div><div class="solcc">81 -- Containers, packaging, & packing supplies </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Army </div>Defense Logistics Agency Detachment<br>DLA TACOM - Warren Acquisition Center
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Solicitation
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_79" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=ad01b8cb2702c02e2b074c265b0d2d2b&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">49--REPAIR KIT,AIRCRAFT </div><div class="soln"> </div><div class="solcc">49 -- Maintenance & repair shop equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_80" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=35cb85ebf9be623e7007386e48ab62a5&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">J--Cleaning of Keeler Water  Boilers     </div><div class="soln">VA24217Q0458 </div><div class="solcc">J -- Maintenance, repair & rebuilding of equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of Veterans Affairs </div>Bronx VAMC (NAL)<br>Department of Veterans Affairs
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation (Modified) / Service-Disabled Veteran-Owned Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_81" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=42029911b2211f82bd1a296e9cf97738&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">U--Defensive Unit Tactical Combat Training Course for 18 personnel.   </div><div class="soln">N0018917Q0090 </div><div class="solcc">U -- Education & training services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Navy </div>Naval Supply Systems Command<br>NAVSUP Fleet Logistics Center Norfolk
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation (Modified)
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_82" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=b38c12c8b72724994f2a48e3eff50bc0&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">66--Laboratory Refrigerator and Manual Defrost Freezer </div><div class="soln"> </div><div class="solcc">66 -- Instruments & laboratory equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Environmental Protection Agency </div>Office of Acquisition Management (OAM)<br>EPA/Headquarters (HPOD & SRRPOD)
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_83" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=c9512ad64c063f2b37631ff99979367e&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Tanker Voyage Charter Rotterdam, Netherlands to Killingholme, UK </div><div class="soln">N32205-17-R-3213 </div><div class="solcc">V -- Transportation, travel, & relocation services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Navy </div>Military Sealift Command<br>MSC Norfolk (N32205)
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Solicitation (Modified)
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_84" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=a624750e92ea85851270fb6399338ddd&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">X--LEASE: VALDOSTA LEASE UPDATED ADVERTISEMENT    </div><div class="soln">VA24817R0564 </div><div class="solcc">X -- Lease or rental of facilities </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of Veterans Affairs </div>VA North Florida/South Georgia Health Care System<br>Department of Veterans Affairs No. Florida/So. Georgia Healthcare System
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Special Notice
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_85" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=3259522edc8d1b95151d20f388103053&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">LED Lighting Project for the North Zone Fire Cache </div><div class="soln">AG-9A73-S-17-0001 </div><div class="solcc">62 -- Lighting fixtures & lamps </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of Agriculture </div>Forest Service<br>R-5 Northern CA Acquisition Service Area
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation (Modified) / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_86" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=092f1b3eb50d554d03de6e29b7c622dd&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">Ticketing System </div><div class="soln">INU-17-009 </div><div class="solcc">D -- Information technology services, including telecommunications services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">National Aeronautics and Space Administration </div>Armstrong Flight Research Center<br>AFRC INUTEQ
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Presolicitation (Modified)
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_87" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=71ceee919abffa9b16b2be9972e1b702&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">2018-2020 Maintenance Dredging at Port of Anchorage, Alaska </div><div class="soln">W911KB-18-R-0001-SS </div><div class="solcc">Z -- Maintenance, repair, and alteration of real property </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Army </div>U.S. Army Corps of Engineers<br>USACE District, Alaska
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Sources Sought
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_88" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=3751495df48658427d7cd63dce779996&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Desktops & Servers </div><div class="soln">WX02221Y2017T </div><div class="solcc">70 -- General purpose information technology equipment </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of Homeland Security </div>Federal Emergency Management Agency<br>National Continuity Branch
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_89" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=a0aac90d5ce9d7865de7321d5e9576d4&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">F--IRON MASK HABITAT RESTORATION 2017 </div><div class="soln">L17PS00510 </div><div class="solcc">F -- Natural resources & conservation services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Interior </div>Bureau of Land Management<br>Montana Region
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Solicitation / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_90" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=e4a4cdf684c28515fcc17e659ad9b48a&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">VIDEOTAPE TRANSFER SERVICES </div><div class="soln">INU-17-007 </div><div class="solcc">D -- Information technology services, including telecommunications services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">National Aeronautics and Space Administration </div>Armstrong Flight Research Center<br>AFRC INUTEQ
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Sources Sought (Modified)
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_91" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=bb343e27778fcf625fd474d2d35886ae&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">MC Sweatshirt/Sweatpants, CG Sweatshirt/Sweatpants </div><div class="soln">SPE1C117R0098 </div><div class="solcc">84 -- Clothing, individual equipment & insignia </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Troop Support - Clothing & Textiles
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Presolicitation / Total Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_92" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=e522a936073534d9736755a07554195f&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">16--SWITCH,OIL LEVEL,AI </div><div class="soln"> </div><div class="solcc">16 -- Aircraft components & accessories </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Aviation - BSM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_93" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=adec96cb07bf703de9e89c93a5d1307a&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Z--Project No. 589-17-101 Replace Central Boiler Plant Control System    </div><div class="soln">VA25517R0552 </div><div class="solcc">Z -- Maintenance, repair, and alteration of real property </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of Veterans Affairs </div>VA Heartland Network<br>Department of Veterans Affairs Heartland Network
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Presolicitation / Service-Disabled Veteran-Owned Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_94" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=edd1d71bdf9c8b6a71b7df78d35423da&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">TEMPORARY PHOTO SUPPORT </div><div class="soln">INU-17-006 </div><div class="solcc">D -- Information technology services, including telecommunications services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">National Aeronautics and Space Administration </div>Armstrong Flight Research Center<br>AFRC INUTEQ
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation (Modified)
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_95" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=10189651f1ca7d85a1fd82bf66d92fb9&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Monongahela River Pool 3 Dredging  </div><div class="soln">SS-MonPool3Dredging </div><div class="solcc">Z -- Maintenance, repair, and alteration of real property </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Army </div>U.S. Army Corps of Engineers<br>USACE District, Pittsburgh 
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Sources Sought
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_96" class="lst-rw lst-rw-odd">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=2c3dcd0ca90736e38985b115b1e7dc4b&tab=core&_cview=1" class="lst-lnk-notice"><div class="solt">D--OPTION - Copier Maintenance Service </div><div class="soln">40308148-2 </div><div class="solcc">D -- Information technology services, including telecommunications services </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Interior </div>Bureau of Indian Affairs<br>BIA - DAPM
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Award / Service-Disabled Veteran-Owned Small Business
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
-    <tr id="row_97" class="lst-rw lst-rw-even">
-
-                 <td class="lst-cl lst-cl-first" headers="lh_id">
-      
-      <a href="?s=opportunity&mode=form&id=f2cf9b9ac471cbddeb84abadae900c2e&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Pontoon Boat </div><div class="soln">FA4613-17-Q-1003 </div><div class="solcc">19 -- Ships, small craft, pontoons & floating docks </div></a>
-</td>
-
-                 <td class="lst-cl " headers="lh_agency_name">
-      
-            <div class="pagency">Department of the Air Force </div>Air Force Global Strike Command<br>90 CONS
-      </td>
-
-                 <td class="lst-cl " headers="lh_base_type">
-      
-            Combined Synopsis/Solicitation
-      </td>
-
-                 <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
-      
-            May 09, 2017
-      </td>
-
-</tr>
-
     <tr id="row_98" class="lst-rw lst-rw-odd">
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=8dfa6aad5bc279c66e34fe9c4af1e345&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">1680-01-553-5091 </div><div class="soln">SPE4A517Q1220 </div><div class="solcc">16 -- Aircraft components & accessories </div></a>
+      <a href="?s=opportunity&mode=form&id=5db223a2e042347f3824227ef33f0b3a&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">16--CABLE ASSEMBLY,SPEC </div><div class="soln">SPE4A517TZ200 </div><div class="solcc">16 -- Aircraft components & accessories </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
@@ -2569,7 +2569,7 @@ function printPreviewNow() {
 
                  <td class="lst-cl " headers="lh_base_type">
       
-            Sources Sought
+            Combined Synopsis/Solicitation
       </td>
 
                  <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
@@ -2583,17 +2583,17 @@ function printPreviewNow() {
 
                  <td class="lst-cl lst-cl-first" headers="lh_id">
       
-      <a href="?s=opportunity&mode=form&id=0b8c6f1d3ac8bb7f70dc549948c7f683&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">Small Unmanned Aerial System (SUAS) </div><div class="soln">REF04-FY17 </div><div class="solcc">99 -- Miscellaneous </div></a>
+      <a href="?s=opportunity&mode=form&id=674dcb63369b273f65cb5297ed77277c&tab=core&_cview=0" class="lst-lnk-notice"><div class="solt">25--DOOR,VEHICULAR </div><div class="soln">SPE7L317Q0462 </div><div class="solcc">25 -- Vehicular equipment components </div></a>
 </td>
 
                  <td class="lst-cl " headers="lh_agency_name">
       
-            <div class="pagency">Department of the Army </div>Army Contracting Command, MICC<br>MICC - Fort Eustis (Joint Base Langley-Eustis)
+            <div class="pagency">Defense Logistics Agency </div>DLA Acquisition Locations<br>DLA Land and Maritime - BSM
       </td>
 
                  <td class="lst-cl " headers="lh_base_type">
       
-            Sources Sought
+            Combined Synopsis/Solicitation / Total Small Business
       </td>
 
                  <td class="lst-cl lst-cl-last lst-cl-first_sort" headers="lh_current_posted_date">
@@ -2606,11 +2606,11 @@ function printPreviewNow() {
 
 <div class="lst-foot">
 	<div class="lst-rt">
-		<span class="lst-pp">Showing <select name="setPerPage" onchange="self.location.href='?s=opportunity&mode=list&tab=searchresults&tabmode=list&pp='+this.options[this.selectedIndex].value"><option value="20">20</option><option value="30">30</option><option value="40">40</option><option value="50">50</option><option value="60">60</option><option value="70">70</option><option value="80">80</option><option value="90">90</option><option value="100" selected="selected">100</option></select> per page</span>		<span class="lst-pg"><b><u>1</u></b>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=2" title="page 2">2</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=3" title="page 3">3</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=4" title="page 4">4</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=5" title="page 5">5</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=6" title="page 6">6</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=7" title="page 7">7</a>      <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=2" title="next page">&raquo;</a>      <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=1823" title="last page">[1823]</a></span>
+		<span class="lst-pp">Showing <select name="setPerPage" onchange="self.location.href='?s=opportunity&mode=list&tab=searchresults&tabmode=list&pp='+this.options[this.selectedIndex].value"><option value="20">20</option><option value="30">30</option><option value="40">40</option><option value="50">50</option><option value="60">60</option><option value="70">70</option><option value="80">80</option><option value="90">90</option><option value="100" selected="selected">100</option></select> per page</span>		<span class="lst-pg"><b><u>1</u></b>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=2" title="page 2">2</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=3" title="page 3">3</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=4" title="page 4">4</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=5" title="page 5">5</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=6" title="page 6">6</a>   |   <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=7" title="page 7">7</a>      <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=2" title="next page">&raquo;</a>      <a href="/index?s=opportunity&amp;mode=list&amp;tab=searchresults&amp;pp=100&amp;pageID=1826" title="last page">[1826]</a></span>
 	</div>
 		<span class="lst-refine">
 		<a href="?tabmode=list&tab=search" class="btn">Refine Results</a> 		<a href="?tabmode=list&tab=search&clear_search=1" class="btn">Clear Search</a> 	</span>
-		<span class="lst-cnt">1 - 100 of 182300</span>
+		<span class="lst-cnt">1 - 100 of 182585</span>
 </div>
 
 
