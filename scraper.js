@@ -1,3 +1,11 @@
+/*
+
+	CLEAN UP THIS FILE
+
+
+*/
+
+
 var request = require('request');
 var cheerio = require('cheerio');
 var fs = require('fs');
@@ -58,7 +66,7 @@ database.insert = function(data) { insertMongoDB(data) };
 
 console.log(database);
 
-
+// FIX THIS AND REARCH IT
 // ====== db stuff
 
 function connectMongoDB() {
@@ -76,7 +84,7 @@ function connectMongoDB() {
   });
 }
 
-
+// NEED TO ADD ID STUFF
 function insertMongoDB(rows) {
   console.log('inserting...');
   /*fbodataCollection.insert(row, () => {
@@ -85,7 +93,7 @@ function insertMongoDB(rows) {
   fbodataCollection.insert(rows)
     .then(() => {
       console.log('success');
-      tableLength++;
+      //tableLength++;
     })
     .catch((err) => {
       console.log(err);
@@ -103,7 +111,7 @@ function createCollection() {
   );
 
   fbodataCollection = database.mdb.collection('fbodata');
-  fbodataCollection.createIndex({'BAA': 1}, {unique: true});
+  fbodataCollection.createIndex({'Solicitation Number': 1}, {unique: true});
 
   lastID = getLastMongoID();
 }
@@ -154,6 +162,7 @@ const mainEventLoop = new EventLoop();
 
 
 eventLoopFunctions = {
+	'page' : getLinks,
 	'fetch': parseOpportunity,
 	'save' : databaseSave,
 };
@@ -223,17 +232,17 @@ if(process.argv[2] == 'f') {
 		//console.log( 'UA: ' + $('.browser span').text() );
 		//console.log($);
 
-		var jsobj = 
+		var jsForm = 
 		'{"_____dummy":"dnf_","so_form_prefix":"dnf_","dnf_opt_action":"search","dnf_opt_template":"7pE4TO+LpSOt6kkfvI3tjzXxVYcDLoQW1MDkvvEnorEEQQXqMlNO+qihNxtVFxhn","dnf_opt_template_dir":"Ni5FF3rCfdHw20ZrcmEfnbG6WrxuiBuGRpBBjyvqt1KAkN/anUTlMWIUZ8ga9kY+","dnf_opt_subform_template":"ofIwRcnIObMpvmYWChWtsWF719zd85B9","dnf_opt_finalize":"1","dnf_opt_mode":"update","dnf_opt_target":"","dnf_opt_validate":"1","dnf_class_values[procurement_notice][dnf_class_name]":"procurement_notice","dnf_class_values[procurement_notice][notice_id]":"fa10da501d41bea54e485d6b274b671f","dnf_class_values[procurement_notice][_so_agent_save_agent]":"","dnf_class_values[procurement_notice][custom_response_date]":"","dnf_class_values[procurement_notice][custom_posted_date]":"","dnf_class_values[procurement_notice][zipstate][]":"","dnf_class_values[procurement_notice][zipcode]":"","dnf_class_values[procurement_notice][searchtype]":"active","dnf_class_values[procurement_notice][set_aside][]":"","dnf_class_values[procurement_notice][procurement_type][]":"","dnf_class_values[procurement_notice][all_agencies]":"all","dnf_class_values[procurement_notice][agency][dnf_class_name]":"agency","_status_43b364da3bd91e392aab74a5af5fd803":"0","dnf_class_values[procurement_notice][agency][dnf_multiplerelation_picks][]":"","autocomplete_input_dnf_class_values[procurement_notice][agency][dnf_multiplerelation_picks][]":"","autocomplete_hidden_dnf_class_values[procurement_notice][agency][dnf_multiplerelation_picks][]":"","dnf_class_values[procurement_notice][recovery_act]":"","dnf_class_values[procurement_notice][keywords]":"","dnf_class_values[procurement_notice][naics_code][]":"","dnf_class_values[procurement_notice][classification_code][]":"","dnf_class_values[procurement_notice][ja_statutory][]":"","dnf_class_values[procurement_notice][fair_opp_ja][]":"","dnf_class_values[procurement_notice][posted_date][_start]":"2017-05-08","dnf_class_values[procurement_notice][posted_date][_start]_real":"2017-05-08","dnf_class_values[procurement_notice][posted_date][_end]":"2017-05-08","dnf_class_values[procurement_notice][posted_date][_end]_real":"2017-05-08","dnf_class_values[procurement_notice][response_deadline][_start]":"","dnf_class_values[procurement_notice][response_deadline][_start]_real":"","dnf_class_values[procurement_notice][response_deadline][_end]":"","dnf_class_values[procurement_notice][response_deadline][_end]_real":"","dnf_class_values[procurement_notice][modified][_start]":"","dnf_class_values[procurement_notice][modified][_start]_real":"","dnf_class_values[procurement_notice][modified][_end]":"","dnf_class_values[procurement_notice][modified][_end]_real":"","dnf_class_values[procurement_notice][contract_award_date][_start]":"","dnf_class_values[procurement_notice][contract_award_date][_start]_real":"","dnf_class_values[procurement_notice][contract_award_date][_end]":"","dnf_class_values[procurement_notice][contract_award_date][_end]_real":""}';
 
-		console.log(JSON.parse(jsobj));
+		console.log(JSON.parse(jsForm));
 		//process.exit();
 		var form = $('#vendor_procurement_notice_search').serializeArray();
 		console.log($(form).serializeArray());
 
 
 		var newform = Object.assign(...$('#vendor_procurement_notice_search').serializeArray().map((item, index) => {
-			console.log(index, item);
+			//console.log(index, item);
 			console.log();
 
 			return {[item.name]: item.value};
@@ -244,17 +253,17 @@ if(process.argv[2] == 'f') {
   		newform['_day_dnf_class_values[procurement_notice][posted_date][_start]'] = '05';
   		newform['_year_dnf_class_values[procurement_notice][posted_date][_start]'] = '2017';
 		*/
-		newform['dnf_class_values[procurement_notice][posted_date][_start]'] = '2017-05-08';
-		newform['dnf_class_values[procurement_notice][posted_date][_start]_real'] = '2017-05-08';
+		jsForm['dnf_class_values[procurement_notice][posted_date][_start]'] = '2017-05-10';
+		jsForm['dnf_class_values[procurement_notice][posted_date][_start]_real'] = '2017-05-10';
 		/*
 		newform['_month_dnf_class_values[procurement_notice][posted_date][_end]'] = '05';
   		newform['_day_dnf_class_values[procurement_notice][posted_date][_end]'] = '05';
   		newform['_year_dnf_class_values[procurement_notice][posted_date][_end]'] = '2017';
 		*/
-		newform['dnf_class_values[procurement_notice][posted_date][_end]'] = '2017-05-08';
-		newform['dnf_class_values[procurement_notice][posted_date][_end]_real'] = '2017-05-08';
+		jsForm['dnf_class_values[procurement_notice][posted_date][_end]'] = '2017-05-10';
+		jsForm['dnf_class_values[procurement_notice][posted_date][_end]_real'] = '2017-05-10';
 
-		newform['dnf_opt_finalize'] = 1;
+		jsForm['dnf_opt_finalize'] = 1;
 		//newform['dnf_opt_validate'] = 0;
 
 		// newform['dnf_class_values[procurement_notice][posted_date][_start]_real'] = '2017-05-05';
@@ -263,39 +272,59 @@ if(process.argv[2] == 'f') {
 
 		//newform['dnf_class_values[procurement_notice][custom_posted_date]'] = '2017-05-05';
 
-		console.log(newform);
+		//console.log(jsForm);
 		//process.exit();
 
 		req.post({
-		    url: "https://www.fbo.gov/?s=opportunity&mode=list&tab=searchresults&pp=100",
-		    form: jsobj,
+		    url: "https://www.fbo.gov/?s=opportunity&mode=list&tab=searchresults&tabmode=list&pp=100",
+		    form: jsForm,
 		    headers: {
 		        'User-Agent': 'Super Cool Browser' // optional headers
 		     }
 		  }, function(err, resp, body) {
 
-		  	fs.writeFile("test", body, function(err) {
-			    if(err) {
-			        return console.log(err);
-			    }
+		 //  	fs.writeFile("test", body, function(err) {
+			//     if(err) {
+			//         return console.log(err);
+			//     }
 
-			    console.log("The file was saved!");
-			});
+			//     console.log("The file was saved!");
+			// });
 			
 			// load the html into cheerio
 			var $ = cheerio.load(body);
 
-			console.log(body);
+			var pages = $('a[title="last page"]').text().slice(1, 5);
 
-			console.log();
+			if(pages > 10) {
+				pages = 10 + 1;
 
-			var thing = $($('.lst-cnt')[0]).text(); 
+				for(var pageNum = 1; pageNum < pages; pageNum++) {
+					mainEventLoop.emit('page', { 'pageNum': pageNum, 'form': jsForm });
+				}
+
+			}
+
+			//console.log(body);
+
+			//console.log();
+
+			//var thing = $($('.lst-cnt')[0]).text(); 
 
 			//console.log(thing);
+			
+				// [].slice.call($('.lst-lnk-notice')).map((item, index) => {
+				// 	console.log('submitting: ', $(item).attr('href'), index);
+				// 	mainEventLoop.emit('fetch', 'https://www.fbo.gov/' + $(item).attr('href'))
+				// });
+			
+			//mainEventLoop.emit('fetch', 'https://www.fbo.gov/index?s=opportunity&mode=form&id=459f3643d517aa73fd2689fc4954e5af&tab=core&_cview=0')
 
 
 
-			var list = $('.lst-rw');
+
+
+			//var list = $('.lst-rw');
 			//console.log(list);
 
 			// [].slice.call(list).map((row, index) => {
@@ -320,7 +349,7 @@ if(process.argv[2] == 'f') {
 
 			//});
 
-			var children = $(list[0]).children();
+			//var children = $(list[0]).children();
 
 			// children.map((child) => {
 			// 	//console.log($(children[child]).text().trim());
@@ -349,7 +378,7 @@ if(process.argv[2] == 'f') {
 
 				var url;
 
-				req.get({
+				/*req.get({
 				    url: 'https://www.fbo.gov/?s=opportunity&mode=form&id=4025738859b0374338abc74c75e82905&tab=core&_cview=0',
 				    headers: {
 				        'User-Agent': 'Super Cool Browser' // optional headers
@@ -365,7 +394,7 @@ if(process.argv[2] == 'f') {
 					});
 
 				  	gatherData(cheerio.load(body));
-				});
+				});*/
 
 				// 	console.log()
 				// 	console.log()
@@ -434,9 +463,11 @@ if(process.argv[2] == 'f') {
 		});
 	});
 
+} else if(process.argv[2] == 'd') {
+	mainEventLoop.emit('fetch', 'https://www.fbo.gov/?s=opportunity&mode=form&id=4025738859b0374338abc74c75e82905&tab=core&_cview=0');
 } else {
 	fs.readFile('testArticle', 'utf8', function(err, contents) {
-		mainEventLoop.emit('fetch', 'https://www.fbo.gov/?s=opportunity&mode=form&id=4025738859b0374338abc74c75e82905&tab=core&_cview=0');
+		mainEventLoop.emit('fetch', 'https://www.fbo.gov/index?s=opportunity&mode=form&id=459f3643d517aa73fd2689fc4954e5af&tab=core&_cview=0');
 	});
 }
 
@@ -453,9 +484,12 @@ function gatherData($) {
 		[].slice.call($('.fld-ro').map((index, item) => {
 			var ic = $(item).children();
 			// make this a one liner too brah
-			//console.log(ic);
+			console.log($(item));
 
-			return {[$(ic[0]).text().trim().replace(':', '')] : $(ic[1]).text().trim()};
+			if(!$(item).attr('id').includes('packages')) {
+				return { [$(ic[0]).text().trim().replace(':', '').replace('.', '')] : $(ic[1]).text().trim() };
+			}
+
 		}))
 		.concat(
 		[].slice.call($('.agency-name').contents().map((index, item) => {
@@ -472,6 +506,40 @@ function gatherData($) {
 	));
 }
 
+
+function getLinks(packet) {
+	console.log('getting links for:', packet.pageNum);
+
+
+	/*
+	req.post({
+		    url: "https://www.fbo.gov/index?s=opportunity&mode=list&tab=searchresults&tabmode=list&pp=20&pageID=" + pageNum,
+		    form: jsForm,
+		    headers: {
+		        'User-Agent': 'Super Cool Browser' // optional headers
+		     }
+		  }, function(err, resp, body) {
+
+		 //  	fs.writeFile("test", body, function(err) {
+			//     if(err) {
+			//         return console.log(err);
+			//     }
+
+			//     console.log("The file was saved!");
+			// });
+			
+			// load the html into cheerio
+			var $ = cheerio.load(body);
+
+			var pages = $('a[title="last page"]').text().slice(1, 5);
+
+			if(pages > 10) {
+				pages = 10;
+			}
+		}
+	
+	*/
+}
 
 
 function parseOpportunity(opportunity) {
