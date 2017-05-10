@@ -167,6 +167,8 @@ if(process.argv[2] == 'f') {
 						return {[$(ic[0]).text().trim().replace(':', '')] : $(ic[1]).text().trim()};
 					})));
 
+					var ao = [].slice.call($('#agency-name').children())
+
 					console.log(fboObj)
 
 					process.exit();
