@@ -1,7 +1,204 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var fs = require('fs');
+
 var json = require('jsonify');
+
+// MongoDB for the database
+var MongoClient = require('mongodb').MongoClient;
+
+// Set up the console stamp
+// Line number stuff
+Object.defineProperty(global, '__stack', {
+	get: function(){
+		var orig = Error.prepareStackTrace;
+		Error.prepareStackTrace = function(_, stack) { return stack; };
+		var err = new Error;
+		Error.captureStackTrace(err, arguments.callee);
+		var stack = err.stack;
+		Error.prepareStackTrace = orig;
+		return stack;
+	}
+});
+
+var globalStackDrawValue = 3;
+
+Object.defineProperty(global, '__line', {
+	get: function() {
+		return __stack[globalStackDrawValue].getLineNumber();
+	}
+});
+
+Object.defineProperty(global, '__function', {
+	get: function() {
+		return __stack[globalStackDrawValue].getFunctionName();
+	}
+});
+
+var cs = require("console-stamp") (console, {
+	metadata: function () {
+		var funcout = __function;
+
+		return ('[ RAM: ' + (process.memoryUsage().rss  / 1000000).toFixed(2) + ' MB | caller: ' + __function + ' | line: ' + __line + ' ]');
+	},
+	colors: {
+		stamp:    "yellow", 
+		label:    "red",
+		metadata: "green"
+	}
+});
+
+// ==========
+
+
+var database = {};
+
+database.close = function() { this.mdb.close() };
+database.insert = function(data) { insertMongoDB(data) };
+
+console.log(database);
+
+
+// ====== db stuff
+
+function connectMongoDB() {
+  // Connect to the db    
+  MongoClient.connect("mongodb://localhost:27017/fbo-mailer", function(err, mdb) {
+    if(!err) {
+      console.log('Connected');
+      database.mdb = mdb;
+      console.log(mdb);
+      createCollection();
+    } else {
+      console.log(err);
+      process.exit(1);
+    }
+  });
+}
+
+
+function insertMongoDB(rows) {
+  console.log('inserting...');
+  /*fbodataCollection.insert(row, () => {
+      console.log('ima muhhhfkin callback son');
+    })*/
+  fbodataCollection.insert(rows)
+    .then(() => {
+      console.log('success');
+      tableLength++;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+function createCollection() {
+  console.log('We are connected');
+
+  database.mdb.collection('counters').insert(
+    { _id: "userid",
+      seq: 0 }, 
+      function(err, records) {
+    }
+  );
+
+  fbodataCollection = database.mdb.collection('fbodata');
+  fbodataCollection.createIndex({'BAA': 1}, {unique: true});
+
+  lastID = getLastMongoID();
+}
+
+function getLastMongoID() {
+  return fbodataCollection.find({}).sort({'ID': -1}).limit(1).next()
+    .then(value => {
+      return value.ID;
+    })
+    .catch(() => {
+      return 0;
+    });
+}
+
+
+function getNextSequence(name, row) {
+  database.mdb.collection('counters').findAndModify(
+    { _id: name },
+    undefined,
+    { $inc: { seq: 1 } },
+    function(err, object) {
+      if(!err) {
+        row.ID = object.value.seq;
+        //console.log(row);
+        fbodataCollection.insert(row);
+      }
+    });
+}
+
+
+connectMongoDB();
+
+// ======= end db stuff
+
+
+
+
+
+
+
+
+// ===== event loop stuff
+// Event loop extension
+const EventEmitter = require('events');
+
+class EventLoop extends EventEmitter {}
+const mainEventLoop = new EventLoop();
+
+
+eventLoopFunctions = {
+	'fetch': parseOpportunity,
+	'save' : databaseSave,
+};
+
+// Function to seperate function loading from main
+(function loadEventLoopFunction() {
+  Object.keys(eventLoopFunctions).map((item, index) => {
+    mainEventLoop.on(item, (packet) => {
+    	eventLoopFunctions[item](packet);
+    });
+  });
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 req = request.defaults({
 	jar: true,                 // save cookies to jar
@@ -150,6 +347,7 @@ if(process.argv[2] == 'f') {
 				// 	return {[itemsplit[0].trim()]: itemsplit[1].trim()}
 				// })))
 
+				var url;
 
 				req.get({
 				    url: 'https://www.fbo.gov/?s=opportunity&mode=form&id=4025738859b0374338abc74c75e82905&tab=core&_cview=0',
@@ -157,104 +355,160 @@ if(process.argv[2] == 'f') {
 				        'User-Agent': 'Super Cool Browser' // optional headers
 				     }
 				}, function(err, resp, body) {
-					var $ = cheerio.load(body);
 
+				  	fs.writeFile("testArticle", body, function(err) {
+					    if(err) {
+					        return console.log(err);
+					    }
 
-					// put the concat in here and shit
-					// $('#agency-name').children)
-					var fboObj = Object.assign(...[].slice.call($('.fld-ro').map((index, item) => {
-						var ic = $(item).children();
-						return {[$(ic[0]).text().trim().replace(':', '')] : $(ic[1]).text().trim()};
-					})));
+					    console.log("The file was saved!");
+					});
 
-					var ao = [].slice.call($('#agency-name').children())
-
-					console.log(fboObj)
-
-					process.exit();
+				  	gatherData(cheerio.load(body));
 				});
 
-					console.log()
-					console.log()
+				// 	console.log()
+				// 	console.log()
 
-				var rowObjs = [];
-				// ----- first box
-				$('.lst-rw').map((index, item) => {
-					var link;
-					var array = ($($(item).children()[0]).children().children().map((index, item) => {
-						//console.log(index, $(item).text());
+				// var rowObjs = [];
+				// // ----- first box
+				// $('.lst-rw').map((index, item) => {
+				// 	var link;
+				// 	var array = ($($(item).children()[0]).children().children().map((index, item) => {
+				// 		//console.log(index, $(item).text());
 
-						link = 'https://www.fbo.gov/' + $(item).parent().attr('href');
-						return $(item).text().trim();
-					}).get());	
+				// 		link = 'https://www.fbo.gov/' + $(item).parent().attr('href');
+				// 		return $(item).text().trim();
+				// 	}).get());	
 
-					// Insert the unique ID from the database insertion mongo meh ehhh
-					rowObjs.push({'Title': array[0], 'Solicitation ID': array[1], 'Classification Code': array[2], 'Link': link});	
-				});
-
-
-				// ---- agency
-				$('.pagency').each((index, item) => {
-					rowObjs[index]['Agency'] = $(item).text().trim();
-				});
-
-				// ----- type
-				$('.lst-cl[headers=lh_base_type]').each((index, item) => {
-					rowObjs[index]['Type'] =  $(item).text().trim();
-				});
-
-				// ----- dates
-				$('.lst-cl-first_sort').each((index, item) => {
-					rowObjs[index]['Posted Date'] =  $(item)[0]['children'][0]['data'].trim();
-				});
-
-				console.log(rowObjs);
-
-				console.log(rowObjs[0]['Link']);
+				// 	// Insert the unique ID from the database insertion mongo meh ehhh
+				// 	rowObjs.push({'Title': array[0], 'Solicitation ID': array[1], 'Classification Code': array[2], 'Link': link});	
+				// });
 
 
-				var properties = {
-					'Notice': ''
-				}
+				// // ---- agency
+				// $('.pagency').each((index, item) => {
+				// 	rowObjs[index]['Agency'] = $(item).text().trim();
+				// });
+
+				// // ----- type
+				// $('.lst-cl[headers=lh_base_type]').each((index, item) => {
+				// 	rowObjs[index]['Type'] =  $(item).text().trim();
+				// });
+
+				// // ----- dates
+				// $('.lst-cl-first_sort').each((index, item) => {
+				// 	rowObjs[index]['Posted Date'] =  $(item)[0]['children'][0]['data'].trim();
+				// });
+
+				// console.log(rowObjs);
+
+				// console.log(rowObjs[0]['Link']);
+
+
+				// var properties = {
+				// 	'Notice': ''
+				// }
 
 
 
-				req.get({
-				    url: rowObjs[0]['Link'],
-				    headers: {
-				        'User-Agent': 'Super Cool Browser' // optional headers
-				     }
-				  }, function(err, resp, body) {
-					  	var $ = cheerio.load(body);
+				// req.get({
+				//     url: rowObjs[0]['Link'],
+				//     headers: {
+				//         'User-Agent': 'Super Cool Browser' // optional headers
+				//      }
+				//   }, function(err, resp, body) {
+				// 	  	var $ = cheerio.load(body);
 
-						console.log(body);
+				// 		console.log(body);
 
-						console.log();
+				// 		console.log();
 
 
-						rowObjs[0]['Set Aside'] = $('#dnf_class_values_procurement_notice__set_aside__widget').text().trim();
-						rowObjs[0]['Synopsis'] = $('#dnf_class_values_procurement_notice__description__widget').text().trim();
-						rowObjs[0]['Point of Contact'] = $('#dnf_class_values_procurement_notice__poc_text__widget').text().trim().split(',').reverse().join(' ');
+				// 		rowObjs[0]['Set Aside'] = $('#dnf_class_values_procurement_notice__set_aside__widget').text().trim();
+				// 		rowObjs[0]['Synopsis'] = $('#dnf_class_values_procurement_notice__description__widget').text().trim();
+				// 		rowObjs[0]['Point of Contact'] = $('#dnf_class_values_procurement_notice__poc_text__widget').text().trim().split(',').reverse().join(' ');
 
-						console.log(rowObjs[0])
-				  });
+				// 		console.log(rowObjs[0])
+				//   });
 		});
 	});
 
 } else {
-	fs.readFile('test', 'utf8', function(err, contents) {
-	    console.log(contents, '\n\n');
+	fs.readFile('testArticle', 'utf8', function(err, contents) {
+		mainEventLoop.emit('fetch', 'https://www.fbo.gov/?s=opportunity&mode=form&id=4025738859b0374338abc74c75e82905&tab=core&_cview=0');
+	});
+}
 
 
-	    var $ = cheerio.load(contents);
+function databaseSave(data) {
+	console.log('data', data);
+	database.insert(data);
+	//database.close()
+}
 
-	    console.log($);
-	    
-	    var thing = $($('.lst-cnt')[0]).text(); 
+
+function gatherData($) {
+	mainEventLoop.emit('save', Object.assign(...
+		[].slice.call($('.fld-ro').map((index, item) => {
+			var ic = $(item).children();
+			// make this a one liner too brah
+			//console.log(ic);
+
+			return {[$(ic[0]).text().trim().replace(':', '')] : $(ic[1]).text().trim()};
+		}))
+		.concat(
+		[].slice.call($('.agency-name').contents().map((index, item) => {
+			//condition && (x = true);
+
+			// 	// try to do it like this later:
+			// 	// str.replace(/([a-z][^:]*)(?=\s*:)/g, '"$1"').replace(/([^:][a-z]*)(?=\s*:)/g, '"$1"')
+
+			// try to play around with this an make it a one liner, use shit for now
+			if ($(item).text().trim()) {
+			 	return JSON.parse(('{"' + $(item).text() + '"}').replace(': ', '":"'));
+			}
+		})))
+	));
+}
 
 
-	    console.log($ + '\n\n' + typeof thing + '\n\n');
-	    console.log(thing);
 
+function parseOpportunity(opportunity) {
+
+	console.log(opportunity);
+
+	// var that = req.get({
+	//     url: url
+	// }, function(err, resp, body) {
+	// 	$ = cheerio.load(body);
+
+	// 	return Object.assign(...
+	// 		[].slice.call($('.fld-ro').map((index, item) => {
+	// 			var ic = $(item).children();
+	// 			// make this a one liner too brah
+	// 			//console.log(ic);
+
+	// 			return {[$(ic[0]).text().trim().replace(':', '')] : $(ic[1]).text().trim()};
+	// 		}))
+	// 	.concat(
+	// 		[].slice.call($('.agency-name').contents().map((index, item) => {
+	// 			//condition && (x = true);
+
+	// 			// 	// try to do it like this later:
+	// 			// 	// str.replace(/([a-z][^:]*)(?=\s*:)/g, '"$1"').replace(/([^:][a-z]*)(?=\s*:)/g, '"$1"')
+
+	// 			// try to play around with this an make it a one liner, use shit for now
+	// 			if ($(item).text().trim()) {
+	// 			 	return JSON.parse(('{"' + $(item).text() + '"}').replace(': ', '":"'));
+	// 			}
+	// 		})))
+	// 	);
+	// });
+
+	// console.log(that);
+
+	req.get({ url: opportunity }, function(err, resp, body) {
+		gatherData(cheerio.load(body));
 	});
 }
