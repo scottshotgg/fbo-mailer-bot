@@ -235,18 +235,18 @@ if(process.argv[2] == 'f') {
 		var jsForm = 
 		'{"_____dummy":"dnf_","so_form_prefix":"dnf_","dnf_opt_action":"search","dnf_opt_template":"7pE4TO+LpSOt6kkfvI3tjzXxVYcDLoQW1MDkvvEnorEEQQXqMlNO+qihNxtVFxhn","dnf_opt_template_dir":"Ni5FF3rCfdHw20ZrcmEfnbG6WrxuiBuGRpBBjyvqt1KAkN/anUTlMWIUZ8ga9kY+","dnf_opt_subform_template":"ofIwRcnIObMpvmYWChWtsWF719zd85B9","dnf_opt_finalize":"1","dnf_opt_mode":"update","dnf_opt_target":"","dnf_opt_validate":"1","dnf_class_values[procurement_notice][dnf_class_name]":"procurement_notice","dnf_class_values[procurement_notice][notice_id]":"fa10da501d41bea54e485d6b274b671f","dnf_class_values[procurement_notice][_so_agent_save_agent]":"","dnf_class_values[procurement_notice][custom_response_date]":"","dnf_class_values[procurement_notice][custom_posted_date]":"","dnf_class_values[procurement_notice][zipstate][]":"","dnf_class_values[procurement_notice][zipcode]":"","dnf_class_values[procurement_notice][searchtype]":"active","dnf_class_values[procurement_notice][set_aside][]":"","dnf_class_values[procurement_notice][procurement_type][]":"","dnf_class_values[procurement_notice][all_agencies]":"all","dnf_class_values[procurement_notice][agency][dnf_class_name]":"agency","_status_43b364da3bd91e392aab74a5af5fd803":"0","dnf_class_values[procurement_notice][agency][dnf_multiplerelation_picks][]":"","autocomplete_input_dnf_class_values[procurement_notice][agency][dnf_multiplerelation_picks][]":"","autocomplete_hidden_dnf_class_values[procurement_notice][agency][dnf_multiplerelation_picks][]":"","dnf_class_values[procurement_notice][recovery_act]":"","dnf_class_values[procurement_notice][keywords]":"","dnf_class_values[procurement_notice][naics_code][]":"","dnf_class_values[procurement_notice][classification_code][]":"","dnf_class_values[procurement_notice][ja_statutory][]":"","dnf_class_values[procurement_notice][fair_opp_ja][]":"","dnf_class_values[procurement_notice][posted_date][_start]":"2017-05-08","dnf_class_values[procurement_notice][posted_date][_start]_real":"2017-05-08","dnf_class_values[procurement_notice][posted_date][_end]":"2017-05-08","dnf_class_values[procurement_notice][posted_date][_end]_real":"2017-05-08","dnf_class_values[procurement_notice][response_deadline][_start]":"","dnf_class_values[procurement_notice][response_deadline][_start]_real":"","dnf_class_values[procurement_notice][response_deadline][_end]":"","dnf_class_values[procurement_notice][response_deadline][_end]_real":"","dnf_class_values[procurement_notice][modified][_start]":"","dnf_class_values[procurement_notice][modified][_start]_real":"","dnf_class_values[procurement_notice][modified][_end]":"","dnf_class_values[procurement_notice][modified][_end]_real":"","dnf_class_values[procurement_notice][contract_award_date][_start]":"","dnf_class_values[procurement_notice][contract_award_date][_start]_real":"","dnf_class_values[procurement_notice][contract_award_date][_end]":"","dnf_class_values[procurement_notice][contract_award_date][_end]_real":""}';
 
-		console.log(JSON.parse(jsForm));
+		//console.log(JSON.parse(jsForm));
 		//process.exit();
-		var form = $('#vendor_procurement_notice_search').serializeArray();
-		console.log($(form).serializeArray());
+		//var form = $('#vendor_procurement_notice_search').serializeArray();
+		//console.log($(form).serializeArray());
 
 
-		var newform = Object.assign(...$('#vendor_procurement_notice_search').serializeArray().map((item, index) => {
-			//console.log(index, item);
-			console.log();
+		// var newform = Object.assign(...$('#vendor_procurement_notice_search').serializeArray().map((item, index) => {
+		// 	//console.log(index, item);
+		// 	//console.log();
 
-			return {[item.name]: item.value};
-		}));
+		// 	return {[item.name]: item.value};
+		// }));
 
 		/*
 		newform['_month_dnf_class_values[procurement_notice][posted_date][_start]'] = '05';
@@ -299,14 +299,23 @@ if(process.argv[2] == 'f') {
 			if(pages > 10) {
 				pages = 10 + 1;
 
-				for(var pageNum = 1; pageNum < pages; pageNum++) {
-					mainEventLoop.emit('page', { 'pageNum': pageNum, 'form': jsForm });
-				}
+				// for(var pageNum = 1; pageNum < pages; pageNum++) {
+				// 	mainEventLoop.emit('page', { 'pageNum': pageNum, 'form': jsForm });
+				// }
 
-				var queue = [];
-				queue.push(2);         // queue is now [2]
-				queue.push(5);         // queue is now [2, 5]
-				var i = queue.shift(); // queue is now [5]
+				var Semaphore = require("node-semaphore");
+				var pool = Semaphore(2);
+
+				mainEventLoop.emit('page', { 'pageNum': 1, 'form': jsForm, 'pool': pool});
+
+				for (var pageNum = 1; pageNum < pages; pageNum++) {
+				    pool.acquire(function() {
+				        console.log("Running...", pageNum);
+				        
+
+				        pool.release();
+				    });
+				}
 
 			}
 
@@ -515,11 +524,10 @@ function gatherData($) {
 function getLinks(packet) {
 	console.log('getting links for:', packet.pageNum);
 
-
-	/*
+	
 	req.post({
-		    url: "https://www.fbo.gov/index?s=opportunity&mode=list&tab=searchresults&tabmode=list&pp=20&pageID=" + pageNum,
-		    form: jsForm,
+		    url: "https://www.fbo.gov/index?s=opportunity&mode=list&tab=searchresults&tabmode=list&pp=20&pageID=" + packet.pageNum,
+		    form: packet.jsForm,
 		    headers: {
 		        'User-Agent': 'Super Cool Browser' // optional headers
 		     }
@@ -541,9 +549,9 @@ function getLinks(packet) {
 			if(pages > 10) {
 				pages = 10;
 			}
-		}
+		});
 	
-	*/
+	
 }
 
 
