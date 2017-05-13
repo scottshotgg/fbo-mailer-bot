@@ -235,11 +235,8 @@ if(process.argv[2] == 'f') {
 
 			//console.log('are we here?');
 
-			// load the html into cheerio
-			var $ = cheerio.load(body);
-
-			// Extract the number of pages we need to scrape
-			var pages = $('a[title="last page"]').text().slice(1, 5);
+			// load the html into cheerio and extract the number of pages
+			var $ = cheerio.load(body)('a[title="last page"]').text().slice(1, 5);
 
 			// Crimp the amount of pages to 10 for testing
 			pages = 10;
@@ -263,7 +260,8 @@ if(process.argv[2] == 'f') {
 function gatherData(url, $) {
 	console.log('gatherData for', url);
 	//console.log(url, $());
-	mainEventLoop.emit('save', Object.assign(...
+	//mainEventLoop.emit('save', 
+		console.log(Object.assign(...
 		[].slice.call($('.fld-ro').map((index, item) => {
 			var ic = $(item).children();
 			// make this a one liner too brah
@@ -279,12 +277,12 @@ function gatherData(url, $) {
 		[].slice.call($('.agency-name').contents().map((index, item) => {
 			//condition && (x = true);
 
-			// 	// try to do it like this later:
-			// 	// str.replace(/([a-z][^:]*)(?=\s*:)/g, '"$1"').replace(/([^:][a-z]*)(?=\s*:)/g, '"$1"')
-
-			// try to play around with this an make it a one liner, use shit for now
+			// try to play around with this an make it a one liner, use this shit for now
 			if ($(item).text().trim()) {
+
+				// Compare the runtime of these two
 			 	return JSON.parse(('{"' + $(item).text() + '"}').replace(': ', '":"'));
+			 	//return JSON.parse(('{"' + item['data'] + '"}').replace(': ', '":"'));
 			}
 		})))
 	));
@@ -293,7 +291,6 @@ function gatherData(url, $) {
 // Retrieve the links off of the next page given the page ID
 function getLinks(packet) {
 	console.log('getting links for:', packet.pageNum);
-
 	// Take one from the pool and (abstracted) decrement the semaphore allowance
 	pagePool.acquire(function() {
 		// Post to the page ID
@@ -301,15 +298,12 @@ function getLinks(packet) {
 			url: "https://www.fbo.gov/index?s=opportunity&mode=list&tab=searchresults&tabmode=list&pp=100&pageID=" + packet.pageNum,
 			form: jsForm,
 		}, function(err, resp, body) {
-			// We are done retrieving the page, for the fastest processing release the page now, we don't care about flooding the local resources
+			// We are done retrieving the page; release the page now for the fastest processing since we don't care about flooding the local resources
 			pagePool.release();
 
-			// Should try to figure out how to put this into the mapping below
-			var $ = cheerio.load(body);
-
-			// Scrape all links from the page, amend each string and emit a 'fetch' event for each
-			var opps = $('.lst-lnk-notice').map((index, item) => {
-				mainEventLoop.emit('fetch', 'https://www.fbo.gov/index' + $(item).attr('href'));
+			// Use cheerio to load the page and scrape all links from the page, amend each string and emit a 'fetch' event for each
+			cheerio.load(body)('.lst-lnk-notice').map((index, item) => {
+				mainEventLoop.emit('fetch', 'https://www.fbo.gov/index' + item['attribs']['href']);
 			});
 
 		});	
