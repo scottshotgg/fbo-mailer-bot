@@ -8,6 +8,27 @@
 // Using request to GET and POST the pages 
 var request = require('request');
 
+// Node-Cron is used to call the events at cetain times and fire off the scraping and client emails at certain times
+var cron = require('node-cron');
+
+var every = '*';
+
+var date = { 
+	minute: '23', 
+	hour: 	'22', 
+	date: 	'*', 
+	month: 	'*', 
+	day: 	'*' 
+};
+
+// fix this
+function schedule() {
+	cron.schedule(Object.values(date).join(' '), function(){
+		mainEventLoop.emit('start');
+	});
+}
+
+
 // Cheerio is used to parse the HTML returned so that it can be more easily scraped without the use of regular expressions and inefficient string parsing
 var cheerio = require('cheerio');
 
@@ -57,7 +78,7 @@ Object.defineProperty(global, '__stack', {
 	}
 });
 
-// Using this to avoid drawing off the top of the stack when recursing through in the printout
+// Using this to avoid drawing off the top of the stack when recursing through in the printout; stole it from somewhere, will try to find the source
 var globalStackDrawValue = 3;
 
 Object.defineProperty(global, '__line', {
@@ -117,7 +138,7 @@ function insertMongoDB(rows) {
       //tableLength++;
     })
     .catch((err) => {
-      console.log(err);
+      console.log('THERE WAS AN ERROR', err);
     });
 }
 
@@ -177,9 +198,11 @@ const mainEventLoop = new EventLoop();
 
 // Provide a mapping for the event-loop's event-function associations; look at the function to know what to send it
 eventLoopFunctions = {
-	'page' : getLinks,			// Get the links of the opportunity off the page
-	'fetch': parseOpportunity,	// Scrape the data of the article
-	'save' : databaseSave,		// Save the scraped information in the database
+	'page'		: getLinks,			// Get the links of the opportunity off the page
+	'fetch'		: parseOpportunity,	// Scrape the data of the article
+	'save'		: databaseSave,		// Save the scraped information in the database
+	'schedule'	: schedule,
+	//'client': client
 
 };
 
@@ -221,6 +244,17 @@ req = request.defaults({
 // If the first argument provided is an 'f' then we need to proceed with event-loop scraping of every opportunity from yesterday
 // THIS IS HERE AS A PLACEHOLDER; make sure to implement single article and other stuff
 if(process.argv[2] == 'f') {
+	
+} 
+// else if(process.argv[2] == 'd') {
+// 	mainEventLoop.emit('fetch', 'https://www.fbo.gov/?s=opportunity&mode=form&id=4025738859b0374338abc74c75e82905&tab=core&_cview=0');
+// } else {
+// 	fs.readFile('testArticle', 'utf8', function(err, contents) {
+// 		mainEventLoop.emit('fetch', 'https://www.fbo.gov/index?s=opportunity&mode=form&id=459f3643d517aa73fd2689fc4954e5af&tab=core&_cview=0');
+// 	});
+// }
+
+function start() {
 	// Need to get the webpage first before we can submit the form for some reason ???
 	req.get({
 		url: 'https://www.fbo.gov/index?s=opportunity&mode=list&tab=search&tabmode=list&='
@@ -246,22 +280,15 @@ if(process.argv[2] == 'f') {
 			}
 		});
 	});
-} 
-// else if(process.argv[2] == 'd') {
-// 	mainEventLoop.emit('fetch', 'https://www.fbo.gov/?s=opportunity&mode=form&id=4025738859b0374338abc74c75e82905&tab=core&_cview=0');
-// } else {
-// 	fs.readFile('testArticle', 'utf8', function(err, contents) {
-// 		mainEventLoop.emit('fetch', 'https://www.fbo.gov/index?s=opportunity&mode=form&id=459f3643d517aa73fd2689fc4954e5af&tab=core&_cview=0');
-// 	});
-// }
+}
 
 // The gatherData function is fairly complicated; it emits an event with the scraped data 
 // It is a bit convoluted, but is essentially just a concatenation of the two output arrays (of single variable objects) stamped into one object using the Object.assign() function, thus ending up with one object that has all the mappings of the data. Technically the entire function is a one-liner.
 function gatherData(url, $) {
 	console.log('gatherData for', url);
 	//console.log(url, $());
-	//mainEventLoop.emit('save', 
-		console.log(Object.assign(...
+	mainEventLoop.emit('save', Object.assign(...
+		//console.log(Object.assign(...
 		[].slice.call($('.fld-ro').map((index, item) => {
 			var ic = $(item).children();
 			// make this a one liner too brah

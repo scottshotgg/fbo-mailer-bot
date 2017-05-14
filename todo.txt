@@ -1,18 +1,15 @@
 ##### TODO LIST #####
 
 
-- Change type of Date from string to date
+- Add the website file creation
+	Already did this for the last one, need to make a directory for users
 
-- Make the spider more efficient by figuring out how to do database accesses within the spider
 
-- Find a scheduler
-	-- http://stackoverflow.com/questions/20897528/schedule-a-job-for-every-5-minutes
-	-- https://github.com/node-schedule/node-schedule
+- Add the NLP/word searching in the synopsis when adding new ones (Added, etc)
+	Fairly easy to do this
 
-- Save the webpage as a file
 
-- Clean up code
+- Add client ability
 
-- Reverse IDs; bottom up count
 
-- Make the website
+- Add database tables
