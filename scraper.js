@@ -2,17 +2,49 @@
 
 	CLEAN UP THIS FILE
 
-
+	The aim of this version of the application is to be self contained and run as a service, not as a run-once executable that is supported externally by other services (cron, apache, etc)
 */
 
 // Using request to GET and POST the pages 
 var request = require('request');
 
+// SendMail for emailing the updates
+var sendmail = require('sendmail')();
+
+// This needs to be reformated for the current architecture
+function sendEmail(email, html, length) {
+  sendmail({
+    from: 'FBO-Mailer-Bot@utdallas.edu',
+    to: email,
+    subject: length + ' NEW FBO Opportunities Found - ' + getDateInfo().join('/'),
+    text: '',
+    html: html
+  },  
+    function(err, reply) {
+      console.log(err && err.stack);
+      console.dir(reply);
+    }
+  );
+}
+
+// For writing the HTML files
+var fs = require('fs');
+
+// Make this write the log file and shit
+	// fs.writeFile(filePath, html, (err) => {
+	//   if(err) {
+	//   return console.log(err);
+	// }
+
+	// console.log('******' + filePath + ' was saved!');
+	// });
+
+var fd = fs.openSync(__dirname + '/logs/logfile', 'w');
+
 // Node-Cron is used to call the events at cetain times and fire off the scraping and client emails at certain times
 var cron = require('node-cron');
 
-var every = '*';
-
+// Might not use this as an abstract, can probably just get it from the database
 var date = { 
 	minute: '23', 
 	hour: 	'22', 
@@ -22,11 +54,42 @@ var date = {
 };
 
 // fix this
-function schedule() {
-	cron.schedule(Object.values(date).join(' '), function(){
+function schedule(dateObj) {
+	cron.schedule(Object.values(dateObj).join(' '), function(){
 		mainEventLoop.emit('start');
 	});
 }
+
+// Express is used to host the website, we do not want to use Apache or w/e
+// http://expressjs.com/en/api.html#res.download
+var express = require('express');
+var app = express();
+
+var path = require('path');
+
+// change this to use better pathing I guess, this should also get the current directory
+app.use(express.static('/Users/scottgaydos/Development/fbo-spider-phantomjs'));//, { 'fallthrough': false }));
+
+var router = express.Router();
+
+// need to make an error page for users that are not in the system, do not expose the file pathing
+// this should also retreive the file from 'clients/'
+app.get('/:id', function (req, res) {
+	console.log("serving user:", req.url.split('/')[1]);
+	res.sendFile(__dirname + req.url + 'index.html');
+  //res.end();
+});
+
+// Change this back to index.html
+app.get('/', function (req, res) {
+  res.send('<div id="helloworld">Hello World!</div>')
+  //res.sendFile('/Users/scottgaydos/Development/fbo-spider-phantomjs/index.template');
+  //res.sendfile(__dirname + '/jensenindex.html');
+});
+
+app.listen(8080, function () {
+  console.log('Listening on port 8080!')
+});
 
 
 // Cheerio is used to parse the HTML returned so that it can be more easily scraped without the use of regular expressions and inefficient string parsing
@@ -55,7 +118,12 @@ var cs = require("console-stamp") (console, {
 	metadata: function () {
 		var funcout = __function;
 
-		return ('[ RAM: ' + (process.memoryUsage().rss  / 1000000).toFixed(2) + ' MB | caller: ' + __function + ' | line: ' + __line + ' ]');
+
+		var printout = ('[ RAM: ' + (process.memoryUsage().rss  / 1000000).toFixed(2) + ' MB | caller: ' + __function + ' | line: ' + __line + ' ]');
+		//console.log(console);
+		fs.appendFileSync('logs/logfile', printout, 'utf8');
+
+		return printout;
 	},
 	colors: {
 		stamp:    "yellow", 
