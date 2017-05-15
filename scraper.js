@@ -45,19 +45,17 @@ var fd = fs.openSync(__dirname + '/logs/logfile', 'w');
 var cron = require('node-cron');
 
 // Might not use this as an abstract, can probably just get it from the database
-var date = { 
-	minute: '23', 
-	hour: 	'22', 
+var cronDate = { 
+	minute: '00', 
+	hour: 	'00', 
 	date: 	'*', 
 	month: 	'*', 
 	day: 	'*' 
 };
 
-// fix this
-function schedule(dateObj) {
-	cron.schedule(Object.values(dateObj).join(' '), function(){
-		mainEventLoop.emit('start');
-	});
+// We might just be able to put this in the event mapping thing down there
+function schedule(packet) {
+	cron.schedule(Object.values(packet.dateObj).join(' '), packet.func);
 }
 
 // Express is used to host the website, we do not want to use Apache or w/e
@@ -77,6 +75,7 @@ var router = express.Router();
 app.get('/:id', function (req, res) {
 	console.log("serving user:", req.url.split('/')[1]);
 	res.sendFile(__dirname + req.url + 'index.html');
+  	start();
   //res.end();
 });
 
@@ -111,7 +110,7 @@ var Semaphore = require("node-semaphore");
 var pagePool = Semaphore(2);
 
 // 10 for fetching the opportunities themselves (actual scaping; don't want to scrape too much at once and get timed out)
-var fetchPool = Semaphore(10);
+var fetchPool = Semaphore(1);
 
 // Using console stamp to provide better print outs for debugging
 var cs = require("console-stamp") (console, {
@@ -188,6 +187,7 @@ function connectMongoDB() {
 }
 
 // Function to save data in the database
+// Need to fix the ID thing
 function databaseSave(data) {
 	console.log('data', data);
 	database.insert(data);
@@ -196,13 +196,14 @@ function databaseSave(data) {
 
 // NEED TO ADD ID STUFF
 function insertMongoDB(rows) {
-  console.log('inserting...');
+  console.log('inserting...', rows);
   /*fbodataCollection.insert(row, () => {
       console.log('ima muhhhfkin callback son');
     })*/
   fbodataCollection.insert(rows)
     .then(() => {
       console.log('success');
+      mainEventLoop.emit('newOppo', rows)
       //tableLength++;
     })
     .catch((err) => {
@@ -254,6 +255,12 @@ function getNextSequence(name, row) {
 
 connectMongoDB();
 
+
+function newOppo(packet) {
+	console.log('I AM IN THE NEW FUNCTION', packet);
+}
+
+
 // ======= end db stuff
 
 
@@ -269,7 +276,8 @@ eventLoopFunctions = {
 	'page'		: getLinks,			// Get the links of the opportunity off the page
 	'fetch'		: parseOpportunity,	// Scrape the data of the article
 	'save'		: databaseSave,		// Save the scraped information in the database
-	'schedule'	: schedule,
+	'schedule'	: schedule,			// abstract function to schedule a function at a certain time
+	'newOppo'		: newOppo
 	//'client': client
 
 };
@@ -312,8 +320,14 @@ req = request.defaults({
 // If the first argument provided is an 'f' then we need to proceed with event-loop scraping of every opportunity from yesterday
 // THIS IS HERE AS A PLACEHOLDER; make sure to implement single article and other stuff
 if(process.argv[2] == 'f') {
-	
-} 
+	start();
+} else {
+	// use cheerio to manipulate the html file and then save the body of cheerio as a new file
+	// do this for everyone
+	//var thing = fs.readFileSync('index.template', 'utf8');
+	//var $ = cheerio.load(thing);
+	//console.log($('thead'));
+}
 // else if(process.argv[2] == 'd') {
 // 	mainEventLoop.emit('fetch', 'https://www.fbo.gov/?s=opportunity&mode=form&id=4025738859b0374338abc74c75e82905&tab=core&_cview=0');
 // } else {
@@ -354,16 +368,16 @@ function start() {
 // It is a bit convoluted, but is essentially just a concatenation of the two output arrays (of single variable objects) stamped into one object using the Object.assign() function, thus ending up with one object that has all the mappings of the data. Technically the entire function is a one-liner.
 function gatherData(url, $) {
 	console.log('gatherData for', url);
-	//console.log(url, $());
-	mainEventLoop.emit('save', Object.assign(...
-		//console.log(Object.assign(...
-		[].slice.call($('.fld-ro').map((index, item) => {
+	console.log(url, $);
+	//mainEventLoop.emit('save', Object.assign(...
+
+	var arraything = [].slice.call($('.fld-ro').map((index, item) => {
 			var ic = $(item).children();
 			// make this a one liner too brah
 			//console.log($(item));
 
 			if(!$(item).attr('id').includes('packages')) {
-				//console.log($(item).attr('id'));
+				console.log($(item).attr('id'));
 				return { [$(ic[0]).text().trim().replace(':', '').replace('.', '')] : $(ic[1]).text().trim() };
 			}
 
@@ -379,8 +393,11 @@ function gatherData(url, $) {
 			 	return JSON.parse(('{"' + $(item).text() + '"}').replace(': ', '":"'));
 			 	//return JSON.parse(('{"' + item['data'] + '"}').replace(': ', '":"'));
 			}
-		})))
-	));
+		})));
+
+	console.log('arraything', arraything);
+
+	console.log(Object.assign(...arraything));
 }
 
 // Retrieve the links off of the next page given the page ID
@@ -412,9 +429,12 @@ function parseOpportunity(opportunity) {
 		// Get the url given
 		req.get({ url: opportunity }, function(err, resp, body) {
 			// Scrape all the data from the page
+			fetchPool.release();
+			console.log(body);
 			gatherData(opportunity, cheerio.load(body));
 			// Release now because I don't care about flooding the local resources in the event-loop
-			fetchPool.release();
 		});
 	});
 }
+
+mainEventLoop.emit('schedule', {dateObj: cronDate, func: start});
