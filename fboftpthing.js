@@ -157,7 +157,7 @@ function insertMongoDB(rows) {
     })*/
   fbodataCollection.insert(rows)
     .then(() => {
-      //console.log('success');
+    	//console.log('success');
       //mainEventLoop.emit('newOppo', rows)
       //tableLength++;
     })
@@ -251,7 +251,7 @@ function splitString(thing) {
 
 	for(var i = 3; i < array.length; i+=2)
 	{
-		var keyRaw = array[i].trim().replace('<', '').replace('>', ''); 
+		var keyRaw = array[i].trim().slice(1,-1);
 		var key = propMapping[keyRaw] || keyRaw[0] + keyRaw.substring(1).toLowerCase();
 		var value = array[i+1].trim();
 		if(object[key] == undefined) {
