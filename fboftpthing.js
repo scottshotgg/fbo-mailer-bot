@@ -69,34 +69,6 @@ var typeMapping = {
 };
 
 
-/*
-var thing = `<SRCSGT>
-<DATE>0514
-<YEAR>17
-<AGENCY>Department of the Navy
-<OFFICE>Naval Sea Systems Command
-<LOCATION>NSWC Panama City Divison
-<ZIP>32407
-<CLASSCOD>R
-<NAICS>561990
-<OFFADD>110 Vernon Avenue Panama City FL 32407
-<SUBJECT>Annual Naval Technology Exercise (ANTX) demonstration event
-<SOLNBR>N61331-17-Q-LG10
-<RESPDATE>051917
-<CONTACT>Luis Gely, Phone 8502355783, Email luis.gely@navy.mil
-<DESC>The Naval Surface Warfare Center Panama City, Florida intends to solicit competitive offers to help support the Annual Naval Technology Exercise (ANTX) demonstration event.<span style="mso-spacerun: yes">&nbsp; </span>ANTX is planned to be held in August 2017 timeframe at NSWC PCD. The conference is expected to run three days, starting on Tuesday the 15<sup>th</sup> and completing on Thursday the 18<sup>th</sup>. The support services are expected to begin from the date of the award through August the 11<sup>th</sup>. Due to the nature and magnitude of the event the Contractor shall plan on set-up to begin the week before the event.<span style="mso-spacerun: yes">&nbsp; </span>For planning purposes Contractors should plan on the following to help understand the magnitude and scope of the conference per attached draft SOW.
-<LINK>
-<URL>https://www.fbo.gov/notices/954ad17d6082dee3d0b4e68acb717f44
-<DESC>Link To Document
-<SETASIDE>Total Small Business
-<POPCOUNTRY>US
-<POPZIP>32407
-<POPADDRESS>110 Vernon Ave
-Panama City, FL
-</SRCSGT>`
-*/
-
-
 // MongoDB for the database
 var MongoClient = require('mongodb').MongoClient;
 var fbodataCollection;
@@ -163,8 +135,8 @@ function insertMongoDB(rows) {
     })
     // we need to ammend the objects when there is a duplicate
     .catch((err) => {
-      console.log('THERE WAS AN ERROR', err);
-      console.log(rows);
+      //console.log('THERE WAS AN ERROR', err);
+      //console.log(rows);
     });
 }
 
@@ -274,7 +246,11 @@ function postProcessing(oppo) {
 	//oppo.Month = ;
 	//oppo.Day = ;
 
-	oppo.Date = { Month: oppo.Date.substring(0, 2), Day: oppo.Date.substring(2), Year: oppo.Year };
+	oppo.Date = { 
+		Month 	: oppo.Date.substring(0, 2), 
+		Day 	: oppo.Date.substring(2), 
+		Year 	: oppo.Year 
+	};
 
 	delete oppo.Year;
 
@@ -297,29 +273,45 @@ function postProcessing(oppo) {
 	}
 	// May consider making a seperate month/day/year for this
 	if(oppo['Response Date']) {
-		oppo['Response Date'] = { Month: oppo['Response Date'].substring(0, 2), Day: oppo['Response Date'].substring(2, 4), Year: oppo['Response Date'].substring(4) };
+		oppo['Response Date'] = { 
+			Month 	: oppo['Response Date'].substring(0, 2), 
+			Day 	: oppo['Response Date'].substring(2, 4), 
+			Year 	: oppo['Response Date'].substring(4) 
+		};
 	}
 
 	if(oppo['Archive Date']) {
-		oppo['Archive Date'] = { Month: oppo['Archive Date'].substring(0, 2), Day: oppo['Archive Date'].substring(2, 4), Year: oppo['Archive Date'].substring(6) };
+		oppo['Archive Date'] = { 
+			Month 	: oppo['Archive Date'].substring(0, 2), 
+			Day 	: oppo['Archive Date'].substring(2, 4), 
+			Year 	: oppo['Archive Date'].substring(6) 
+		};
 	}
 
 	var pop = Object.keys(oppo).filter((item) => { return item.includes('Pop') }).map((item) => {
-			var popObj = { [item.replace('Pop', '')]: oppo[item] };
+			var key = item.replace('Pop', '');
+			var popObj = { [key[0].toUpperCase() + key.slice(1)]: oppo[item] };
 			delete oppo[item];
-
 			return popObj;
 	});
 
 	if(oppo['Award Date']) {
-		oppo['Award Date'] = { Month: oppo['Award Date'].substring(0, 2), Day: oppo['Award Date'].substring(2, 4), Year: oppo['Award Date'].substring(4) };
+		oppo['Award Date'] = { 
+			Month 	: oppo['Award Date'].substring(0, 2), 
+			Day 	: oppo['Award Date'].substring(2, 4), 
+			Year 	: oppo['Award Date'].substring(4) 
+		};
 	}
 
 	if(pop.length > 0) {
 		oppo['Place of Performance'] = Object.assign(...pop);
 	}
+
+	// Load the description in Cheerio so that we can effectively strip the HTML tags and other markup from the text
+	oppo['Description'] = cheerio.load(oppo['Description']).text();
+
+
+
 	
-
-
 	return oppo;
 }
