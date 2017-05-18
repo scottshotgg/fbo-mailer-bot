@@ -24,6 +24,10 @@ function sendEmail(email, html, length) {
   );
 }
 
+var paramMap = {
+
+};
+
 // Could make something that packs their search terms into a Data object based on the names of the variables they give
 var clients = {
 	ID 			: 1,
@@ -33,9 +37,10 @@ var clients = {
 	Parameters 	: {
 		//Type: 'AMDCSS'
 		Type 	: 'COMBINE',
-		Agency 	: 'Department of the Army'
+		Data 	: {
+			Agency: 'Department of the Army'
+		}
 	},
-	getParameters function() { return Parameters; }
 }
 
 
@@ -199,7 +204,7 @@ function connectMongoDB() {
 			}
 		});*/
 
-		console.log(clients.getParameters())
+		//console.log(clients.getParameters())
 		fbodataCollection.find(clients.Parameters, function(err, cursor) {
 			
 			// while(cursor.hasNext()) {
