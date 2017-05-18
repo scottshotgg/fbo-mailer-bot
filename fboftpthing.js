@@ -1,6 +1,92 @@
 var fs = require('fs');
 var cheerio = require('cheerio');
 
+
+// Using request to GET the page from yesterday 
+var request = require('request');
+
+// SendMail for emailing the updates
+var sendmail = require('sendmail')();
+
+// This needs to be reformated for the current architecture
+function sendEmail(email, html, length) {
+  sendmail({
+    from: 'FBO-Mailer-Bot@utdallas.edu',
+    to: email,
+    subject: length + ' NEW FBO Opportunities Found - ' + getDateInfo().join('/'),
+    text: '',
+    html: html
+  },  
+    function(err, reply) {
+      console.log(err && err.stack);
+      console.dir(reply);
+    }
+  );
+}
+
+
+var clients = {
+	ID 			: 1,
+	Name 		: 'Scott',
+	Username 	: 'scott',
+	Email 		: 'scg104020@udallas.edu',
+	Parameters 	: {
+		//Type: 'AMDCSS'
+		Type: 'COMBINE'
+	}	
+}
+
+
+// Node-Cron is used to call the events at cetain times and fire off the scraping and client emails at certain times
+var cron = require('node-cron');
+
+// Might not use this as an abstract, can probably just get it from the database
+var cronDate = { 
+	minute: '05', 
+	hour: 	'00', 
+	date: 	'*', 
+	month: 	'*', 
+	day: 	'*' 
+};
+
+// We might just be able to put this in the event mapping thing down there
+function schedule(packet) {
+	cron.schedule(Object.values(packet.dateObj).join(' '), packet.func);
+}
+
+// Express is used to host the website, we do not want to use Apache or w/e
+// http://expressjs.com/en/api.html#res.download
+var express = require('express');
+var app = express();
+
+var path = require('path');
+
+// change this to use better pathing I guess, this should also get the current directory
+app.use(express.static('/Users/scottgaydos/Development/fbo-spider-phantomjs'));//, { 'fallthrough': false }));
+
+var router = express.Router();
+
+// need to make an error page for users that are not in the system, do not expose the file pathing
+// this should also retreive the file from 'clients/'
+app.get('/:id', function (req, res) {
+	console.log("serving user:", req.url.split('/')[1]);
+	res.sendFile(__dirname + req.url + 'index.html');
+  	//start();
+  //res.end();
+});
+
+// Change this back to index.html
+app.get('/', function (req, res) {
+  res.send('<div id="helloworld">Hello World!</div>')
+  //res.sendFile('/Users/scottgaydos/Development/fbo-spider-phantomjs/index.template');
+  //res.sendfile(__dirname + '/jensenindex.html');
+});
+
+//app.listen(8080, function () {
+  //console.log('Listening on port 8080!')
+//});
+
+
 var thing = fs.readFileSync('FBOFeed20170514', 'utf8');
 
 // Only explicitly list the stuff that will change, otherwise just slice the end and do a toLowerCase
@@ -19,7 +105,8 @@ var propMapping = {
 	'ARCHDATE'	: 'Archive Date',
 	'SETASIDE'	: 'Set Aside',
 	'NAICS'		: 'NAICS Code',
-	'URL'		: 'URL'
+	'URL'		: 'URL',
+	//'POPZIP'	: 'Place of Performance.Zip'
 };
 
 
@@ -27,7 +114,7 @@ var propMapping = {
 
 /* Code (below) used to make this object was written by me (github.com/scottshotgg) and used on this page: https://www.fbo.gov/index?s=opportunity&tab=search&mode=list
 */
-
+;
 /* Code:
 	JSON.stringify(Object.assign(...[].slice.call(document.getElementsByClassName('scrollable_checkbox')).slice(1).map((item) => {
 		return {[item.parentElement.parentElement.parentElement.children[0].innerText.split('.')[0]]: 	Object.assign(...[].slice.call(item.children).map((checkbox) => {
@@ -52,20 +139,20 @@ JSON.stringify(Object.assign(...[].slice.call(document.getElementsByTagName('li'
 */
 
 var typeMapping = {
-	"PRESOL":"Presolicitation",
-	"COMBINE":"Combined Synopsis/Solicitation",
-	"AMDCSS":"Amendment to a Previous Combined Solicitation",
-	"MOD":"Modification to a Previous Base",
-	"AWARD":"Award",
-	"JA":"Justification and Approval",
-	"ITB":"Intent to Bundle Requirements",
-	"FAIROPP":"Fair Opportunity / Limited Sources Justification",
-	"SRCSGT":"Sources Sought",
-	"FSTD":"Foreign Government Standard",
-	"SNOTE":"Special Notice",
-	"SSALE":"Sale of Surplus Property",
-	"ARCHIVE":"Document Archival",
-	"UNARCHIVE":"Document Unarchival"
+	"PRESOL" 	: "Presolicitation",
+	"COMBINE" 	: "Combined Synopsis/Solicitation",
+	"AMDCSS" 	: "Amendment to a Previous Combined Solicitation",
+	"MOD" 		: "Modification to a Previous Base",
+	"AWARD" 	: "Award",
+	"JA" 		: "Justification and Approval",
+	"ITB" 		: "Intent to Bundle Requirements",
+	"FAIROPP" 	: "Fair Opportunity / Limited Sources Justification",
+	"SRCSGT" 	: "Sources Sought",
+	"FSTD" 		: "Foreign Government Standard",
+	"SNOTE" 	: "Special Notice",
+	"SSALE" 	: "Sale of Surplus Property",
+	//"ARCHIVE" 	: "Document Archival",
+	//"UNARCHIVE"	: "Document Unarchival"
 };
 
 
@@ -100,12 +187,32 @@ function connectMongoDB() {
 		//console.log(mdb);
 		createCollection();
 
-		thing.split(/(<\/[A-Z]+>)/g).filter((item) => { return item.length > 15 }).map((item) => {
+		// put this somewhere else later
+		/*thing.split(/(<\/[A-Z]+>)/g).filter((item) => { return item.length > 15 }).map((item) => {
 			if(!item.slice(4, 11).includes('ARCH')) { // filter out UNARCHIVE and ARCHIVE
+				// Uncomment this when we are ready to insert again
 				database.insert(postProcessing(splitString(item)));
 				//postProcessing(splitString(item))
+				//console.log(postProcessing(splitString(item)));
 			}
+		});*/
+
+		fbodataCollection.find(clients.Parameters, function(err, cursor) {
+			
+			// while(cursor.hasNext()) {
+			// 	cursor.next().then((item) => { console.log(item) });
+			// }
+
+			var documentArray = cursor.toArray().then((item) => {
+				console.log(item.length)
+			});
+
+
 		});
+
+		//console.log('hi');
+		//database.close();
+
     } else {
       console.log(err);
       process.exit(1);
@@ -129,14 +236,10 @@ function insertMongoDB(rows) {
     })*/
   fbodataCollection.insert(rows)
     .then(() => {
-    	//console.log('success');
-      //mainEventLoop.emit('newOppo', rows)
-      //tableLength++;
+    	console.log('success');
     })
-    // we need to ammend the objects when there is a duplicate
     .catch((err) => {
-      //console.log('THERE WAS AN ERROR', err);
-      //console.log(rows);
+
     });
 }
 
@@ -151,9 +254,9 @@ function createCollection() {
   );
 
   fbodataCollection = database.mdb.collection('fbodata');
-  fbodataCollection.createIndex({'Solicitation Number': 1}, {unique: true});
+  fbodataCollection.createIndex({ ID: 1, Type: 1, Date: 1 }, {unique: true});
 
-  lastID = getLastMongoID();
+  //lastID = getLastMongoID();
 }
 
 function getLastMongoID() {
@@ -217,19 +320,28 @@ function splitString(thing) {
 	var array = thing.split(/(<[A-Z]+>)/g);
 
 	var object = {};
-	object.Type = {};
-	object.Type.Short = array[1].slice(1, -1);
-	object.Type.Long  = typeMapping[array[1].slice(1, -1)];
+	object.Type = array[1].slice(1, -1);
+	object.Data = {};
+
+	object.Data.Type = {};
+	object.Data.Type.Short = object.Type;
+	object.Data.Type.Long  = typeMapping[array[1].slice(1, -1)];
 
 	for(var i = 3; i < array.length; i+=2)
 	{
 		var keyRaw = array[i].trim().slice(1,-1);
 		var key = propMapping[keyRaw] || keyRaw[0] + keyRaw.substring(1).toLowerCase();
 		var value = array[i+1].trim();
+
+		// Test if the text has HTML in it, if so we want to strip it out because we only value the text
+		if(/<[a-z][\s\S]*>/i.test(value))
+			value = cheerio.load(value).text().trim();
+
+		// If the object does not already contain the key
 		if(object[key] == undefined) {
-			object[key] = value;
+			object.Data[key] = value;
 		} else if(value != 'Link To Document') {
-			object[key] = [object[key]].concat(value)
+			object.Data[key] = [object.Data[key]].concat(value)
 		}
 	}
 	//console.log(object);
@@ -247,71 +359,70 @@ function postProcessing(oppo) {
 	//oppo.Day = ;
 
 	oppo.Date = { 
-		Month 	: oppo.Date.substring(0, 2), 
-		Day 	: oppo.Date.substring(2), 
-		Year 	: oppo.Year 
+		Month 	: oppo.Data.Date.substring(0, 2), 
+		Day 	: oppo.Data.Date.substring(2), 
+		Year 	: oppo.Data.Year 
 	};
 
-	delete oppo.Year;
 
-	if(oppo['Classification Code']) {
+	delete oppo.Data.Year;
+	delete oppo.Data.Date;
+
+	if(oppo.Data['Classification Code']) {
 		var classification = {};
-		classification['ID'] = oppo['Classification Code'];
-		classification['Text'] = codeMapping['Classification Code'][oppo['Classification Code']];
+		classification['ID'] = oppo.Data['Classification Code'];
+		classification['Text'] = codeMapping['Classification Code'][oppo.Data['Classification Code']];
 		//console.log(classification);
 
-		oppo['Classification Code'] = classification;
+		oppo.Data['Classification Code'] = classification;
 	}
 
-	if(oppo['NAICS Code']) {
+	if(oppo.Data['NAICS Code']) {
 		var naics = {};
 		naics['ID'] = oppo['NAICS Code'];
-		naics['Text'] = codeMapping['NAICS Code'][oppo['NAICS Code']];
+		naics['Text'] = codeMapping['NAICS Code'][oppo.Data['NAICS Code']];
 		//console.log(naics);
 
-		oppo['NAICS Code'] = naics;
+		oppo.Data['NAICS Code'] = naics;
 	}
+
 	// May consider making a seperate month/day/year for this
-	if(oppo['Response Date']) {
-		oppo['Response Date'] = { 
-			Month 	: oppo['Response Date'].substring(0, 2), 
-			Day 	: oppo['Response Date'].substring(2, 4), 
-			Year 	: oppo['Response Date'].substring(4) 
+	if(oppo.Data['Response Date']) {
+		oppo.Data['Response Date'] = { 
+			Month 	: oppo.Data['Response Date'].substring(0, 2), 
+			Day 	: oppo.Data['Response Date'].substring(2, 4), 
+			Year 	: oppo.Data['Response Date'].substring(4) 
 		};
 	}
 
-	if(oppo['Archive Date']) {
-		oppo['Archive Date'] = { 
-			Month 	: oppo['Archive Date'].substring(0, 2), 
-			Day 	: oppo['Archive Date'].substring(2, 4), 
-			Year 	: oppo['Archive Date'].substring(6) 
+	if(oppo.Data['Archive Date']) {
+		oppo.Data['Archive Date'] = { 
+			Month 	: oppo.Data['Archive Date'].substring(0, 2), 
+			Day 	: oppo.Data['Archive Date'].substring(2, 4), 
+			Year 	: oppo.Data['Archive Date'].substring(6) 
 		};
 	}
 
-	var pop = Object.keys(oppo).filter((item) => { return item.includes('Pop') }).map((item) => {
+	var pop = Object.keys(oppo.Data).filter((item) => { return item.includes('Pop') }).map((item) => {
 			var key = item.replace('Pop', '');
-			var popObj = { [key[0].toUpperCase() + key.slice(1)]: oppo[item] };
-			delete oppo[item];
+			var popObj = { [key[0].toUpperCase() + key.slice(1)]: oppo.Data[item] };
+			delete oppo.Data[item];
 			return popObj;
 	});
 
-	if(oppo['Award Date']) {
-		oppo['Award Date'] = { 
-			Month 	: oppo['Award Date'].substring(0, 2), 
-			Day 	: oppo['Award Date'].substring(2, 4), 
-			Year 	: oppo['Award Date'].substring(4) 
+	if(oppo.Data['Award Date']) {
+		oppo.Data['Award Date'] = { 
+			Month 	: oppo.Data['Award Date'].substring(0, 2), 
+			Day 	: oppo.Data['Award Date'].substring(2, 4), 
+			Year 	: oppo.Data['Award Date'].substring(4) 
 		};
 	}
 
 	if(pop.length > 0) {
-		oppo['Place of Performance'] = Object.assign(...pop);
+		oppo.Data['Place of Performance'] = Object.assign(...pop);
 	}
 
-	// Load the description in Cheerio so that we can effectively strip the HTML tags and other markup from the text
-	oppo['Description'] = cheerio.load(oppo['Description']).text();
+	oppo.ID = oppo.Data['Solicitation Number'] || oppo.Data['Award Number'];
 
-
-
-	
 	return oppo;
 }
