@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+
+  <!-- RESOURCES -->
+    <!-- LINKS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/datatables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/uikit.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.uikit.min.css">
+
+    <!-- SCRIPTS -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript">
+  </script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/datatables.min.js">
+  </script>
+  <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" type="text/javascript">
+  </script>
+  <script src="https://cdn.datatables.net/1.10.13/js/dataTables.uikit.min.js" type="text/javascript">
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var table = $('#fbo_table').DataTable();
+      table.order( [[3, 'dec'], [0, 'asc']]).draw();
+    });
+  </script>
+
+  <head>
+
+    <!-- CSS STYLING -->
+    <style>
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
+      th, td {
+        padding: 15px;
+      }
+
+      th {
+        font-size: 22px;
+      }
+
+      td {
+        font-size:18px;
+      }
+
+      td:last-child {
+        width: 120px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <center>
+      <div id="fbo_title">
+        <br>
+        <h1>FBO Database</h1>
+      </div>
+      <br>
+      <a id="download" href="http://arc-fbobot.utdallas.edu:8080/FBODatabase.csv">Download this file</a>
+      <div id="table_encap" style="min-width: 800px; max-width: 1400px; width: 80%;">
+        <br>
+        <table id="fbo_table" class="uk-table uk-table-hover uk-table-striped" cellspacing="0" style="width: 100%;">
+          <thead><th>Type</th>
+<th>ID</th>
+<th>Subject</th></thead>
+          <tbody><tr><td><center>SRCSGT</center></td><td><center>N61331-17-Q-LG10</center></td><td><center>Annual Naval Technology Exercise (ANTX) demonstration event</center></td>
+</tr><tr><td><center>PRESOL</center></td><td><center>AG-0261-S-17-0091</center></td><td><center>Redfish Lake Road Phase 2 Project 2017 - Amended</center></td>
+</tr><tr><td><center>SRCSGT</center></td><td><center>VA24117Q0358</center></td><td><center>65--New and Upgrade Surgical Equipment</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>W91247-17-T-0004AAWTents</center></td><td><center>All American Tents, Bleachers, Trash Removall, and Bounce Houses</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>W90VN7-17-T-0006</center></td><td><center>Dormitory Mattresses (Kunsan Korea)</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>PR10601TelemetrySolutions</center></td><td><center>PR 10601 Telemetry Solutions GPS units</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TZ953</center></td><td><center>28--SUPPORT,ACCESSORY,A</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV845</center></td><td><center>12--GLASS DOME</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG394</center></td><td><center>15--COVER,ACCESS,AIRCRA</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV843</center></td><td><center>66--TRANSMITTER,PRESSURE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV848</center></td><td><center>14--FAIRING,LAUNCHER,GU</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG364</center></td><td><center>15--SUPPORT,STRUCTURAL</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TZ924</center></td><td><center>47--TUBE ASSEMBLY,METAL</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TZ961</center></td><td><center>16--SHAFT,DRIVE,AIRCRAF</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV867</center></td><td><center>31--BEARING,ROLLER,CYLINDR</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG371</center></td><td><center>16--GEARBOX ASSEMBLY,AI</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG427</center></td><td><center>16--REPAIR KIT,ROTARY B</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG385</center></td><td><center>15--ADAPTER</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG425</center></td><td><center>16--DISCONNECT,EJECTION</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TZ922</center></td><td><center>31--BEARING,PLAIN,SELF-</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TZ943</center></td><td><center>29--DETECTOR,METALLIC P</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TZ974</center></td><td><center>15--STRAP ASSY</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG368</center></td><td><center>15--SKIN,AIRCRAFT</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG374</center></td><td><center>16--PARTS KIT,CONVERTER</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG396</center></td><td><center>15--SUPPORT,STRUCTURAL</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG426</center></td><td><center>16--STABILIZER,ROTARY W</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV893</center></td><td><center>29--PARTS KIT,VALVE,DEP</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAA13</center></td><td><center>53--SEAL,ROLLER BEARING</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TZ994</center></td><td><center>62--LIGHT,NAVIGATIONAL,</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAA25</center></td><td><center>16--GLARESHIELD,AIRCRAF</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV892</center></td><td><center>53--CRANK ASSEMBLY</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV881</center></td><td><center>61--CABLE ASSEMBLY,SPEC</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG411</center></td><td><center>16--CRANK ASSEMBLY,NOSE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAA11</center></td><td><center>43--TRUNNION</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG430</center></td><td><center>16--FILTER ELEMENT,AIR</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG412</center></td><td><center>15--PLATE,STRUCTURAL,AI</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAA05</center></td><td><center>31--CAM FOLLOWER,NEEDLE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TZ991</center></td><td><center>28--SHIELD,HEAT,AIRCRAF</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV888</center></td><td><center>53--RING,EMI,GROUND</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAA30</center></td><td><center>29--GEAR ASSY,MATCHED S</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV884</center></td><td><center>61--CABLE ASSEMBLY,POWE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV903</center></td><td><center>14--FAIRING,LAUNCHER,GU</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG418</center></td><td><center>28--SEAL,AIR,AIRCRAFT G</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAA01</center></td><td><center>53--SEAL,EXPANDING,AIRC</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG419</center></td><td><center>16--DUCT ASSEMBLY,AIR C</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV897</center></td><td><center>31--BEARING,BALL,DUPLEX</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV906</center></td><td><center>59--B-B PHN AND DISTANC</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAA92</center></td><td><center>28--NOZZLE,TURBINE,NONA</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAB06</center></td><td><center>15--PANEL,STRUCTURAL,AI</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV920</center></td><td><center>62--LIGHT,INDICATOR</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAA85</center></td><td><center>31--BEARING,ROLLER,CYLINDR</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAA91</center></td><td><center>15--FITTING,STRUCTURAL</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV937</center></td><td><center>31--BUSHING,SLEEVE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG453</center></td><td><center>16--FILLER ASSEMBLY</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAA93</center></td><td><center>16--VALVE ASSY,DRAIN</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAB11</center></td><td><center>15--PANEL ASSEMBLY,COWL</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG454</center></td><td><center>15--WINDSHIELD PANEL,AI</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAB09</center></td><td><center>15--RIB,INBOARD CLOSURE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAA74</center></td><td><center>53--SHIM</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV930</center></td><td><center>31--CAM FOLLOWER,NEEDLE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG449</center></td><td><center>29--BRACKET ASSY,ACTUAT</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAA87</center></td><td><center>16--PISTON ASSEMBLY,SER</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAB16</center></td><td><center>29--DETECTOR,METALLIC P</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV946</center></td><td><center>61--WIRING HARNESS</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG467</center></td><td><center>15--SWITCH,TRIM</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAB30</center></td><td><center>59--ANTENNA</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG463</center></td><td><center>15--BEAM,AIRCRAFT</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAB34</center></td><td><center>16--BUSHING,DRIVE,AIRCR</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A517TAB37</center></td><td><center>16--POST,AIRCRAFT,MATER</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV967</center></td><td><center>66--INDICATOR,PRESSURE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG473</center></td><td><center>16--BELL CRANK</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG475</center></td><td><center>16--LAU PAGS FIELD REPA</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG472</center></td><td><center>29--FILTER ELEMENT,FLUI</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV966</center></td><td><center>61--WIRING HARNESS,BRAN</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG474</center></td><td><center>16--BELL CRANK</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A617TV968</center></td><td><center>59--CABLE ASSEMBLY,SPEC</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE4A717TG480</center></td><td><center>16--MORSE CONTROL</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L217T3246</center></td><td><center>29--INJECTOR ASSEMBLY,F</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L117TC116</center></td><td><center>10--BASE, MINE DISPENSER.</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L317TJ256</center></td><td><center>25--TORSION BAR,SUSPENS</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M117TF847</center></td><td><center>61--MOTOR,DIRECT CURREN</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M117TF850</center></td><td><center>43--SEAL ASSEMBLY,SHAFT</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M917T6242</center></td><td><center>61--ROTOR ASSEMBLY</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L117TC110</center></td><td><center>25--BRAKE SHOE SET</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L117TC118</center></td><td><center>49--FILLER AND BLEEDER,</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L317TJ251</center></td><td><center>30--PISTON,LINEAR ACTUA</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L717T4679</center></td><td><center>61--BATTERY,STORAGE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M117TF848</center></td><td><center>61--CONVENIENCE OUTLET ASS</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M517TH871</center></td><td><center>59--MICROCIRCUIT,LINEAR</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7MC17TK749</center></td><td><center>47--TUBING,NONMETALLIC</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L217T3248</center></td><td><center>25--WARNING ASSEMBLY,VE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L317TJ249</center></td><td><center>25--BRACE ASSEMBLY UPRI</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L317TJ248</center></td><td><center>25--BUSHING AND PIN ASS</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L317TJ250</center></td><td><center>30--CONNECTING LINK,RIG</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L317TJ252</center></td><td><center>30--CONTROL ASSEMBLY,PU</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L717T4678</center></td><td><center>26--INNER TUBE,PNEUMATI</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M517TH873</center></td><td><center>59--MICROCIRCUIT,HYBRID</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7MC17TK741</center></td><td><center>48--VALVE,SAFETY RELIEF</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7MC17TK744</center></td><td><center>48--VALVE,SHUTTLE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L117TC140</center></td><td><center>49--PARTS KIT,HYDRAULIC</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L117U0084</center></td><td><center>25--CABLE AND CONDUIT A</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L117TC143</center></td><td><center>25--CHAMBER,AIR BRAKE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L317TJ273</center></td><td><center>39--BLOCK,TACKLE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L317TJ272</center></td><td><center>59--CABLE,ASSY,RECOV</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L117TC123</center></td><td><center>25--BELT,VEHICULAR SAFE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M817T3061</center></td><td><center>58--DISPENSER,COUNTERME</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L317TJ274</center></td><td><center>59--COLLAR,CABLE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M517TH881</center></td><td><center>29--FILTER ELEMENT,FLUI</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L317TJ275</center></td><td><center>59--CIRCUIT CARD ASSEMB</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7MC17TK773</center></td><td><center>48--VALVE,LINEAR,DIRECT</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L317TJ264</center></td><td><center>25--ARMOR,TRANSPARENT,V</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L317TJ278</center></td><td><center>25--BRACKET,VEHICULAR C</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M117TF856</center></td><td><center>59--RELAY,ELECTROMAGNET</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M417U0066</center></td><td><center>47--HOSE ASSEMBLY,NONME</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M917T6244</center></td><td><center>12--ANTI-REFLECTION DEV</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7MC17TK774</center></td><td><center>48--VALVE,SAFETY RELIEF</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L117TC130</center></td><td><center>25--SHOCK ABSORBER,DIRE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L217T3250</center></td><td><center>25--VERRIEGELUNGSBAUGRU</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L317TJ260</center></td><td><center>30--CYLINDER ASSEMBLY,A</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L217T3243</center></td><td><center>25--TARPAULIN</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L317TJ277</center></td><td><center>49--MAINTENANCE KIT,VEH</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M117TF857</center></td><td><center>43--SHAFT-PIN ASSEMBLY</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M117TF842</center></td><td><center>43--PUMP,RECIPROCATING</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M917T6243</center></td><td><center>61--MOTOR,ALTERNATING C</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M917T6245</center></td><td><center>66--ANALYZER,DIGITAL DA</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M117TF871</center></td><td><center>43--FILTER,FLUID</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M517TH928</center></td><td><center>59--ARRESTER,LIGHTNING</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L417T3033</center></td><td><center>10--CONTACT WIRED ASSEM</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M117TF864</center></td><td><center>43--INTERCOOLER</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M517TH933</center></td><td><center>59--CIRCUIT CARD ASSEMB</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M817T3067</center></td><td><center>59--SWITCH,PUSH</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7MC17TK789</center></td><td><center>48--VALVE ASSEMBLY</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L317TJ287</center></td><td><center>30--COVER,COUPLING</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L517T2206</center></td><td><center>29--PUMP,FUEL,ELECTRICA</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M317T5080</center></td><td><center>47--BELLOWS,PRESSURE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7MC17TK786</center></td><td><center>48--VALVE,SOLENOID</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M517TH925</center></td><td><center>59--SOLENOID,ELECTRICAL</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M817T3063</center></td><td><center>59--SWITCH,CODE INDICAT</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7MC17TK796</center></td><td><center>48--VALVE,SAFETY RELIEF</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7MC17TK795</center></td><td><center>48--VALVE,RELIEF,PRESSU</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L717T4688</center></td><td><center>61--BATTERY,NONRECHARGE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M917T6248</center></td><td><center>66--INDICATOR,CARBON MO</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M117TF880</center></td><td><center>43--FILTER ELEMENT,FLUI</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L117TC154</center></td><td><center>10--SAFETY INDICATOR,FI</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M817T3074</center></td><td><center>59--SWITCH,PUSH</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L417T3036</center></td><td><center>10--LEG,MACHINE GUN BIP</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7L317TJ316</center></td><td><center>53--BRACKET,MOUNTING</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE7M117TF893</center></td><td><center>43--PUMP,CENTRIFUGAL</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE1C117Q0282</center></td><td><center>84--BOOTS,FIREMEN&apos;S</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE5EC17T0903</center></td><td><center>53--CLEVIS,ROD END</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE5E317T3983</center></td><td><center>53--STUD ASSEMBLY,TURNL</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE5EC17T0896</center></td><td><center>53--PIN,SHOULDER,HEADLE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE5E817TA769</center></td><td><center>53--WASHER,KEY</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE5E417TA517</center></td><td><center>53--BOLT,MACHINE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE5E317T4014</center></td><td><center>53--WASHER,SPRING TENSI</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE5E917T8166</center></td><td><center>53--RIVET,SOLID</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8ED17T1041</center></td><td><center>54--TANK,FABRIC,COLLAPS</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8EF17T2178</center></td><td><center>17--COVER,AIRCRAFT GROU</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8ED17T1039</center></td><td><center>81--CASE SHIPPING AND S</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8E717T3360</center></td><td><center>63--ALARM,SMOKE,AUTOMAT</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8E917T1780</center></td><td><center>70--INTERFACE UNIT,AUTO</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8EG17T3356</center></td><td><center>95--SHEET,METAL</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8EG17T3368</center></td><td><center>95--SHEET,METAL</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8E717T3358</center></td><td><center>62--CONTROL,ELECTRIC LI</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8E817T2237</center></td><td><center>44--DEHYDRATOR UNIT,NON</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8E817T2241</center></td><td><center>44--CARTRIDGE,DEHYDRATO</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8E817T2242</center></td><td><center>44--HEATER,FLUID,INDUST</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8EG17T3393</center></td><td><center>95--BAR,METAL</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8E817T2244</center></td><td><center>41--AIR CONDITIONER</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8EG17T3401</center></td><td><center>95--STRIP,METAL</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8EF17T2194</center></td><td><center>39--ROLLER ASSEMBLY</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8EF17T2196</center></td><td><center>39--ROLLER ASSEMBLY</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8EF17T2193</center></td><td><center>39--ROLLER ASSEMBLY</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8EG17T3404</center></td><td><center>95--ARMOR PLATE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8EG17T3405</center></td><td><center>95--ARMOR CMPST PANEL</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8EG17T3406</center></td><td><center>95--WIRE,NONELECTRICAL</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8ES17T4050</center></td><td><center>80--EPOXY COATING KIT</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8EE17T1956</center></td><td><center>39--HOIST,WIRE ROPE</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>SPE8ED17Q0549</center></td><td><center>81--CONTAINER,MULTI PUR</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>N32205-17-Q-4152</center></td><td><center>26K DAMAS</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>N32205-17-Q-7059</center></td><td><center>Cooper Bearing Kit</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>W912QG-17-Q-0502</center></td><td><center>CF Wiring Solution</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>N4019217Q7001</center></td><td><center>U--The contractor is to provide MIOX Sodium Hypochlorite Troubleshooting training</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>N6883617Q0070</center></td><td><center>J--CALIBRATE AND RE CERTIFY THE MULTI MEASURING MACHINE 5000</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>VA24417Q0672</center></td><td><center>65--RFQ - Stretcher / Ambulance Cot</center></td>
+</tr><tr><td><center>COMBINE</center></td><td><center>VA25917Q0521</center></td><td><center>65--MODEL-IOL Master 700</center></td>
+</tr><tr><td><center>AMDCSS</center></td><td><center>W912QG-17-Q-0502</center></td><td><center>CF Wiring Solution</center></td>
+</tr><tr><td><center>AMDCSS</center></td><td><center>W912QG-17-Q-0502</center></td><td><center>CF Wiring Solution</center></td>
+</tr><tr><td><center>AMDCSS</center></td><td><center>P17PS01283</center></td><td><center>38--LEASED UNDER BRIDGE INSPECTION TRAILER</center></td>
+</tr><tr><td><center>MOD</center></td><td><center>W912GB-17-R-0044</center></td><td><center>Pre-Solicitation Notice Construct School, Barda, Azerbijan</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE4A517T7593</center></td><td><center>16--SWIVEL,UPLATCH</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE4A516TFG51</center></td><td><center>16--CABLE ASSEMBLY W1,A</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE4A517TQ756</center></td><td><center>29--PISTON,VALVE</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE4A517TS523</center></td><td><center>16--PLATE,NOZZLE SEAL</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE4A517TV731</center></td><td><center>16--PISTON,LINEAR ACTUATING CYLINDER</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE4A517TP970</center></td><td><center>59--ELECTRONIC COMPONENTS ASSEMBLY</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE4A517TK748</center></td><td><center>16--PAN,DRIP</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE4A517TC638</center></td><td><center>30--CONNECTING LINK,RIG</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE4A517TT781</center></td><td><center>31--BEARING,ROLLER,CYLI</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE4A717TD060</center></td><td><center>15--VALVE ASSEMBLY,DOOR</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE4A717TD577</center></td><td><center>29--ROD,CONNECTING</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE4A617TR970</center></td><td><center>53--SPACER,RING</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE4A617PC815</center></td><td><center>61--WIRING HARNESS</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE4A717R06360001</center></td><td><center>16--SLING,RESCUE,HELICO</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE4A517R0710</center></td><td><center>53--PIN,HINGE</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>HQ003415D0023XH01</center></td><td><center>R7--FR#200068045 Ability One</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE7L417T2434</center></td><td><center>10--HAMMER,FIRING,SMALL</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>SPE5EK17T8269</center></td><td><center>53--ROD,OPERATING,AFT</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>W912QG-17-Q-0502</center></td><td><center>CF Wiring Solution</center></td>
+</tr><tr><td><center>AWARD</center></td><td><center>VA24417Q0740</center></td><td><center>V--Lab Courier Service - Wilkes-Barre VAMC Crosstown Courier | 5 Year IDC</center></td>
+</tr><tr><td><center>JA</center></td><td><center>AID-486-C-13-00004</center></td><td><center>ASEAN Connectivity through Trade and Investment (ACTI) Activity</center></td></tr></tbody>
+        </table>
+      </div>
+    </center>
+      <br><br><br><br>
+      <div id="criteria_container" style="width: 100%;">
+        <div id="criteria" align="center">
+          The above data was scraped using the following search parameters:
+        </div>
+        <div id="search_parameters_container" style="display: table; margin: 0px auto;">
+          <br>
+          <span id="search_parameters" text-align="left">
+          </span>
+        </div>
+      </div>
+      <br><br><br><br><br>
+      <div id="date" align="center">
+      </div>
+      <br>
+  </body>
+</html>

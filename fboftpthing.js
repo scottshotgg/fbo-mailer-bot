@@ -29,19 +29,43 @@ var paramMap = {
 };
 
 // Could make something that packs their search terms into a Data object based on the names of the variables they give
-var clients = {
-	ID 			: 1,
-	Name 		: 'Scott',
-	Username 	: 'scott',
-	Email 		: 'scg104020@udallas.edu',
-	Parameters 	: {
-		//Type: 'AMDCSS'
-		Type 	: 'COMBINE',
-		Data 	: {
-			Agency: 'Department of the Army'
+
+// Front end needs to insert objects like this
+var clients = [
+	{
+		ID 			: 0,
+		Name 		: '',
+		Username 	: '',
+		Email 		: '', // This should be arc@lists.utdallas.edu
+		Parameters 	: {
+			// Empty will grab everything
 		}
 	},
-}
+	{
+		ID 			: 1,
+		Name 		: 'Scott',
+		Username 	: 'scott',
+		Email 		: 'scg104020@utdallas.edu',
+		Parameters 	: {
+			//Type: 'AMDCSS'
+			//Type 	: 'COMBINE',
+			'Data.Agency': 'Department of the Army'
+			//'Data.Classification Code.ID': 'R'
+		},
+	}, 
+	{
+		ID 			: 2,
+		Name 		: 'Jensen',
+		Username 	: 'jensen',
+		Email 		: 'jsn666@utdallas.edu',
+		Parameters 	: {
+			//Type: 'AMDCSS'
+			Type 	: 'COMBINE',
+			//'Data.Agency': 'Department of the Army'
+			//'Data.Classification Code.ID': 'R'
+		}
+	}
+];
 
 
 // Node-Cron is used to call the events at cetain times and fire off the scraping and client emails at certain times
@@ -82,6 +106,28 @@ app.get('/:id', function (req, res) {
   //res.end();
 });
 
+
+var randomstring = require("randomstring");
+
+
+// need to make an error page for users that are not in the system, do not expose the file pathing
+// this should also retreive the file from 'clients/'
+app.post('/client', function (req, res) {
+	//console.log('I got something');
+
+	fboclientsCollection.insert({ 
+		ID 			: Math.floor((Math.random() * 999) + 1), 
+		Name 		: randomstring.generate(), 
+		Parameters 	: {
+			Type 			: 'COMBINE',
+			//'Data.Agency' 	: 'Department of the Army'
+			//'Data.ClassificationCode': 'Y'
+		}
+	});
+
+
+});
+
 // Change this back to index.html
 app.get('/', function (req, res) {
   res.send('<div id="helloworld">Hello World!</div>')
@@ -89,12 +135,35 @@ app.get('/', function (req, res) {
   //res.sendfile(__dirname + '/jensenindex.html');
 });
 
-//app.listen(8080, function () {
-  //console.log('Listening on port 8080!')
-//});
+app.listen(8080, function () {
+  console.log('Listening on port 8080!')
+});
 
+var date = new Date();
+var filename = 'FBOFeed' + date.getFullYear() + ('0' + (date.getMonth() + 1)).slice(-2) + (date.getDate() - 1);
+// client.js
+var ftp = require('ftp-get')
 
-var thing = fs.readFileSync('FBOFeed20170514', 'utf8');
+// Check if the file exists, if it doesnt then go GET the file
+fs.open(filename, 'r', (err, fd) => {
+	if (err) {
+		if (err.code === 'ENOENT') {
+			console.error('myfile does not exist');
+			ftp.get('ftp://ftp.fbo.gov/' + filename, filename, function (err, res) {
+				console.log(err, res);
+				//fs.readFileSync(filename, 'utf8'); 
+			});
+		}
+	}
+});
+
+//var thing = try {
+//	fs.readFileSync(filename, 'utf8'); 
+//} catch(err) {
+	//request('ftp://ftp.fbo.gov/' + filename).pipe(fs.createWriteStream(filename));
+	
+//}
+
 
 // Only explicitly list the stuff that will change, otherwise just slice the end and do a toLowerCase
 var propMapping = {
@@ -166,6 +235,7 @@ var typeMapping = {
 // MongoDB for the database
 var MongoClient = require('mongodb').MongoClient;
 var fbodataCollection;
+var fbodataClients;
 
 console.log('\n\n\n---------------------------------------\n\n\n');
 
@@ -179,6 +249,25 @@ database.insert = function(data) { insertMongoDB(data) };
 //console.log(seperated[0])
 //console.log(septhing[0]);
 
+
+function sendEmail(client, documents) {
+
+
+	console.log(documents.length);
+
+	//console.log(fs.readFileSync('index.template', 'utf8'));
+	var $ = cheerio.load(fs.readFileSync('index.template', 'utf8'));
+
+	var tableColumns = ['Type', 'ID', 'Subject', 'Agency'];
+	$('thead').html(tableColumns.slice(0, tableColumns.length).map(header => '<th>' + header + '</th>').join('\n'));
+	$('tbody').html(documents.map((document) => {
+		//console.log('<tr><td><center>' + document.Type + '</center></td>' + '<td><center>' + document.ID + '</center></td>' + '<td><center>' + document.Data.Subject + '</center></td>');
+		//return document.Type + '|' + document.ID + '|' + document.Data.Subject;
+		return '<tr><td><center>' + document.Type + '</center></td>' + '<td><center>' + document.ID + '</center></td>' + '<td><center>' + document.Data.Subject + '</center></td>' + '<td><center>' + document.Data.Agency + '</center></td>';
+	}).join('\n'));
+
+	fs.writeFileSync(client.Name + 'index.html', $.html(), 'utf8');
+}
 
 
 
@@ -195,29 +284,24 @@ function connectMongoDB() {
 		createCollection();
 
 		// put this somewhere else later
-		/*thing.split(/(<\/[A-Z]+>)/g).filter((item) => { return item.length > 15 }).map((item) => {
-			if(!item.slice(4, 11).includes('ARCH')) { // filter out UNARCHIVE and ARCHIVE
-				// Uncomment this when we are ready to insert again
-				database.insert(postProcessing(splitString(item)));
-				//postProcessing(splitString(item))
-				//console.log(postProcessing(splitString(item)));
-			}
-		});*/
+
+		// thing.split(/(<\/[A-Z]+>)/g).filter((item) => { return item.length > 15 }).map((item) => {
+		// 	if(!item.slice(4, 11).includes('ARCH')) { // filter out UNARCHIVE and ARCHIVE
+		// 		// Uncomment this when we are ready to insert again
+		// 		database.insert(postProcessing(splitString(item)));
+		// 		//postProcessing(splitString(item))
+		// 		//console.log(postProcessing(splitString(item)));
+		// 	}
+		// });
 
 		//console.log(clients.getParameters())
-		fbodataCollection.find(clients.Parameters, function(err, cursor) {
-			
-			// while(cursor.hasNext()) {
-			// 	cursor.next().then((item) => { console.log(item) });
-			// }
-
-			var documentArray = cursor.toArray().then((item) => {
-				console.log(item.length)
+		clients.map((client) => {
+			fbodataCollection.find(client.Parameters, function(err, cursor) {
+				cursor.toArray().then((documents) => {
+					sendEmail(client, documents);
+				});
 			});
-
-
 		});
-
 		//console.log('hi');
 		//database.close();
 
@@ -263,6 +347,9 @@ function createCollection() {
 
   fbodataCollection = database.mdb.collection('fbodata');
   fbodataCollection.createIndex({ ID: 1, Type: 1, Date: 1 }, {unique: true});
+
+  fboclientsCollection = database.mdb.collection('fboclients');
+  fboclientsCollection.createIndex({ ID: 1 }, {unique: true});
 
   //lastID = getLastMongoID();
 }

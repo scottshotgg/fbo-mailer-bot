@@ -22,7 +22,16 @@
       var table = $('#fbo_table').DataTable();
       table.order( [[3, 'dec'], [0, 'asc']]).draw();
     });
+
+
+    function insert() {
+      $.post("client", function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+      });
+    }
+
   </script>
+
 
   <head>
 
@@ -58,6 +67,7 @@
         <h1>FBO Database</h1>
       </div>
       <br>
+      <button onclick="insert()">insert</button>
       <a id="download" href="http://arc-fbobot.utdallas.edu:8080/FBODatabase.csv">Download this file</a>
       <div id="table_encap" style="min-width: 800px; max-width: 1400px; width: 80%;">
         <br>
