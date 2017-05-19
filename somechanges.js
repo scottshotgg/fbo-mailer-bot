@@ -21,11 +21,14 @@ var cronDate = {
 	day: 	'*' 
 };
 
+var ftp = require('ftp-get')
+
 // We might just be able to put this in the event mapping thing down there
 function schedule(date, func) {
 	cron.schedule(Object.values(date).join(' '), func);
 }
 
+console.log(process.argv);
 
 
 // Using console stamp to provide better print outs for debugging
@@ -169,24 +172,6 @@ var clients = [
 	}
 ];
 
-
-// Node-Cron is used to call the events at cetain times and fire off the scraping and client emails at certain times
-var cron = require('node-cron');
-
-// Might not use this as an abstract, can probably just get it from the database
-var cronDate = { 
-	minute: '05', 
-	hour: 	'00', 
-	date: 	'*', 
-	month: 	'*', 
-	day: 	'*' 
-};
-
-// We might just be able to put this in the event mapping thing down there
-function schedule(packet) {
-	cron.schedule(Object.values(packet.dateObj).join(' '), packet.func);
-}
-
 // Express is used to host the website, we do not want to use Apache or w/e
 // http://expressjs.com/en/api.html#res.download
 var express = require('express');
@@ -242,11 +227,12 @@ app.listen(8080, function () {
 var date = new Date();
 var filename = 'FBOFeed' + date.getFullYear() + ('0' + (date.getMonth() + 1)).slice(-2) + (date.getDate() - 1);
 // client.js
-var ftp = require('ftp-get')
 
 var thing;
 
 // Check if the file exists, if it doesnt then go GET the file
+// wtf we don't need to check if the file exists
+/*
 fs.open(filename, 'r', (err, fd) => {
 	if (err) {
 		if (err.code === 'ENOENT') {
@@ -259,7 +245,7 @@ fs.open(filename, 'r', (err, fd) => {
 });
 
 var thing = fs.readFileSync(filename, 'utf8');
-
+*/
 
 // Only explicitly list the stuff that will change, otherwise just slice the end and do a toLowerCase
 var propMapping = {
@@ -331,11 +317,11 @@ var typeMapping = {
 // MongoDB for the database
 var MongoClient = require('mongodb').MongoClient;
 var fbodataCollection;
-var fbodataClients;
+var fboclientsCollection;
 
 console.log('\n\n\n---------------------------------------\n\n\n');
 
-connectMongoDB();
+//connectMongoDB();
 // Database object that is used as an abstracted accessor to the Mongo function
 var database = {};
 database.close = function() { this.mdb.close() };
@@ -345,10 +331,11 @@ database.insert = function(data) { insertMongoDB(data) };
 //console.log(seperated[0])
 //console.log(septhing[0]);
 
+
+
 function makeLink(column, URL) {
 	return ['<a href="' + URL + '">' + column + '</a>']
 }
-
 
 function sendEmail(client, documents) {
 
@@ -429,32 +416,7 @@ function connectMongoDB() {
 		//console.log(mdb);
 		createCollection();
 
-		// put this somewhere else later
-
-		thing.split(/(<\/[A-Z]+>)/g).filter((item) => { return item.length > 15 }).map((item) => {
-			if(!item.slice(4, 11).includes('ARCH')) { // filter out UNARCHIVE and ARCHIVE
-				// Uncomment this when we are ready to insert again
-				// >>>>>>>> enforce not null here <<<<<<<
-				var datum = postProcessing(splitString(item));
-				if(datum.ID) {
-					database.insert(datum);
-				}
-				//postProcessing(splitString(item))
-				//console.log(postProcessing(splitString(item)));
-			}
-		});
-
-		//console.log(clients.getParameters())
-		clients.map((client) => {
-			fbodataCollection.find(client.Parameters, function(err, cursor) {
-				cursor.toArray().then((documents) => {
-					sendEmail(client, documents);
-				});
-			});
-		});
-		//console.log('hi');
-		//database.close();
-
+		start();
     } else {
       console.log(err);
       process.exit(1);
@@ -678,4 +640,41 @@ function postProcessing(oppo) {
 	oppo.ID = oppo.Data['Solicitation Number'] || oppo.Data['Award Number'];
 
 	return oppo;
+}
+
+if(process.argv[2] == 'f') {
+	connectMongoDB();
+} else {
+	schedule(cronDate, start);
+}
+
+function start() {
+	var thingy = ftp.get('ftp://ftp.fbo.gov/' + filename, filename, function (err, res) {
+		console.log(err, res); 
+	});
+
+	console.log(thingy)
+
+
+	// thing.split(/(<\/[A-Z]+>)/g).filter((item) => { return item.length > 15 }).map((item) => {
+	// 	if(!item.slice(4, 11).includes('ARCH')) { // filter out UNARCHIVE and ARCHIVE
+	// 		// Uncomment this when we are ready to insert again
+	// 		// >>>>>>>> enforce not null here <<<<<<<
+	// 		var datum = postProcessing(splitString(item));
+	// 		if(datum.ID) {
+	// 			database.insert(datum);
+	// 		}
+	// 		//postProcessing(splitString(item))
+	// 		//console.log(postProcessing(splitString(item)));
+	// 	}
+	// });
+
+	//console.log(clients.getParameters())
+	clients.map((client) => {
+		fbodataCollection.find(client.Parameters, function(err, cursor) {
+			cursor.toArray().then((documents) => {
+				sendEmail(client, documents);
+			});
+		});
+	});
 }

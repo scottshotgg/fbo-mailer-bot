@@ -1,2 +1,2 @@
 echo "Installing dependencies..."
-npm install sqlite3 nightmare sendmail console-stamp electron mongodb
+npm install sendmail console-stamp mongodb ftp-get node-cron cheerio express randomstring 
