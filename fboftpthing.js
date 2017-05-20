@@ -240,7 +240,10 @@ app.listen(8080, function () {
 });
 
 var date = new Date();
-var filename = 'FBOFeed' + date.getFullYear() + ('0' + (date.getMonth() + 1)).slice(-2) + (date.getDate() - 1);
+
+//console.log(pages);
+
+var filename = 'FBOFeed' + date.getFullYear() + ('0' + (date.getMonth() + 1)).slice(-2) + (date.getDate() - 7);
 // client.js
 var ftp = require('ftp-get')
 
@@ -258,7 +261,12 @@ fs.open(filename, 'r', (err, fd) => {
 	}
 });
 
-var thing = fs.readFileSync(filename, 'utf8');
+ftp.get('ftp://ftp.fbo.gov/' + filename, filename, function (err, res) {
+	console.log(err, res); 
+	thing = fs.readFileSync(filename, 'utf8');
+	//start();
+	connectMongoDB();
+});
 
 
 // Only explicitly list the stuff that will change, otherwise just slice the end and do a toLowerCase
@@ -335,7 +343,7 @@ var fbodataClients;
 
 console.log('\n\n\n---------------------------------------\n\n\n');
 
-connectMongoDB();
+//connectMongoDB();
 // Database object that is used as an abstracted accessor to the Mongo function
 var database = {};
 database.close = function() { this.mdb.close() };
@@ -356,7 +364,7 @@ function sendEmail(client, documents) {
 
 	//console.log(fs.readFileSync('index.template', 'utf8'));
 	// need to check if the client already has a file in the clients folder and if so append to that index, if they dont then make one for them
-	var $ = cheerio.load(fs.readFileSync('index.template', 'utf8'));
+	var $ = cheerio.load(fs.readFileSync('index.template.html', 'utf8'));
 
 	// Need to tell the user when something doesn't exist
 	var tableColumns = ['Subject', 'ID', 'Type', 'Agency', 'Date', 'NAICS Code.Text'];
@@ -368,7 +376,7 @@ function sendEmail(client, documents) {
 		// Might need to make the link specification more generic
 		return '<tr><td>' + makeLink(document.Data[tableColumns[0]], document.Data.URL).concat(tableColumns.slice(1).map((column) => {
 			 if(column.includes('.')) {
-			 	console.log(column);
+			 	//console.log(column);
 			 	column = column.split('.');
 			 	// make this recursive
 			 	// make this detect if things are not available and put a '-'
@@ -405,13 +413,13 @@ function sendEmail(client, documents) {
 
 	}).join('\n'));
 
-	console.log(client.Parameters);
+	//console.log(client.Parameters);
 
 	// Need to check whether the parameter is an object or not before just returning
 	$('#search_parameters').html(Object.keys(client.Parameters).map((para) => {
 		return '<b>' + para.split('.').slice(-1) + ' :</b> ' + client.Parameters[para];
 	}));
-	console.log(client.Name + 'index.html')
+	//console.log(client.Name + 'index.html')
 	fs.writeFileSync(client.Name.toLowerCase() + 'index.html', $.html(), 'utf8');
 }
 
@@ -478,7 +486,7 @@ function insertMongoDB(rows) {
     })*/
   fbodataCollection.insert(rows)
     .then(() => {
-    	console.log('success');
+    	//console.log('success');
     })
     .catch((err) => {
 
@@ -606,8 +614,8 @@ function postProcessing(oppo) {
 	//oppo.Month = ;
 	//oppo.Day = ;
 
-	if(oppo.ID == '' || oppo.ID == undefined) 
-		console.log(oppo);
+	//if(oppo.ID == '' || oppo.ID == undefined) 
+		//console.log(oppo);
 
 	if(oppo.Data.Date) {
 		oppo.Date = { 

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+  <!-- RESOURCES -->
+    <!-- LINKS -->
+  
+
+
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- RESOURCES -->
+    <!-- LINKS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/uikit.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.uikit.min.css"/>
+
+    <!-- Material Design fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Bootstrap Material Design -->
+    <link rel="stylesheet" href="https://cdn.rawgit.com/FezVrasta/bootstrap-material-design/dist/dist/bootstrap-material-design.min.css">
+
+
+
+
+
+
+    <!-- CSS STYLING -->
+    <style>
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
+      th, td {
+        padding: 15px;
+      }
+
+      th {
+        font-size: 22px;
+      }
+
+      td {
+        font-size:18px;
+      }
+
+      td:last-child {
+        width: 120px;
+      }
+    </style>
+
+  </head>
+  <body>
+
+   
+    <div class="bmd-layout-container bmd-drawer-f-l">
+      <header class="bmd-layout-header">
+        <div class="navbar navbar-light bg-faded">
+          <button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-s1">
+            <span class="sr-only">Toggle drawer</span>
+            <i class="material-icons">menu</i>
+          </button>
+          <ul class="nav navbar-nav">
+            <li class="nav-item">Title</li>
+          </ul>
+        </div>
+      </header>
+      <div id="dw-s1" class="bmd-layout-drawer bg-faded">
+        <header>
+          <a class="navbar-brand">Title</a>
+        </header>
+        <ul class="list-group">
+          <a class="list-group-item">Link 1</a>
+          <a class="list-group-item">Link 2</a>
+          <a class="list-group-item">Link 3</a>
+        </ul>
+      </div>
+      <main class="bmd-layout-content">
+        <div class="container">
+    <center>
+      <div id="fbo_title">
+        <br>
+        <h1>FBO Database</h1>
+      </div>
+      <br>
+
+          <div id="buttons" style="width: 100%;">
+            <!--
+            <button onclick="insert()">insert</button>
+            -->
+            <a id="download" href="http://arc-fbobot.utdallas.edu:8080/FBODatabase.csv">Download this file</a>
+            <div align="right" style="min-width: 800px; max-width: 1400px; width: 80%;">
+              <button type="button" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+            <div id="table_encap" style="min-width: 800px; max-width: 1400px; width: 80%;">
+              <br>
+              <table id="fbo_table" class="uk-table uk-table-hover uk-table-striped" cellspacing="0" style="width: 100%;">
+                <thead></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+        </center>
+          <br><br><br><br>
+          <div id="criteria_container" style="width: 100%;">
+            <div id="criteria" align="center">
+              <p>The above data was scraped using the following search parameters:</p>
+            </div>
+            <div id="search_parameters_container" style="display: table; margin: 0px auto;">
+              <br>
+              <span id="search_parameters" text-align="left">
+              </span>
+            </div>
+          </div>
+          <br><br><br><br><br>
+          <div id="date" align="center">
+          </div>
+          <br>
+
+
+
+        </div>
+      </main>
+    </div>
+
+
+     <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript">
+    </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/datatables.min.js">
+    </script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" type="text/javascript">
+    </script>
+    <script src="https://cdn.datatables.net/1.10.13/js/dataTables.uikit.min.js" type="text/javascript">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js" type="text/javascript">
+    </script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.13/sorting/datetime-moment.js" type="text/javascript">
+    </script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        console.log($('#fbo_table'))
+        //$.fn.dataTable.moment('MMM DD, YYYY');
+        var table = $('#fbo_table').DataTable();
+        table.order( [[3, 'dec'], [0, 'asc']]).draw();
+      });
+    </script>
+     
+
+
+    <!-- jQuery first, then tether, then Bootstrap Material Design JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://cdn.rawgit.com/HubSpot/tether/v1.3.4/dist/js/tether.min.js"></script>
+    <script src="https://cdn.rawgit.com/FezVrasta/bootstrap-material-design/dist/dist/bootstrap-material-design.iife.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+      $('body').bootstrapMaterialDesign();
+    </script>
+
+
+  </body>
+</html>
