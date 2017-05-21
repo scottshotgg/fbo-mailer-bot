@@ -13,10 +13,13 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <!-- RESOURCES -->
-    <!-- LINKS -->
+    <!-- LINKS 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/datatables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/uikit.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.uikit.min.css">
+  -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap4.min.css">
+
 
     <!-- Material Design fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
@@ -66,13 +69,13 @@
             <i class="material-icons">menu</i>
           </button>
           <ul class="nav navbar-nav">
-            <li class="nav-item">Title</li>
+            <li class="nav-item">FBO Database</li>
           </ul>
         </div>
       </header>
       <div id="dw-s1" class="bmd-layout-drawer bg-faded">
         <header>
-          <a class="navbar-brand">Title</a>
+          <a class="navbar-brand">FBO Settings</a>
         </header>
         <ul class="list-group">
           <a class="list-group-item">Link 1</a>
@@ -85,7 +88,7 @@
     <center>
       <div id="fbo_title">
         <br>
-        <h1>FBO Database</h1>
+        <!--<h1>FBO Database</h1>-->
       </div>
       <br>
 
@@ -102,7 +105,8 @@
           </div>
             <div id="table_encap" style="min-width: 800px; max-width: 1400px; width: 80%;">
               <br>
-              <table id="fbo_table" class="uk-table uk-table-hover uk-table-striped" cellspacing="0" style="width: 100%;">
+              <!--<table id="fbo_table" class="uk-table uk-table-hover uk-table-striped" cellspacing="0" style="width: 100%;">-->
+              <table id="fbo_table" class="table table-striped table-bordered" cellspacing="0" style="width: 100%;">
                 <thead><th>Subject</th>
 <th>ID</th>
 <th>Type</th>
@@ -120,7 +124,190 @@
 <tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8ES17Q0446/listing.html">80--THINNER,PAINT PRODU</a></td><td>SPE8ES17Q0446</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/13/17</td><td>Paint and Coating Manufacturing</td></tr>
 <tr><td><a href="https://www.fbo.gov/spg/USA/COE/DACA63/W9126G-17-T-0088/listing.html">USACE Generator &amp; Install on Tanner Vessel, Galveston, Texas</a></td><td>W9126G-17-T-0088</td><td>COMBINE</td><td>Department of the Army</td><td>05/13/17</td><td>Turbine and Turbine Generator Set Units Manufacturing</td></tr>
 <tr><td><a href="https://www.fbo.gov/spg/DOI/BIA/RestonVA/A17PS00642/listing.html">ISBEE: Speech and Language Services for BIE Kaibeto BS</a></td><td>A17PS00642</td><td>COMBINE</td><td>Department of the Interior</td><td>05/13/17</td><td>Educational Support Services</td></tr>
-<tr><td><a href="https://www.fbo.gov/spg/USA/NGB/DAHA04/W912LA-17-T-0016/listing.html">Notice of Intent to Sole Source</a></td><td>W912LA-17-T-0016</td><td>COMBINE</td><td>Department of the Army</td><td>05/13/17</td><td>Commercial and Industrial Machinery and Equipment (except Automotive and Electronic) Repair and Maintenance</td></tr></tbody>
+<tr><td><a href="https://www.fbo.gov/spg/USA/NGB/DAHA04/W912LA-17-T-0016/listing.html">Notice of Intent to Sole Source</a></td><td>W912LA-17-T-0016</td><td>COMBINE</td><td>Department of the Army</td><td>05/13/17</td><td>Commercial and Industrial Machinery and Equipment (except Automotive and Electronic) Repair and Maintenance</td></tr>
+<tr><td><a href="https://www.fbo.gov/notices/894c2cb86e56e9527836c93ed520f63a">Dormitory Mattresses (Kunsan Korea)</a></td><td>W90VN7-17-T-0006</td><td>COMBINE</td><td>Department of the Army</td><td>05/14/17</td><td>Mattress Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/notices/ccb6d7ced2bcc6edc09d5dd4589f8cbb">All American Tents, Bleachers, Trash Removall, and Bounce Houses</a></td><td>W91247-17-T-0004AAWTents</td><td>COMBINE</td><td>Department of the Army</td><td>05/14/17</td><td>Recreational Goods Rental</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/HHS/CDCP/PGOA/PR10601TelemetrySolutions/listing.html">PR 10601 Telemetry Solutions GPS units</a></td><td>PR10601TelemetrySolutions</td><td>COMBINE</td><td>Department of Health and Human Services</td><td>05/14/17</td><td>Search, Detection, Navigation, Guidance, Aeronautical, and Nautical System and Instrument Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV845/listing.html">12--GLASS DOME</a></td><td>SPE4A617TV845</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Optical Instrument and Lens Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV843/listing.html">66--TRANSMITTER,PRESSURE</a></td><td>SPE4A617TV843</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Metal Container Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG394/listing.html">15--COVER,ACCESS,AIRCRA</a></td><td>SPE4A717TG394</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TZ953/listing.html">28--SUPPORT,ACCESSORY,A</a></td><td>SPE4A517TZ953</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Aircraft Engine and Engine Parts Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV848/listing.html">14--FAIRING,LAUNCHER,GU</a></td><td>SPE4A617TV848</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Guided Missile and Space Vehicle Propulsion Unit and Propulsion Unit Parts Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TZ924/listing.html">47--TUBE ASSEMBLY,METAL</a></td><td>SPE4A517TZ924</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Fabricated Pipe and Pipe Fitting Manufacturing (2007)</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG364/listing.html">15--SUPPORT,STRUCTURAL</a></td><td>SPE4A717TG364</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TZ961/listing.html">16--SHAFT,DRIVE,AIRCRAF</a></td><td>SPE4A517TZ961</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV867/listing.html">31--BEARING,ROLLER,CYLINDR</a></td><td>SPE4A617TV867</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Ball and Roller Bearing Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG371/listing.html">16--GEARBOX ASSEMBLY,AI</a></td><td>SPE4A717TG371</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG385/listing.html">15--ADAPTER</a></td><td>SPE4A717TG385</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG425/listing.html">16--DISCONNECT,EJECTION</a></td><td>SPE4A717TG425</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG427/listing.html">16--REPAIR KIT,ROTARY B</a></td><td>SPE4A717TG427</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Aircraft Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TZ922/listing.html">31--BEARING,PLAIN,SELF-</a></td><td>SPE4A517TZ922</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Ball and Roller Bearing Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TZ943/listing.html">29--DETECTOR,METALLIC P</a></td><td>SPE4A517TZ943</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Aircraft Engine and Engine Parts Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG368/listing.html">15--SKIN,AIRCRAFT</a></td><td>SPE4A717TG368</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG374/listing.html">16--PARTS KIT,CONVERTER</a></td><td>SPE4A717TG374</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Aircraft Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TZ974/listing.html">15--STRAP ASSY</a></td><td>SPE4A517TZ974</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG396/listing.html">15--SUPPORT,STRUCTURAL</a></td><td>SPE4A717TG396</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG426/listing.html">16--STABILIZER,ROTARY W</a></td><td>SPE4A717TG426</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TZ994/listing.html">62--LIGHT,NAVIGATIONAL,</a></td><td>SPE4A517TZ994</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Motor Vehicle Electrical and Electronic Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAA13/listing.html">53--SEAL,ROLLER BEARING</a></td><td>SPE4A517TAA13</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Gasket, Packing, and Sealing Device Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV893/listing.html">29--PARTS KIT,VALVE,DEP</a></td><td>SPE4A617TV893</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Aircraft Engine and Engine Parts Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAA25/listing.html">16--GLARESHIELD,AIRCRAF</a></td><td>SPE4A517TAA25</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG411/listing.html">16--CRANK ASSEMBLY,NOSE</a></td><td>SPE4A717TG411</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAA11/listing.html">43--TRUNNION</a></td><td>SPE4A517TAA11</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Pump and Pumping Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV892/listing.html">53--CRANK ASSEMBLY</a></td><td>SPE4A617TV892</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Small Arms, Ordnance, and Ordnance Accessories Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV881/listing.html">61--CABLE ASSEMBLY,SPEC</a></td><td>SPE4A617TV881</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Electronic Component Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG430/listing.html">16--FILTER ELEMENT,AIR</a></td><td>SPE4A717TG430</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV888/listing.html">53--RING,EMI,GROUND</a></td><td>SPE4A617TV888</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Hardware Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG412/listing.html">15--PLATE,STRUCTURAL,AI</a></td><td>SPE4A717TG412</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TZ991/listing.html">28--SHIELD,HEAT,AIRCRAF</a></td><td>SPE4A517TZ991</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Aircraft Engine and Engine Parts Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAA05/listing.html">31--CAM FOLLOWER,NEEDLE</a></td><td>SPE4A517TAA05</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Ball and Roller Bearing Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV884/listing.html">61--CABLE ASSEMBLY,POWE</a></td><td>SPE4A617TV884</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Electronic Component Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAA30/listing.html">29--GEAR ASSY,MATCHED S</a></td><td>SPE4A517TAA30</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Aircraft Engine and Engine Parts Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAA01/listing.html">53--SEAL,EXPANDING,AIRC</a></td><td>SPE4A517TAA01</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Gasket, Packing, and Sealing Device Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV903/listing.html">14--FAIRING,LAUNCHER,GU</a></td><td>SPE4A617TV903</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Guided Missile and Space Vehicle Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG418/listing.html">28--SEAL,AIR,AIRCRAFT G</a></td><td>SPE4A717TG418</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Aircraft Engine and Engine Parts Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV897/listing.html">31--BEARING,BALL,DUPLEX</a></td><td>SPE4A617TV897</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Ball and Roller Bearing Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAB06/listing.html">15--PANEL,STRUCTURAL,AI</a></td><td>SPE4A517TAB06</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAA92/listing.html">28--NOZZLE,TURBINE,NONA</a></td><td>SPE4A517TAA92</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Turbine and Turbine Generator Set Units Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG419/listing.html">16--DUCT ASSEMBLY,AIR C</a></td><td>SPE4A717TG419</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV906/listing.html">59--B-B PHN AND DISTANC</a></td><td>SPE4A617TV906</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Electronic Component Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAA85/listing.html">31--BEARING,ROLLER,CYLINDR</a></td><td>SPE4A517TAA85</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Ball and Roller Bearing Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG453/listing.html">16--FILLER ASSEMBLY</a></td><td>SPE4A717TG453</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV937/listing.html">31--BUSHING,SLEEVE</a></td><td>SPE4A617TV937</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Ball and Roller Bearing Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAA91/listing.html">15--FITTING,STRUCTURAL</a></td><td>SPE4A517TAA91</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAB11/listing.html">15--PANEL ASSEMBLY,COWL</a></td><td>SPE4A517TAB11</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV920/listing.html">62--LIGHT,INDICATOR</a></td><td>SPE4A617TV920</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Electronic Component Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG454/listing.html">15--WINDSHIELD PANEL,AI</a></td><td>SPE4A717TG454</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAA74/listing.html">53--SHIM</a></td><td>SPE4A517TAA74</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>All Other Miscellaneous Fabricated Metal Product Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAB09/listing.html">15--RIB,INBOARD CLOSURE</a></td><td>SPE4A517TAB09</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG449/listing.html">29--BRACKET ASSY,ACTUAT</a></td><td>SPE4A717TG449</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Aircraft Engine and Engine Parts Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAA93/listing.html">16--VALVE ASSY,DRAIN</a></td><td>SPE4A517TAA93</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV946/listing.html">61--WIRING HARNESS</a></td><td>SPE4A617TV946</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Electronic Component Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAA87/listing.html">16--PISTON ASSEMBLY,SER</a></td><td>SPE4A517TAA87</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV930/listing.html">31--CAM FOLLOWER,NEEDLE</a></td><td>SPE4A617TV930</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Ball and Roller Bearing Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAB16/listing.html">29--DETECTOR,METALLIC P</a></td><td>SPE4A517TAB16</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Aircraft Engine and Engine Parts Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAB30/listing.html">59--ANTENNA</a></td><td>SPE4A517TAB30</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Radio and Television Broadcasting and Wireless Communications Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAB37/listing.html">16--POST,AIRCRAFT,MATER</a></td><td>SPE4A517TAB37</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG463/listing.html">15--BEAM,AIRCRAFT</a></td><td>SPE4A717TG463</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG467/listing.html">15--SWITCH,TRIM</a></td><td>SPE4A717TG467</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG473/listing.html">16--BELL CRANK</a></td><td>SPE4A717TG473</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A517TAB34/listing.html">16--BUSHING,DRIVE,AIRCR</a></td><td>SPE4A517TAB34</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV967/listing.html">66--INDICATOR,PRESSURE</a></td><td>SPE4A617TV967</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Measuring and Controlling Device Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV966/listing.html">61--WIRING HARNESS,BRAN</a></td><td>SPE4A617TV966</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Electronic Component Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG475/listing.html">16--LAU PAGS FIELD REPA</a></td><td>SPE4A717TG475</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Heating Equipment (except Warm Air Furnaces) Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A617TV968/listing.html">59--CABLE ASSEMBLY,SPEC</a></td><td>SPE4A617TV968</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Building Material Dealers</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG472/listing.html">29--FILTER ELEMENT,FLUI</a></td><td>SPE4A717TG472</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Motor Vehicle Parts Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG474/listing.html">16--BELL CRANK</a></td><td>SPE4A717TG474</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M117TF847/listing.html">61--MOTOR,DIRECT CURREN</a></td><td>SPE7M117TF847</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Motor and Generator Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L117TC116/listing.html">10--BASE, MINE DISPENSER.</a></td><td>SPE7L117TC116</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Small Arms, Ordnance, and Ordnance Accessories Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCR-BSM/SPE4A717TG480/listing.html">16--MORSE CONTROL</a></td><td>SPE4A717TG480</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L317TJ256/listing.html">25--TORSION BAR,SUSPENS</a></td><td>SPE7L317TJ256</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Motor Vehicle Body Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L217T3246/listing.html">29--INJECTOR ASSEMBLY,F</a></td><td>SPE7L217T3246</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Engine Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L117TC118/listing.html">49--FILLER AND BLEEDER,</a></td><td>SPE7L117TC118</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Commercial and Service Industry Machinery Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L317TJ251/listing.html">30--PISTON,LINEAR ACTUA</a></td><td>SPE7L317TJ251</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Mechanical Power Transmission Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M117TF850/listing.html">43--SEAL ASSEMBLY,SHAFT</a></td><td>SPE7M117TF850</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Gasket, Packing, and Sealing Device Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L117TC110/listing.html">25--BRAKE SHOE SET</a></td><td>SPE7L117TC110</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Motor Vehicle Brake System Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7MC17TK749/listing.html">47--TUBING,NONMETALLIC</a></td><td>SPE7MC17TK749</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Iron and Steel Pipe and Tube Manufacturing from Purchased Steel</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M917T6242/listing.html">61--ROTOR ASSEMBLY</a></td><td>SPE7M917T6242</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Motor and Generator Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L217T3248/listing.html">25--WARNING ASSEMBLY,VE</a></td><td>SPE7L217T3248</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Commercial and Service Industry Machinery Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L317TJ252/listing.html">30--CONTROL ASSEMBLY,PU</a></td><td>SPE7L317TJ252</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Mechanical Power Transmission Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M517TH871/listing.html">59--MICROCIRCUIT,LINEAR</a></td><td>SPE7M517TH871</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Electronic Component Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L717T4679/listing.html">61--BATTERY,STORAGE</a></td><td>SPE7L717T4679</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Storage Battery Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M117TF848/listing.html">61--CONVENIENCE OUTLET ASS</a></td><td>SPE7M117TF848</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Current-Carrying Wiring Device Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L117TC140/listing.html">49--PARTS KIT,HYDRAULIC</a></td><td>SPE7L117TC140</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Electronic Component Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L717T4678/listing.html">26--INNER TUBE,PNEUMATI</a></td><td>SPE7L717T4678</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Tire Manufacturing (except Retreading)</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L317TJ250/listing.html">30--CONNECTING LINK,RIG</a></td><td>SPE7L317TJ250</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Mechanical Power Transmission Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L317TJ249/listing.html">25--BRACE ASSEMBLY UPRI</a></td><td>SPE7L317TJ249</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Motor Vehicle Body Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L117TC123/listing.html">25--BELT,VEHICULAR SAFE</a></td><td>SPE7L117TC123</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Motor Vehicle Seating and Interior Trim Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L317TJ248/listing.html">25--BUSHING AND PIN ASS</a></td><td>SPE7L317TJ248</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Motor Vehicle Parts Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L117U0084/listing.html">25--CABLE AND CONDUIT A</a></td><td>SPE7L117U0084</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Military Armored Vehicle, Tank, and Tank Component Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7MC17TK744/listing.html">48--VALVE,SHUTTLE</a></td><td>SPE7MC17TK744</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Fluid Power Valve and Hose Fitting Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7MC17TK773/listing.html">48--VALVE,LINEAR,DIRECT</a></td><td>SPE7MC17TK773</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Fluid Power Valve and Hose Fitting Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M517TH873/listing.html">59--MICROCIRCUIT,HYBRID</a></td><td>SPE7M517TH873</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Semiconductor and Related Device Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M917T6244/listing.html">12--ANTI-REFLECTION DEV</a></td><td>SPE7M917T6244</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>All Other Miscellaneous Fabricated Metal Product Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7MC17TK741/listing.html">48--VALVE,SAFETY RELIEF</a></td><td>SPE7MC17TK741</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Industrial Valve Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M817T3061/listing.html">58--DISPENSER,COUNTERME</a></td><td>SPE7M817T3061</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Search, Detection, Navigation, Guidance, Aeronautical, and Nautical System and Instrument Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L317TJ272/listing.html">59--CABLE,ASSY,RECOV</a></td><td>SPE7L317TJ272</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Current-Carrying Wiring Device Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L217T3243/listing.html">25--TARPAULIN</a></td><td>SPE7L217T3243</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Textile Bag and Canvas Mills</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L117TC143/listing.html">25--CHAMBER,AIR BRAKE</a></td><td>SPE7L117TC143</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Motor Vehicle Brake System Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L317TJ273/listing.html">39--BLOCK,TACKLE</a></td><td>SPE7L317TJ273</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Overhead Traveling Crane, Hoist, and Monorail System Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L317TJ264/listing.html">25--ARMOR,TRANSPARENT,V</a></td><td>SPE7L317TJ264</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Motor Vehicle Parts Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M917T6245/listing.html">66--ANALYZER,DIGITAL DA</a></td><td>SPE7M917T6245</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Instrument Manufacturing for Measuring and Testing Electricity and Electrical Signals</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L317TJ275/listing.html">59--CIRCUIT CARD ASSEMB</a></td><td>SPE7L317TJ275</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Printed Circuit Assembly (Electronic Assembly) Manufacturing (2007)</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L317TJ274/listing.html">59--COLLAR,CABLE</a></td><td>SPE7L317TJ274</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Noncurrent-Carrying Wiring Device Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M517TH933/listing.html">59--CIRCUIT CARD ASSEMB</a></td><td>SPE7M517TH933</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Printed Circuit Assembly (Electronic Assembly) Manufacturing (2007)</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M517TH881/listing.html">29--FILTER ELEMENT,FLUI</a></td><td>SPE7M517TH881</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Motor Vehicle Parts Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7MC17TK774/listing.html">48--VALVE,SAFETY RELIEF</a></td><td>SPE7MC17TK774</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Industrial Valve Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M417U0066/listing.html">47--HOSE ASSEMBLY,NONME</a></td><td>SPE7M417U0066</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>All Other Miscellaneous Fabricated Metal Product Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L317TJ278/listing.html">25--BRACKET,VEHICULAR C</a></td><td>SPE7L317TJ278</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Motor Vehicle Parts Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M317T5080/listing.html">47--BELLOWS,PRESSURE</a></td><td>SPE7M317T5080</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M117TF856/listing.html">59--RELAY,ELECTROMAGNET</a></td><td>SPE7M117TF856</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Relay and Industrial Control Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L317TJ277/listing.html">49--MAINTENANCE KIT,VEH</a></td><td>SPE7L317TJ277</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Military Armored Vehicle, Tank, and Tank Component Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L117TC130/listing.html">25--SHOCK ABSORBER,DIRE</a></td><td>SPE7L117TC130</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Motor Vehicle Body Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L217T3250/listing.html">25--VERRIEGELUNGSBAUGRU</a></td><td>SPE7L217T3250</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Military Armored Vehicle, Tank, and Tank Component Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7MC17TK795/listing.html">48--VALVE,RELIEF,PRESSU</a></td><td>SPE7MC17TK795</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Industrial Valve Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M117TF871/listing.html">43--FILTER,FLUID</a></td><td>SPE7M117TF871</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>All Other Miscellaneous General Purpose Machinery Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M117TF857/listing.html">43--SHAFT-PIN ASSEMBLY</a></td><td>SPE7M117TF857</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Pump and Pumping Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M117TF842/listing.html">43--PUMP,RECIPROCATING</a></td><td>SPE7M117TF842</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Pump and Pumping Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M817T3067/listing.html">59--SWITCH,PUSH</a></td><td>SPE7M817T3067</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Electronic Component Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M817T3074/listing.html">59--SWITCH,PUSH</a></td><td>SPE7M817T3074</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Electronic Component Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M517TH928/listing.html">59--ARRESTER,LIGHTNING</a></td><td>SPE7M517TH928</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Radio and Television Broadcasting and Wireless Communications Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L417T3033/listing.html">10--CONTACT WIRED ASSEM</a></td><td>SPE7L417T3033</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Search, Detection, Navigation, Guidance, Aeronautical, and Nautical System and Instrument Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-I-BSM/SPE5EC17T0903/listing.html">53--CLEVIS,ROD END</a></td><td>SPE5EC17T0903</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Bolt, Nut, Screw, Rivet, and Washer Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7MC17TK786/listing.html">48--VALVE,SOLENOID</a></td><td>SPE7MC17TK786</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Industrial Valve Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7MC17TK789/listing.html">48--VALVE ASSEMBLY</a></td><td>SPE7MC17TK789</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Industrial Valve Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L317TJ287/listing.html">30--COVER,COUPLING</a></td><td>SPE7L317TJ287</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Speed Changer, Industrial High-Speed Drive, and Gear Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L717T4688/listing.html">61--BATTERY,NONRECHARGE</a></td><td>SPE7L717T4688</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Primary Battery Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M517TH925/listing.html">59--SOLENOID,ELECTRICAL</a></td><td>SPE7M517TH925</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Relay and Industrial Control Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-I-BSM/SPE5E317T4014/listing.html">53--WASHER,SPRING TENSI</a></td><td>SPE5E317T4014</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Bolt, Nut, Screw, Rivet, and Washer Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L417T3036/listing.html">10--LEG,MACHINE GUN BIP</a></td><td>SPE7L417T3036</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>All Other Miscellaneous Fabricated Metal Product Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L317TJ260/listing.html">30--CYLINDER ASSEMBLY,A</a></td><td>SPE7L317TJ260</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Motor Vehicle Electrical and Electronic Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M817T3063/listing.html">59--SWITCH,CODE INDICAT</a></td><td>SPE7M817T3063</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Switchgear and Switchboard Apparatus Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M917T6248/listing.html">66--INDICATOR,CARBON MO</a></td><td>SPE7M917T6248</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Analytical Laboratory Instrument Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8E717T3360/listing.html">63--ALARM,SMOKE,AUTOMAT</a></td><td>SPE8E717T3360</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Power, Distribution, and Specialty Transformer Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M117TF880/listing.html">43--FILTER ELEMENT,FLUI</a></td><td>SPE7M117TF880</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>All Other Miscellaneous General Purpose Machinery Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-I-BSM/SPE5E317T3983/listing.html">53--STUD ASSEMBLY,TURNL</a></td><td>SPE5E317T3983</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Hardware Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M917T6243/listing.html">61--MOTOR,ALTERNATING C</a></td><td>SPE7M917T6243</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Motor and Generator Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L317TJ316/listing.html">53--BRACKET,MOUNTING</a></td><td>SPE7L317TJ316</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Hardware Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8E817T2237/listing.html">44--DEHYDRATOR UNIT,NON</a></td><td>SPE8E817T2237</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Metal Valve and Pipe Fitting Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-I-BSM/SPE5E917T8166/listing.html">53--RIVET,SOLID</a></td><td>SPE5E917T8166</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Bolt, Nut, Screw, Rivet, and Washer Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M117TF893/listing.html">43--PUMP,CENTRIFUGAL</a></td><td>SPE7M117TF893</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Pump and Pumping Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7M117TF864/listing.html">43--INTERCOOLER</a></td><td>SPE7M117TF864</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Pump and Pumping Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-I-BSM/SPE5EC17T0896/listing.html">53--PIN,SHOULDER,HEADLE</a></td><td>SPE5EC17T0896</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Fabricated Wire Product Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8EG17T3401/listing.html">95--STRIP,METAL</a></td><td>SPE8EG17T3401</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Nonferrous Metal (except Copper and Aluminum) Rolling, Drawing, and Extruding</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-I-BSM/SPE5E817TA769/listing.html">53--WASHER,KEY</a></td><td>SPE5E817TA769</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Bolt, Nut, Screw, Rivet, and Washer Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8E917T1780/listing.html">70--INTERFACE UNIT,AUTO</a></td><td>SPE8E917T1780</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Computer Terminal and Other Computer Peripheral Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L517T2206/listing.html">29--PUMP,FUEL,ELECTRICA</a></td><td>SPE7L517T2206</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Engine Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8ED17T1041/listing.html">54--TANK,FABRIC,COLLAPS</a></td><td>SPE8ED17T1041</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>All Other Plastics Product Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8EG17T3405/listing.html">95--ARMOR CMPST PANEL</a></td><td>SPE8EG17T3405</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Iron and Steel Forging</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8E817T2241/listing.html">44--CARTRIDGE,DEHYDRATO</a></td><td>SPE8E817T2241</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Air-Conditioning and Warm Air Heating Equipment and Commercial and Industrial Refrigeration Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8EF17T2178/listing.html">17--COVER,AIRCRAFT GROU</a></td><td>SPE8EF17T2178</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Aircraft Parts and Auxiliary Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7MC17TK796/listing.html">48--VALVE,SAFETY RELIEF</a></td><td>SPE7MC17TK796</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Industrial Valve Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/notices/7c34d18e555f134cd48f0e61c6dcf039">26K DAMAS</a></td><td>N32205-17-Q-4152</td><td>COMBINE</td><td>Department of the Navy</td><td>05/14/17</td><td>Fabricated Structural Metal Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8EG17T3356/listing.html">95--SHEET,METAL</a></td><td>SPE8EG17T3356</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Rolled Steel Shape Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8EF17T2194/listing.html">39--ROLLER ASSEMBLY</a></td><td>SPE8EF17T2194</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Industrial Truck, Tractor, Trailer, and Stacker Machinery Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8EG17T3368/listing.html">95--SHEET,METAL</a></td><td>SPE8EG17T3368</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Rolled Steel Shape Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/VA/PiVAMC646/PiVAMC646/VA24417Q0672/listing.html">65--RFQ - Stretcher / Ambulance Cot</a></td><td>VA24417Q0672</td><td>COMBINE</td><td>Department of Veterans Affairs</td><td>05/14/17</td><td>Surgical Appliance and Supplies Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCC-BSM/SPE7L117TC154/listing.html">10--SAFETY INDICATOR,FI</a></td><td>SPE7L117TC154</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Hardware Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8E817T2242/listing.html">44--HEATER,FLUID,INDUST</a></td><td>SPE8E817T2242</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Power Boiler and Heat Exchanger Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8EG17T3406/listing.html">95--WIRE,NONELECTRICAL</a></td><td>SPE8EG17T3406</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Fabricated Wire Product Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8EG17T3393/listing.html">95--BAR,METAL</a></td><td>SPE8EG17T3393</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Iron and Steel Mills and Ferroalloy Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/notices/6385d215acb6fe797b6371a8973b6f5d">Cooper Bearing Kit</a></td><td>N32205-17-Q-7059</td><td>COMBINE</td><td>Department of the Navy</td><td>05/14/17</td><td>Ball and Roller Bearing Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-C-BSM/SPE1C117Q0282/listing.html">84--BOOTS,FIREMEN&apos;S</a></td><td>SPE1C117Q0282</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Footwear Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8EF17T2196/listing.html">39--ROLLER ASSEMBLY</a></td><td>SPE8EF17T2196</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Industrial Truck, Tractor, Trailer, and Stacker Machinery Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8EF17T2193/listing.html">39--ROLLER ASSEMBLY</a></td><td>SPE8EF17T2193</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Industrial Truck, Tractor, Trailer, and Stacker Machinery Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/VA/VARMCCC/VARMCCC/VA25917Q0521/listing.html">65--MODEL-IOL Master 700</a></td><td>VA25917Q0521</td><td>COMBINE</td><td>Department of Veterans Affairs</td><td>05/14/17</td><td>Optical Instrument and Lens Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8ES17T4050/listing.html">80--EPOXY COATING KIT</a></td><td>SPE8ES17T4050</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Paint and Coating Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-I-BSM/SPE5E417TA517/listing.html">53--BOLT,MACHINE</a></td><td>SPE5E417TA517</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Bolt, Nut, Screw, Rivet, and Washer Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8EE17T1956/listing.html">39--HOIST,WIRE ROPE</a></td><td>SPE8EE17T1956</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Overhead Traveling Crane, Hoist, and Monorail System Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8ED17T1039/listing.html">81--CASE SHIPPING AND S</a></td><td>SPE8ED17T1039</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Metal Container Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/USA/NGB/DAHA38-1/W912QG-17-Q-0502/listing.html">CF Wiring Solution</a></td><td>W912QG-17-Q-0502</td><td>COMBINE</td><td>Department of the Army</td><td>04/01/17</td><td>All Other Telecommunications</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8E717T3358/listing.html">62--CONTROL,ELECTRIC LI</a></td><td>SPE8E717T3358</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Cutting Tool and Machine Tool Accessory Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DON/NAVFAC/N62766/N4019217Q7001/listing.html">U--The contractor is to provide MIOX Sodium Hypochlorite Troubleshooting training</a></td><td>N4019217Q7001</td><td>COMBINE</td><td>Department of the Navy</td><td>05/14/17</td><td>Professional and Management Development Training</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8E817T2244/listing.html">41--AIR CONDITIONER</a></td><td>SPE8E817T2244</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Air-Conditioning and Warm Air Heating Equipment and Commercial and Industrial Refrigeration Equipment Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8EG17T3404/listing.html">95--ARMOR PLATE</a></td><td>SPE8EG17T3404</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Metal Window and Door Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/spg/DLA/J3/DSCP-M-BSM/SPE8ED17Q0549/listing.html">81--CONTAINER,MULTI PUR</a></td><td>SPE8ED17Q0549</td><td>COMBINE</td><td>Defense Logistics Agency</td><td>05/14/17</td><td>Other Metal Container Manufacturing</td></tr>
+<tr><td><a href="https://www.fbo.gov/notices/3bd5a9097a190b19ab4d6190a358e30a">J--CALIBRATE AND RE CERTIFY THE MULTI MEASURING MACHINE 5000</a></td><td>N6883617Q0070</td><td>COMBINE</td><td>Department of the Navy</td><td>05/14/17</td><td>-</td></tr></tbody>
               </table>
             </div>
         </center>
@@ -146,7 +333,7 @@
     </div>
 
 
-     <!-- SCRIPTS -->
+     <!-- SCRIPTS 
     <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript">
     </script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/datatables.min.js">
@@ -159,29 +346,50 @@
     </script>
     <script src="https://cdn.datatables.net/plug-ins/1.10.13/sorting/datetime-moment.js" type="text/javascript">
     </script>
+    -->
 
 
-     
+
+
+
+
+
+     <!-- SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript">
+    </script>
+    
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript">
+    </script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js" type="text/javascript">
+    </script>
+    <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js" type="text/javascript">
+    </script>
+    <script src="https://cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap4.min.js" type="text/javascript">
+    </script>
 
 
     <!-- jQuery first, then tether, then Bootstrap Material Design JS. -->
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
     <script src="https://cdn.rawgit.com/HubSpot/tether/v1.3.4/dist/js/tether.min.js"></script>
     <script src="https://cdn.rawgit.com/FezVrasta/bootstrap-material-design/dist/dist/bootstrap-material-design.iife.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
     <script>
-      $('body').bootstrapMaterialDesign();
+      
     </script>
-    
+
+
     <script type="text/javascript">
-      $(document).ready(function() {
-        console.log($('#fbo_table'))
-        //$.fn.dataTable.moment('MMM DD, YYYY');
-        var table = $('#fbo_table').DataTable();
-        table.order( [[3, 'dec'], [0, 'asc']]).draw();
-      });
+      //$(document).ready(function() {
+        var table = $('#fbo-table').DataTable().draw();
+        //$('body').bootstrapMaterialDesign();
+      //});
     </script>
+     
+
+
+
+
 
   </body>
 </html>
