@@ -163,7 +163,7 @@ var clients = [
 		Parameters 	: {
 			//Type: 'AMDCSS'
 			Type 	: 'COMBINE',
-			//'Data.Agency': 'Department of the Army'
+			'Data.Agency': 'Department of the Army'
 			//'Data.Classification Code.ID': 'R'
 		}
 	}
