@@ -10,8 +10,8 @@ The 'old-saved' folder contains
 # Usage 
 
 1) Clone the directory, checkout rearch, and then navigate inside it: <i>(psst! just copy-pasta this)</i><br>
-<t>- `git clone https://www.github.com/scottshotgg/fbo-mailer-bot &&\` 
-<br>&nbsp;&nbsp;`cd fbo-mailer-bot &&\` 
+<t>- `git clone https://www.github.com/scottshotgg/fbo-mailer-bot &&` 
+<br>&nbsp;&nbsp;`cd fbo-mailer-bot &&` 
 <br>&nbsp;&nbsp;`git checkout rearch`
 
 2) Install the dependencies:<br>
