@@ -16,5 +16,5 @@ The 'old-saved' folder contains
 <t>- `npm install`
 
 3) Start the program:<br>
-<t>- `npm test`:&#9;Start and force the scraper to run immediately after starting for testing  <br>
+<t>- `npm test`: Start and force the scraper to run immediately after starting for testing  <br>
 <t>- `npm start`: Start the program with a scheduled run at midnight when you are ready for deployment
