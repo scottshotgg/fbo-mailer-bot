@@ -1,0 +1,9 @@
+List of actions when starting up:
+
+	1) Connect to the database
+	2) Make sure the database is setup (all the tables, counters, junk, etc)
+	3) Load the entire database into memory, w/e better than going to disk everytime and memory is cheap
+	4) Schedule scrapings
+	5) Start up the webserver (this may be able to be done at the same time as the database depending on what we need)
+	6) 
+

@@ -2,7 +2,7 @@
   "name": "fbo-mailer-bot",
   "version": "1.0.0",
   "description": "A scraper for the FBO.gov site",
-  "main": "fboftpthing.js",
+  "main": "src/fboftpthing.js",
   "dependencies": {
      "requests": "",
      "sendmail": "",
@@ -19,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://www.github.com/scottshotgg/fbo-mailer-bot"
+    "url": "https://www.github.com/scottshotgg/fbo-mailer-bot/tree/rearch"
   },
   "author": "scottshotgg",
   "license": "GPL-2.0",
   "scripts": {
   },
   "scripts": {
-    "test": "node fboftpthing.js f",
-    "start": "node fboftpthing"
+    "test": "node src/scraper.js f",
+    "start": "node src/scraper"
   }
 }

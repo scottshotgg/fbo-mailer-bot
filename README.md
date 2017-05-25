@@ -5,10 +5,12 @@ The rearchitecture is also a movement to support more clients in a pub-sub manne
 
 The UI is currently being overhauled to use React (maybe Redux too), Bootstrap, and GraphQL to make querying easier. Using React and GraphQL will allow DataTables to stream the data that I need instead of sending it to the client all at once in the index causing long load times from DataTables.
 
+The 'old-saved' folder contains 
+
 # Usage 
 
-1) Clone the directory and then navigate inside it:<br>
-	`git clone https://www.github.com/scottshotgg/fbo-mailer-bot.git && cd fbo-mailer-bot`
+1) Clone the directory, checkout rearch, and then navigate inside it:<br>
+	`git clone https://www.github.com/scottshotgg/fbo-mailer-bot && git checkout rearch && cd fbo-mailer-bot`
 
 2) Install the dependencies:<br>
 	`npm install`
