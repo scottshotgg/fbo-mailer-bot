@@ -19,7 +19,7 @@
     - Already did this for the last one, need to make a directory for users
     - Should we save the old index files?
 
-### Add the NLP/word searching in the synopsis when adding new ones (Added, etc)
+#### Add the NLP/word searching in the synopsis when adding new ones (Added, etc)
     - Fairly easy to do this
 
-### Also allow texting with the system through the same email stuff?
+#### Also allow texting with the system through the same email stuff?
