@@ -9,8 +9,8 @@ The 'old-saved' folder contains
 
 # Usage 
 
-1) Clone the directory, checkout rearch, and then navigate inside it:<br>
-<t>- `git clone https://www.github.com/scottshotgg/fbo-mailer-bot && git checkout rearch && cd fbo-mailer-bot`
+1) Clone the directory, checkout rearch, and then navigate inside it: <i>(pssst! copy pasta this)</i><br>
+<t>- `git clone https://www.github.com/scottshotgg/fbo-mailer-bot` <br>`&& git checkout rearch` <br>`&& cd fbo-mailer-bot`
 
 2) Install the dependencies:<br>
 <t>- `npm install`
