@@ -2,7 +2,7 @@
 
 
 ### ~~MAKE A LOG FILE~~
-- Just make the console stamp write to a file
+    - Just make the console stamp write to a file
 
 ### Add emailing to the system
     - We have already done this, just need to repmat the clients
