@@ -10,11 +10,11 @@ The 'old-saved' folder contains
 # Usage 
 
 1) Clone the directory, checkout rearch, and then navigate inside it:<br>
-⋅⋅⋅`git clone https://www.github.com/scottshotgg/fbo-mailer-bot && git checkout rearch && cd fbo-mailer-bot`
+<t>- `git clone https://www.github.com/scottshotgg/fbo-mailer-bot && git checkout rearch && cd fbo-mailer-bot`
 
 2) Install the dependencies:<br>
-⋅⋅⋅`npm install`
+<t>- `npm install`
 
 3) Start the program:<br>
-⋅⋅⋅`npm test`⋅: Start and force the scraper to run immediately after starting for testing  <br>
-⋅⋅⋅`npm start`: Start the program with a scheduled run at midnight when you are ready for deployment
+<t>- `npm test`⋅: Start and force the scraper to run immediately after starting for testing  <br>
+<t>- `npm start`: Start the program with a scheduled run at midnight when you are ready for deployment
