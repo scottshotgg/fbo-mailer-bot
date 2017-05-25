@@ -38,8 +38,16 @@ var fs = require('fs');
 
 	// console.log('******' + filePath + ' was saved!');
 	// });
+var fd;
 
-var fd = fs.openSync(__dirname + '/logs/logfile', 'w');
+try {
+	//fd = fs.openSync(__dirname + '/logs/logfile', 'w');
+} catch(err) {
+	console.log('Creating log folder');
+	//fs.mkdirSync(__dirname + 'logs');
+	//fd = fs.openSync(__dirname + '/logs/logfile', 'w');
+}
+
 
 // Node-Cron is used to call the events at cetain times and fire off the scraping and client emails at certain times
 var cron = require('node-cron');

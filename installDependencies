@@ -1,2 +1,0 @@
-echo "Installing dependencies..."
-npm install sendmail console-stamp mongodb ftp-get node-cron cheerio express randomstring 

@@ -26,6 +26,19 @@ function schedule(date, func) {
 	cron.schedule(Object.values(date).join(' '), func);
 }
 
+/*&try {
+	fs.openSync(__dirname + '/logs/logfile', 'w');
+} catch(err) {
+	console.log('Creating log folder');
+	fs.mkdirSync(__dirname + 'logs');
+	fd = fs.openSync(__dirname + '/logs/logfile', 'w');
+}*/
+var logdir = __dirname + '/logs'
+console.log(logdir)
+if(!fs.existsSync(logdir)) {
+	fs.mkdirSync(logdir);
+}
+
 
 
 // Using console stamp to provide better print outs for debugging
@@ -36,7 +49,7 @@ var cs = require("console-stamp") (console, {
 
 		var printout = ('[ RAM: ' + (process.memoryUsage().rss  / 1000000).toFixed(2) + ' MB | caller: ' + __function + ' | line: ' + __line + ' ]');
 		//console.log(console);
-		fs.appendFileSync('logs/logfile', printout, 'utf8');
+		fs.appendFileSync(logdir + '/logfile', printout + '\n', 'utf8');
 
 		return printout;
 	},
@@ -226,8 +239,6 @@ app.post('/client', function (req, res) {
 			//'Data.ClassificationCode': 'Y'
 		}
 	});
-
-
 });
 
 
