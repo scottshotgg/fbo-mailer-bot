@@ -11,7 +11,7 @@ The UI is currently being overhauled to use React (maybe Redux too), Bootstrap, 
 	`git clone https://www.github.com/scottshotgg/fbo-mailer-bot.git && cd fbo-mailer-bot`
 
 2) Install the dependencies:<br>
-    - `npm install`
+	`npm install`
 
 3) Start the program:<br>
     - `npm test` : Start and force the scraper to run immediately after starting for testing  <br>
