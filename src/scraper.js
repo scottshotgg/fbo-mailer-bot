@@ -270,7 +270,7 @@ fs.open(__dirname + '/resources/feed/' + filename, 'r', (err, fd) => {
 	}
 });
 
-ftp.get('ftp://ftp.fbo.gov/' + filename, filename, function (err, res) {
+ftp.get('ftp://ftp.fbo.gov/' + filename, __dirname + '/resources/feed/' + filename, function (err, res) {
 	console.log(err, res); 
 	thing = fs.readFileSync(__dirname + '/resources/feed/' + filename, 'utf8');
 	//start();
