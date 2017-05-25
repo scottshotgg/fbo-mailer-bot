@@ -9,7 +9,7 @@ The 'old-saved' folder contains
 
 # Usage 
 
-1) Clone the directory, checkout rearch, and then navigate inside it: <i>(pssst-- just copy-pasta this)</i><br>
+1) Clone the directory, checkout rearch, and then navigate inside it: <i>(psst! just copy-pasta this)</i><br>
 <t>- `git clone https://www.github.com/scottshotgg/fbo-mailer-bot` <br>`&& git checkout rearch` <br>`&& cd fbo-mailer-bot`
 
 2) Install the dependencies:<br>
