@@ -241,7 +241,7 @@ app.post('/client', function (req, res) {
 
 
 app.get('/', function (req, res) {
-	res.sendFile(__dirname + '/clients/index.html');
+	res.sendFile(__dirname + '/clients/complete/index.html');
 });
 
 app.listen(8080, function () {
