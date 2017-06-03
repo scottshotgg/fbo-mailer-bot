@@ -1,0 +1,31 @@
+{
+  "name": "fbo-mailer-bot",
+  "version": "1.0.0",
+  "description": "A scraper for the FBO.gov site",
+  "main": "src/fboftpthing.js",
+  "dependencies": {
+    "request": "latest",
+    "sendmail": "latest",
+    "console-stamp": "latest",
+    "mongodb": "latest",
+    "graphql": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "ftp-get": "latest",
+    "node-cron": "latest",
+    "cheerio": "latest",
+    "express": "latest",
+    "express-graphql": "latest",
+    "randomstring": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/scottshotgg/fbo-mailer-bot/tree/rearch"
+  },
+  "author": "scottshotgg",
+  "license": "GPL-2.0",
+  "scripts": {
+    "test": "node src/scraper.js f",
+    "start": "node src/scraper"
+  }
+}

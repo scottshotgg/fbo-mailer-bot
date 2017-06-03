@@ -260,3 +260,7 @@
 [ RAM: 135.48 MB | caller: sendEmail | line: 432 ]
 [ RAM: 136.83 MB | caller: sendEmail | line: 372 ]
 [ RAM: 153.32 MB | caller: sendEmail | line: 432 ]
+[ RAM: 50.46 MB | caller: null | line: 353 ]
+[ RAM: 50.52 MB | caller: null | line: 248 ]
+[ RAM: 50.59 MB | caller: fs.open | line: 265 ]
+[ RAM: 51.04 MB | caller: null | line: 274 ]

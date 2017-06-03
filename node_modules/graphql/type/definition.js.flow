@@ -9,6 +9,7 @@
  */
 
 import invariant from '../jsutils/invariant';
+import isNullish from '../jsutils/isNullish';
 import { ENUM } from '../language/kinds';
 import { assertValidName } from '../utilities/assertValidName';
 import type {
@@ -296,7 +297,7 @@ export class GraphQLScalarType {
 
   _scalarConfig: GraphQLScalarTypeConfig<*, *>;
 
-  constructor(config: GraphQLScalarTypeConfig<*, *>) {
+  constructor(config: GraphQLScalarTypeConfig<*, *>): void {
     assertValidName(config.name);
     this.name = config.name;
     this.description = config.description;
@@ -323,16 +324,28 @@ export class GraphQLScalarType {
     return serializer(value);
   }
 
+  // Determines if an internal value is valid for this type.
+  // Equivalent to checking for if the parsedValue is nullish.
+  isValidValue(value: mixed): boolean {
+    return !isNullish(this.parseValue(value));
+  }
+
   // Parses an externally provided value to use as an input.
   parseValue(value: mixed): mixed {
     const parser = this._scalarConfig.parseValue;
-    return parser ? parser(value) : null;
+    return parser && !isNullish(value) ? parser(value) : undefined;
+  }
+
+  // Determines if an internal value is valid for this type.
+  // Equivalent to checking for if the parsedLiteral is nullish.
+  isValidLiteral(valueNode: ValueNode): boolean {
+    return !isNullish(this.parseLiteral(valueNode));
   }
 
   // Parses an externally provided literal value to use as an input.
   parseLiteral(valueNode: ValueNode): mixed {
     const parser = this._scalarConfig.parseLiteral;
-    return parser ? parser(valueNode) : null;
+    return parser ? parser(valueNode) : undefined;
   }
 
   toString(): string {
@@ -404,7 +417,7 @@ export class GraphQLObjectType {
   _fields: GraphQLFieldMap<*, *>;
   _interfaces: Array<GraphQLInterfaceType>;
 
-  constructor(config: GraphQLObjectTypeConfig<*, *>) {
+  constructor(config: GraphQLObjectTypeConfig<*, *>): void {
     assertValidName(config.name, config.isIntrospection);
     this.name = config.name;
     this.description = config.description;
@@ -457,7 +470,7 @@ function defineInterfaces(
     'an Array.'
   );
 
-  const implementedTypeNames = {};
+  const implementedTypeNames = Object.create(null);
   interfaces.forEach(iface => {
     invariant(
       iface instanceof GraphQLInterfaceType,
@@ -500,7 +513,7 @@ function defineFieldMap<TSource, TContext>(
     'function which returns such an object.'
   );
 
-  const resultFieldMap = {};
+  const resultFieldMap = Object.create(null);
   fieldNames.forEach(fieldName => {
     assertValidName(fieldName);
     const fieldConfig = fieldMap[fieldName];
@@ -614,6 +627,7 @@ export type GraphQLFieldConfig<TSource, TContext> = {
   type: GraphQLOutputType;
   args?: GraphQLFieldConfigArgumentMap;
   resolve?: GraphQLFieldResolver<TSource, TContext>;
+  subscribe?: GraphQLFieldResolver<TSource, TContext>;
   deprecationReason?: ?string;
   description?: ?string;
 };
@@ -638,6 +652,7 @@ export type GraphQLField<TSource, TContext> = {
   type: GraphQLOutputType;
   args: Array<GraphQLArgument>;
   resolve?: GraphQLFieldResolver<TSource, TContext>;
+  subscribe?: GraphQLFieldResolver<TSource, TContext>;
   isDeprecated?: boolean;
   deprecationReason?: ?string;
 };
@@ -681,7 +696,7 @@ export class GraphQLInterfaceType {
   _typeConfig: GraphQLInterfaceTypeConfig<*, *>;
   _fields: GraphQLFieldMap<*, *>;
 
-  constructor(config: GraphQLInterfaceTypeConfig<*, *>) {
+  constructor(config: GraphQLInterfaceTypeConfig<*, *>): void {
     assertValidName(config.name);
     this.name = config.name;
     this.description = config.description;
@@ -759,7 +774,7 @@ export class GraphQLUnionType {
   _types: Array<GraphQLObjectType>;
   _possibleTypeNames: {[typeName: string]: boolean};
 
-  constructor(config: GraphQLUnionTypeConfig<*, *>) {
+  constructor(config: GraphQLUnionTypeConfig<*, *>): void {
     assertValidName(config.name);
     this.name = config.name;
     this.description = config.description;
@@ -803,7 +818,7 @@ function defineTypes(
     'Must provide Array of types or a function which returns ' +
     `such an array for Union ${unionType.name}.`
   );
-  const includedTypeNames = {};
+  const includedTypeNames = Object.create(null);
   types.forEach(objType => {
     invariant(
       objType instanceof GraphQLObjectType,
@@ -873,7 +888,7 @@ export class GraphQLEnumType/* <T> */ {
   _valueLookup: Map<any/* T */, GraphQLEnumValue>;
   _nameLookup: { [valueName: string]: GraphQLEnumValue };
 
-  constructor(config: GraphQLEnumTypeConfig/* <T> */) {
+  constructor(config: GraphQLEnumTypeConfig/* <T> */): void {
     this.name = config.name;
     assertValidName(config.name, config.isIntrospection);
     this.description = config.description;
@@ -894,6 +909,11 @@ export class GraphQLEnumType/* <T> */ {
     return enumValue ? enumValue.name : null;
   }
 
+  isValidValue(value: mixed): boolean {
+    return typeof value === 'string' &&
+      this._getNameLookup()[value] !== undefined;
+  }
+
   parseValue(value: mixed): ?any/* T */ {
     if (typeof value === 'string') {
       const enumValue = this._getNameLookup()[value];
@@ -901,6 +921,11 @@ export class GraphQLEnumType/* <T> */ {
         return enumValue.value;
       }
     }
+  }
+
+  isValidLiteral(valueNode: ValueNode): boolean {
+    return valueNode.kind === ENUM &&
+      this._getNameLookup()[valueNode.value] !== undefined;
   }
 
   parseLiteral(valueNode: ValueNode): ?any/* T */ {
@@ -1042,7 +1067,7 @@ export class GraphQLInputObjectType {
   _typeConfig: GraphQLInputObjectTypeConfig;
   _fields: GraphQLInputFieldMap;
 
-  constructor(config: GraphQLInputObjectTypeConfig) {
+  constructor(config: GraphQLInputObjectTypeConfig): void {
     assertValidName(config.name);
     this.name = config.name;
     this.description = config.description;
@@ -1066,7 +1091,7 @@ export class GraphQLInputObjectType {
       `${this.name} fields must be an object with field names as keys or a ` +
       'function which returns such an object.'
     );
-    const resultFieldMap = {};
+    const resultFieldMap = Object.create(null);
     fieldNames.forEach(fieldName => {
       assertValidName(fieldName);
       const field = {
@@ -1151,7 +1176,7 @@ export type GraphQLInputFieldMap = {
 export class GraphQLList<T: GraphQLType> {
   ofType: T;
 
-  constructor(type: T) {
+  constructor(type: T): void {
     invariant(
       isType(type),
       `Can only create List of a GraphQLType but got: ${String(type)}.`
@@ -1196,7 +1221,7 @@ GraphQLList.prototype.toJSON =
 export class GraphQLNonNull<T: GraphQLNullableType> {
   ofType: T;
 
-  constructor(type: T) {
+  constructor(type: T): void {
     invariant(
       isType(type) && !(type instanceof GraphQLNonNull),
       'Can only create NonNull of a Nullable GraphQLType but got: ' +

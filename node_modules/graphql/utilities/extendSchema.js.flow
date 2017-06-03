@@ -123,8 +123,8 @@ export function extendSchema(
   );
 
   // Collect the type definitions and extensions found in the document.
-  const typeDefinitionMap = {};
-  const typeExtensionsMap = {};
+  const typeDefinitionMap = Object.create(null);
+  const typeExtensionsMap = Object.create(null);
 
   // New directives and types are separate because a directives and types can
   // have the same name. For example, a type named "skip".
@@ -400,7 +400,7 @@ export function extendSchema(
   }
 
   function extendFieldMap(type: GraphQLObjectType | GraphQLInterfaceType) {
-    const newFieldMap = {};
+    const newFieldMap = Object.create(null);
     const oldFieldMap = type.getFields();
     Object.keys(oldFieldMap).forEach(fieldName => {
       const field = oldFieldMap[fieldName];
@@ -441,10 +441,10 @@ export function extendSchema(
 
   function extendFieldType<T: GraphQLType>(typeDef: T): T {
     if (typeDef instanceof GraphQLList) {
-      return new GraphQLList(extendFieldType(typeDef.ofType));
+      return (new GraphQLList(extendFieldType(typeDef.ofType)): any);
     }
     if (typeDef instanceof GraphQLNonNull) {
-      return new GraphQLNonNull(extendFieldType(typeDef.ofType));
+      return (new GraphQLNonNull(extendFieldType(typeDef.ofType)): any);
     }
     return getTypeFromDef(typeDef);
   }

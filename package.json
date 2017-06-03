@@ -4,18 +4,21 @@
   "description": "A scraper for the FBO.gov site",
   "main": "src/fboftpthing.js",
   "dependencies": {
-     "requests": "",
-     "sendmail": "",
-     "console-stamp": "",
-     "mongodb": "",
-     "graphql": "",
-     "react": "",
-     "react-dom": "",
-     "ftp-get": "",
-     "node-cron": "",
-     "cheerio": "",
-     "express": "",
-     "randomstring": ""
+    "bson": "latest",
+    "cheerio": "latest",
+    "console-stamp": "latest",
+    "express": "latest",
+    "express-graphql": "latest",
+    "ftp-get": "latest",
+    "graphql": "latest",
+    "mongodb": "latest",
+    "node-cron": "latest",
+    "randomstring": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "request": "latest",
+    "require_optional": "latest",
+    "sendmail": "latest"
   },
   "repository": {
     "type": "git",
@@ -23,8 +26,6 @@
   },
   "author": "scottshotgg",
   "license": "GPL-2.0",
-  "scripts": {
-  },
   "scripts": {
     "test": "node src/scraper.js f",
     "start": "node src/scraper"

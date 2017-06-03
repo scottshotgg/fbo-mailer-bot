@@ -665,8 +665,8 @@ function getFieldsAndFragmentNames(
 ): [ NodeAndDefCollection, Array<string> ] {
   let cached = cachedFieldsAndFragmentNames.get(selectionSet);
   if (!cached) {
-    const nodeAndDefs = {};
-    const fragmentNames = {};
+    const nodeAndDefs = Object.create(null);
+    const fragmentNames = Object.create(null);
     _collectFieldsAndFragmentNames(
       context,
       parentType,
@@ -776,7 +776,7 @@ function subfieldConflicts(
 class PairSet {
   _data: {[a: string]: {[b: string]: boolean}};
 
-  constructor() {
+  constructor(): void {
     this._data = Object.create(null);
   }
 
