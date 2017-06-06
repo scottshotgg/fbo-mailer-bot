@@ -264,3 +264,7 @@
 [ RAM: 50.52 MB | caller: null | line: 248 ]
 [ RAM: 50.59 MB | caller: fs.open | line: 265 ]
 [ RAM: 51.04 MB | caller: null | line: 274 ]
+[ RAM: 61.83 MB | caller: null | line: 353 ]
+[ RAM: 61.83 MB | caller: null | line: 248 ]
+[ RAM: 61.83 MB | caller: fs.open | line: 265 ]
+[ RAM: 62.50 MB | caller: null | line: 274 ]
