@@ -174,8 +174,8 @@ var clients = [
 		Parameters 	: {
 			//Type: 'AMDCSS'
 			Type 	: 'COMBINE',
-			'Data.Agency': 'Department of the Army'
-			//'Data.Classification Code.ID': 'R'
+			//'Data.Agency': 'Department of the Army',
+			'Data.Classification Code.ID': 'A'
 		}
 	}
 ];
@@ -214,7 +214,7 @@ var router = express.Router();
 // this should also retreive the file from 'clients/'
 app.get('/:id', function (req, res) {
 	console.log("serving user:", req.url);
-	res.sendFile(__dirname + '/clients' + req.url.toLowerCase() + 'index.html');
+	res.sendFile(__dirname + '/clients/' + req.url.toLowerCase() + '/index.html');
   	//start();
   //res.end();
 });
@@ -241,7 +241,7 @@ app.post('/client', function (req, res) {
 
 
 app.get('/', function (req, res) {
-	res.sendFile(__dirname + '/clients/index.html');
+	res.sendFile(__dirname + '/clients/complete/index.html');
 });
 
 app.listen(8080, function () {
@@ -252,7 +252,11 @@ var date = new Date();
 
 //console.log(pages);
 
-var filename = 'FBOFeed' + date.getFullYear() + ('0' + (date.getMonth() + 1)).slice(-2) + (date.getDate() - 7);
+//console.log('FBOFeed' + date.getFullYear() + ('0' + (date.getMonth() + 1)).slice(-2) + ('0' + (date.getDate())).slice(-2));
+
+//process.exit(0);
+
+var filename = 'FBOFeed' + date.getFullYear() + ('0' + (date.getMonth() + 1)).slice(-2) + ('0' + (date.getDate() - 1)).slice(-2);
 // client.js
 var ftp = require('ftp-get')
 
@@ -376,6 +380,7 @@ function sendEmail(client, documents) {
 	var $ = cheerio.load(fs.readFileSync(__dirname + '/resources/templates/index.template.html', 'utf8'));
 
 	// Need to tell the user when something doesn't exist
+	// Change this to make it display what the user wants
 	var tableColumns = ['Subject', 'ID', 'Type', 'Agency', 'Date', 'NAICS Code.Text'];
 
 	$('thead').html(tableColumns.slice(0, tableColumns.length).map(header => '<th>' + header + '</th>').join('\n'));
