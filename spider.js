@@ -74,7 +74,7 @@ var serverAddress = 'http://arc-fbobot.utdallas.edu';
 
 var templateFile = 'index.template';
 
-process.argv[2] == 'server' ? templateFile = 'file:///home/fborobo/fbo-mailer-bot/' + templateFile : templateFile = 'file:///home/scottshotgg/Development/fbo-mailer-bot/' + templateFile;
+process.argv[2] == 'server' ? templateFile = 'file:///home/fborobo/fbo-mailer-bot/' + templateFile : templateFile = 'file://' + __dirname + '/' + templateFile;
 
 console.log(templateFile);
  

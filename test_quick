@@ -1,1 +1,2 @@
+cd fbo-mailer-bot
 ./run tester debug "" 1 ""
