@@ -1,0 +1,9 @@
+6/7 - todo
+
+- Give Jensen his thing
+- Make a simple sign up page with a form; just augment the index.template.html
+- Test using the GUI to input a client
+
+- Add the ability for users to change their settings
+- Immediately update the client website when a client updates their settings
+- Ammend the email sending to just pull all the clients' emails from the database
