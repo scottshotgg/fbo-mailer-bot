@@ -1,10 +1,10 @@
 var fs = require('fs');
 var cheerio = require('cheerio');
-
-
+var session = require('express-session')
+var bodyParser = require('body-parser');
 /*
 
-		***** NEED TO SET UP THE EVENT LOOP *****
+		***;** NEED TO SET UP THE EVENT LOOP *****
 				  MAKE THE PROGRAM GOOD
 */
  
@@ -204,27 +204,60 @@ var express = require('express');
 var app = express();
 
 var path = require('path');
+var cookieParser = require('cookie-parser');
 
 // change this to use better pathing I guess, this should also get the current directory
 app.use(express.static('/Users/scottgaydos/Development/fbo-spider-phantomjs'));//, { 'fallthrough': false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(session({secret: "Shh, its a secret!"}));
 
 var router = express.Router();
 
-// need to make an error page for users that are not in the system, do not expose the file pathing
-// this should also retreive the file from 'clients/'
+app.get('/', function (req, res) {
+	console.log('views', req.session.views);
+	req.session.views = 1;
+	console.log('views', req.session.views);
+	res.sendFile(__dirname + '/signup/signup.html');
+});
+
+app.get('/signup', function (req, res) {
+	res.sendFile(__dirname + '/signup/signup.html');
+});
+
+app.post('/submit', function (req, res) {
+	// send some directions or something so that people can learn how to do it, etc
+	//res.sendFile(__dirname + '/signup/submit.html');
+
+	console.log(Object.keys(req.body).length);
+	console.log(req.body);
+});
+
+app.put('/validate', function (req, res) {
+
+	console.log('validate');
+
+});
+
+app.get('/preferences', function (req, res) {
+
+	console.log(Object.keys(req.body));
+
+	//console.log('viewse', req.session.views);
+	//res.sendFile(__dirname + '/signup/preferences.html');
+});
+
+app.get('/favicon.ico', function(req, res) {
+    res.sendStatus(204);
+});
+
 app.get('/:id', function (req, res) {
 	console.log("serving user:", req.url);
 	res.sendFile(__dirname + '/clients/' + req.url.toLowerCase() + '/index.html');
-  	//start();
-  //res.end();
 });
 
-
-var randomstring = require("randomstring");
-
-
-// need to make an error page for users that are not in the system, do not expose the file pathing
-// this should also retreive the file from 'clients/'
 app.post('/client', function (req, res) {
 	console.log('I got something');
 
@@ -239,14 +272,16 @@ app.post('/client', function (req, res) {
 	});
 });
 
-
-app.get('/', function (req, res) {
-	res.sendFile(__dirname + '/clients/complete/index.html');
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send('<center><h1>Something broke!<h1><center>')
 });
 
 app.listen(8080, function () {
   console.log('Listening on port 8080!')
 });
+
+var randomstring = require("randomstring");
 
 var date = new Date();
 

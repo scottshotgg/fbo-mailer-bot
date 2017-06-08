@@ -1,0 +1,40 @@
+<html>
+<head>
+	<title>
+	Signup Preferences
+	</title>
+</head>
+
+<body>
+
+	<div id="pagetitle"><h1><center>FBO-Mailer Preferences</center></h1></div><br><br><br>
+
+	<center><form id="personal" name="personal" method="post" action="/submit" onsubmit="return validatePersonalInformation()">
+		test:<br>
+		<input type="text" name="test"><br><br>
+
+		You will choose your search preferences on the next page.<br><br><br>
+
+		<input id="submit" type="submit" value="Submit">
+	</form></center>
+
+	<script>
+		
+		console.log('url', document.url);
+
+		function validatePersonalInformation() {
+			var form = document.forms["personal"];
+			for(input in form.elements) {
+				if(form.elements[input].type == 'text' && !form.elements[input].value) {
+					return false;
+				}
+			}
+		}
+
+
+
+	</script>
+	
+</body>
+
+</html>

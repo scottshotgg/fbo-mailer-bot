@@ -1,0 +1,46 @@
+<html>
+<head>
+	<title>
+		FBO-Mailer Signup!
+	</title>
+</head>
+
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<div id="pagetitle"><h1><center>FBO-Mailer Signup</center></h1></div><br><br><br>
+
+	<center><form id="personal" name="personal" action="/validate" onsubmit="return validatePersonalInformation()">
+			First name:<br>
+			<input type="text" name="firstname"><br><br>
+			Last name:<br>
+			<input type="text" name="lastname"><br><br>
+			Net ID:<br>
+			<input type="text" name="netid"><br><br>
+			Username:<br>
+			<input type="text" name="username"><br><br>
+			Email:<br>
+			<input type="text" name="email"><br><br>
+			Password:<br>
+			<input type="text" name="password"><br><br>
+			Confirm Password:<br>
+			<input type="text" name="confirm"><br><br>
+
+			You will choose your search preferences on the next page.<br><br><br>
+
+			<input id="submit" type="submit" value="Continue">
+		</form></center>
+
+	<script>
+		function validatePersonalInformation() {
+			var form = document.forms["personal"];
+			for(input in form.elements) {
+				if(form.elements[input].type == 'text' && !form.elements[input].value) {
+					return false;
+				}
+			}
+		}
+	</script>
+
+</body>
+</html>
