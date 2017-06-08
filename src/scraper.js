@@ -7,7 +7,7 @@ var cheerio = require('cheerio');
 		***** NEED TO SET UP THE EVENT LOOP *****
 				  MAKE THE PROGRAM GOOD
 */
-
+ 
 
 // Node-Cron is used to call the events at cetain times and fire off the scraping and client emails at certain times
 var cron = require('node-cron');
