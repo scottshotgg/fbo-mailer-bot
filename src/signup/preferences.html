@@ -7,29 +7,38 @@
 
 <body>
 
-	<div id="pagetitle"><h1><center>FBO-Mailer Preferences</center></h1></div><br><br><br>
-
-	<center><form id="personal" name="personal" method="post" action="/submit" onsubmit="return validatePersonalInformation()">
+	<center><div id="pagetitle"><h1>FBO-Mailer Preferences</h1></div><br><br><br>
+	<!--
 		test:<br>
 		<input type="text" name="test"><br><br>
+-->
 
-		You will choose your search preferences on the next page.<br><br><br>
+		<div style="width: 50%; height: 500px; border:solid 2px black; overflow: scroll;">
+			
+			<div style="width: 60%; border:solid 2px black; height: 30px; margin: 8px;">hi</div>
+			<div style="width: 60%; border:solid 2px black; height: 30px; margin: 8px;">hi</div>
+			<div style="width: 60%; border:solid 2px black; height: 30px; margin: 8px;">hi</div>
+			<div style="width: 60%; border:solid 2px black; height: 30px; margin: 8px;">hi</div>
+			<div style="width: 60%; border:solid 2px black; height: 30px; margin: 8px;">hi</div>
+			<div style="width: 60%; border:solid 2px black; height: 30px; margin: 8px;">hi</div>
+			<div style="width: 60%; border:solid 2px black; height: 30px; margin: 8px;">hi</div>
+			<div style="width: 60%; border:solid 2px black; height: 30px; margin: 8px;">hi</div>
+			<div style="width: 60%; border:solid 2px black; height: 30px; margin: 8px;">hi</div>
+			<div style="width: 60%; border:solid 2px black; height: 30px; margin: 8px;">hi</div>
+			<div style="width: 60%; border:solid 2px black; height: 30px; margin: 8px;">hi</div>
+			<div style="width: 60%; border:solid 2px black; height: 30px; margin: 8px;">hi</div>
+			<div style="width: 60%; border:solid 2px black; height: 30px; margin: 8px;">hi</div>
+			<div style="width: 60%; border:solid 2px black; height: 30px; margin: 8px;">hi</div>
 
-		<input id="submit" type="submit" value="Submit">
-	</form></center>
+		</div>
+
+
+		<input type="checkbox" name="vehicle" value="Bike"> I have a bike<br><br><br>
+
+		<button id="submit_button" type="submit" value="Submit">Create Account</button>
+	</center>
 
 	<script>
-		
-		console.log('url', document.url);
-
-		function validatePersonalInformation() {
-			var form = document.forms["personal"];
-			for(input in form.elements) {
-				if(form.elements[input].type == 'text' && !form.elements[input].value) {
-					return false;
-				}
-			}
-		}
 
 
 

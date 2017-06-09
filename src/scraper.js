@@ -227,26 +227,27 @@ app.get('/signup', function (req, res) {
 	res.sendFile(__dirname + '/signup/signup.html');
 });
 
-app.post('/submit', function (req, res) {
-	// send some directions or something so that people can learn how to do it, etc
-	//res.sendFile(__dirname + '/signup/submit.html');
+app.post('/validate', function (req, res) {
 
-	console.log(Object.keys(req.body).length);
-	console.log(req.body);
-});
+	console.log('validate', req.body);
 
-app.put('/validate', function (req, res) {
+	req.session.personal = req.body;
 
-	console.log('validate');
-
+	// For some reason this works ???
+	res.json('');
 });
 
 app.get('/preferences', function (req, res) {
 
-	console.log(Object.keys(req.body));
+	console.log(req.session.personal);
 
 	//console.log('viewse', req.session.views);
-	//res.sendFile(__dirname + '/signup/preferences.html');
+	res.sendFile(__dirname + '/signup/preferences.html');
+});
+
+app.post('/submit', function (req, res) {
+	// now we put the checkboxes and drop it into the database
+
 });
 
 app.get('/favicon.ico', function(req, res) {
