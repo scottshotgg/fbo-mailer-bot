@@ -1,12 +1,14 @@
 <html>
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 	<title>
 		FBO-Mailer Signup!
 	</title>
 </head>
 
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
 
 	<div id="pagetitle"><h1><center>FBO-Mailer Signup</center></h1></div><br><br><br>
 
@@ -32,6 +34,7 @@
 		<button id="continue_button" onclick="validatePersonalInformation()">Continue</button>
 		<!--</form></center>-->
 	</center>
+	
 	<script>
 		function validatePersonalInformation() {
 			if([].slice.call($("input")).every((input) => {

@@ -245,6 +245,26 @@ app.get('/preferences', function (req, res) {
 	res.sendFile(__dirname + '/signup/preferences.html');
 });
 
+app.get('/preferences.js', function (req, res) {
+	res.sendFile(__dirname + '/signup/preferences.js');
+});
+
+app.get('/preferences.css', function (req, res) {
+	res.sendFile(__dirname + '/signup/preferences.css');
+});
+
+app.get('/data.json', function (req, res) {
+	res.sendFile(__dirname + '/signup/data.json');
+});
+
+app.get('/fboform', function (req, res) {
+
+	console.log(req.session.personal);
+
+	//console.log('viewse', req.session.views);
+	res.sendFile(__dirname + '/signup/fboform.html');
+});
+
 app.post('/submit', function (req, res) {
 	// now we put the checkboxes and drop it into the database
 
