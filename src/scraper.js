@@ -241,6 +241,8 @@ app.post('/validate_finish', function (req, res) {
 
 	console.log('validate', req.body);
 
+	console.log(req.body);
+
 	req.session.parameters = req.body;
 
 	// For some reason this works ???
@@ -657,12 +659,8 @@ function splitString(thing) {
 	var array = thing.split(/(<[A-Z]+>)/g);
 
 	var object = {};
-	object.Type = array[1].slice(1, -1);
 	object.Data = {};
-
-	object.Data.Type = {};
-	object.Data.Type.Short = object.Type;
-	object.Data.Type.Long  = typeMapping[array[1].slice(1, -1)];
+	object.Data['Opportunity/Procurement Type'] = typeMapping[array[1].slice(1, -1)];
 
 	for(var i = 3; i < array.length; i+=2)
 	{

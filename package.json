@@ -31,6 +31,6 @@
   "license": "GPL-2.0",
   "scripts": {
     "test": "node src/scraper.js f",
-    "start": "node src/scraper"
+    "start": "node src/scraper.js"
   }
 }
