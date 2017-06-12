@@ -1,3 +1,15 @@
-.select2-result-sub > li.select2-result {
-    display: none;
+.select2-label {
+	margin-top: 10px;
+}
+
+#finish_button {
+	margin: 50px;
+}
+
+#page_container {
+	margin-bottom: 80px;
+}
+
+#selection_container {
+	margin-top: 50px;
 }

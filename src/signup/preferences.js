@@ -35,14 +35,46 @@
 	Object.keys(filedata).map((key, id) => {
 		//return { id: id, text: key, children: filedata[key].map((value, id) => {
 		var keyname = key.replace(/[^a-zA-Z0-9]/g,'_');
-		document.getElementById('selection_container').innerHTML += '<select id="' + keyname + '" class="my-select" multiple="multiple" style="width: 60%;"></select>';
+		//document.getElementById('selection_container').innerHTML += '<select id="' + keyname + '" class="my-select" multiple="multiple" style="width: 60%;"></1select>';
+
+		$('#selection_container').append('<label class="select2-label" for="' + keyname + '" style="width: 60%; text-align: left;">' + key +'<br><select id="' + keyname + '" class="my-select" multiple="multiple" style="width: 100%; padding: 20px;"></select></label>');
 
 		$('#' + keyname).select2({
 			placeholder: key + ' search',
-			data: filedata[key].map((value, id) => {
-				console.log(keyname);
-				return {id: id, text: value}
-			})
-		});
-		//})};
+			data: /*[{ id: 0, text: "All" }].concat(*/filedata[key].map((value, id) => {
+				return { id: id + 1, text: value }
+			}),
+			language: {
+                noResults: function() {
+                    return 'Type in your '
+                }
+            }
+
+		});	
 	});
+
+	/*
+	$('.my-select').map((id, select) => {
+		return [[].slice.call(select.selectedOptions).map((option, id) => {
+			return option.innerText;
+		})];
+	});
+	*/
+
+	function finish() {
+		console.log('ajax request dawg');
+		$.ajax({
+		  type: "POST",
+		  url: '/validate_finish',
+		  dataType: 'json',
+		  data: Object.assign(...$("input").map((id, input) => {
+					return {[input.name]: input.value};
+				})),
+		  success: (result) => {
+		  	window.location.href = "/preferences";
+		  },
+		  error: (result) => {
+		  	console.log("error", result)
+		  }
+		});
+	}

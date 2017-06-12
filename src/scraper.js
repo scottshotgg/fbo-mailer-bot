@@ -237,6 +237,16 @@ app.post('/validate', function (req, res) {
 	res.json('');
 });
 
+app.post('/validate_finish', function (req, res) {
+
+	console.log('validate', req.body);
+
+	req.session.parameters = req.body;
+
+	// For some reason this works ???
+	res.json('');
+});
+
 app.get('/preferences', function (req, res) {
 
 	console.log(req.session.personal);
