@@ -227,9 +227,9 @@ app.get('/signup', function (req, res) {
 	res.sendFile(__dirname + '/signup/signup.html');
 });
 
-app.post('/validate', function (req, res) {
+app.post('/validate_personal', function (req, res) {
 
-	console.log('validate', req.body);
+	console.log('validate_personal', req.body);
 
 	req.session.personal = req.body;
 
@@ -237,32 +237,74 @@ app.post('/validate', function (req, res) {
 	res.json('');
 });
 
-app.post('/validate_finish', function (req, res) {
+app.post('/validate_search', function (req, res) {
 
-	console.log('validate', req.body);
+	console.log('validate_search', req.body);
 
 	console.log(req.body);
 
-	req.session.parameters = req.body;
-
+	req.session.search = req.body;
+	console.log(req.session);
 	// For some reason this works ???
 	res.json('');
 });
 
-app.get('/preferences', function (req, res) {
+app.post('/validate_display', function (req, res) {
 
-	console.log(req.session.personal);
+	console.log('validate_display', req.body);
+
+	console.log(req.body);
+
+	req.session.display = req.body;
+	console.log(req.session);
+	// For some reason this works ???
+
+	// database stuff
+
+	// put this for the clients thing
+	// Promise.resolve(fboclientsCollection.find({}, (err, cursor) => {
+	// 	cursor.toArray().then((documents) => {
+	// 		console.log(documents);
+	// 		res.json('');
+	// 	})
+	// }));
+
+	Promise.resolve(fboclientsCollection.insert(req.session))
+		.then(() => {
+			res.json({ name: req.session.personal.firstname });
+		});
+});
+
+app.get('/search_preferences', function (req, res) {
+
+	console.log(req.session);
 
 	//console.log('viewse', req.session.views);
-	res.sendFile(__dirname + '/signup/preferences.html');
+	res.sendFile(__dirname + '/signup/search_preferences.html');
 });
 
-app.get('/preferences.js', function (req, res) {
-	res.sendFile(__dirname + '/signup/preferences.js');
+app.get('/search_preferences.js', function (req, res) {
+	res.sendFile(__dirname + '/signup/search_preferences.js');
 });
 
-app.get('/preferences.css', function (req, res) {
-	res.sendFile(__dirname + '/signup/preferences.css');
+app.get('/search_preferences.css', function (req, res) {
+	res.sendFile(__dirname + '/signup/search_preferences.css');
+});
+
+app.get('/display_preferences', function (req, res) {
+
+	console.log(req.session);
+
+	//console.log('viewse', req.session.views);
+	res.sendFile(__dirname + '/signup/display_preferences.html');
+});
+
+app.get('/display_preferences.js', function (req, res) {
+	res.sendFile(__dirname + '/signup/display_preferences.js');
+});
+
+app.get('/display_preferences.css', function (req, res) {
+	res.sendFile(__dirname + '/signup/display_preferences.css');
 });
 
 app.get('/data.json', function (req, res) {
@@ -497,13 +539,16 @@ function sendEmail(client, documents) {
 
 	//console.log(client.Parameters);
 
-	// Need to check whether the parameter is an object or not before just returning
-	$('#search_parameters').html(Object.keys(client.Parameters).map((para) => {
+	// // Need to check whether the parameter is an object or not before just returning
+	// $('#search_parameters').html(Object.keys(client.Parameters).map((para) => {
+	// 	return '<b>' + para.split('.').slice(-1) + ' :</b> ' + client.Parameters[para];
+	// }));
+	$('#search_parameters').html(Object.keys({}).map((para) => {
 		return '<b>' + para.split('.').slice(-1) + ' :</b> ' + client.Parameters[para];
 	}));
 	//console.log(client.Name + 'index.html')
-	console.log('/clients/' + client.Name.toLowerCase() + '/index.html');
-	fs.writeFileSync(__dirname + '/clients/' + client.Name.toLowerCase() + '/index.html', $.html(), 'utf8');
+	console.log('/clients/' + client.personal.username.toLowerCase() + '/index.html');
+	fs.writeFileSync(__dirname + '/clients/' + client.personal.username.toLowerCase() + '/index.html', $.html(), 'utf8');
 }
 
 
@@ -536,13 +581,23 @@ function connectMongoDB() {
 		});
 
 		//console.log(clients.getParameters())
-		clients.map((client) => {
-			fbodataCollection.find(client.Parameters, function(err, cursor) {
-				cursor.toArray().then((documents) => {
-					sendEmail(client, documents);
-				});
+
+		fboclientsCollection.find().forEach((client) => {
+			console.log(client.personal.username);
+			fbodataCollection.find().toArray((err, documents) => {
+				sendEmail(client, documents);
 			});
 		});
+
+
+
+		// clients.map((client) => {
+		// 	fbodataCollection.find(client.Parameters, function(err, cursor) {
+		// 		cursor.toArray().then((documents) => {
+		// 			sendEmail(client, documents);
+		// 		});
+		// 	});
+		// });
 		//console.log('hi');
 		//database.close();
 
@@ -593,7 +648,7 @@ function createCollection() {
   //fbodataCollection.insert({ID: undefined, Type});
 
   fboclientsCollection = database.mdb.collection('fboclients');
-  fboclientsCollection.createIndex({ ID: 1 }, {unique: true});
+  fboclientsCollection.createIndex({ _id: 1 }, {unique: true});
 
   //lastID = getLastMongoID();
 }

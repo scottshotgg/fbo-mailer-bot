@@ -44,13 +44,14 @@
 				console.log('ajax request dawg');
 				$.ajax({
 				  type: "POST",
-				  url: '/validate',
+				  url: '/validate_personal',
 				  dataType: 'json',
 				  data: Object.assign(...$("input").map((id, input) => {
 							return {[input.name]: input.value};
 						})),
 				  success: (result) => {
-				  	window.location.href = "/preferences";
+				  	// might need to put this in the backend
+				  	window.location.href = "/search_preferences";
 				  },
 				  error: (result) => {
 				  	console.log("error", result)
