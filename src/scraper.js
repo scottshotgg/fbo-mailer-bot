@@ -584,7 +584,16 @@ function connectMongoDB() {
 
 		fboclientsCollection.find().forEach((client) => {
 			console.log(client.personal.username);
-			fbodataCollection.find().toArray((err, documents) => {
+			console.log(client, client.search);
+
+			var ammendedSearchParams = Object.assign(...Object.keys(client.search).map((key) => {
+				return { ['Data.' + key] : client.search[key] }
+			}))
+			//process.exit(0);
+
+			console.log(ammendedSearchParams);
+
+			fbodataCollection.find(ammendedSearchParams).toArray((err, documents) => {
 				sendEmail(client, documents);
 			});
 		});

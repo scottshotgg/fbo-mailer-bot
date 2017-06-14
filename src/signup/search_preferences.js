@@ -34,7 +34,8 @@
 	filedata['Agency'] = [''];
 	delete filedata['Agency/Office/Location(s)'];
 	var filedatakeys = Object.keys(filedata);
-	var mapkeys = filedatakeys.slice(4, -4).concat(filedatakeys[16])
+	var mapkeys = filedatakeys.slice(4, -7).concat(filedatakeys[16]);
+	mapkeys.splice(2, 1);
 	console.log(mapkeys);
 
 	//mapkeys = mapkeys.slice()
@@ -48,7 +49,7 @@
 
 		$('#' + keyname).select2({
 			placeholder: key + ' search',
-			data: /*[{ id: 0, text: "All" }].concat(*/filedata[key].map((value, id) => {
+			data: filedata[key].map((value, id) => {
 				return { id: id + 1, text: value }
 			}),
 			language: {
@@ -74,10 +75,13 @@
 		  type: "POST",
 		  url: '/validate_search',
 		  dataType: 'json',
-		  data: Object.assign(...[].slice.call($(".select2-label")).map((element, id) => {
-					var thing = element.innerText.split('\n')
-					return {[thing[0]]: thing[2].slice(1).split('×')}
-				})),
+		  data: Object.assign(...[].slice.call($(".select2-label")).filter((element, id) => {
+					if (element.innerText.split('\n')[2].length > 1) 
+						return true
+					}).map((element, id) => {
+						var thing = element.innerText.split('\n');
+						return {[thing[0]]: thing[2].slice(1).replace('×', '').split(' -- ')[0]}
+					})),
 		  success: (result) => {
 		  	// we might need to put this in the backend
 		  	window.location.href = "/display_preferences";
@@ -88,6 +92,13 @@
 		});
 	}
 
+/*
+Object.assign(...[].slice.call($(".select2-label")).map((element, id) => {
+					var thing = element.innerText.split('\n');
+					//return {[thing[0]]: thing[2].slice(1).split('×')}
+					return {[thing[0]]: thing[2].slice(1).replace('×', '')}
+				}))
+*/
 
 /*
 var object = Object.assign(...[].slice.call(document.getElementsByClassName('field')).map((field) => {
