@@ -760,77 +760,81 @@ function postProcessing(oppo) {
 
 	//if(oppo.ID == '' || oppo.ID == undefined) 
 		//console.log(oppo);
-	/*
-	if(oppo.Data.Date) {
-		oppo.Date = { 
-			Month 	: oppo.Data.Date.substring(0, 2), 
-			Day 	: oppo.Data.Date.substring(2), 
-			Year 	: oppo.Data.Year 
-		};
+	
+	if(oppo.Date) {
+		// oppo.Date = { 
+		// 	Month 	: oppo.Data.Date.substring(0, 2), 
+		// 	Day 	: oppo.Data.Date.substring(2), 
+		// 	Year 	: oppo.Data.Year 
+		// };
+		oppo.Date = oppo.Date.substring(0, 2) + '/' + oppo.Date.substring(2) + '/' + oppo.Year;
 	}
 
-
-	delete oppo.Data.Year;
-	delete oppo.Data.Date;
+	delete oppo.Year;
 
 
 
-	if(oppo.Data['Classification Code']) {
-		var classification = {};
-		classification['ID'] = oppo.Data['Classification Code'];
-		classification['Text'] = codeMapping['Classification Code'][oppo.Data['Classification Code']];
-		//console.log(classification);
+	// if(oppo['Classification Code']) {
+	// 	var classification = {};
+	// 	classification['ID'] = oppo['Classification Code'];
+	// 	classification['Text'] = codeMapping['Classification Code'][oppo['Classification Code']];
+	// 	//console.log(classification);
 
-		oppo.Data['Classification Code'] = classification;
-	}
+	// 	oppo['Classification Code'] = classification;
+	// }
 
-	if(oppo.Data['NAICS Code']) {
-		var naics = {};
-		naics['ID'] = oppo.Data['NAICS Code'];
-		naics['Text'] = codeMapping['NAICS Code'][oppo.Data['NAICS Code']];
-		//console.log(naics);
+	// if(oppo['NAICS Code']) {
+	// 	var naics = {};
+	// 	naics['ID'] = oppo['NAICS Code'];
+	// 	naics['Text'] = codeMapping['NAICS Code'][oppo['NAICS Code']];
+	// 	//console.log(naics);
 
-		oppo.Data['NAICS Code'] = naics;
-	}
+	// 	oppo['NAICS Code'] = naics;
+	// }
 
 	// May consider making a seperate month/day/year for this
-	if(oppo.Data['Response Date']) {
-		oppo.Data['Response Date'] = { 
-			Month 	: oppo.Data['Response Date'].substring(0, 2), 
-			Day 	: oppo.Data['Response Date'].substring(2, 4), 
-			Year 	: oppo.Data['Response Date'].substring(4) 
-		};
+	if(oppo['Response Date']) {
+		// oppo['Response Date'] = { 
+		// 	Month 	: oppo['Response Date'].substring(0, 2), 
+		// 	Day 	: oppo['Response Date'].substring(2, 4), 
+		// 	Year 	: oppo['Response Date'].substring(4) 
+		// };
+		oppo['Response Date'] = oppo['Response Date'].substring(0, 2) + '/' + oppo['Response Date'].substring(2) + '/' + oppo.Year;
 	}
 
-	if(oppo.Data['Archive Date']) {
-		oppo.Data['Archive Date'] = { 
-			Month 	: oppo.Data['Archive Date'].substring(0, 2), 
-			Day 	: oppo.Data['Archive Date'].substring(2, 4), 
-			Year 	: oppo.Data['Archive Date'].substring(6) 
-		};
+	if(oppo['Archive Date']) {
+		/*oppo['Archive Date'] = { 
+			Month 	: oppo['Archive Date'].substring(0, 2), 
+			Day 	: oppo['Archive Date'].substring(2, 4), 
+			Year 	: oppo['Archive Date'].substring(6) 
+		};*/
+		oppo['Archive Date'] = oppo['Archive Date'].substring(0, 2) + '/' + oppo['Archive Date'].substring(2) + '/' + oppo.Year;
 	}
 
-	var pop = Object.keys(oppo.Data).filter((item) => { return item.includes('Pop') }).map((item) => {
+	/*var pop = Object.keys(oppo).filter((item) => { return item.includes('Pop') }).map((item) => {
 			var key = item.replace('Pop', '');
-			var popObj = { [key[0].toUpperCase() + key.slice(1)]: oppo.Data[item] };
-			delete oppo.Data[item];
+			var popObj = { [key[0].toUpperCase() + key.slice(1)]: oppo[item] };
+			delete oppo[item];
 			return popObj;
-	});
+	});*/
 
-	if(oppo.Data['Award Date']) {
-		oppo.Data['Award Date'] = { 
-			Month 	: oppo.Data['Award Date'].substring(0, 2), 
-			Day 	: oppo.Data['Award Date'].substring(2, 4), 
-			Year 	: oppo.Data['Award Date'].substring(4) 
-		};
+	if(oppo['Award Date']) {
+		/*oppo['Award Date'] = { 
+			Month 	: oppo['Award Date'].substring(0, 2), 
+			Day 	: oppo['Award Date'].substring(2, 4), 
+			Year 	: oppo['Award Date'].substring(4) 
+		};*/
+		oppo['Award Date'] = oppo['Award Date'].substring(0, 2) + '/' + oppo['Award Date'].substring(2) + '/' + oppo.Year;
 	}
 
-	if(pop.length > 0) {
-		oppo.Data['Place of Performance'] = Object.assign(...pop);
-	}
-	*/
+	// if(pop.length > 0) {
+	// 	oppo['Place of Performance'] = Object.assign(...pop);
+	// }
+	
 
 	oppo.ID = oppo['Solicitation Number'] || oppo['Award Number'];
+
+	console.log(oppo);
 
 	return oppo;
 }
