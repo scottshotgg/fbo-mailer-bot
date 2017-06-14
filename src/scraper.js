@@ -498,14 +498,14 @@ function sendEmail(client, documents) {
 		//return '<tr><td><center>' + document.Type + '</center></td>' + '<td><center>' + document.ID + '</center></td>' + '<td><center>' + document.Data.Subject + '</center></td>' + '<td><center>' + document.Data.Agency + '</center></td>';
 
 		// Might need to make the link specification more generic
-		return '<tr><td>' + makeLink(document.Data[tableColumns[0]], document.Data.URL).concat(tableColumns.slice(1).map((column) => {
+		return '<tr><td>' + makeLink(document[tableColumns[0]], document.URL).concat(tableColumns.slice(1).map((column) => {
 			 if(column.includes('.')) {
 			 	//console.log(column);
 			 	column = column.split('.');
 			 	// make this recursive
 			 	// make this detect if things are not available and put a '-'
-			 	if(document.Data[column[0]])
-			 		return document.Data[column[0]][column[1]];
+			 	if(document[column[0]])
+			 		return document[column[0]][column[1]];
 			 	else
 			 		return '-'
 			// 	return '0101010';
@@ -522,13 +522,13 @@ function sendEmail(client, documents) {
 						return document[column];
 					}
 				} else {
-					if(typeof document.Data[column] == 'object') {
+					if(typeof document[column] == 'object') {
 						//console.log(document.column)
 						// Change this to specify the date format and join it like that
 						// later though
 						return Object.values(document.Data[column]).join(' -- ');
 					} else {
-						return document.Data[column];
+						return document[column];
 					}
 				}
 			}
@@ -593,7 +593,7 @@ function connectMongoDB() {
 
 			console.log(ammendedSearchParams);
 
-			fbodataCollection.find(ammendedSearchParams).toArray((err, documents) => {
+			fbodataCollection.find(client.search).toArray((err, documents) => {
 				sendEmail(client, documents);
 			});
 		});
@@ -723,8 +723,9 @@ function splitString(thing) {
 	var array = thing.split(/(<[A-Z]+>)/g);
 
 	var object = {};
-	object.Data = {};
-	object.Data['Opportunity/Procurement Type'] = typeMapping[array[1].slice(1, -1)];
+	//object.Data = {};
+	//object.Data['Opportunity/Procurement Type'] = typeMapping[array[1].slice(1, -1)];
+	object['Opportunity/Procurement Type'] = typeMapping[array[1].slice(1, -1)];
 
 	for(var i = 3; i < array.length; i+=2)
 	{
@@ -738,9 +739,9 @@ function splitString(thing) {
 
 		// If the object does not already contain the key
 		if(object[key] == undefined) {
-			object.Data[key] = value;
+			object[key] = value;
 		} else if(value != 'Link To Document') {
-			object.Data[key] = [object.Data[key]].concat(value)
+			object[key] = [object[key]].concat(value)
 		}
 	}
 	//console.log(object);
@@ -759,7 +760,7 @@ function postProcessing(oppo) {
 
 	//if(oppo.ID == '' || oppo.ID == undefined) 
 		//console.log(oppo);
-
+	/*
 	if(oppo.Data.Date) {
 		oppo.Date = { 
 			Month 	: oppo.Data.Date.substring(0, 2), 
@@ -771,6 +772,8 @@ function postProcessing(oppo) {
 
 	delete oppo.Data.Year;
 	delete oppo.Data.Date;
+
+
 
 	if(oppo.Data['Classification Code']) {
 		var classification = {};
@@ -825,8 +828,9 @@ function postProcessing(oppo) {
 	if(pop.length > 0) {
 		oppo.Data['Place of Performance'] = Object.assign(...pop);
 	}
+	*/
 
-	oppo.ID = oppo.Data['Solicitation Number'] || oppo.Data['Award Number'];
+	oppo.ID = oppo['Solicitation Number'] || oppo['Award Number'];
 
 	return oppo;
 }
