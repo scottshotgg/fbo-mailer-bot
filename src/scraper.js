@@ -2,6 +2,7 @@ var fs = require('fs');
 var cheerio = require('cheerio');
 var session = require('express-session')
 var bodyParser = require('body-parser');
+var mkdirp = require('mkdirp');
 /*
 
 		***;** NEED TO SET UP THE EVENT LOOP *****
@@ -207,7 +208,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 
 // change this to use better pathing I guess, this should also get the current directory
-app.use(express.static('/Users/scottgaydos/Development/fbo-spider-phantomjs'));//, { 'fallthrough': false }));
+app.use("/clients", express.static(path.join(__dirname, 'clients')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -223,9 +224,6 @@ app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/signup/signup.html');
 });
 
-app.get('/signup', function (req, res) {
-	res.sendFile(__dirname + '/signup/signup.html');
-});
 
 app.post('/validate_personal', function (req, res) {
 
@@ -271,8 +269,22 @@ app.post('/validate_display', function (req, res) {
 
 	Promise.resolve(fboclientsCollection.insert(req.session))
 		.then(() => {
-			res.json({ name: req.session.personal.firstname });
+			fbodataCollection.find(req.session.search).toArray((err, documents) => {
+				// this is where we may need the event loop
+				generateNewClientPage(req.session, documents);
+				res.json({ name: req.session.personal.username });
+			});
+
 		});
+});
+
+function generateNewClientPage(client, documents) {
+	console.log(client);
+	sendEmail(client, documents);
+}
+
+app.get('/signup.js', function (req, res) {
+	res.sendFile(__dirname + '/signup/signup.js');
 });
 
 app.get('/search_preferences', function (req, res) {
@@ -347,6 +359,7 @@ app.post('/client', function (req, res) {
 	});
 });
 
+// Make a template for this
 app.use(function (err, req, res, next) {
   console.error(err.stack)
   res.status(500).send('<center><h1>Something broke!<h1><center>')
@@ -355,6 +368,18 @@ app.use(function (err, req, res, next) {
 app.listen(8080, function () {
   console.log('Listening on port 8080!')
 });
+
+
+
+// Using the event-loop for the software architecture
+//const EventEmitter = require('events');
+//class EventLoop extends EventEmitter {}
+//const mainEventLoop = new EventLoop();
+
+//mainEventLoop.on('newClient', newClient());
+
+
+
 
 var randomstring = require("randomstring");
 
@@ -491,7 +516,7 @@ function sendEmail(client, documents) {
 
 	// Need to tell the user when something doesn't exist
 	// Change this to make it display what the user wants
-	var tableColumns = ['Subject', 'ID', 'Type', 'Agency', 'Date', 'NAICS Code.Text'];
+	var tableColumns = ['Subject', 'ID', 'Opportunity/Procurement Type', 'Agency', 'Date', 'NAICS Code'];
 
 	$('thead').html(tableColumns.slice(0, tableColumns.length).map(header => '<th>' + header + '</th>').join('\n'));
 	$('tbody').html(documents.map((document) => {
@@ -526,7 +551,7 @@ function sendEmail(client, documents) {
 						//console.log(document.column)
 						// Change this to specify the date format and join it like that
 						// later though
-						return Object.values(document.Data[column]).join(' -- ');
+						return Object.values(document[column]).join(' -- ');
 					} else {
 						return document[column];
 					}
@@ -548,7 +573,16 @@ function sendEmail(client, documents) {
 	}));
 	//console.log(client.Name + 'index.html')
 	console.log('/clients/' + client.personal.username.toLowerCase() + '/index.html');
-	fs.writeFileSync(__dirname + '/clients/' + client.personal.username.toLowerCase() + '/index.html', $.html(), 'utf8');
+	try {
+		fs.writeFileSync(__dirname + '/clients/' + client.personal.username.toLowerCase() + '/index.html', $.html(), 'utf8');
+	} catch(err) {
+		mkdirp(__dirname + '/clients/' + client.personal.username.toLowerCase(), function (err) {
+		    if (!err) {
+		    	fs.writeFileSync(__dirname + '/clients/' + client.personal.username.toLowerCase() + '/index.html', $.html(), 'utf8');
+		    }
+		});
+	}
+
 }
 
 
@@ -583,15 +617,15 @@ function connectMongoDB() {
 		//console.log(clients.getParameters())
 
 		fboclientsCollection.find().forEach((client) => {
-			console.log(client.personal.username);
-			console.log(client, client.search);
+			console.log(client.personal.username, client.search);
+			//console.log(client, client.search);
 
-			var ammendedSearchParams = Object.assign(...Object.keys(client.search).map((key) => {
-				return { ['Data.' + key] : client.search[key] }
-			}))
+			// var ammendedSearchParams = Object.assign(...Object.keys(client.search).map((key) => {
+			// 	return { ['Data.' + key] : client.search[key] }
+			// }));
 			//process.exit(0);
 
-			console.log(ammendedSearchParams);
+			//console.log(ammendedSearchParams);
 
 			fbodataCollection.find(client.search).toArray((err, documents) => {
 				sendEmail(client, documents);
@@ -834,7 +868,7 @@ function postProcessing(oppo) {
 
 	oppo.ID = oppo['Solicitation Number'] || oppo['Award Number'];
 
-	console.log(oppo);
+	//console.log(oppo);
 
 	return oppo;
 }

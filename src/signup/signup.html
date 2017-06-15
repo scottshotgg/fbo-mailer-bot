@@ -2,6 +2,18 @@
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.6/select2-bootstrap.min.css" rel="stylesheet" />
+
 	<title>
 		FBO-Mailer Signup!
 	</title>
@@ -9,58 +21,81 @@
 
 <body>
 	
-
-	<div id="pagetitle"><h1><center>FBO-Mailer Signup</center></h1></div><br><br><br>
+	<center>
+	<div id="pagetitle"><h1>FBO-Mailer Signup</h1></div><br><br>
+	<label id="page_label"><h3>Personal Information</h3></label><br><br>
 
 	<!--<center><form id="personal" name="personal" action="/validate" onsubmit="return validatePersonalInformation()">-->
-	<center>
-		First name:<br>
-		<input type="text" name="firstname"><br><br>
-		Last name:<br>
-		<input type="text" name="lastname"><br><br>
-		Net ID:<br>
-		<input type="text" name="netid"><br><br>
-		Username:<br>
-		<input type="text" name="username"><br><br>
-		Email:<br>
-		<input type="text" name="email"><br><br>
-		Password:<br>
-		<input type="text" name="password"><br><br>
-		Confirm Password:<br>
-		<input type="text" name="confirm"><br><br>
+		<div id="firstname_div" class="form-group" style="width: 40%;">
+      		<label class="control-label" for="firstname" style="align-text: left; width: 100%;">First name:</label>
+      		<div class="input-group">
+      			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      			<input type="text" class="form-control" id="firstname">
+	      		<span class="glyphicon form-control-feedback"></span>
+      		</div>
+    	</div>
+
+		<div class="form-group" style="width: 40%;">
+      		<label class="control-label" for="lastname" style="align-text: left; width: 100%;">Last name:</label>
+      		<div class="input-group">
+      			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	      		<input type="text" class="form-control" id="lastname">
+	    	</div>
+    	</div>
+
+		<div id="netid_div" class="form-group" style="width: 40%;">
+      		<label class="control-label" for="netid" style="align-text: left; width: 100%;">Net ID:</label>
+      		<div class="input-group">
+      			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	      		<input type="text" class="form-control" id="netid">
+	      		<span class="glyphicon form-control-feedback"></span>
+	    	</div>
+    	</div>
+
+		<!--
+		<div class="form-group" style="width: 40%;">
+      		<label class="control-label" for="username" style="align-text: left; width: 100%;">Username:</label>
+      		<div class="input-group">
+      			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	      		<input type="text" class="form-control" id="username">
+	    	</div>
+    	</div>
+		-->
+
+		<div id="email_div" class="form-group" style="width: 40%;">
+      		<label class="control-label" for="email" style="align-text: left; width: 100%;">Email:</label>
+      		<div class="input-group">
+      			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	      		<input type="text" disabled class="form-control" id="email" value="@utdallas.edu">
+	      		<span class="glyphicon form-control-feedback"></span>
+	    	</div>
+    	</div>
+
+		<div class="form-group" style="width: 40%;">
+      		<label class="control-label" for="password" style="align-text: left; width: 100%;">Password:</label>
+      		<div class="input-group">
+      			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	      		<input type="password" class="form-control" id="password">
+	    	</div>
+    	</div>
+
+		<div class="form-group" style="width: 40%;">
+      		<label class="control-label" for="confirm_password" style="align-text: left; width: 100%;">Confirm Password:</label>
+      		<div class="input-group">
+      			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	      		<input type="password" class="form-control" id="confirm_password">
+	    	</div>
+    	</div>
+
+    	<br>
 
 		You will choose your search preferences on the next page.<br><br><br>
 
-		<button id="continue_button" onclick="validatePersonalInformation()">Continue</button>
+		<button id="continue_button" type="button" class="btn btn-primary" onclick="validatePersonalInformation()">Continue</button>
 		<!--</form></center>-->
 	</center>
 	
-	<script>
-		function validatePersonalInformation() {
-			if([].slice.call($("input")).every((input) => {
-				console.log('hi');
-				return input.value;
-			})) {
-				console.log('ajax request dawg');
-				$.ajax({
-				  type: "POST",
-				  url: '/validate_personal',
-				  dataType: 'json',
-				  data: Object.assign(...$("input").map((id, input) => {
-							return {[input.name]: input.value};
-						})),
-				  success: (result) => {
-				  	// might need to put this in the backend
-				  	window.location.href = "/search_preferences";
-				  },
-				  error: (result) => {
-				  	console.log("error", result)
-				  }
-				});
-			}
-
-		}
-	</script>
+	<script type="text/javascript" src="/signup.js"></script>
 
 </body>
 </html>

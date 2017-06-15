@@ -1,0 +1,90 @@
+<!DOCTYPE html><html><!-- RESOURCES --><!-- LINKS --><head><link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/datatables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/uikit.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.uikit.min.css">
+
+    <!-- SCRIPTS -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript">
+  </script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/datatables.min.js">
+  </script>
+  <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" type="text/javascript">
+  </script>
+  <script src="https://cdn.datatables.net/1.10.13/js/dataTables.uikit.min.js" type="text/javascript">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js" type="text/javascript">
+  </script>
+  <script src="https://cdn.datatables.net/plug-ins/1.10.13/sorting/datetime-moment.js" type="text/javascript">
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $.fn.dataTable.moment('MMM DD, YYYY');
+      var table = $('#fbo_table').DataTable();
+      table.order( [[3, 'dec'], [0, 'asc']]).draw();
+    });
+  </script>
+
+  
+
+    <!-- CSS STYLING -->
+    <style>
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
+      th, td {
+        padding: 15px;
+      }
+
+      th {
+        font-size: 22px;
+      }
+
+      td {
+        font-size:18px;
+      }
+
+      td:last-child {
+        width: 120px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <center>
+      <div id="fbo_title">
+        <br>
+        <h1>FBO Database</h1>
+      </div>
+      <br>
+      <a id="download" href="http://arc-fbobot.utdallas.edu/FBODatabase.csv">Download this file</a>
+      <div id="table_encap" style="min-width: 800px; max-width: 1400px; width: 80%;">
+        <br>
+        <table id="fbo_table" class="uk-table uk-table-hover uk-table-striped" cellspacing="0" style="width: 100%;">
+          <thead><th>Subject</th>
+<th>ID</th>
+<th>Opportunity/Procurement Type</th>
+<th>Agency</th>
+<th>Date</th>
+<th>NAICS Code</th></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </center>
+      <br><br><br><br>
+      <div id="criteria_container" style="width: 100%;">
+        <div id="criteria" align="center">
+          The above data was scraped using the following search parameters:
+        </div>
+        <div id="search_parameters_container" style="display: table; margin: 0px auto;">
+          <br>
+          <span id="search_parameters" text-align="left"></span>
+        </div>
+      </div>
+      <br><br><br><br><br>
+      <div id="date" align="center">
+      </div>
+      <br>
+  
+</body></html>
