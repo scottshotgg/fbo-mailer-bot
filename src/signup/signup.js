@@ -22,12 +22,12 @@ function validatePersonalInformation() {
 	}
 }
 
-$('#firstname').keydown(function (e) {
-	if(e.which == "9") {
+$('#firstname').focusout(function (e) {
+	if($('#firstname').val() != '') {
 		var success = "has-error"
 		var glyph_success = "glyphicon-remove";
 		var firstname = $('#firstname').val();
-
+1
 		if(firstname && /^[a-zA-Z]+$/.test()) {
 			// you could do an actual verification here but w/e
 			$('#firstname_div').attr('class', 'form-group has-success has-feedback');
@@ -40,8 +40,10 @@ $('#firstname').keydown(function (e) {
 	}
 });
 
-$('#netid').keydown(function (e) {
-	if(e.which == "9") {
+$('#netid').focusout(function (e) {
+	console.log('hello');
+	console.log($('#netid').val())
+	if($('#netid').val() != '') {
 		//$('#netid_div').attr('class', 'form-group has-success has-feedback');
 		var success = "has-error"
 		var glyph_success = "glyphicon-remove";
@@ -63,6 +65,8 @@ $('#netid').keydown(function (e) {
 	}
 });
 	
+/*
 $('#netid').bind('input', function(e) {
 	$('#email').val($('#netid').val() + "@utdallas.edu")
 });
+*/

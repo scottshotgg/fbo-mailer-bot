@@ -14,13 +14,14 @@
     "express-session": "^1.15.3",
     "ftp-get": "latest",
     "graphql": "latest",
+    "mkdirp": "^0.5.1",
     "mongodb": "latest",
     "node-cron": "^1.2.0",
     "randomstring": "^1.1.5",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "request": "latest",
-    "require_optional": "^1.0.0",
+    "require_optional": "^1.0.1",
     "sendmail": "^1.1.1"
   },
   "repository": {
