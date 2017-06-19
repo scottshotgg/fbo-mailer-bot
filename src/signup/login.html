@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.6/select2-bootstrap.min.css" rel="stylesheet" />
+		<title>FBO-Mailer Login</title>
+	</head>
+	<body>
+		<center>
+		<div id="pagetitle"><h1>FBO-Mailer Login</h1></div><br><br>
+		<br><br>
+		<div id="netid_div" class="form-group" style="width: 40%;">
+      		<label class="control-label" for="netid_div">Net ID:</label>
+      		<div class="input-group">
+      			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	      		<input id="netid" type="text" class="form-control">
+	      		<span class="glyphicon form-control-feedback"></span>
+	    	</div>
+    	</div>
+
+		<div id="password_div" class="form-group" style="width: 40%;">
+      		<label class="control-label" for="password_div">Password:</label>
+      		<div class="input-group">
+      			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	      		<input id="password" type="password" class="form-control">
+	      		<span class="glyphicon form-control-feedback"></span>
+	    	</div>
+    	</div><div id="error" style="color: #a94442;"></div>
+		<br><br>
+		<div id="button_div" style="width: 100%;">
+			<button id="login_button" type="button" class="btn btn-primary" style="margin-right: 2%;" onclick="login()">Login</button>
+			<button id="signup_button" type="button" class="btn btn-primary" style="margin-left: 2%;" onclick="signup()">Signup</button>
+		</div>
+
+		</center>
+		<script src="md5.min.js"></script>
+		<script type="text/javascript" src="/login.js"></script>
+	</body>
+</html>

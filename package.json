@@ -22,7 +22,8 @@
     "react-dom": "^15.6.1",
     "request": "latest",
     "require_optional": "^1.0.1",
-    "sendmail": "^1.1.1"
+    "sendmail": "^1.1.1",
+    "blueimp-md5": "latest"
   },
   "repository": {
     "type": "git",

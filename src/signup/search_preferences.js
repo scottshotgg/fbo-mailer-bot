@@ -70,26 +70,31 @@
 	*/
 
 	function validate_search() {
-		console.log('ajax request dawg');
-		$.ajax({
-		  type: "POST",
-		  url: '/validate_search',
-		  dataType: 'json',
-		  data: Object.assign(...[].slice.call($(".select2-label")).filter((element, id) => {
-					if (element.innerText.split('\n')[2].length > 1) 
-						return true
-					}).map((element, id) => {
-						var thing = element.innerText.split('\n');
-						return {[thing[0]]: thing[2].slice(1).replace('×', '').split(' -- ')[0]}
-					})),
-		  success: (result) => {
-		  	// we might need to put this in the backend
-		  	window.location.href = "/display_preferences";
-		  },
-		  error: (result) => {
-		  	console.log("error", result)
-		  }
-		});
+
+		if ([].slice.call($(".select2-selection__rendered")).filter((element) => {
+			return element.innerText;
+		}).length > 0) {		
+			$.ajax({
+			  type: "POST",
+			  url: '/validate_search',
+			  data: Object.assign(...[].slice.call($(".select2-label")).filter((element, id) => {
+						if (element.innerText.split('\n')[2].length > 1) 
+							return true
+						}).map((element, id) => {
+							var thing = element.innerText.split('\n');
+							return {[thing[0]]: thing[2].slice(1).replace('×', '').split(' -- ')[0]}
+						})),
+			  success: (result) => {
+			  	// we might need to put this in the backend
+			  	window.location.href = "/display_preferences";
+			  },
+			  error: (result) => {
+			  	console.log("error", result)
+			  }
+			});	
+		} else {
+			$('#error').html('You must include atleast one search term');
+		}
 	}
 
 /*

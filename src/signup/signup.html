@@ -27,24 +27,28 @@
 
 	<!--<center><form id="personal" name="personal" action="/validate" onsubmit="return validatePersonalInformation()">-->
 		<div id="firstname_div" class="form-group" style="width: 40%;">
-      		<label class="control-label" for="firstname" style="align-text: left; width: 100%;">First name:</label>
+      		<label class="control-label" for="firstname_div">First name:</label>
+      		<div id="error" style="color: #a94442;"></div>
       		<div class="input-group">
       			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      			<input type="text" class="form-control" id="firstname">
+      			<input id="firstname" type="text" class="form-control">
 	      		<span class="glyphicon form-control-feedback"></span>
       		</div>
     	</div>
 
-		<div class="form-group" style="width: 40%;">
-      		<label class="control-label" for="lastname" style="align-text: left; width: 100%;">Last name:</label>
+		<div id="lastname_div" class="form-group" style="width: 40%;">
+      		<label class="control-label" for="lastname_div">Last name:</label>
+      		<div id="error" style="color: #a94442;"></div>
       		<div class="input-group">
       			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-	      		<input type="text" class="form-control" id="lastname">
+	      		<input id="lastname" type="text" class="form-control">
+	      		<span class="glyphicon form-control-feedback"></span>
 	    	</div>
     	</div>
 
 		<div id="netid_div" class="form-group" style="width: 40%;">
-      		<label class="control-label" for="netid" style="align-text: left; width: 100%;">Net ID:</label>
+      		<label class="control-label" for="netid_div">Net ID:</label>
+      		<div id="error" style="color: #a94442;"></div>
       		<div class="input-group">
       			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 	      		<input id="netid" type="text" class="form-control">
@@ -63,27 +67,32 @@
 		-->
 
 		<div id="email_div" class="form-group" style="width: 40%;">
-      		<label class="control-label" for="email" style="align-text: left; width: 100%;">Email:</label>
+      		<label class="control-label" for="email_div">Email:</label>
+      		<div id="error" style="color: #a94442;"></div>
       		<div class="input-group">
       			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-	      		<input type="text" disabled class="form-control" id="email" value="@utdallas.edu">
+	      		<input id="email" type="text" disabled class="form-control" value="@utdallas.edu">
 	      		<span class="glyphicon form-control-feedback"></span>
 	    	</div>
     	</div>
 
-		<div class="form-group" style="width: 40%;">
-      		<label class="control-label" for="password" style="align-text: left; width: 100%;">Password:</label>
+		<div id="password_div" class="form-group" style="width: 40%;">
+      		<label class="control-label" for="password_div">Password:</label>
+      		<div id="error" style="color: #a94442;"></div>
       		<div class="input-group">
       			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-	      		<input type="password" class="form-control" id="password">
+	      		<input id="password" type="password" class="form-control">
+	      		<span class="glyphicon form-control-feedback"></span>
 	    	</div>
     	</div>
 
-		<div class="form-group" style="width: 40%;">
-      		<label class="control-label" for="confirm_password" style="align-text: left; width: 100%;">Confirm Password:</label>
+		<div id="confirm_password_div" class="form-group" style="width: 40%;">
+      		<label class="control-label" for="confirm_password_div">Confirm Password:</label>
+      		<div id="error" style="color: #a94442;"></div>
       		<div class="input-group">
       			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-	      		<input type="password" class="form-control" id="confirm_password">
+	      		<input id="confirm_password" type="password" class="form-control">
+	      		<span class="glyphicon form-control-feedback"></span>
 	    	</div>
     	</div>
 
@@ -94,7 +103,8 @@
 		<button id="continue_button" type="button" class="btn btn-primary" onclick="validatePersonalInformation()">Continue</button>
 		<!--</form></center>-->
 	</center>
-	
+
+	<script src="md5.min.js"></script>
 	<script type="text/javascript" src="/signup.js"></script>
 
 </body>

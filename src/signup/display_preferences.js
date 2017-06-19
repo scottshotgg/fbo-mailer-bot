@@ -67,7 +67,6 @@
 		$.ajax({
 		  type: "POST",
 		  url: '/validate_display',
-		  dataType: 'json',
 		  data: Object.assign(...[].slice.call($(".select2-label")).map((element, id) => {
 					var thing = element.innerText.split('\n')
 					return {[thing[0]]: thing[2].slice(1).split('×')}
