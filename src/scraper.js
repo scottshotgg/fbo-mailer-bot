@@ -232,37 +232,6 @@ app.get('/', function (req, res, next) {
 	}
 });
 
-
-
-function validateName(name) {
-	return /^[a-zA-Z]+$/.test(name);
-}
-
-function validateNetID(netid) {
-	return (netid.length == 9 && /^[a-zA-Z]+$/.test(netid.substring(0, 3)) && /^[0-9]+$/.test(netid.substring(3)));
-}
-
-function validateEmail(email) {
-	var emailsplit = email.split('@');
-
-	return (email.length == 22 && validateNetID(emailsplit[0]) && emailsplit[1] == 'utdallas.edu');
-
-}
-
-function validatePassword(password) {
-	return password.length > 8;
-}
-
-function validatePersonal(personal) {
-	return (
-	validateName(personal.firstname) &&
-	validateNetID(personal.netid) &&
-	validateEmail(personal.email) &&
-	validatePassword(personal.password) &&
-	validatePassword(personal.confirm_password));
-}
-
-
 app.post('/validate_personal', function (req, res) {
 	req.session.client = {};
 
@@ -352,6 +321,10 @@ app.post('/validate_display', function (req, res) {
 	sendEmail(client, documents);
 }*/
 
+app.get('/index.template.js', function (req, res) {
+	res.sendFile(__dirname + '/resources/templates/index.template.js');
+});
+
 app.get('/md5.min.js', function (req, res) {
 	res.sendFile(__dirname + '/signup/md5.min.js');
 });
@@ -386,6 +359,29 @@ app.get('/logout.js', function (req, res) {
 
 app.get('/login.js', function (req, res) {
 	res.sendFile(__dirname + '/signup/login.js');
+});
+
+// app.post('/modify_search_preferences', function (req, res) {
+// 	console.log('hi its me, the post request');
+// 	if(req.session.client != undefined && req.session.client.search)
+// 		res.location('/search_preferences').json(req.session.client.search).end();
+// 	/*
+// 	if(req.session.client != undefined && req.session.client.personal != undefined) {
+// 		res.sendFile(__dirname + '/signup/search_preferences.html');
+// 	} else {
+// 		res.redirect('/');
+// 	}
+// 	*/
+// });
+
+app.post('/get_search_preferences', function (req, res) {
+	//res.sendStatus(204);
+	if(req.session.client != undefined && req.session.client.search)
+		res.json(req.session.client.search);
+});
+
+app.get('/modify_search_preferences', function (req, res) {
+	res.sendFile(__dirname + '/signup/search_preferences.html');
 });
 
 app.get('/search_preferences', function (req, res) {
@@ -456,7 +452,33 @@ app.listen(8080, function () {
   console.log('Listening on port 8080!');
 });
 
+function validateName(name) {
+	return /^[a-zA-Z]+$/.test(name);
+}
 
+function validateNetID(netid) {
+	return (netid.length == 9 && /^[a-zA-Z]+$/.test(netid.substring(0, 3)) && /^[0-9]+$/.test(netid.substring(3)));
+}
+
+function validateEmail(email) {
+	var emailsplit = email.split('@');
+
+	return (email.length == 22 && validateNetID(emailsplit[0]) && emailsplit[1] == 'utdallas.edu');
+
+}
+
+function validatePassword(password) {
+	return password.length > 8;
+}
+
+function validatePersonal(personal) {
+	return (
+	validateName(personal.firstname) &&
+	validateNetID(personal.netid) &&
+	validateEmail(personal.email) &&
+	validatePassword(personal.password) &&
+	validatePassword(personal.confirm_password));
+}
 
 // Using the event-loop for the software architecture
 //const EventEmitter = require('events');

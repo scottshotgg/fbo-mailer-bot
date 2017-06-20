@@ -27,23 +27,23 @@ function validatePersonalInformation() {
 	}))  {
 		console.log('ajax request dawg');
 		$.ajax({
-		  type: "POST",
-		  url: '/validate_personal',
-		  data: (() => {
-		  			var data = Object.assign(...$("input").map((id, input) => {
-						return {[input.id]: input.value};
-					}));
-					data['password'] = md5(data['password']);
-					data['confirm_password'] = md5(data['confirm_password']);
-					return data;
-				})(),
-		  success: (result) => {
-		  	// might need to put this in the backend
-		  	window.location.href = "/search_preferences";
-		  },
-		  error: (result) => {
-		  	console.log("error", result)
-		  }
+			type: "POST",
+			url: '/validate_personal',
+			data: (() => {
+				var data = Object.assign(...$("input").map((id, input) => {
+					return {[input.id]: input.value};
+				}));
+				data['password'] = md5(data['password']);
+				data['confirm_password'] = md5(data['confirm_password']);
+				return data;
+			})(),
+			success: (result) => {
+				// might need to put this in the backend
+				window.location.href = "/search_preferences";
+			},
+			error: (result) => {
+				console.log("error", result)
+			}
 		});
 	} else {
 		Object.keys(valObj).map((element, id) => {

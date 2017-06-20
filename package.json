@@ -4,6 +4,7 @@
   "description": "A scraper for the FBO.gov site",
   "main": "src/fboftpthing.js",
   "dependencies": {
+    "blueimp-md5": "^2.7.0",
     "body-parser": "^1.17.2",
     "bson": "^1.0.4",
     "cheerio": "^1.0.0-rc.1",
@@ -15,15 +16,14 @@
     "ftp-get": "latest",
     "graphql": "latest",
     "mkdirp": "^0.5.1",
-    "mongodb": "latest",
+    "mongodb": "^2.2.29",
     "node-cron": "^1.2.0",
     "randomstring": "^1.1.5",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "request": "latest",
     "require_optional": "^1.0.1",
-    "sendmail": "^1.1.1",
-    "blueimp-md5": "latest"
+    "sendmail": "^1.1.1"
   },
   "repository": {
     "type": "git",
