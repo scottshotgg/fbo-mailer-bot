@@ -1,54 +1,11 @@
-
-/*	
-	searchOptionNames was generated/retrieved from: 
-		https://www.fbo.gov/index?s=opportunity&tab=search&mode=list
-	Using: (note that the / on the * is escaped in here but not in the actual source)
-		var object = Object.assign(...[].slice.call(document.getElementsByClassName('field')).map((field) => {
-			var widget = field.querySelector('.widget');
-			var label  = field.querySelector('.label').innerText.split('.')[0];
-			if(label.includes('\n')) {
-				return {undefined: undefined}
-		    } else if (widget.lastElementChild.localName == 'br' || widget.lastElementChild.localName == 'label') {
-				return {[label]: widget.textContent.split('\n').filter((name) => {
-					return /\S/.test(name);
-				})};
-			} else if (widget.lastElementChild.localName == 'table') {
-				return {[label]: [].concat.apply([], widget.innerText.split('\t').map((name) => {
-					return name.split('\n');
-				})).slice(0, -1)};
-			} else {
-				return {[label]: widget.lastElementChild.textContent.split('\n').filter((name) => {
-					return /\S/.test(name);
-				})};
-			}
-		}));
-
-		delete object['undefined'];
-		object['Classification Code'] = object['Classification Code'].slice(0, -1);
-*/
-
-
 $(document).ready(() => {
 	console.log(window.location.pathname);
 
-	if(window.location.pathname == '/modify_search_preferences') {
-		console.log('we need to get the clients shit with a post request');
-
+	if(window.location.pathname.includes('modify')) {
 		$.ajax({
 			type: "POST",
 			url: '/get_search_preferences',
 			success: (result) => {
-				// might need to put this in the backend
-				//window.location.href = "/search_preferences";
-				console.log(result);
-
-				// $('select').map((id, element) => {
-
-				// 	if(element[1] != undefined && element[1].innerText == 'Combined Synopsis/Solicitation') {
-				// 		console.log(element[1]);
-				// 		$(element).val(id + 1).change()
-				// 	}
-				// });
 				Object.keys(result).map((key, id) => {
 					$('#' + key.replace(/[^a-zA-Z0-9]/g,'_')).val(result[key]).trigger('change')
 				});
@@ -59,8 +16,6 @@ $(document).ready(() => {
 		});
 	}
 });
-
-
 
 var searchOptionNames = ["Posted Date", "Place of Performance State", "Place of Performance Zip Code", "Documents To Search", "Set-Aside Code", "Opportunity/Procurement Type", "Agency/Office/Location(s)", "Specific Agencies / Offices", "Office Location(s)", "Recovery and Reinvestment Act Action", "Keywords or SOL#", "NAICS Code", "Classification Code", "J&A Statutory Authority", "Fair Opportunity / Limited Sources Justification Authority", "Posted Date Range", "Response Deadline", "Last Modified", "Contract Award Date"];
 
@@ -121,7 +76,12 @@ function validate_search() {
 					})),
 		  success: (result) => {
 		  	// we might need to put this in the backend
-		  	window.location.href = "/display_preferences";
+		  	if(window.location.pathname.includes('modify')) {
+		  		window.location.href = "/modify_display_preferences";
+		  	} else {
+		  		window.location.href = "/display_preferences";
+		  	}
+		  	
 		  },
 		  error: (result) => {
 		  	console.log("error", result)

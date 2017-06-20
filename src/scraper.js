@@ -221,14 +221,14 @@ var router = express.Router();
 app.get('/', function (req, res, next) {
 	if(req.session.client == undefined) {
 		req.session.client = {};
-		res.sendFile(__dirname + '/signup/login.html');
+		res.redirect('/login');
 	}
 	else if(req.session.client.personal != undefined) {
-		res.sendFile(__dirname + '/clients/' + req.session.client.personal.netid + '/index.html');
+		res.redirect('/' + req.session.client.personal.netid);
 	} else {
 		// app.path('/signup');
 		// next('/signup');
-		res.sendFile(__dirname + '/signup/login.html');
+		res.redirect('/login');
 	}
 });
 
@@ -301,7 +301,7 @@ app.post('/validate_display', function (req, res) {
 		// 	})
 		// }));
 
-		Promise.resolve(fboclientsCollection.insert(req.session.client))
+		Promise.resolve(fboclientsCollection.update({ 'personal.netid': req.session.client.personal.netid }, req.session.client, { upsert: true }))
 			.then(() => {
 				fbodataCollection.find(req.session.client.search).toArray((err, documents) => {
 					// this is where we may need the event loop
@@ -374,16 +374,6 @@ app.get('/login.js', function (req, res) {
 // 	*/
 // });
 
-app.post('/get_search_preferences', function (req, res) {
-	//res.sendStatus(204);
-	if(req.session.client != undefined && req.session.client.search)
-		res.json(req.session.client.search);
-});
-
-app.get('/modify_search_preferences', function (req, res) {
-	res.sendFile(__dirname + '/signup/search_preferences.html');
-});
-
 app.get('/search_preferences', function (req, res) {
 	if(req.session.client != undefined && req.session.client.personal != undefined) {
 		res.sendFile(__dirname + '/signup/search_preferences.html');
@@ -398,6 +388,21 @@ app.get('/search_preferences.js', function (req, res) {
 
 app.get('/search_preferences.css', function (req, res) {
 	res.sendFile(__dirname + '/signup/search_preferences.css');
+});
+
+app.post('/get_search_preferences', function (req, res) {
+	//res.sendStatus(204);
+	// idk do we need checks before these?
+	if(req.session.client != undefined && req.session.client.search != undefined)
+		res.json(req.session.client.search);
+});
+
+app.get('/modify_search_preferences', function (req, res) {
+	if(req.session.client != undefined && req.session.client.personal != undefined) {
+		res.sendFile(__dirname + '/signup/search_preferences.html');
+	} else {
+		res.redirect('/');
+	}
 });
 
 app.get('/display_preferences', function (req, res) {
@@ -415,6 +420,21 @@ app.get('/display_preferences.js', function (req, res) {
 app.get('/display_preferences.css', function (req, res) {
 	res.sendFile(__dirname + '/signup/display_preferences.css');
 });
+
+app.post('/get_display_preferences', function (req, res) {
+	//res.sendStatus(204);
+	if(req.session.client != undefined && req.session.client.search != undefined)
+		res.json(req.session.client.display);
+});
+
+app.get('/modify_display_preferences', function (req, res) {
+	if(req.session.client != undefined && req.session.client.personal != undefined) {
+		res.sendFile(__dirname + '/signup/display_preferences.html');
+	} else {
+		res.redirect('/');
+	}
+});
+
 
 app.get('/data.json', function (req, res) {
 	res.sendFile(__dirname + '/signup/data.json');

@@ -1,0 +1,14 @@
+todo
+
+- Make sure the account does not already exist when making a new account
+- Make a forgot username
+
+- Make a forgot password
+
+- Make the preferences changer prettier (alerts, explanations, fade ins, etc)
+
+- Fix the search settings not being set properly, needs to be an array, for some reason it is a long string
+
+- Make an email checkbox and make the emailing service
+
+- Make a delete process that will delete both the folder and the MongoDB entry
