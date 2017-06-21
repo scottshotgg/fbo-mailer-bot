@@ -317,6 +317,7 @@ var propMapping = {
   'URL'   : 'URL',
   //'POPZIP'  : 'Place of Performance.Zip'
 };
+var fs = require('fs');
 
 
 function generateNewClientPage(client, documents) {
