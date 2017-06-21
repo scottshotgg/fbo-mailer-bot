@@ -6,7 +6,7 @@ console.log(logdir)
 if(!fs.existsSync(logdir)) {
 	fs.mkdirSync(logdir);
 }
-
+f
 // Using console stamp to provide better print outs for debugging
 var cs = require("console-stamp") (console, {
 	metadata: function () {
