@@ -22,7 +22,7 @@ exports.fetchFeed = function(date = new Date()) {
 					eventloop.emit('parse', filename);
 					//databasemongo.connectMongoDB(fs.readFileSync(__dirname + '/resources/feed/' + filename, 'utf8'));
 				});
-			}
+			} 
 		} else {
 			console.log(filename, 'already downloaded');
 			eventloop.emit('parse', filename);
