@@ -26,29 +26,40 @@ function makeLink(column, URL) {
 // FIX THIS AND REARCH IT
 // ====== db stuff
 
+exports.parseFeed = function(filename) {
+  var filedata = fs.readFileSync(__dirname + '/resources/feed/' + filename).toString();
+  var thing = filedata;
+  console.log('starting');
+  createCollection();
+  thing.split(/(<\/[A-Z]+>)/g).filter((item) => { return item.length > 15 }).map((item) => {
+      if(!item.slice(4, 11).includes('ARCH')) { // filter out UNARCHIVE and ARCHIVE
+        // Uncomment this when we are ready to insert again
+        // >>>>>>>> enforce not null here <<<<<<<
+        var datum = postProcessing(splitString(item));
+        if(datum.ID) {
+          database.insert(datum);
+        }
+        //postProcessing(splitString(item))
+        //console.log(postProcessing(splitString(item)));
+      }
+    });
+}
+
+
 exports.connectMongoDB = function(thing) {
+  console.log('connecting to the database');
   // Connect to the db    
   MongoClient.connect("mongodb://localhost:27017/fbo-mailer", function(err, mdb) {
-	if(!err) {
-		console.log('Connected');
-		database.mdb = mdb;
-		//console.log(mdb);
-		createCollection();
+  	if(!err) {
+  		console.log('Connected');
+      mainEventLoop.emit('fetch');
+  		database.mdb = mdb;
+  		//console.log(mdb);
+  		//createCollection();
 
-		// put this somewhere else later
+  		// put this somewhere else later
 
-		thing.split(/(<\/[A-Z]+>)/g).filter((item) => { return item.length > 15 }).map((item) => {
-			if(!item.slice(4, 11).includes('ARCH')) { // filter out UNARCHIVE and ARCHIVE
-				// Uncomment this when we are ready to insert again
-				// >>>>>>>> enforce not null here <<<<<<<
-				var datum = postProcessing(splitString(item));
-				if(datum.ID) {
-					database.insert(datum);
-				}
-				//postProcessing(splitString(item))
-				//console.log(postProcessing(splitString(item)));
-			}
-		});
+		
 
 		//console.log(clients.getParameters())
 
@@ -110,7 +121,7 @@ function insertMongoDB(rows) {
     });
 }
 
-function createCollection() {
+exports.createCollection = function() {
   console.log('We are connected');
 
   database.mdb.collection('counters').insert(
