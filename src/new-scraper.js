@@ -1,6 +1,7 @@
 var scraper = require('./scraper');
 var dbm = require('./database-mongo');
-var events = require('./eventloop-events');
+var el = require('./eventloop-events');
 
 
-mainEventLoop.emit('fetch');
+//mainEventLoop.emit('fetch');
+el.emit('fetch', {'nothing': 'nothing'});

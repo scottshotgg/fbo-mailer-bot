@@ -12,3 +12,14 @@ todo
 - Make an email checkbox and make the emailing service
 
 - Make a delete process that will delete both the folder and the MongoDB entry
+
+- Fix the problem with the page not being generated / "no such file or directory" / not found not working... ?
+	* catch it
+	* display a loading thing and inform the user of the update
+	* reload page
+
+- Make printouts and logs for everything; 403's, etc
+
+- Remove casing since we switced to Net ID - scraper.js:line 263
+
+- Make some thing that will print out the client in front of each message; scraper.js:~line 265

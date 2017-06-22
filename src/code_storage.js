@@ -72,6 +72,8 @@ var randomstring = require("randomstring");
 		}))};
 	})));
 */
+
+// not sure if we even need this anymore
 // See the file for the reason that this object is not directly in here.
 var codeMapping = JSON.parse(fs.readFileSync(__dirname + '/codeMapping', 'utf8'));
 
@@ -112,3 +114,33 @@ JSON.stringify(Object.assign(...[].slice.call(document.getElementsByTagName('li'
 // 		array.push(item.replace('</PRESOL>', ''));
 // });
 // console.log(array);
+
+// code save
+
+//console.log(mdb);
+  		//createCollection();
+
+  		// put this somewhere else later
+
+
+exports.createCollection = function(collName) {
+  console.log('Creating collection');
+
+  database.mdb.collection('counters').insert(
+    { _id: "userid",
+      seq: 0 }, 
+      function(err, records) {
+    }
+  );
+
+  fbodataCollection = database.mdb.collection('fbodata');
+  fbodataCollection.createIndex({ ID: 1, Type: 1, Date: 1 }, {unique: true});
+  
+  // Try to mock enforce it with this
+  //fbodataCollection.insert({ID: undefined, Type});
+
+  fboclientsCollection = database.mdb.collection('fboclients');
+  fboclientsCollection.createIndex({ _id: 1 }, {unique: true});
+
+  //lastID = getLastMongoID();
+}

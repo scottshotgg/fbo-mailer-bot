@@ -5,15 +5,16 @@ var cron = require('node-cron');
 
 // Might not use this as an abstract, can probably just get it from the database
 var cronDate = { 
-	minute: '05', 
-	hour: 	'00', 
+	minute: '15', 
+	hour: 	'16', 
 	date: 	'*', 
 	month: 	'*', 
 	day: 	'*' 
 };
 
 // We might just be able to put this in the event mapping thing down there
-function schedule(packet) {
+exports.schedule = function(packet) {
+	// make default values
 	cron.schedule(Object.values(packet.dateObj).join(' '), packet.func);
 }
 
