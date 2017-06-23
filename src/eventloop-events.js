@@ -10,13 +10,15 @@ var host = require('./host-express')
 var EventEmitter = require('events');
 class EventLoop extends EventEmitter {}
 
+mainEventLoop = new EventLoop();
+
 exports.emit = function(event, info) {
+	//console.log(event, info);
 	//console.log(arguments)
 	//mainEventLoop.emit(Object.values(arguments));
 	mainEventLoop.emit(event, info);
 }
 
-mainEventLoop = new EventLoop();
 
 // use this if we need it
 // var finishMap = {

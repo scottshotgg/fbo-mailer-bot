@@ -79,7 +79,7 @@ exports.createCollection = function(collName) {
   //fbodataCollection.insert({ID: undefined, Type});
 
   fboclientsCollection = database.mdb.collection('fboclients');
-  fboclientsCollection.createIndex({ _id: 1 }, {unique: true});
+  //fboclientsCollection.createIndex({ _id: 1 }, {unique: true});
 
   //lastID = getLastMongoID();
 
