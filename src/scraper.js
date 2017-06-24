@@ -8,7 +8,7 @@ function makeFilenameFromDate(date) {
 	return 'FBOFeed' + date.getFullYear() + ('0' + (date.getMonth() + 1)).slice(-2) + ('0' + (date.getDate() - 1)).slice(-2);
 }
 
-exports.fetchFeed = function(date = new Date()) { 
+exports.fetchFeed = function(date = new Date()) {
 	// change the pathdir stuff
 	// put the new Date somewhere else so it is implicit
 	//var filename = makeFilenameFromDate(new Date(date));
@@ -21,6 +21,7 @@ exports.fetchFeed = function(date = new Date()) {
 				ftp.get('ftp://ftp.fbo.gov/' + filename, __dirname + '/resources/feed/' + filename, function (err, res) {
 					console.log(err, res); 
 					el.emit('parse', filename);
+					//el.emit('finished', this);
 					//databasemongo.connectMongoDB(fs.readFileSync(__dirname + '/resources/feed/' + filename, 'utf8'));
 				});
 			}
@@ -28,6 +29,8 @@ exports.fetchFeed = function(date = new Date()) {
 			console.log(filename, 'already downloaded');
 			el.emit('parse', { feed: filename });
 		}
+		// need to make this better
+		//el.emit('finished', 'fetch');
 	});
 }
 
@@ -52,7 +55,7 @@ exports.parseFeed = function(packet) {
 			//console.log(postProcessing(splitString(item)));
 		}
 	});
-    el.emit('finished', { data: 'fkukid' });
+    //el.emit('finished', { data: 'fkukid' });
 }
 
 

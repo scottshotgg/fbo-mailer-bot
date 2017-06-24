@@ -28,7 +28,8 @@ exports.connectMongoDB = function(packet) {
   		console.log('Connected to', packet.dbname);
   		database.mdb = mdb;
       	//el.emit('finished', {'event': 'connect'});
-      	el.emit('createcoll', { '': '' })
+      	//el.emit('createcoll', { '': '' })
+        console.log(database.mdb);
   		
     } else {
       console.log(err);
@@ -63,6 +64,7 @@ exports.insertMongoDB = function(packet) {
 
 
 exports.createCollection = function(collName) {
+  console.log(database.mdb);
   console.log('Creating collection', collName);
 
   database.mdb.collection('counters').insert(
@@ -84,7 +86,7 @@ exports.createCollection = function(collName) {
   //lastID = getLastMongoID();
 
   // this should emit a finish and let the event loop determine if it is time to fetch
-  el.emit('fetch');
+  //el.emit('fetch');
 }
 
 

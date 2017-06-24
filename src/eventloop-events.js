@@ -1,22 +1,28 @@
 // ===== event loop stuff
 var scraper = require('./scraper');
 var dbm = require('./database-mongo');
-var events = require('./eventloop-events');
+//var events = require('./eventloop-events');
 var cron = require('./scheduler-cron')
 // think of a better naming scheme for this stuff
 var host = require('./host-express')
 
 // Using the event-loop for the software architecture
-var EventEmitter = require('events');
+//var EventEmitter = require('events');
+
+var EventEmitter = require('eventemitter2').EventEmitter2;
 class EventLoop extends EventEmitter {}
 
 mainEventLoop = new EventLoop();
 
-exports.emit = function(event, info) {
+exports.emit = emit; 
+
+function emit(event, packet) {
 	//console.log(event, info);
 	//console.log(arguments)
 	//mainEventLoop.emit(Object.values(arguments));
-	mainEventLoop.emit(event, info);
+	mainEventLoop.emit(event, packet);
+	//mainEventLoop.emit('finished', event);
+	//finished(event);
 }
 
 
@@ -26,9 +32,31 @@ exports.emit = function(event, info) {
 // };
 
 
+function finished(event) {
+	//console.log(event);
+	console.log(event)
+	finishedMap[event]();
+}
+
+
+var finishedMap = {
+	//'host' 			: host.startServer,
+	'fetch' 		: scraper.parseFeed,
+	'parse' 		: scraper.parseFeed,
+	'connectdb' 	: dbm.createCollection,
+	//'closedb' 		: dbm.closeMongoDB,
+	// make this take a data piece and a collection name or map it to the right shit based on an insertion 'type'
+	//'insertdata' 	: dbm.insertMongoDB,
+	//'createcoll' 	: ,
+	'upsertdata' 	: scraper.generateNewClientPage,
+	'newclientpage' : host.respond,
+	//'respond' 		: host.respond,
+	//'schedule' 		: cron.schedule
+};
+
 
 // Provide a mapping for the event-loop's event-function associations; look at the function to know what to send it
-eventLoopFunctions = {
+var eventLoopFunctions = {
 	// Use this one to GET the page
 	//'page'		: getLinks,			// Get the links of the opportunity off the page
 	
@@ -42,7 +70,7 @@ eventLoopFunctions = {
 	//'finished': 	dbm.processClients
 	
 	// hardcoded for insert right now, use the mapping thing later
-	'finished' 		: dbm.getClients,
+	'finished' 		: finished,
 	'host' 			: host.startServer,
 	'fetch' 		: scraper.fetchFeed,
 	'parse' 		: scraper.parseFeed,
@@ -65,11 +93,12 @@ eventLoopFunctions = {
 // For some reason this doesnt work when you call externally; use the above for now
 // Function to seperate event-loop's event-function association loading from main
 (function loadEventLoopFunction() {
-	Object.keys(eventLoopFunctions).map((item, index) => {
-		mainEventLoop.on(item, (packet) => {
+	Object.keys(eventLoopFunctions).map((func) => {
+		mainEventLoop.on(func, (packet) => {
 			//console.log(item, packet);
-			eventLoopFunctions[item](packet);
+			eventLoopFunctions[func](packet);
 		});
+		//finishedMap[func] = 
 	});
 })();
 
@@ -94,8 +123,16 @@ var cronDate = {
 // use this schedule to begin a whole sequence of scraping and then emailing and generating new pages for clients
 //mainEventLoop.emit('schedule', { dateObj: cronDate, func:  });
 
+/*
 mainEventLoop.emit('connectdb', { dbname: 'fbo-mailer' });
+mainEventLoop.emit('createcoll', { '': '' })
 mainEventLoop.emit('host');
+*/
+
+emit('fetch');
+
+//mainEventLoop.emit('error');
+
 //mainEventLoop.emit('createcoll');
 
 //mainEventLoop.emit('fetch');
