@@ -28,8 +28,8 @@ exports.connectMongoDB = function(packet) {
   		console.log('Connected to', packet.dbname);
   		database.mdb = mdb;
       	//el.emit('finished', {'event': 'connect'});
-      	//el.emit('createcoll', { '': '' })
-        console.log(database.mdb);
+      	el.emit('createcoll', { '': '' })
+        //console.log(database.mdb);
   		
     } else {
       console.log(err);
@@ -48,7 +48,6 @@ function databaseSave(data) {
 
 // NEED TO ADD ID STUFF
 exports.insertMongoDB = function(packet) {
-  //console.log('inserting...');
   /*fbodataCollection.insert(row, () => {
       console.log('ima muhhhfkin callback son');
     })*/
@@ -64,7 +63,7 @@ exports.insertMongoDB = function(packet) {
 
 
 exports.createCollection = function(collName) {
-  console.log(database.mdb);
+  //console.log(database.mdb);
   console.log('Creating collection', collName);
 
   database.mdb.collection('counters').insert(
@@ -86,7 +85,7 @@ exports.createCollection = function(collName) {
   //lastID = getLastMongoID();
 
   // this should emit a finish and let the event loop determine if it is time to fetch
-  //el.emit('fetch');
+  el.emit('fetch');
 }
 
 
@@ -115,29 +114,13 @@ function getNextSequence(name, row) {
     });
 }
 
-// this can be done in parallel with inserting all the shit
-exports.getClients = function() {
+exports.generateClientPages = function() {
+	console.log("Generating client pages...");
 
-	console.log("Getting clients...");
-
-	/*
-	fboclientsCollection.find().map((client) => {
-		console.log(client);
-		console.log(client.personal.netid, client.search);
-
-		// attach a timestamp for when it was generated and check that before we generate new ones
-		// we should do this when a new page is scraped
-
-		// fbodataCollection.find(client.search).toArray((err, documents) => {
-		// 	generateNewClientPage(client, documents);
-		// });
-	});
-	*/
 	fboclientsCollection.find().toArray((err, clients) => {
 		clients.map((client) => {
 			fbodataCollection.find(client.search).toArray((err, documents) => {
-				//generateNewClientPage(client, documents);
-				el.emit('newclientpage', { client: client, data: documents });
+				el.emitAsync('newclientpage', { client: client, data: documents });
 			});
 		});
 	});

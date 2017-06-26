@@ -4,7 +4,8 @@ var valObj = {
 	netid: 		false, 
 	email: 		false,
 	password: 	false,
-	confirm_password: false
+	confirm_password: false,
+	changed: 	true
 };
 
 $(document).ready(() => {
@@ -21,35 +22,43 @@ function setElementFeedback(element, success, glyph_success) {
 	$(element).next().attr('class', 'glyphicon form-control-feedback ' + glyph_success);
 }
 
+function forgotPassword() {
+	console.log('hi');
+}
+
 function validatePersonalInformation() {
 	if(Object.values(valObj).every((element) => {
 		return element;
 	}))  {
-		console.log('ajax request dawg');
-		$.ajax({
-			type: "POST",
-			url: '/validate_personal',
-			data: (() => {
-				var data = Object.assign(...$("input").map((id, input) => {
-					return {[input.id]: input.value};
-				}));
-				data['password'] = md5(data['password']);
-				data['confirm_password'] = md5(data['confirm_password']);
-				return data;
-			})(),
-			success: (result) => {
-				// might need to put this in the backend
-				window.location.href = "/search_preferences";
-			},
-			error: (result) => {
-				console.log("error", result)
-			}
-		});
+
+		// We need to determine if they have even changed any data on the page before we resubmit again
+		if(valObj.changed) {
+			$.ajax({
+				type: "POST",
+				url: '/validate_personal',
+				data: (() => {
+					var data = Object.assign(...$("input").map((id, input) => {
+						return { [input.id]: input.value };
+					}));
+					data.password = md5(data['password']);
+					data.confirm_password = md5(data['confirm_password']);
+					return data;
+				})(),
+				success: (result) => {
+					console.log(result);
+					window.location.href = result.location;
+				},
+				error: (result) => {
+					console.log("error", result.responseJSON.error);
+					$('#submit_error').text(result.responseJSON.error);
+					$('#forgot_password_button').attr('class', 'btn btn-warning');
+					valObj.changed = false;
+				}
+			});
+		}
 	} else {
 		Object.keys(valObj).map((element, id) => {
 			if(!valObj[element]) {
-				// use setElementFeedback until I can change the handler to handle null/empty string values
-				//$('#' + element).triggerHandler("blur");
 				setElementFeedback('#' + element, 'has-error', 'glyphicon-remove');
 			}
 		});
@@ -63,9 +72,10 @@ $('#firstname, #lastname').blur(function (e) {
 		var success = 'has-error';
 		var glyph_success = 'glyphicon-remove';
 		var firstname = $(callingElement).val();
+		valObj.changed = true;
 
 		if(firstname && /^[a-zA-Z]+$/.test(firstname)) {
-			// you could do an actual verification here but w/e
+
 			$(callingElement + '_div').attr('class', 'form-group has-success has-feedback');
 			success = 'has-success';
 			glyph_success = "glyphicon-ok";
@@ -82,10 +92,10 @@ $('#firstname, #lastname').blur(function (e) {
 $('#netid').blur(function (e) {
 	var callingElement = '#' + e.target.id;
 	if($(callingElement).val() != '') {
-		//$('#netid_div').attr('class', 'form-group has-success has-feedback');
 		var success = 'has-error';
 		var glyph_success = 'glyphicon-remove';
 		var netid = $(callingElement).val();
+		valObj.changed = true;
 
 		if(netid.length > 8) { 
 			if(/^[a-zA-Z]+$/.test(netid.substring(0, 3)) && /^[0-9]+$/.test(netid.substring(3))) {
@@ -108,9 +118,9 @@ $('#netid').blur(function (e) {
 $('#password').blur(function (e) {
 	var callingElement = '#' + e.target.id;
 	if($(callingElement).val() != '') {
-		//$('#netid_div').attr('class', 'form-group has-success has-feedback');
 		var success = 'has-error';
 		var glyph_success = 'glyphicon-remove';
+		valObj.changed = true;
 
 		if($(callingElement).val().length > 8) { 
 			$(callingElement + '_div').attr('class', 'form-group has-success has-feedback');
@@ -128,9 +138,9 @@ $('#password').blur(function (e) {
 $('#confirm_password').blur(function (e) {
 	var callingElement = '#' + e.target.id;
 	if($(callingElement).val() != '') {
-		//$('#netid_div').attr('class', 'form-group has-success has-feedback');
 		var success = 'has-error';
 		var glyph_success = 'glyphicon-remove';
+		valObj.changed = true;
 
 		// nested if made error printing easier
 		if($(callingElement).val().length > 8) { 

@@ -59,11 +59,6 @@ exports.startServer = function() {
 	app.use(bodyParser.urlencoded({ extended: true }));
 	app.use(cookieParser());
 	app.use(session({ secret: "Shh, its a secret!" }));
-	// Make a template for this
-	app.use(function (err, req, res, next) {
-	  console.error(err.stack);
-	  res.status(404).sendFile(__dirname + '/resources/templates/404.html');
-	});
 
 	app.get('/', function (req, res, next) {
 		if(req.session.client == undefined) {
@@ -80,15 +75,21 @@ exports.startServer = function() {
 	});
 
 	app.post('/validate_personal', function (req, res) {
-		req.session.client = {};
+		Promise.resolve(fboclientsCollection.findOne({ "personal.netid": req.body.netid }, (err, client) => {
+			if(client != null) {
+				res.status(409).json({error: 'NetID already has an associated account created.'});
+			} else {
+				req.session.client = {};
 
-		console.log('validate_personal');
-		if(validatePersonal(req.body)) {
-			req.session.client.personal = req.body;
-			res.status(201).end();
-		} else {
-			res.status(400).end();
-		}
+				console.log('validate_personal');
+				if(validatePersonal(req.body)) {
+					req.session.client.personal = req.body;
+					res.status(201).json({location: '/search_preferences'});
+				} else {
+					res.status(400).end();
+				}
+			}
+		}));
 	});
 
 	app.post('/validate_login', function (req, res) {
@@ -148,7 +149,7 @@ exports.startServer = function() {
 			// 	})
 			// }));
 
-			el.emit('upsertdata', { 'client': req.session.client, 'res': res });
+			el.emit('upsertclient', { 'client': req.session.client, 'res': res });
 
 		} else {
 			res.sendStatus(403).end();
@@ -299,6 +300,12 @@ exports.startServer = function() {
 	app.get('/:id', function (req, res) {
 		console.log("Serving user:", req.url);
 		res.sendFile(__dirname + '/clients/' + req.url.toLowerCase() + '/index.html');
+	});
+
+	// Make a template for this
+	app.use(function (err, req, res, next) {
+	  console.error(err.stack);
+	  res.status(404).sendFile(__dirname + '/resources/templates/404.html');
 	});
 
 	app.listen(8080, function () {

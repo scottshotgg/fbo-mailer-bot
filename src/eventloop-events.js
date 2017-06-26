@@ -14,27 +14,20 @@ class EventLoop extends EventEmitter {}
 
 mainEventLoop = new EventLoop();
 
-exports.emit = emit; 
+exports.emit = emit;
+exports.emitAsync = emitAsync; 
 
 function emit(event, packet) {
-	//console.log(event, info);
-	//console.log(arguments)
-	//mainEventLoop.emit(Object.values(arguments));
 	mainEventLoop.emit(event, packet);
-	//mainEventLoop.emit('finished', event);
-	//finished(event);
 }
 
-
-// use this if we need it
-// var finishMap = {
-// 	insert: 
-// };
-
+function emitAsync(event, packet) {
+	setTimeout(() => { 
+		mainEventLoop.emit(event, packet); 
+	}, 0);
+}
 
 function finished(event) {
-	//console.log(event);
-	console.log(event)
 	finishedMap[event]();
 }
 
@@ -44,11 +37,12 @@ var finishedMap = {
 	'fetch' 		: scraper.parseFeed,
 	'parse' 		: scraper.parseFeed,
 	'connectdb' 	: dbm.createCollection,
+	'insert' 		: dbm.generateClientPages,
 	//'closedb' 		: dbm.closeMongoDB,
 	// make this take a data piece and a collection name or map it to the right shit based on an insertion 'type'
 	//'insertdata' 	: dbm.insertMongoDB,
 	//'createcoll' 	: ,
-	'upsertdata' 	: scraper.generateNewClientPage,
+	'upsertclient' 	: scraper.generateNewClientPage,
 	'newclientpage' : host.respond,
 	//'respond' 		: host.respond,
 	//'schedule' 		: cron.schedule
@@ -57,19 +51,6 @@ var finishedMap = {
 
 // Provide a mapping for the event-loop's event-function associations; look at the function to know what to send it
 var eventLoopFunctions = {
-	// Use this one to GET the page
-	//'page'		: getLinks,			// Get the links of the opportunity off the page
-	
-	// Use the one to insert 
-	//'save'		: databaseSave,		// Save the scraped information in the database
-	//'schedule'	: schedule,			// abstract function to schedule a function at a certain time
-	//'newOppo'		: newOppo
-	//'client': client
-
-	// use this later
-	//'finished': 	dbm.processClients
-	
-	// hardcoded for insert right now, use the mapping thing later
 	'finished' 		: finished,
 	'host' 			: host.startServer,
 	'fetch' 		: scraper.fetchFeed,
@@ -79,13 +60,10 @@ var eventLoopFunctions = {
 	// make this take a data piece and a collection name or map it to the right shit based on an insertion 'type'
 	'insertdata' 	: dbm.insertMongoDB,
 	'createcoll' 	: dbm.createCollection,
-	'upsertdata' 	: dbm.upsertClient,
+	'upsertclient' 	: dbm.upsertClient,
 	'newclientpage' : scraper.generateNewClientPage,
 	'respond' 		: host.respond,
 	'schedule' 		: cron.schedule
-	// 'finishinsert': (packet) => {
-	// 	console.log('hi, i am finished inserting yo', packet);
-	// },
 };
 
 //mainEventLoop.on('connect', dbm.connectMongoDB());
@@ -102,14 +80,6 @@ var eventLoopFunctions = {
 	});
 })();
 
-// mainEventLoop.emit('respond', 
-// 				{ 
-// 					run: () => {
-// 						res.json({ name: 'scg104020' });
-// 					} 
-// 				}
-// 			);
-
 // just use this for now
 var cronDate = { 
 	minute: '15', 
@@ -119,20 +89,6 @@ var cronDate = {
 	day: 	'*' 
 };
 
-// this works
-// use this schedule to begin a whole sequence of scraping and then emailing and generating new pages for clients
-//mainEventLoop.emit('schedule', { dateObj: cronDate, func:  });
 
-/*
-mainEventLoop.emit('connectdb', { dbname: 'fbo-mailer' });
-mainEventLoop.emit('createcoll', { '': '' })
-mainEventLoop.emit('host');
-*/
-
-emit('fetch');
-
-//mainEventLoop.emit('error');
-
-//mainEventLoop.emit('createcoll');
-
-//mainEventLoop.emit('fetch');
+emitAsync('connectdb', { dbname: 'fbo-mailer' });
+emitAsync('host');

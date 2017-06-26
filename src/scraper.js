@@ -4,9 +4,6 @@ var el = require('./eventloop-events');
 var cheerio = require('cheerio');
 var mkdirp = require('mkdirp');
 
-function makeFilenameFromDate(date) {
-	return 'FBOFeed' + date.getFullYear() + ('0' + (date.getMonth() + 1)).slice(-2) + ('0' + (date.getDate() - 1)).slice(-2);
-}
 
 exports.fetchFeed = function(date = new Date()) {
 	// change the pathdir stuff
@@ -20,17 +17,16 @@ exports.fetchFeed = function(date = new Date()) {
 				console.error(filename, 'does not exist, fetching file...');
 				ftp.get('ftp://ftp.fbo.gov/' + filename, __dirname + '/resources/feed/' + filename, function (err, res) {
 					console.log(err, res); 
-					el.emit('parse', filename);
+					el.emitAsync('parse', { feed: filename });
 					//el.emit('finished', this);
 					//databasemongo.connectMongoDB(fs.readFileSync(__dirname + '/resources/feed/' + filename, 'utf8'));
 				});
 			}
 		} else {
 			console.log(filename, 'already downloaded');
-			el.emit('parse', { feed: filename });
+			el.emitAsync('parse', { feed: filename });
 		}
-		// need to make this better
-		//el.emit('finished', 'fetch');
+		//el.emit('finished', 'insert');
 	});
 }
 
@@ -41,6 +37,7 @@ exports.parseFeed = function(packet) {
 	var filedata = fs.readFileSync(__dirname + '/resources/feed/' + packet.feed).toString();
 	console.log('Parsing', packet.feed);
 
+  	console.log('Inserting records...');
 	filedata.split(/(<\/[A-Z]+>)/g).filter((item) => { return item.length > 15 }).map((item) => {
 		if(!item.slice(4, 11).includes('ARCH')) { // filter out UNARCHIVE and ARCHIVE
 			// Uncomment this when we are ready to insert again
@@ -55,140 +52,8 @@ exports.parseFeed = function(packet) {
 			//console.log(postProcessing(splitString(item)));
 		}
 	});
+	el.emit('finished', 'insert');
     //el.emit('finished', { data: 'fkukid' });
-}
-
-
-// ============== dont do anything with this ==============
-
-// this needs to take the html out of the description or make a seperate description
-// this needs to do some contact parsing on the contact data and stuff
-function postProcessing(oppo) {
-  //oppo.Date = {};
-  //oppo.Month = ;
-  //oppo.Day = ;
-
-  //if(oppo.ID == '' || oppo.ID == undefined) 
-    //console.log(oppo);
-  
-  if(oppo.Date) {
-    // oppo.Date = { 
-    //  Month   : oppo.Data.Date.substring(0, 2), 
-    //  Day   : oppo.Data.Date.substring(2), 
-    //  Year  : oppo.Data.Year 
-    // };
-    oppo.Date = oppo.Date.substring(0, 2) + '/' + oppo.Date.substring(2) + '/' + oppo.Year;
-  }
-
-  delete oppo.Year;
-
-
-
-  // if(oppo['Classification Code']) {
-  //  var classification = {};
-  //  classification['ID'] = oppo['Classification Code'];
-  //  classification['Text'] = codeMapping['Classification Code'][oppo['Classification Code']];
-  //  //console.log(classification);
-
-  //  oppo['Classification Code'] = classification;
-  // }
-
-  // if(oppo['NAICS Code']) {
-  //  var naics = {};
-  //  naics['ID'] = oppo['NAICS Code'];
-  //  naics['Text'] = codeMapping['NAICS Code'][oppo['NAICS Code']];
-  //  //console.log(naics);
-
-  //  oppo['NAICS Code'] = naics;
-  // }
-
-  // May consider making a seperate month/day/year for this
-  if(oppo['Response Date']) {
-    // oppo['Response Date'] = { 
-    //  Month   : oppo['Response Date'].substring(0, 2), 
-    //  Day   : oppo['Response Date'].substring(2, 4), 
-    //  Year  : oppo['Response Date'].substring(4) 
-    // };
-    oppo['Response Date'] = oppo['Response Date'].substring(0, 2) + '/' + oppo['Response Date'].substring(2) + '/' + oppo.Year;
-  }
-
-  if(oppo['Archive Date']) {
-    /*oppo['Archive Date'] = { 
-      Month   : oppo['Archive Date'].substring(0, 2), 
-      Day   : oppo['Archive Date'].substring(2, 4), 
-      Year  : oppo['Archive Date'].substring(6) 
-    };*/
-    oppo['Archive Date'] = oppo['Archive Date'].substring(0, 2) + '/' + oppo['Archive Date'].substring(2) + '/' + oppo.Year;
-  }
-
-  /*var pop = Object.keys(oppo).filter((item) => { return item.includes('Pop') }).map((item) => {
-      var key = item.replace('Pop', '');
-      var popObj = { [key[0].toUpperCase() + key.slice(1)]: oppo[item] };
-      delete oppo[item];
-      return popObj;
-  });*/
-
-  if(oppo['Award Date']) {
-    /*oppo['Award Date'] = { 
-      Month   : oppo['Award Date'].substring(0, 2), 
-      Day   : oppo['Award Date'].substring(2, 4), 
-      Year  : oppo['Award Date'].substring(4) 
-    };*/
-    oppo['Award Date'] = oppo['Award Date'].substring(0, 2) + '/' + oppo['Award Date'].substring(2) + '/' + oppo.Year;
-  }
-
-  // if(pop.length > 0) {
-  //  oppo['Place of Performance'] = Object.assign(...pop);
-  // }
-  
-
-  oppo.ID = oppo['Solicitation Number'] || oppo['Award Number'];
-
-  //console.log(oppo);
-
-  return oppo;
-}
-
-var typeMapping = {
-  "PRESOL"  : "Presolicitation",
-  "COMBINE"   : "Combined Synopsis/Solicitation",
-  "AMDCSS"  : "Amendment to a Previous Combined Solicitation",
-  "MOD"     : "Modification to a Previous Base",
-  "AWARD"   : "Award",
-  "JA"    : "Justification and Approval",
-  "ITB"     : "Intent to Bundle Requirements",
-  "FAIROPP"   : "Fair Opportunity / Limited Sources Justification",
-  "SRCSGT"  : "Sources Sought",
-  "FSTD"    : "Foreign Government Standard",
-  "SNOTE"   : "Special Notice",
-  "SSALE"   : "Sale of Surplus Property",
-  //"ARCHIVE"   : "Document Archival",
-  //"UNARCHIVE" : "Document Unarchival"
-};
-
-// Only explicitly list the stuff that will change, otherwise just slice the end and do a toLowerCase
-var propMapping = {
-  'CLASSCOD': 'Classification Code',
-  'OFFADD'  : 'Office Address', // I think this is right??
-  'RESPDATE': 'Response Date',
-  'SOLNBR'  : 'Solicitation Number',
-  'AWDNBR'  : 'Award Number',
-  'AWDAMT'  : 'Award Amount',
-  'AWDDATE' : 'Award Date',
-  'DESC'    : 'Description',
-  'LINENBR' : 'Line Number',
-  'NTYPE'   : 'Notice Type',
-  'MODNBR'  : 'Modification Number',
-  'ARCHDATE': 'Archive Date',
-  'SETASIDE': 'Set Aside',
-  'NAICS'   : 'NAICS Code',
-  'URL'     : 'URL',
-  //'POPZIP'  : 'Place of Performance.Zip'
-};
-
-
-function makeLink(column, URL) {
-	return ['<a href="' + URL + '">' + column + '</a>']
 }
 
 
@@ -251,12 +116,6 @@ exports.generateNewClientPage = function(packet) {
 
   }).join('\n'));
 
-  //console.log(client.Parameters);
-
-  // // Need to check whether the parameter is an object or not before just returning
-  // $('#search_parameters').html(Object.keys(client.Parameters).map((para) => {
-  //  return '<b>' + para.split('.').slice(-1) + ' :</b> ' + client.Parameters[para];
-  // }));
   $('#search_parameters').html(Object.keys({}).map((para) => {
     return '<b>' + para.split('.').slice(-1) + ' :</b> ' + client.Parameters[para];
   }));
@@ -285,16 +144,79 @@ exports.generateNewClientPage = function(packet) {
 
 }
 
+function makeFilenameFromDate(date) {
+	return 'FBOFeed' + date.getFullYear() + ('0' + (date.getMonth() + 1)).slice(-2) + ('0' + (date.getDate() - 1)).slice(-2);
+}
 
-// ============== dont do anything with this ==============
+function postProcessing(oppo) {
+  if(oppo.Date) {
+    oppo.Date = oppo.Date.substring(0, 2) + '/' + oppo.Date.substring(2) + '/' + oppo.Year;
+  }
 
+  delete oppo.Year;
+
+  if(oppo['Response Date']) {
+    oppo['Response Date'] = oppo['Response Date'].substring(0, 2) + '/' + oppo['Response Date'].substring(2) + '/' + oppo.Year;
+  }
+
+  if(oppo['Archive Date']) {
+   
+    oppo['Archive Date'] = oppo['Archive Date'].substring(0, 2) + '/' + oppo['Archive Date'].substring(2) + '/' + oppo.Year;
+  }
+
+  if(oppo['Award Date']) {
+    oppo['Award Date'] = oppo['Award Date'].substring(0, 2) + '/' + oppo['Award Date'].substring(2) + '/' + oppo.Year;
+  }  
+
+  oppo.ID = oppo['Solicitation Number'] || oppo['Award Number'];
+
+  return oppo;
+}
+
+var typeMapping = {
+  "PRESOL"  : "Presolicitation",
+  "COMBINE"   : "Combined Synopsis/Solicitation",
+  "AMDCSS"  : "Amendment to a Previous Combined Solicitation",
+  "MOD"     : "Modification to a Previous Base",
+  "AWARD"   : "Award",
+  "JA"    : "Justification and Approval",
+  "ITB"     : "Intent to Bundle Requirements",
+  "FAIROPP"   : "Fair Opportunity / Limited Sources Justification",
+  "SRCSGT"  : "Sources Sought",
+  "FSTD"    : "Foreign Government Standard",
+  "SNOTE"   : "Special Notice",
+  "SSALE"   : "Sale of Surplus Property",
+};
+
+// Only explicitly list the stuff that will change, otherwise just slice the end and do a toLowerCase
+var propMapping = {
+  'CLASSCOD': 'Classification Code',
+  'OFFADD'  : 'Office Address', // I think this is right??
+  'RESPDATE': 'Response Date',
+  'SOLNBR'  : 'Solicitation Number',
+  'AWDNBR'  : 'Award Number',
+  'AWDAMT'  : 'Award Amount',
+  'AWDDATE' : 'Award Date',
+  'DESC'    : 'Description',
+  'LINENBR' : 'Line Number',
+  'NTYPE'   : 'Notice Type',
+  'MODNBR'  : 'Modification Number',
+  'ARCHDATE': 'Archive Date',
+  'SETASIDE': 'Set Aside',
+  'NAICS'   : 'NAICS Code',
+  'URL'     : 'URL',
+  //'POPZIP'  : 'Place of Performance.Zip'
+};
+
+
+function makeLink(column, URL) {
+	return ['<a href="' + URL + '">' + column + '</a>']
+}
 
 function splitString(thing) {
   var array = thing.split(/(<[A-Z]+>)/g);
 
   var object = {};
-  //object.Data = {};
-  //object.Data['Opportunity/Procurement Type'] = typeMapping[array[1].slice(1, -1)];
   object['Opportunity/Procurement Type'] = typeMapping[array[1].slice(1, -1)];
 
   for(var i = 3; i < array.length; i+=2)
@@ -314,7 +236,6 @@ function splitString(thing) {
       object[key] = [object[key]].concat(value)
     }
   }
-  //console.log(object);
+
   return object;
 }
-//  console.log('\n\n\n');
