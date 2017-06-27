@@ -173,27 +173,27 @@ exports.startServer = function() {
 	// Serve the 404 file if the file is missing; this overrides the directive for users (/:id) that don't exist
 	app.use(function (err, req, res, next) {
 	  console.error(err.stack);
-	  res.status(404).sendFile(templatesDir + '404/404.html');
+		res.sendFile('404.html', { root: templatesDir + '404/' });
 	});
 
 	app.get('/index.template.js', function (req, res) {
-		res.sendFile(templatesDir + 'index/index.template.js');
+		res.sendFile('index.template.js', { root: templatesDir + 'index/' });
 	});
 
 	app.get('/md5.min.js', function (req, res) {
-		res.sendFile(resourcesDir + 'js/md5/md5.min.js');
+		res.sendFile('md5.min.js', { root: resourcesDir + 'js/md5/' });
 	});
 
 	app.get('/md5.min.js.map', function (req, res) {
-		res.sendFile(resourcesDir + 'js/md5/md5.min.js.map');
+		res.sendFile('md5.min.js', { root: resourcesDir + 'js/md5/' });
 	});
 
 	app.get('/login', function (req, res) {
-		res.sendFile(loginDir + 'login.html');
+		res.sendFile('login.html', { root: loginDir });
 	});
 
 	app.get('/login.js', function (req, res) {
-		res.sendFile(loginDir + 'login.js');
+		res.sendFile('login.js', { root: loginDir });
 	});
 
 	app.get('/logout', function (req, res) {
@@ -205,32 +205,32 @@ exports.startServer = function() {
 	});
 
 	app.get('/signup', function (req, res) {
-		res.sendFile(signupDir + '/signup.html');
+		res.sendFile('signup.html', { root: signupDir });
 	});
 
 	app.get('/signup.js', function (req, res) {
-		res.sendFile(signupDir + '/signup.js');
+		res.sendFile('signup.js', { root: signupDir });
 	});
 
 	app.get('/search_preferences', function (req, res) {
 		if(req.session.client != undefined && req.session.client.personal != undefined) {
-			res.sendFile(signupDir + 'search/search_preferences.html');
+		res.sendFile('search_preferences.html', { root: signupDir + 'search/' });
 		} else {
 			res.redirect('/');
 		}
 	});
 
 	app.get('/search_preferences.js', function (req, res) {
-		res.sendFile(signupDir + 'search/search_preferences.js');
+		res.sendFile('search_preferences.js', { root: signupDir + 'search/' });
 	});
 
 	app.get('/search_preferences.css', function (req, res) {
-		res.sendFile(signupDir + 'search/search_preferences.css');
+		res.sendFile('search_preferences.css', { root: signupDir + 'search/' });
 	});
 
 	app.get('/modify_search_preferences', function (req, res) {
 		if(req.session.client != undefined && req.session.client.personal != undefined) {
-			res.sendFile(signupDir + 'search/search_preferences.html');
+			res.sendFile('search_preferences.html', { root: signupDir + 'search/' });
 		} else {
 			res.redirect('/');
 		}
@@ -246,23 +246,23 @@ exports.startServer = function() {
 
 	app.get('/display_preferences', function (req, res) {
 		if(req.session.client != undefined && req.session.client.personal != undefined && req.session.client.search != undefined) {
-			res.sendFile(signupDir + 'display/display_preferences.html');
+			res.sendFile('display_preferences.html', { root: signupDir + 'display/' });
 		} else {
 			res.redirect('/');
 		}
 	});
 
 	app.get('/display_preferences.js', function (req, res) {
-		res.sendFile(signupDir + 'display/display_preferences.js');
+			res.sendFile('display_preferences.js', { root: signupDir + 'display/' });
 	});
 
 	app.get('/display_preferences.css', function (req, res) {
-		res.sendFile(signupDir + 'display/display_preferences.css');
+			res.sendFile('display_preferences.css', { root: signupDir + 'display/' });
 	});
 
 	app.get('/modify_display_preferences', function (req, res) {
 		if(req.session.client != undefined && req.session.client.personal != undefined) {
-			res.sendFile(signupDir + 'display/display_preferences.html');
+			res.sendFile('display_preferences.html', { root: signupDir + 'display/' });
 		} else {
 			res.redirect('/');
 		}
@@ -276,7 +276,7 @@ exports.startServer = function() {
 
 
 	app.get('/data.json', function (req, res) {
-		res.sendFile(resourcesDir + 'json/data.json');
+		res.sendFile('data.json', { root: resourcesDir + 'json/' });
 	});
 
 	app.get('/favicon.ico', function(req, res) {
@@ -286,7 +286,7 @@ exports.startServer = function() {
 	// Anything not mapped to another handle at the root will be assumed to be an ID and thus will try to be served as a user
 	app.get('/:id', function (req, res) {
 		console.log("Serving user:", req.url);
-		res.sendFile(clientsDir + req.url.toLowerCase() + '/index.html');
+		res.sendFile('index.html', { root: clientsDir + req.url.toLowerCase() });
 	});
 
 	app.listen(8080, function () {
