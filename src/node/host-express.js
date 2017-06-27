@@ -78,6 +78,8 @@ exports.startServer = function() {
 	app.use(cookieParser());
 	app.use(session({ secret: "Shh, its a secret!" }));
 
+	console.log(pathing);
+
 	// Root directory
 	app.get('/', function (req, res, next) {
 		// If there isn't any client data, redirect the client to the login page, else if they have personal information then direct them to their home page (this has a hole in the signup where they have personal information but nothing else), else just send them to the login page
