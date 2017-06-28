@@ -1,0 +1,202 @@
+[ RAM: 53.07 MB | file: scheduler-cron.js | caller: exports.schedule | line: 19 ]
+Scheduling 'fetchUpdate' to run at { minute: '15', hour: '16', date: '*', month: '*', day: '*' } 
+
+[ RAM: 53.34 MB | file: host-express.js | caller: exports.startServer | line: 78 ]
+Starting server... 
+
+[ RAM: 53.34 MB | file: host-express.js | caller: fs.readdirSync.map | line: 64 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/js/bootstrap 
+
+[ RAM: 53.34 MB | file: host-express.js | caller: fs.readdirSync.map | line: 64 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/js/jquery 
+
+[ RAM: 53.34 MB | file: host-express.js | caller: fs.readdirSync.map | line: 64 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/js/md5 
+
+[ RAM: 53.34 MB | file: host-express.js | caller: fs.readdirSync.map | line: 64 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/js/select2 
+
+[ RAM: 53.34 MB | file: host-express.js | caller: fs.readdirSync.map | line: 64 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/css/bootstrap 
+
+[ RAM: 53.34 MB | file: host-express.js | caller: fs.readdirSync.map | line: 64 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/css/select2 
+
+[ RAM: 53.34 MB | file: host-express.js | caller: fs.readdirSync.map | line: 64 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/fonts/bootstrap 
+
+[ RAM: 53.88 MB | file: database-mongo.js | caller: exports.connectMongoDB | line: 24 ]
+Initiating connection to fbo-mailer 
+
+[ RAM: 55.01 MB | file: host-express.js | caller: null | line: 313 ]
+Listening on port 8080! 
+
+[ RAM: 55.61 MB | file: database-mongo.js | caller: null | line: 29 ]
+Connected to fbo-mailer 
+
+[ RAM: 55.61 MB | file: database-mongo.js | caller: exports.createCollection | line: 65 ]
+Creating collection { '': '' } 
+
+[ RAM: 55.88 MB | file: scraper.js | caller: fs.open | line: 39 ]
+FBOFeed20170627 already downloaded 
+
+[ RAM: 77.76 MB | file: scraper.js | caller: exports.parseFeed | line: 49 ]
+Parsing FBOFeed20170627 
+
+[ RAM: 77.76 MB | file: scraper.js | caller: exports.parseFeed | line: 51 ]
+Inserting records... 
+
+[ RAM: 78.03 MB | file: scraper.js | caller: exports.parseFeed | line: 58 ]
+async filter... 
+
+[ RAM: 78.30 MB | file: scraper.js | caller: async.filter | line: 62 ]
+async filter done 
+
+[ RAM: 78.30 MB | file: scraper.js | caller: async.filter | line: 64 ]
+undefined '\n'
+[ RAM: 78.30 MB | file: scraper.js | caller: async.map | line: 73 ]
+finished 
+
+[ RAM: 80.19 MB | file: database-mongo.js | caller: exports.generateClientPages | line: 114 ]
+Generating client pages... 
+
+[ RAM: 73.37 MB | file: scraper.js | caller: exports.generateNewClientPage | line: 90 ]
+scg104020 has 0 entries 
+
+[ RAM: 73.91 MB | file: scraper.js | caller: exports.generateNewClientPage | line: 139 ]
+Attempting to write client index file: /clients/scg104020/index.html 
+
+[ RAM: 73.91 MB | file: scraper.js | caller: exports.generateNewClientPage | line: 142 ]
+Client index file successfully written: /clients/scg104020/index.html 
+
+[ RAM: 74.51 MB | file: host-express.js | caller: null | line: 133 ]
+validate_login 
+
+[ RAM: 51.75 MB | file: host-express.js | caller: null | line: 308 ]
+Serving user: /scg104020 
+
+[ RAM: 51.98 MB | file: host-express.js | caller: null | line: 153 ]
+validate_search { 'Opportunity/Procurement Type': 'Combined Synopsis/SolicitationSources Sought' } 
+
+[ RAM: 51.98 MB | file: host-express.js | caller: null | line: 156 ]
+{ _id: '59540bf182748ab565b04d1e',
+  personal: 
+   { firstname: 'scott',
+     lastname: 'gaydos',
+     netid: 'scg104020',
+     email: 'scg104020@utdallas.edu',
+     password: '03c3a01a336ec76d4899309f11174237',
+     confirm_password: '03c3a01a336ec76d4899309f11174237' },
+  search: { 'Opportunity/Procurement Type': 'Combined Synopsis/SolicitationSources Sought' },
+  display: { 'Display Preferences': [ '' ], modify: 'true' } } '\n'
+[ RAM: 52.09 MB | file: host-express.js | caller: null | line: 169 ]
+validate_display { 'Display Preferences': [ '' ], modify: 'true' } 
+
+[ RAM: 52.09 MB | file: host-express.js | caller: null | line: 171 ]
+{ 'Display Preferences': [ '' ], modify: 'true' } '\n'
+[ RAM: 52.35 MB | file: host-express.js | caller: null | line: 174 ]
+{ _id: '59540bf182748ab565b04d1e',
+  personal: 
+   { firstname: 'scott',
+     lastname: 'gaydos',
+     netid: 'scg104020',
+     email: 'scg104020@utdallas.edu',
+     password: '03c3a01a336ec76d4899309f11174237',
+     confirm_password: '03c3a01a336ec76d4899309f11174237' },
+  search: { 'Opportunity/Procurement Type': 'Combined Synopsis/SolicitationSources Sought' },
+  display: { 'Display Preferences': [ '' ], modify: 'true' } } '\n'
+[ RAM: 52.35 MB | file: database-mongo.js | caller: exports.upsertClient | line: 141 ]
+Attempting to insert client: scg104020 
+
+[ RAM: 52.35 MB | file: database-mongo.js | caller: Promise.resolve.then.catch | line: 167 ]
+Could not insert client: scg104020 
+
+[ RAM: 52.35 MB | file: database-mongo.js | caller: Promise.resolve.then.catch | line: 168 ]
+Error: { MongoError: The _id field cannot be changed from {_id: ObjectId('59540bf182748ab565b04d1e')} to {_id: "59540bf182748ab565b04d1e"}.
+    at Function.MongoError.create (/home/scottshotgg/Development/fbo-mailer-bot/node_modules/mongodb-core/lib/error.js:31:11)
+    at toError (/home/scottshotgg/Development/fbo-mailer-bot/node_modules/mongodb/lib/utils.js:139:22)
+    at /home/scottshotgg/Development/fbo-mailer-bot/node_modules/mongodb/lib/collection.js:1060:67
+    at /home/scottshotgg/Development/fbo-mailer-bot/node_modules/mongodb-core/lib/connection/pool.js:469:18
+    at _combinedTickCallback (internal/process/next_tick.js:73:7)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+  name: 'MongoError',
+  message: 'The _id field cannot be changed from {_id: ObjectId(\'59540bf182748ab565b04d1e\')} to {_id: "59540bf182748ab565b04d1e"}.',
+  driver: true,
+  index: 0,
+  code: 16837,
+  errmsg: 'The _id field cannot be changed from {_id: ObjectId(\'59540bf182748ab565b04d1e\')} to {_id: "59540bf182748ab565b04d1e"}.' } 
+
+[ RAM: 52.62 MB | file: host-express.js | caller: null | line: 169 ]
+validate_display { 'Display Preferences': [ '' ], modify: 'true' } 
+
+[ RAM: 52.62 MB | file: host-express.js | caller: null | line: 171 ]
+{ 'Display Preferences': [ '' ], modify: 'true' } '\n'
+[ RAM: 52.62 MB | file: host-express.js | caller: null | line: 174 ]
+{ _id: '59540bf182748ab565b04d1e',
+  personal: 
+   { firstname: 'scott',
+     lastname: 'gaydos',
+     netid: 'scg104020',
+     email: 'scg104020@utdallas.edu',
+     password: '03c3a01a336ec76d4899309f11174237',
+     confirm_password: '03c3a01a336ec76d4899309f11174237' },
+  search: { 'Opportunity/Procurement Type': 'Combined Synopsis/SolicitationSources Sought' },
+  display: { 'Display Preferences': [ '' ], modify: 'true' } } '\n'
+[ RAM: 52.89 MB | file: database-mongo.js | caller: exports.upsertClient | line: 141 ]
+Attempting to insert client: scg104020 
+
+[ RAM: 52.89 MB | file: database-mongo.js | caller: Promise.resolve.then.catch | line: 167 ]
+Could not insert client: scg104020 
+
+[ RAM: 52.89 MB | file: database-mongo.js | caller: Promise.resolve.then.catch | line: 168 ]
+Error: { MongoError: The _id field cannot be changed from {_id: ObjectId('59540bf182748ab565b04d1e')} to {_id: "59540bf182748ab565b04d1e"}.
+    at Function.MongoError.create (/home/scottshotgg/Development/fbo-mailer-bot/node_modules/mongodb-core/lib/error.js:31:11)
+    at toError (/home/scottshotgg/Development/fbo-mailer-bot/node_modules/mongodb/lib/utils.js:139:22)
+    at /home/scottshotgg/Development/fbo-mailer-bot/node_modules/mongodb/lib/collection.js:1060:67
+    at /home/scottshotgg/Development/fbo-mailer-bot/node_modules/mongodb-core/lib/connection/pool.js:469:18
+    at _combinedTickCallback (internal/process/next_tick.js:73:7)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+  name: 'MongoError',
+  message: 'The _id field cannot be changed from {_id: ObjectId(\'59540bf182748ab565b04d1e\')} to {_id: "59540bf182748ab565b04d1e"}.',
+  driver: true,
+  index: 0,
+  code: 16837,
+  errmsg: 'The _id field cannot be changed from {_id: ObjectId(\'59540bf182748ab565b04d1e\')} to {_id: "59540bf182748ab565b04d1e"}.' } 
+
+[ RAM: 52.89 MB | file: host-express.js | caller: null | line: 169 ]
+validate_display { 'Display Preferences': [ '' ], modify: 'true' } 
+
+[ RAM: 52.89 MB | file: host-express.js | caller: null | line: 171 ]
+{ 'Display Preferences': [ '' ], modify: 'true' } '\n'
+[ RAM: 53.16 MB | file: host-express.js | caller: null | line: 174 ]
+{ _id: '59540bf182748ab565b04d1e',
+  personal: 
+   { firstname: 'scott',
+     lastname: 'gaydos',
+     netid: 'scg104020',
+     email: 'scg104020@utdallas.edu',
+     password: '03c3a01a336ec76d4899309f11174237',
+     confirm_password: '03c3a01a336ec76d4899309f11174237' },
+  search: { 'Opportunity/Procurement Type': 'Combined Synopsis/SolicitationSources Sought' },
+  display: { 'Display Preferences': [ '' ], modify: 'true' } } '\n'
+[ RAM: 53.16 MB | file: database-mongo.js | caller: exports.upsertClient | line: 141 ]
+Attempting to insert client: scg104020 
+
+[ RAM: 56.10 MB | file: database-mongo.js | caller: Promise.resolve.then.catch | line: 167 ]
+Could not insert client: scg104020 
+
+[ RAM: 55.32 MB | file: database-mongo.js | caller: Promise.resolve.then.catch | line: 168 ]
+Error: { MongoError: The _id field cannot be changed from {_id: ObjectId('59540bf182748ab565b04d1e')} to {_id: "59540bf182748ab565b04d1e"}.
+    at Function.MongoError.create (/home/scottshotgg/Development/fbo-mailer-bot/node_modules/mongodb-core/lib/error.js:31:11)
+    at toError (/home/scottshotgg/Development/fbo-mailer-bot/node_modules/mongodb/lib/utils.js:139:22)
+    at /home/scottshotgg/Development/fbo-mailer-bot/node_modules/mongodb/lib/collection.js:1060:67
+    at /home/scottshotgg/Development/fbo-mailer-bot/node_modules/mongodb-core/lib/connection/pool.js:469:18
+    at _combinedTickCallback (internal/process/next_tick.js:73:7)
+    at process._tickCallback (internal/process/next_tick.js:104:9)
+  name: 'MongoError',
+  message: 'The _id field cannot be changed from {_id: ObjectId(\'59540bf182748ab565b04d1e\')} to {_id: "59540bf182748ab565b04d1e"}.',
+  driver: true,
+  index: 0,
+  code: 16837,
+  errmsg: 'The _id field cannot be changed from {_id: ObjectId(\'59540bf182748ab565b04d1e\')} to {_id: "59540bf182748ab565b04d1e"}.' } 
+

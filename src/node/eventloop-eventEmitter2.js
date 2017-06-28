@@ -2,11 +2,12 @@
 	This file serves as the event-loop for the program. As of right now it is also the main file for the scraper, but that may change in the future
 */
 
+var consoleStamp = require('./log-consoleStamp');
 var scraper = require('./scraper');
 var dbm = require('./database-mongo');
 var cron = require('./scheduler-cron');
 var host = require('./host-express');
-var console = require('./log-consoleStamp');
+
 var async = require('async');
 
 var EventEmitter = require('eventemitter2').EventEmitter2;
@@ -16,6 +17,7 @@ var mainEventLoop = new EventLoop();
 
 // emit is an exported function that emits an event to the event loop
 exports.emit = function(event, packet) {
+	//console.log(packet);
 	mainEventLoop.emit(event, packet);
 }
 

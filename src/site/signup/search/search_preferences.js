@@ -42,12 +42,8 @@ var mapkeys = filedatakeys.slice(4, -7).concat(filedatakeys[16]);
 mapkeys.splice(2, 1);
 console.log(mapkeys);
 
-//mapkeys = mapkeys.slice()
-
 mapkeys.map((key, id) => {
-	//return { id: id, text: key, children: filedata[key].map((value, id) => {
 	var keyname = key.replace(/[^a-zA-Z0-9]/g,'_');
-	//document.getElementById('selection_container').innerHTML += '<select id="' + keyname + '" class="my-select" multiple="multiple" style="width: 60%;"></1select>';
 
 	$('#selection_container').append('<div><label class="select2-label" for="' + keyname + '" style="width: 40%; text-align: left;">' + key +'<br><select id="' + keyname + '" class="my-select" multiple="multiple" style="width: 100%; padding: 20px;"></select></label></div>');
 

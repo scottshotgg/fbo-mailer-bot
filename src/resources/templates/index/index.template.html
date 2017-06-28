@@ -3,9 +3,9 @@
 
   <!-- RESOURCES -->
     <!-- LINKS -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/datatables.min.css"/>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/uikit.min.css"/>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.uikit.min.css"/>
+  <link rel="stylesheet" href="datatables.min.css"/>
+  <link rel="stylesheet" href="uikit.min.css"/>
+  <link rel="stylesheet" href="dataTables.uikit.min.css"/>
 
 
  <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
@@ -17,29 +17,6 @@
 <!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.6/select2-bootstrap.min.css" rel="stylesheet" />
   <link href="search_preferences.css" rel="stylesheet" /> -->
-
-
-    <!-- SCRIPTS -->
-  <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript">
-  </script>
-  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.13/datatables.min.js">
-  </script>
-  <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" type="text/javascript">
-  </script>
-  <script src="https://cdn.datatables.net/1.10.13/js/dataTables.uikit.min.js" type="text/javascript">
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js" type="text/javascript">
-  </script>
-  <script src="https://cdn.datatables.net/plug-ins/1.10.13/sorting/datetime-moment.js" type="text/javascript">
-  </script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $.fn.dataTable.moment('MMM DD, YYYY');
-      var table = $('#fbo_table').DataTable();
-      table.order( [[3, 'dec'], [0, 'asc']]).draw();
-    });
-  </script>
 
   <head>
 
@@ -112,6 +89,11 @@
       </div>
       <br>
   </body>
-  <!-- <script src="index.template.js" type="text/javascript">
-  </script> -->
+  <script src="jquery-1.12.4.min.js"> </script>
+  <script src="datatables.min.js"></script>
+  <script src="jquery.dataTables.min.js"></script>
+  <script src="dataTables.uikit.min.js"></script>
+  <script src="moment.min.js"></script>
+  <script src="datetime-moment.js"></script>
+  <script src="index.template.js"></script>
 </html>

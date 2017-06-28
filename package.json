@@ -2,7 +2,7 @@
   "name": "fbo-mailer-bot",
   "version": "1.0.0",
   "description": "A scraper for the FBO.gov site",
-  "main": "src/fboftpthing.js",
+  "main": "src/node",
   "dependencies": {
     "blueimp-md5": "^2.7.0",
     "body-parser": "^1.17.2",
@@ -23,16 +23,17 @@
     "react-dom": "^15.6.1",
     "request": "latest",
     "require_optional": "^1.0.1",
-    "sendmail": "^1.1.1"
+    "sendmail": "^1.1.1",
+    "async": "latest"
   },
   "repository": {
     "type": "git",
-    "url": "https://www.github.com/scottshotgg/fbo-mailer-bot/tree/rearch"
+    "url": "https://www.github.com/scottshotgg/fbo-mailer-bot/tree/eventloop-rearch"
   },
   "author": "scottshotgg",
   "license": "GPL-2.0",
   "scripts": {
-    "test": "node src/scraper.js f",
-    "start": "node src/scraper.js"
+    "test": "node src/node/eventloop-eventEmitter2.js f",
+    "start": "node src/node/eventloop-eventEmitter2.js"
   }
 }

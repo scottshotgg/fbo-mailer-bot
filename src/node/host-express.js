@@ -6,7 +6,8 @@
 */
 
 var express = require('express');
-var pathing = require('path');
+var path = require('path');
+var fs = require('fs');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
@@ -18,8 +19,12 @@ var siteDir = __dirname + '/../site/'
 var signupDir = siteDir + 'signup/';
 var loginDir = siteDir + 'login/';
 var resourcesDir = __dirname + '/../resources/';
+var jsDir = resourcesDir + 'js/';
+var cssDir = resourcesDir + 'css/';
+var fontsDir = resourcesDir + 'fonts/';
 var templatesDir = resourcesDir + 'templates/';
 var clientsDir = resourcesDir + 'clients/';
+var dataTablesDir = resourcesDir + 'DataTables-1.10.13/';
 
 // Used to validate given names; first and last
 function validateName(name) {
@@ -38,7 +43,7 @@ function validateEmail(email) {
 	return (email.length == 22 && validateNetID(emailsplit[0]) && emailsplit[1] == 'utdallas.edu');
 }
 
-// Used to validate a given password; this may be moot now since we hash on the client side
+// Used to validate a given password; this may be moot now since we hash on the 1 side
 function validatePassword(password) {
 	return password.length > 8;
 }
@@ -55,6 +60,13 @@ function validatePersonal(personal) {
 	);
 }
 
+function loadDirectories(srcpath, app) {
+	fs.readdirSync(srcpath).map((dir) => {
+		console.log('Sourcing directory: ', path.join(srcpath, dir));
+		app.use(express.static(path.join(srcpath, dir)));
+	});
+}
+
 // put this here temporarily; using this function to respond to the client request
 exports.respond = function(packet) {
 	res = packet.res;
@@ -67,18 +79,23 @@ exports.startServer = function() {
 	console.log('Starting server...');
 
 	var app = express();
-	var router = express.Router();
+	var router = express.Router();	
 
-	// haven't quite organized this out
-	// change this to use better pathing I guess, this should also get the current directory
-	app.use("/clients", express.static(pathing.join(__dirname, 'clients')));
+	loadDirectories(jsDir, app);
+	loadDirectories(cssDir, app);
+	loadDirectories(fontsDir, app);
+	loadDirectories(dataTablesDir
+		, app);
+	// /loadDirectories(dataTablesImagesDir
+		//, app);
+
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded());
 	app.use(bodyParser.urlencoded({ extended: true }));
 	app.use(cookieParser());
 	app.use(session({ secret: "Shh, its a secret!" }));
 
-	console.log(pathing);
+	//console.log(path);
 
 	// Root directory
 	app.get('/', function (req, res, next) {
@@ -91,7 +108,7 @@ exports.startServer = function() {
 		else if(req.session.client.personal != undefined) {
 			res.redirect('/' + req.session.client.personal.netid);
 		} else {
-			// app.pathing('/signup');
+			// app.path('/signup');
 			// next('/signup');
 			res.redirect('/login');
 		}
@@ -170,23 +187,25 @@ exports.startServer = function() {
 
 	// All functions/handles below are used to serve the respective files
 
-	// Serve the 404 file if the file is missing; this overrides the directive for users (/:id) that don't exist
-	app.use(function (err, req, res, next) {
-	  console.error(err.stack);
-		res.sendFile('404.html', { root: templatesDir + '404/' });
-	});
-
 	app.get('/index.template.js', function (req, res) {
 		res.sendFile('index.template.js', { root: templatesDir + 'index/' });
 	});
 
-	app.get('/md5.min.js', function (req, res) {
-		res.sendFile('md5.min.js', { root: resourcesDir + 'js/md5/' });
-	});
+	// app.get('/bootstrap.min.js', function (req, res) {
+	// 	res.sendFile('bootstrap.min.js', { root: resourcesDir + 'js/bootstrap/' });
+	// });
 
-	app.get('/md5.min.js.map', function (req, res) {
-		res.sendFile('md5.min.js', { root: resourcesDir + 'js/md5/' });
-	});
+	// app.get('/jquery.min.js', function (req, res) {
+	// 	res.sendFile('jquery.min.js', { root: resourcesDir + 'js/jquery/' });
+	// });
+
+	// app.get('/md5.min.js', function (req, res) {
+	// 	res.sendFile('md5.min.js', { root: resourcesDir + 'js/md5/' });
+	// });
+
+	// app.get('/md5.min.js.map', function (req, res) {
+	// 	res.sendFile('md5.min.js', { root: resourcesDir + 'js/md5/' });
+	// });
 
 	app.get('/login', function (req, res) {
 		res.sendFile('login.html', { root: loginDir });
@@ -287,6 +306,12 @@ exports.startServer = function() {
 	app.get('/:id', function (req, res) {
 		console.log("Serving user:", req.url);
 		res.sendFile('index.html', { root: clientsDir + req.url.toLowerCase() });
+	});
+	
+	// Serve the 404 file if the file is missing; this overrides the directive for users (/:id) that don't exist
+	app.use(function (err, req, res, next) {
+	  console.error(err.stack);
+		res.sendFile('404.html', { root: templatesDir + '404/' });
 	});
 
 	app.listen(8080, function () {

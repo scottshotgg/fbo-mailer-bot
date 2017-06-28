@@ -8,7 +8,8 @@
 var MongoClient = require('mongodb').MongoClient;
 var cheerio = require('cheerio');
 
-var el = require('./eventloop-eventEmitter2')
+var el = require('./eventloop-eventEmitter2');
+var async = require('async');
 
 var fbodataCollection;
 var fbodataClients;
@@ -46,22 +47,16 @@ function databaseSave(data) {
 
 // insertMongoDB is only used to insert the postings
 exports.insertMongoDB = function(packet) {
-	// fbodataCollection.insert(packet.data)
-	// 	.then(() => {
-	// })
-	// 	.catch((err) => {
-	// 		// Ideally you want to emit an error to the event loop and have it handle it, etc
-	// });
-	//console.log(packet.data)
 	fbodataCollection.insertMany(packet.data)
 		.then(() => {
-			console.log('success')
+			console.log('success');
 		})
 		.catch((err) => {
-			console.log('err', err)
+			//console.log('err', err.message);
 		})
 		.then(() => {
-			el.emit('finished', 'insert')
+			// just ignore the errors
+			el.emit('finished', 'insert');
 		});
 }
 
@@ -127,6 +122,16 @@ exports.generateClientPages = function() {
 				el.emitAsync('newclientpage', { client: client, data: documents });
 			});
 		});
+
+		// async.map(clients, (client, callback) => {
+		// 	fbodataCollection.find(client.search).toArray((err, documents) => {
+		// 		// emit an ASYNC event to generate a new client page
+		// 		el.emitAsync('newclientpage', { client: client, data: documents });
+		// 	});
+		// }, (err, results) => {
+		// 	console.log(err, results);
+		// });
+
 	});
 }
 
@@ -136,30 +141,30 @@ exports.upsertClient = function(packet) {
 	console.log('Attempting to insert client:', packet.client.personal.netid);
 
 	Promise.resolve(fboclientsCollection.update({ 'personal.netid': packet.client.personal.netid }, packet.client, { upsert: true }))
-	.then(() => {
-		// Find all documents that fall under the clients search parameters
-		fbodataCollection.find(packet.client.search).toArray((err, documents) => {
+		.then(() => {
+			// Find all documents that fall under the clients search parameters
+			fbodataCollection.find(packet.client.search).toArray((err, documents) => {
 
-			// emit an ASYNC event to generate a new client page
-			el.emitAsync('newclientpage', { client: packet.client, data: documents });
+				// emit an ASYNC event to generate a new client page
+				el.emitAsync('newclientpage', { client: packet.client, data: documents });
 
-			// Ideally you want to have this redirect to a new page with a finish event emitted on successful generation which then redirects them
-			// emit a response packet containing the NetID for the redirect
-			el.emit('respond', 
-				{ 
-					res: packet.res,
-					responseFunction: () => {
-						res.json({ name: packet.client.personal.netid });
+				// Ideally you want to have this redirect to a new page with a finish event emitted on successful generation which then redirects them
+				// emit a response packet containing the NetID for the redirect
+				el.emit('respond', 
+					{ 
+						res: packet.res,
+						responseFunction: () => {
+							res.json({ name: packet.client.personal.netid });
+						}
 					}
-				}
-			);
+				);
 
-			console.log('Inserted client: ', packet.client.personal.netid);
+				console.log('Inserted client: ', packet.client.personal.netid);
+			});
+
+		})
+		.catch((err) => {
+			console.log('Could not insert client:', packet.client.personal.netid);
+			console.log('Error:', err);
 		});
-
-	})
-	.catch((err) => {
-		console.log('Could not insert client:', packet.client.personal.netid);
-		console.log('Error:', err);
-	});
 }
