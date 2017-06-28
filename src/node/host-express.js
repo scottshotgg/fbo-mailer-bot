@@ -5,26 +5,7 @@
 	http://expressjs.com/en/api.html#res.download
 */
 
-var express = require('express');
-var path = require('path');
-var fs = require('fs');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var md5 = require("blueimp-md5");
-
 var el = require('./eventloop-eventEmitter2');
-
-var siteDir = __dirname + '/../site/'
-var signupDir = siteDir + 'signup/';
-var loginDir = siteDir + 'login/';
-var resourcesDir = __dirname + '/../resources/';
-var jsDir = resourcesDir + 'js/';
-var cssDir = resourcesDir + 'css/';
-var fontsDir = resourcesDir + 'fonts/';
-var templatesDir = resourcesDir + 'templates/';
-var clientsDir = resourcesDir + 'clients/';
-var dataTablesDir = resourcesDir + 'DataTables-1.10.13/';
 
 // Used to validate given names; first and last
 function validateName(name) {

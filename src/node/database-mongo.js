@@ -5,11 +5,8 @@
 	scottshotgg
 */
 
-var MongoClient = require('mongodb').MongoClient;
-var cheerio = require('cheerio');
-
 var el = require('./eventloop-eventEmitter2');
-var async = require('async');
+// /var async = require('async');
 
 var fbodataCollection;
 var fbodataClients;
@@ -116,21 +113,21 @@ exports.generateClientPages = function() {
 	// Find all clients and generate an array from the cursor
 	fboclientsCollection.find().toArray((err, clients) => {
 		// map the client array to find all documents under each clients specified search terms
-		clients.map((client) => {
-			fbodataCollection.find(client.search).toArray((err, documents) => {
-				// emit an ASYNC event to generate a new client page
-				el.emitAsync('newclientpage', { client: client, data: documents });
-			});
-		});
-
-		// async.map(clients, (client, callback) => {
+		// clients.map((client) => {
 		// 	fbodataCollection.find(client.search).toArray((err, documents) => {
 		// 		// emit an ASYNC event to generate a new client page
 		// 		el.emitAsync('newclientpage', { client: client, data: documents });
 		// 	});
-		// }, (err, results) => {
-		// 	console.log(err, results);
 		// });
+
+		async.map(clients, (client, callback) => {
+			fbodataCollection.find(client.search).toArray((err, documents) => {
+				// emit an ASYNC event to generate a new client page
+				el.emitAsync('newclientpage', { client: client, data: documents });
+			});
+		}, (err, results) => {
+			console.log(err, results);
+		});
 
 	});
 }
@@ -150,7 +147,7 @@ exports.upsertClient = function(packet) {
 
 				// Ideally you want to have this redirect to a new page with a finish event emitted on successful generation which then redirects them
 				// emit a response packet containing the NetID for the redirect
-				el.emit('respond', 
+				el.emitAsyn('respond', 
 					{ 
 						res: packet.res,
 						responseFunction: () => {

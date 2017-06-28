@@ -4,18 +4,7 @@
 	scottshotgg
 */
 
-var fs = require('fs');
-var ftp = require('ftp-get');
-var cheerio = require('cheerio');
-var mkdirp = require('mkdirp');
-var async = require('async');
-
 var el = require('./eventloop-eventEmitter2');
-
-var resourcesDir = __dirname + '/../resources/';
-var feedDir = resourcesDir + 'feed/';
-var templatesDir = resourcesDir + 'templates/';
-var clientsDir = resourcesDir + 'clients/';
 
 // fetchFeed is used to fetch the file for a certain date (defaults to yesterday as this will be run at midnight)
 exports.fetchFeed = function(date = new Date()) {
@@ -97,6 +86,7 @@ exports.generateNewClientPage = function(packet) {
 	// Change this to make it display what the user wants
 	var tableColumns = ['Subject', 'ID', 'Opportunity/Procurement Type', 'Agency', 'Date', 'NAICS Code'];
 
+	// We can do some async stuff here I think, but it needs to be ordered; alternatively, we could do it unordered because we have dataTables sort it anyways
 	$('thead').html(tableColumns.slice(0, tableColumns.length).map(header => '<th>' + header + '</th>').join('\n'));
 	$('tbody').html(documents.map((document) => {
 
@@ -241,6 +231,8 @@ function splitString(string) {
 	// Use the typeMapping object to set the procurement type
 	object['Opportunity/Procurement Type'] = typeMapping[stringSplitArray[1].slice(1, -1)];
 
+	// Can probably do an async here as well
+	
 	// Skip every other one starting from 3; the first two or three lines are blank and every other one a value for the current key
 	for(var i = 3; i < stringSplitArray.length; i+=2) {
 		// Trim the value from the array and strip out the beginning and ending tag symbols; < and >

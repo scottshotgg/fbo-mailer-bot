@@ -1,15 +1,9 @@
 /*
 	This file is used to provide console/log debugging for the scraper
 */
-
-var fs = require('fs');
+el = require('./eventloop-eventEmitter2');
 const { Console } = require('console');
 
-var resourcesDir = __dirname + '/../resources/';
-var logDir = resourcesDir  + 'logs/';
-
-var date = new Date();
-var logFileDir = logDir + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '/';
 // /console.log(logFileDir);
 var logFile = date + '.log';
 const logFileOutputStream = fs.createWriteStream(logFileDir + logFile);

@@ -4,6 +4,7 @@
   "description": "A scraper for the FBO.gov site",
   "main": "src/node",
   "dependencies": {
+    "async": "^2.5.0",
     "blueimp-md5": "^2.7.0",
     "body-parser": "^1.17.2",
     "bson": "^1.0.4",
@@ -11,20 +12,19 @@
     "console-stamp": "^0.2.5",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
-    "express-graphql": "latest",
+    "express-graphql": "^0.6.6",
     "express-session": "^1.15.3",
-    "ftp-get": "latest",
-    "graphql": "latest",
+    "ftp-get": "^0.3.1",
+    "graphql": "^0.10.3",
     "mkdirp": "^0.5.1",
     "mongodb": "^2.2.29",
     "node-cron": "^1.2.0",
     "randomstring": "^1.1.5",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "request": "latest",
+    "request": "^2.81.0",
     "require_optional": "^1.0.1",
-    "sendmail": "^1.1.1",
-    "async": "latest"
+    "sendmail": "^1.1.1"
   },
   "repository": {
     "type": "git",

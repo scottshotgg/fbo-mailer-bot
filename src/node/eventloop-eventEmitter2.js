@@ -2,15 +2,10 @@
 	This file serves as the event-loop for the program. As of right now it is also the main file for the scraper, but that may change in the future
 */
 
-var consoleStamp = require('./log-consoleStamp');
-var scraper = require('./scraper');
-var dbm = require('./database-mongo');
-var cron = require('./scheduler-cron');
-var host = require('./host-express');
+variables = require('./variables');
 
-var async = require('async');
+var EventEmitter = require('events');
 
-var EventEmitter = require('eventemitter2').EventEmitter2;
 class EventLoop extends EventEmitter {}
 
 var mainEventLoop = new EventLoop();
