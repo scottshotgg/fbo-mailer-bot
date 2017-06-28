@@ -14,3 +14,11 @@ todo
 - Make some thing that will print out the client in front of each message; scraper.js:~line 265
 
 - Change the multiple select2 to a single and apply a default value to it
+
+- Finish implementing the variable file
+
+- Make a new main file (scraper.js, ideally)
+
+- Implement more async.js stuff
+
+- Try to make a fully async eventloop (might not be able to)
