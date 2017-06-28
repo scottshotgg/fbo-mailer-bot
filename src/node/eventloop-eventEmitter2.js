@@ -6,6 +6,8 @@ var scraper = require('./scraper');
 var dbm = require('./database-mongo');
 var cron = require('./scheduler-cron');
 var host = require('./host-express');
+var console = require('./log-consoleStamp');
+var async = require('async');
 
 var EventEmitter = require('eventemitter2').EventEmitter2;
 class EventLoop extends EventEmitter {}
@@ -19,9 +21,19 @@ exports.emit = function(event, packet) {
 
 // emitAsync is a function that emits an event to the event loop asynchronously
 exports.emitAsync = function(event, packet) {
-	setTimeout(() => { 
-		mainEventLoop.emit(event, packet); 
-	}, 0);
+	// setTimeout(() => { 
+	// 	mainEventLoop.emit(event, packet); 
+	// }, 0);
+	async.parallel({
+	    one: function() {
+	        setTimeout(function() {
+	            mainEventLoop.emit(event, packet);
+	        }, 0);
+	    }
+	}, function(err, results) {
+	    // results is now equals to: {one: 1, two: 2}
+	    console.log('done', err, results);
+	});
 }
 
 function finished(event) {

@@ -46,15 +46,26 @@ function databaseSave(data) {
 
 // insertMongoDB is only used to insert the postings
 exports.insertMongoDB = function(packet) {
-	fbodataCollection.insert(packet.data)
+	// fbodataCollection.insert(packet.data)
+	// 	.then(() => {
+	// })
+	// 	.catch((err) => {
+	// 		// Ideally you want to emit an error to the event loop and have it handle it, etc
+	// });
+	//console.log(packet.data)
+	fbodataCollection.insertMany(packet.data)
 		.then(() => {
-	})
+			console.log('success')
+		})
 		.catch((err) => {
-			// Ideally you want to emit an error to the event loop and have it handle it, etc
-	});
+			console.log('err', err)
+		})
+		.then(() => {
+			el.emit('finished', 'insert')
+		});
 }
 
-// createCollection is used to create the needed collections 
+// createCollection is used to create the needed collections, for now it just does all the collection work instead of being a general function that can be used abstractly
 exports.createCollection = function(collName) {
   console.log('Creating collection', collName);
 

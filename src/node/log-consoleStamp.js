@@ -1,12 +1,19 @@
-// console debugging
+/*
+	This file is used to provide console/log debugging for the scraper
+*/
+
+
 var fs = require('fs');
 
-var logdir = __dirname + '/logs'
-console.log(logdir)
-if(!fs.existsSync(logdir)) {
-	fs.mkdirSync(logdir);
+var resourcesDir = __dirname + '/../resources/';
+var logDir = resourcesDir  + '/logs'
+
+console.log(logDir);
+
+if(!fs.existsSync(logDir)) {
+	fs.mkdirSync(logDir);
 }
-f
+
 // Using console stamp to provide better print outs for debugging
 var cs = require("console-stamp") (console, {
 	metadata: function () {
@@ -15,9 +22,9 @@ var cs = require("console-stamp") (console, {
 
 		var printout = ('[ RAM: ' + (process.memoryUsage().rss  / 1000000).toFixed(2) + ' MB | caller: ' + __function + ' | line: ' + __line + ' ]');
 		//console.log(console);
-		fs.appendFileSync(logdir + '/logfile', printout + '\n', 'utf8');
+		fs.appendFileSync(logDir + '/logfile', printout + '\n', 'utf8');
 
-		return printout;
+		return printout + '\n';
 	},
 	colors: {
 		stamp:    "yellow", 

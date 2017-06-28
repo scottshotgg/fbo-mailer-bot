@@ -8,13 +8,14 @@ var fs = require('fs');
 var ftp = require('ftp-get');
 var cheerio = require('cheerio');
 var mkdirp = require('mkdirp');
+var async = require('async');
 
 var el = require('./eventloop-eventEmitter2');
 
 var resourcesDir = __dirname + '/../resources/';
 var feedDir = resourcesDir + 'feed/';
 var templatesDir = resourcesDir + 'templates/';
-var clientsDir = __dirname + '/../clients/';
+var clientsDir = resourcesDir + 'clients/';
 
 // fetchFeed is used to fetch the file for a certain date (defaults to yesterday as this will be run at midnight)
 exports.fetchFeed = function(date = new Date()) {
@@ -54,20 +55,30 @@ exports.parseFeed = function(packet) {
   		The first filter qualifier is used to get rid of the empty lines and other junk that is in the file
   		The second filter qualifier is used to remove all ARCHIVE and UNARCHIVE entries as we do not want those
 	*/
-	filedata.split(/(<\/[A-Z]+>)/g).filter((item) => { return (item.length > 15 && !item.slice(4, 11).includes('ARCH')) }).map((item, id) => {
-			// could probably simplify this somehow
-			// Process the pieces left; datum will be an object with everything put in the correct attributes
-			var datum = postProcessing(splitString(item));
+	console.log('async filter...');
+	async.filter(filedata.split(/(<\/[A-Z]+>)/g), (item, callback) => {
+		callback(item.length > 15 && !item.slice(4, 11).includes('ARCH'));
+	}, (results, err) => {
+		console.log('async filter done');
+		//console.log(err, results);
+		console.log(results.length);
 
-			// just set the ID here maybe from the mapping stuff?
-			// If the data has an ID (sometimes the postings come without IDs and idk what to do for that?)
-			if(datum.ID) {
-				// emit ASYNC insertion events for each piece of data
-				el.emitAsync('insertdata', { data: datum });
-			}
+		async.map(results, (item, callback) => {
+			//console.log(item);
+			var datum = postProcessing(splitString(item));
+			callback((datum.ID != undefined) && null, datum);
+
+		}, (err, results) => {	
+			//el.emit('finished', 'insert');
+			console.log('finished');
+			async.filter(results, (item, callback) => {
+				callback(item.ID != undefined);
+			}, (results, err) => {
+				el.emit('insertdata', { data: results });
+			});
+
+		});
 	});
-	// Tell the event loop we are finished so that we can start generating the client pages
-	el.emit('finished', 'insert');
 }
 
 // generateNewClientPage is used for generating a new home page for the specified client

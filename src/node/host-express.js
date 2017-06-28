@@ -17,9 +17,9 @@ var el = require('./eventloop-eventEmitter2');
 var siteDir = __dirname + '/../site/'
 var signupDir = siteDir + 'signup/';
 var loginDir = siteDir + 'login/';
-var clientsDir = __dirname + '/../clients/';
 var resourcesDir = __dirname + '/../resources/';
 var templatesDir = resourcesDir + 'templates/';
+var clientsDir = resourcesDir + 'clients/';
 
 // Used to validate given names; first and last
 function validateName(name) {
