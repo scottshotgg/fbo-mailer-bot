@@ -20,3 +20,5 @@ todo
 - Try to make a fully async eventloop (might not be able to)
 
 - Update README
+
+- Format the string 'printout' to have proper columns
