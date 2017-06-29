@@ -1,20 +1,22 @@
 /*
 	This file is used to provide console/log debugging for the scraper
 */
-el = require('./eventloop-eventEmitter2');
 const { Console } = require('console');
 
 // /console.log(logFileDir);
 var logFile = date + '.log';
-const logFileOutputStream = fs.createWriteStream(logFileDir + logFile);
 
 // probably should have a try catch here just in case
-if(!fs.existsSync(logDir)) {
-	fs.mkdirSync(logDir);
-	fs.mkdirSync(logFileDir);
-} else if(!fs.existsSync(logFileDir)) {
-	fs.mkdirSync(logFileDir);
-}
+(() => {
+	if(!fs.existsSync(logDir)) {
+		fs.mkdirSync(logDir);
+		fs.mkdirSync(logFileDir);
+	} else if(!fs.existsSync(logFileDir)) {
+		fs.mkdirSync(logFileDir);
+	}
+})();
+
+const logFileOutputStream = fs.createWriteStream(logFileDir + logFile);
 
 // Define new consoles
 const logger = new Console(logFileOutputStream, null);
@@ -39,28 +41,27 @@ Object.defineProperty(global, '__stack', {
 
 // Get the file that 'console.log(...)' it was called in
 Object.defineProperty(global, '__file', {
-  get: function(){
-    return __stack[globalStackDrawValue].getFileName().split('/').slice(-1)[0];
+  get: function() { 
+  	return __stack[globalStackDrawValue].getFileName().split('/').slice(-1)[0];
   }
 });
 
 // Get the function that 'console.log(...)' it was called in
-Object.defineProperty(global, '__function', {
-	get: function() {
+Object.defineProperty(global, '__function', { 
+	get: function() { 
 		return __stack[globalStackDrawValue].getFunctionName();
 	}
 });
 
 // Get the line that called the 'console.log(...)'
 Object.defineProperty(global, '__line', {
-	get: function() {
-		return __stack[globalStackDrawValue].getLineNumber();
+	get: function() { 
+		return __stack[globalStackDrawValue].getLineNumber(); 
 	}
 });
 
 // Remap console.log to print to both of our defined consoles; the log file and stdout
 console.log = (...args) => {
- 	//stamp.log(Array.prototype.slice.call(arguments));
 	logger.log(...args, '\n');
  	stamp.log(...args, '\n');
 }
@@ -68,7 +69,8 @@ console.log = (...args) => {
 // Using console stamp to provide better print outs for debugging
 var cs = require("console-stamp") (console, {
 	metadata: function () {
-		var printout = ('[ RAM: ' + (process.memoryUsage().rss  / 1000000).toFixed(2) + ' MB | file: ' + __file + ' | caller: ' + __function + ' | line: ' + __line + ' ]');
+		// format this better
+		var printout = ('[ RAM: ' + (process.memoryUsage().rss  / 1000000).toFixed(2) + ' MB | caller: ' + __function + ' | file: ' + __file + ' | line: ' + __line + ' ]');
 		logger.log(printout);
 		return printout + '\n';
 	},

@@ -1,0 +1,103 @@
+[ RAM: 54.94 MB | caller: null | line: 3 | file: scraper.js ]
+{ fetchFeed: [Function],
+  parseFeed: [Function],
+  generateNewClientPage: [Function] } '\n'
+[ RAM: 55.21 MB | caller: exports.schedule | line: 18 | file: scheduler-cron.js ]
+Scheduling 'fetchUpdate' to run at { minute: '15', hour: '16', date: '*', month: '*', day: '*' } 
+
+[ RAM: 55.48 MB | caller: exports.startServer | line: 58 | file: host-express.js ]
+Starting server... 
+
+[ RAM: 55.48 MB | caller: fs.readdirSync.map | line: 44 | file: host-express.js ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/js/bootstrap 
+
+[ RAM: 55.75 MB | caller: fs.readdirSync.map | line: 44 | file: host-express.js ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/js/dataTables 
+
+[ RAM: 55.75 MB | caller: fs.readdirSync.map | line: 44 | file: host-express.js ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/js/jquery 
+
+[ RAM: 55.75 MB | caller: fs.readdirSync.map | line: 44 | file: host-express.js ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/js/md5 
+
+[ RAM: 55.75 MB | caller: fs.readdirSync.map | line: 44 | file: host-express.js ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/js/moment 
+
+[ RAM: 55.75 MB | caller: fs.readdirSync.map | line: 44 | file: host-express.js ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/js/select2 
+
+[ RAM: 55.75 MB | caller: fs.readdirSync.map | line: 44 | file: host-express.js ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/css/bootstrap 
+
+[ RAM: 55.75 MB | caller: fs.readdirSync.map | line: 44 | file: host-express.js ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/css/dataTables 
+
+[ RAM: 55.75 MB | caller: fs.readdirSync.map | line: 44 | file: host-express.js ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/css/select2 
+
+[ RAM: 55.75 MB | caller: fs.readdirSync.map | line: 44 | file: host-express.js ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/css/uiKit 
+
+[ RAM: 56.02 MB | caller: fs.readdirSync.map | line: 44 | file: host-express.js ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/fonts/DataTables-1.10.13 
+
+[ RAM: 56.02 MB | caller: fs.readdirSync.map | line: 44 | file: host-express.js ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/fonts/bootstrap 
+
+[ RAM: 56.02 MB | caller: fs.readdirSync.map | line: 44 | file: host-express.js ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/DataTables-1.10.13/DataTables-1.10.13 
+
+[ RAM: 56.02 MB | caller: async.map | line: 68 | file: host-express.js ]
+Done loading resource files! 
+
+[ RAM: 57.89 MB | caller: exports.connectMongoDB | line: 18 | file: database-mongo.js ]
+Initiating connection to fbo-mailer 
+
+[ RAM: 59.11 MB | caller: null | line: 280 | file: host-express.js ]
+Listening on port 8080! 
+
+[ RAM: 59.38 MB | caller: null | line: 23 | file: database-mongo.js ]
+Connected to fbo-mailer 
+
+[ RAM: 59.38 MB | caller: exports.createCollection | line: 59 | file: database-mongo.js ]
+Creating collection { '': '' } 
+
+[ RAM: 59.65 MB | caller: fs.open | line: 63 | file: scraping-utils.js ]
+FBOFeed20170628 already downloaded 
+
+[ RAM: 77.55 MB | caller: exports.parseFeed | line: 73 | file: scraping-utils.js ]
+Parsing FBOFeed20170628 
+
+[ RAM: 77.55 MB | caller: exports.parseFeed | line: 75 | file: scraping-utils.js ]
+Inserting records... 
+
+[ RAM: 77.55 MB | caller: exports.parseFeed | line: 82 | file: scraping-utils.js ]
+async filter... 
+
+[ RAM: 77.55 MB | caller: async.filter | line: 86 | file: scraping-utils.js ]
+async filter done 
+
+[ RAM: 77.55 MB | caller: async.map | line: 95 | file: scraping-utils.js ]
+finished 
+
+[ RAM: 78.36 MB | caller: exports.generateClientPages | line: 108 | file: database-mongo.js ]
+Generating client pages... 
+
+[ RAM: 105.76 MB | caller: exports.generateNewClientPage | line: 110 | file: scraping-utils.js ]
+scg104020 has 939 entries 
+
+[ RAM: 134.55 MB | caller: exports.generateNewClientPage | line: 160 | file: scraping-utils.js ]
+Attempting to write client index file: /clients/scg104020/index.html 
+
+[ RAM: 139.15 MB | caller: exports.generateNewClientPage | line: 163 | file: scraping-utils.js ]
+Client index file successfully written: /clients/scg104020/index.html 
+
+[ RAM: 139.69 MB | caller: exports.generateNewClientPage | line: 110 | file: scraping-utils.js ]
+scg104021 has 939 entries 
+
+[ RAM: 151.58 MB | caller: exports.generateNewClientPage | line: 160 | file: scraping-utils.js ]
+Attempting to write client index file: /clients/scg104021/index.html 
+
+[ RAM: 156.99 MB | caller: exports.generateNewClientPage | line: 163 | file: scraping-utils.js ]
+Client index file successfully written: /clients/scg104021/index.html 
+

@@ -3,7 +3,6 @@
 */
 
 // Node-Cron is used to call the events at cetain times and fire off the scraping and client emails at certain times
-var cron = require('node-cron');
 
 // Might not use this as an abstract, can probably just get it from the database if the clients get the ability to specifiy
 var cronDate = { 

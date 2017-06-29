@@ -1,0 +1,52 @@
+[ RAM: 57.09 MB | file: scheduler-cron.js | caller: exports.schedule | line: 19 ]
+Scheduling 'fetchUpdate' to run at { minute: '15', hour: '16', date: '*', month: '*', day: '*' } 
+
+[ RAM: 57.36 MB | file: host-express.js | caller: exports.startServer | line: 60 ]
+Starting server... 
+
+[ RAM: 57.63 MB | file: host-express.js | caller: fs.readdirSync.map | line: 46 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/js/bootstrap 
+
+[ RAM: 57.63 MB | file: host-express.js | caller: fs.readdirSync.map | line: 46 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/js/dataTables 
+
+[ RAM: 57.63 MB | file: host-express.js | caller: fs.readdirSync.map | line: 46 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/js/jquery 
+
+[ RAM: 57.63 MB | file: host-express.js | caller: fs.readdirSync.map | line: 46 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/js/md5 
+
+[ RAM: 57.63 MB | file: host-express.js | caller: fs.readdirSync.map | line: 46 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/js/moment 
+
+[ RAM: 57.91 MB | file: host-express.js | caller: fs.readdirSync.map | line: 46 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/js/select2 
+
+[ RAM: 57.91 MB | file: host-express.js | caller: fs.readdirSync.map | line: 46 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/css/bootstrap 
+
+[ RAM: 57.91 MB | file: host-express.js | caller: fs.readdirSync.map | line: 46 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/css/dataTables 
+
+[ RAM: 57.91 MB | file: host-express.js | caller: fs.readdirSync.map | line: 46 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/css/select2 
+
+[ RAM: 57.91 MB | file: host-express.js | caller: fs.readdirSync.map | line: 46 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/css/uiKit 
+
+[ RAM: 57.91 MB | file: host-express.js | caller: fs.readdirSync.map | line: 46 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/fonts/DataTables-1.10.13 
+
+[ RAM: 57.91 MB | file: host-express.js | caller: fs.readdirSync.map | line: 46 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/fonts/bootstrap 
+
+[ RAM: 57.91 MB | file: host-express.js | caller: fs.readdirSync.map | line: 46 ]
+Sourcing directory:  /home/scottshotgg/Development/fbo-mailer-bot/src/resources/DataTables-1.10.13/DataTables-1.10.13 
+
+[ RAM: 59.96 MB | file: database-mongo.js | caller: exports.connectMongoDB | line: 21 ]
+Initiating connection to fbo-mailer 
+
+[ RAM: 60.85 MB | file: host-express.js | caller: null | line: 299 ]
+Listening on port 8080! 
+
+[ RAM: 61.37 MB | file: database-mongo.js | caller: null | line: 26 ]

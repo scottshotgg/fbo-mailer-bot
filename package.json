@@ -33,7 +33,7 @@
   "author": "scottshotgg",
   "license": "GPL-2.0",
   "scripts": {
-    "test": "node src/node/eventloop-eventEmitter2.js f",
-    "start": "node src/node/eventloop-eventEmitter2.js"
+    "test": "node src/node/scraper.js f",
+    "start": "node src/node/scraper.js"
   }
 }

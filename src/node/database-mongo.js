@@ -5,9 +5,6 @@
 	scottshotgg
 */
 
-var el = require('./eventloop-eventEmitter2');
-// /var async = require('async');
-
 var fbodataCollection;
 var fbodataClients;
 

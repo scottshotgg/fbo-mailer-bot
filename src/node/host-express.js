@@ -5,8 +5,6 @@
 	http://expressjs.com/en/api.html#res.download
 */
 
-var el = require('./eventloop-eventEmitter2');
-
 // Used to validate given names; first and last
 function validateName(name) {
 	return /^[a-zA-Z]+$/.test(name);
@@ -62,13 +60,12 @@ exports.startServer = function() {
 	var app = express();
 	var router = express.Router();	
 
-	loadDirectories(jsDir, app);
-	loadDirectories(cssDir, app);
-	loadDirectories(fontsDir, app);
-	loadDirectories(dataTablesDir
-		, app);
-	// /loadDirectories(dataTablesImagesDir
-		//, app);
+	async.map([jsDir, cssDir, fontsDir, dataTablesDir],
+		(item, callback) => {
+			loadDirectories(item, app);
+			callback(null, item);
+		},
+		(err, results) => { console.log('Done loading resource files!') });
 
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded());
@@ -171,22 +168,6 @@ exports.startServer = function() {
 	app.get('/index.template.js', function (req, res) {
 		res.sendFile('index.template.js', { root: templatesDir + 'index/' });
 	});
-
-	// app.get('/bootstrap.min.js', function (req, res) {
-	// 	res.sendFile('bootstrap.min.js', { root: resourcesDir + 'js/bootstrap/' });
-	// });
-
-	// app.get('/jquery.min.js', function (req, res) {
-	// 	res.sendFile('jquery.min.js', { root: resourcesDir + 'js/jquery/' });
-	// });
-
-	// app.get('/md5.min.js', function (req, res) {
-	// 	res.sendFile('md5.min.js', { root: resourcesDir + 'js/md5/' });
-	// });
-
-	// app.get('/md5.min.js.map', function (req, res) {
-	// 	res.sendFile('md5.min.js', { root: resourcesDir + 'js/md5/' });
-	// });
 
 	app.get('/login', function (req, res) {
 		res.sendFile('login.html', { root: loginDir });
