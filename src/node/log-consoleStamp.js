@@ -2,6 +2,7 @@
 	This file is used to provide console/log debugging for the scraper
 */
 const { Console } = require('console');
+const leftpad = require('left-pad');
 
 // /console.log(logFileDir);
 var logFile = date + '.log';
@@ -66,11 +67,20 @@ console.log = (...args) => {
  	stamp.log(...args, '\n');
 }
 
+
+// function makeOutputString(inputVars) {
+// 	var outputString = ;
+
+
+// 	return outputString;
+// }
+
+
 // Using console stamp to provide better print outs for debugging
 var cs = require("console-stamp") (console, {
 	metadata: function () {
 		// format this better
-		var printout = ('[ RAM: ' + (process.memoryUsage().rss  / 1000000).toFixed(2) + ' MB | caller: ' + __function + ' | file: ' + __file + ' | line: ' + __line + ' ]');
+		var printout = ('[ RAM: ' + leftpad((process.memoryUsage().rss  / 1000000).toFixed(2), 6, ' ') + ' MB | file: ' + leftpad(__file, 19, ' ') + ' | line: ' + leftpad(__line, 3, ' ') + ' | caller: ' + __function + ' ]');
 		logger.log(printout);
 		return printout + '\n';
 	},

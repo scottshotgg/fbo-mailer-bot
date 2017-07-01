@@ -75,7 +75,7 @@ exports.createCollection = function(collName) {
   fboclientsCollection = database.mdb.collection('fboclients');
 
   // We are now ready to fetch so emit an event for it
-  el.emit('fetch');
+  el.emit('fetch', { date: date });
 }
 
 // This is not implemented either
@@ -124,6 +124,7 @@ exports.generateClientPages = function() {
 			});
 		}, (err, results) => {
 			console.log(err, results);
+			el.emit('finished', 'startup');
 		});
 
 	});

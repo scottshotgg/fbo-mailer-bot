@@ -39,6 +39,7 @@ function validatePersonal(personal) {
 	);
 }
 
+// Make this async and then make the server start based on when all these come back
 function loadDirectories(srcpath, app) {
 	fs.readdirSync(srcpath).map((dir) => {
 		console.log('Sourcing directory: ', path.join(srcpath, dir));

@@ -42,9 +42,9 @@ var propMapping = {
 };
 
 // fetchFeed is used to fetch the file for a certain date (defaults to yesterday as this will be run at midnight)
-exports.fetchFeed = function(date = new Date()) {
+exports.fetchFeed = function(packet) {
 	// Create the filename from the date
-	var filename = makeFilenameFromDate(date);
+	var filename = makeFilenameFromDate(packet.date);
 
 	// Try reading the file first to see if we have it
 	fs.open(feedDir + filename, 'r', (err, fd) => {
@@ -53,7 +53,19 @@ exports.fetchFeed = function(date = new Date()) {
 			if (err.code === 'ENOENT') {
 				console.log(filename, 'does not exist, fetching file...');
 				// Get the file from FBO
-				ftp.get('ftp://ftp.fbo.gov/' + filename, feedDir + filename, function (err, res) { el.emitAsync('parse', { feed: filename }) });
+				ftp.get('ftp://ftp.fbo.gov/' + filename, feedDir + filename, function (err, res) { 
+					// Only parse if there isn't an error
+					if(!err) {
+						el.emitAsync('parse', { feed: filename }); 
+					} else if(err.code == 550) {
+						console.log('There was no feed found for', filename);
+						el.emit('finished', 'startup');	
+					} else {
+						console.log('Error does not have any programmed diagnosis procedure - Exiting!');
+						console.log(err);
+						process.exit();
+					}
+				});
 			}
 		} else {
 			console.log(filename, 'has already been downloaded');

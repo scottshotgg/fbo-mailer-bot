@@ -2,9 +2,10 @@
 	This file is where all the shared global variables live; requires that are done in every file, paths that are used in every file, etc
 */
 
-express = require('express');
 fs = require('fs');
 path = require('path');
+EventEmitter = require('events');
+express = require('express');
 cookieParser = require('cookie-parser');
 bodyParser = require('body-parser');
 session = require('express-session');
@@ -16,7 +17,6 @@ mkdirp = require('mkdirp');
 async = require('async');
 MongoClient = require('mongodb').MongoClient;
 cheerio = require('cheerio');
-EventEmitter = require('events');
 cron = require('node-cron');
 
 date = new Date();
@@ -43,17 +43,3 @@ dbm = require('./database-mongo');
 scheduler = require('./scheduler-cron');
 host = require('./host-express');
 el = require('./eventloop-events');
-
-
-
-
-
-// exports.siteDir = siteDir;
-// exports.signupDir = signupDir;
-// exports.loginDir = loginDir;
-// exports.resourcesDir = resourcesDir;
-// exports.templatesDir = templatesDir;
-// exports.clientsDir = clientsDir;
-// exports.feedDir = feedDir;
-// exports.logDir = logDir;
-// exports.logFileDir = logFileDir;

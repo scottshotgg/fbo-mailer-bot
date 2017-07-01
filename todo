@@ -22,3 +22,7 @@ todo
 - Update README
 
 - Format the string 'printout' to have proper columns
+
+- Make a date argument var that will allow for simulation of a certain date
+
+- Make a debug printout that will print EVERYTHING out

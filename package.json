@@ -16,6 +16,7 @@
     "express-session": "^1.15.3",
     "ftp-get": "^0.3.1",
     "graphql": "^0.10.3",
+    "left-pad": "latest",
     "mkdirp": "^0.5.1",
     "mongodb": "^2.2.29",
     "node-cron": "^1.2.0",

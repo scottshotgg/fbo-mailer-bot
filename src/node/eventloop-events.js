@@ -45,6 +45,7 @@ var finishedMap = {
 	'newclientpage' : host.respond,
 	//'respond' 		: host.respond,
 	//'schedule' 		: scheduler.schedule
+	'startup'		: () => { console.log('Startup completed successfully!') }
 };
 
 
