@@ -20,11 +20,11 @@ exports.connectMongoDB = function(packet) {
   MongoClient.connect("mongodb://localhost:27017/" + packet.name, function(err, mdb) {
   	// If there wasn't an error then proceed, else just exit and print the error
   	if(!err) {
-  		console.log('Connected to', packet.name);
+  		console.log('Connected to', packet.name, '!');
   		database.mdb = mdb;
   		// After creating the database we are ready to create our collections
-      	el.emit('createcoll', { '': '' })
-  		
+      	//el.emit('createcoll', { '': '' })
+  		el.emit('finished', { event: 'connectdb', data: '' });
     } else {
       console.log(err);
       process.exit(1);
@@ -50,7 +50,7 @@ exports.insertMongoDB = function(packet) {
 		})
 		.then(() => {
 			// just ignore the errors
-			el.emit('finished', 'insert');
+			el.emit('finished', { event: 'insert' });
 		});
 }
 
@@ -75,7 +75,9 @@ exports.createCollection = function(collName) {
   fboclientsCollection = database.mdb.collection('fboclients');
 
   // We are now ready to fetch so emit an event for it
-  el.emit('fetch', { date: date });
+  //el.emit('fetch', { date: date });
+  console.log('Collection created!');
+  el.emit('finished', { event: 'createcoll', data: { date: date } });
 }
 
 // This is not implemented either
@@ -124,7 +126,8 @@ exports.generateClientPages = function() {
 			});
 		}, (err, results) => {
 			console.log(err, results);
-			el.emit('finished', 'startup');
+			// el.emit('finished', { event: 'startup', data: {} });
+			el.emit('finished', { event: 'startup' });
 		});
 
 	});

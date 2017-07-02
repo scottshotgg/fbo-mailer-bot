@@ -59,7 +59,7 @@ exports.fetchFeed = function(packet) {
 						el.emitAsync('parse', { feed: filename }); 
 					} else if(err.code == 550) {
 						console.log('There was no feed found for', filename);
-						el.emit('finished', 'startup');	
+						el.emit('finished', { event: 'startup' });	
 					} else {
 						console.log('Error does not have any programmed diagnosis procedure - Exiting!');
 						console.log(err);
@@ -69,7 +69,7 @@ exports.fetchFeed = function(packet) {
 			}
 		} else {
 			console.log(filename, 'has already been downloaded');
-			el.emitAsync('parse', { feed: filename });
+			el.emit('finished', { event: 'fetch', data: { feed: filename } });	
 		}
 	});
 }

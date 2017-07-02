@@ -27,8 +27,10 @@ exports.emitAsync = function(event, packet) {
 	});
 }
 
-function finished(event) {
-	finishedMap[event]();
+function finished(packet) {
+	//console.log('finished args:', packet);
+
+	finishedMap[packet.event](packet.data);
 }
 
 var finishedMap = {
@@ -37,6 +39,9 @@ var finishedMap = {
 	'parse' 		: scraper.parseFeed,
 	'connectdb' 	: dbm.createCollection,
 	'insert' 		: dbm.generateClientPages,
+	'createcoll' 	: scraper.fetchFeed,
+	'host'			: (packet) => { console.log('Web server started successfully!\n Listening on port', packet.port + '!') },
+	//'connect'		: dbm.createcoll
 	//'closedb' 		: dbm.closeMongoDB,
 	// make this take a data piece and a collection name or map it to the right shit based on an insertion 'type'
 	//'insertdata' 	: dbm.insertMongoDB,
@@ -44,7 +49,8 @@ var finishedMap = {
 	'upsertclient' 	: scraper.generateNewClientPage,
 	'newclientpage' : host.respond,
 	//'respond' 		: host.respond,
-	//'schedule' 		: scheduler.schedule
+	//'schedule' 		: scheduler.schedule,
+	//'loadResources' :
 	'startup'		: () => { console.log('Startup completed successfully!') }
 };
 

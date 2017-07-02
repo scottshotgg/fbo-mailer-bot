@@ -54,6 +54,19 @@ exports.respond = function(packet) {
 	packet.responseFunction();
 }
 
+//exports.loadResources = 
+function loadResources(app) {
+	async.map([jsDir, cssDir, fontsDir, dataTablesDir],
+		(item, callback) => {
+			loadDirectories(item, app);
+			callback(null, item);
+		},
+		(err, results) => { 
+			console.log('Done loading resource files!');
+			//el.emitAsync('finished', { event: 'loadResources' });
+		});
+}
+
 // startServer starts the express instance and sets up all supporting function. This includes the GET, POST, and PUT declaratives and their associated functions, as well as the cookie handling and bodyParsing function
 exports.startServer = function() {
 	console.log('Starting server...');
@@ -61,18 +74,13 @@ exports.startServer = function() {
 	var app = express();
 	var router = express.Router();	
 
-	async.map([jsDir, cssDir, fontsDir, dataTablesDir],
-		(item, callback) => {
-			loadDirectories(item, app);
-			callback(null, item);
-		},
-		(err, results) => { console.log('Done loading resource files!') });
-
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded());
 	app.use(bodyParser.urlencoded({ extended: true }));
 	app.use(cookieParser());
 	app.use(session({ secret: "Shh, its a secret!" }));
+
+	loadResources(app);
 
 	//console.log(path);
 
@@ -278,6 +286,7 @@ exports.startServer = function() {
 	});
 
 	app.listen(8080, function () {
-	  console.log('Listening on port 8080!');
+		el.emit('finished', { event: 'host', data: { port: '8080' } });
 	});
+
 }
