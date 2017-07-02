@@ -20,7 +20,7 @@ exports.connectMongoDB = function(packet) {
   MongoClient.connect("mongodb://localhost:27017/" + packet.name, function(err, mdb) {
   	// If there wasn't an error then proceed, else just exit and print the error
   	if(!err) {
-  		console.log('Connected to', packet.name, '!');
+  		console.log('Connected to', packet.name + '!');
   		database.mdb = mdb;
   		// After creating the database we are ready to create our collections
       	//el.emit('createcoll', { '': '' })
@@ -148,10 +148,10 @@ exports.upsertClient = function(packet) {
 
 				// Ideally you want to have this redirect to a new page with a finish event emitted on successful generation which then redirects them
 				// emit a response packet containing the NetID for the redirect
-				el.emitAsyn('respond', 
+				el.emitAsync('respond', 
 					{ 
 						res: packet.res,
-						responseFunction: () => {
+						responseFunction: (res) => {
 							res.json({ name: packet.client.personal.netid });
 						}
 					}

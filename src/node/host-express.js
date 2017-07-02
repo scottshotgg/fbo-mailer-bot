@@ -49,13 +49,14 @@ function loadDirectories(srcpath, app) {
 
 // put this here temporarily; using this function to respond to the client request
 exports.respond = function(packet) {
-	res = packet.res;
+	//res = packet.res;
 	//console.log(packet, packet.run);
-	packet.responseFunction();
+	packet.responseFunction(packet.res);
 }
 
-//exports.loadResources = 
-function loadResources(app) {
+exports.loadResources = function(packet) {
+	var app = packet.app;
+
 	async.map([jsDir, cssDir, fontsDir, dataTablesDir],
 		(item, callback) => {
 			loadDirectories(item, app);
@@ -64,6 +65,7 @@ function loadResources(app) {
 		(err, results) => { 
 			console.log('Done loading resource files!');
 			//el.emitAsync('finished', { event: 'loadResources' });
+			el.emitAsync('finished', { event: 'loadResources', data: { app: app } });
 		});
 }
 
@@ -80,11 +82,13 @@ exports.startServer = function() {
 	app.use(cookieParser());
 	app.use(session({ secret: "Shh, its a secret!" }));
 
-	loadResources(app);
+	el.emitAsync('finished', { event: 'startServer', data: { app: app } });
+}
 
-	//console.log(path);
 
-	// Root directory
+exports.loadHandles = function(packet) {
+	var app = packet.app;
+
 	app.get('/', function (req, res, next) {
 		// If there isn't any client data, redirect the client to the login page, else if they have personal information then direct them to their home page (this has a hole in the signup where they have personal information but nothing else), else just send them to the login page
 		// clean/optimize this
@@ -286,7 +290,7 @@ exports.startServer = function() {
 	});
 
 	app.listen(8080, function () {
-		el.emit('finished', { event: 'host', data: { port: '8080' } });
+		//el.emit('finished', { event: 'host', data: { port: '8080' } });
 	});
 
 }

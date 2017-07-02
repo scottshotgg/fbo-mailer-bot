@@ -33,6 +33,14 @@ function finished(packet) {
 	finishedMap[packet.event](packet.data);
 }
 
+// try to make something that we can pass an array of functions to and it runs them in parallel
+function doFunctions(functions) {
+	async.parallel(functions, 
+		function(err, results) {
+			console.log('done', err, results);
+		});
+}
+
 var finishedMap = {
 	//'host' 		: host.startServer,
 	'fetch' 		: scraper.parseFeed,
@@ -41,6 +49,11 @@ var finishedMap = {
 	'insert' 		: dbm.generateClientPages,
 	'createcoll' 	: scraper.fetchFeed,
 	'host'			: (packet) => { console.log('Web server started successfully!\n Listening on port', packet.port + '!') },
+	//'startServer' 	: host.loadResources,
+	'startServer'	: doFunctions([host.loadResources, host.loadHandles]),
+	//'loadResources' : host.loadHandles,
+	// 'startServer' 	: host.loadHandles,
+	// 'loadHandles' 	: host.loadResources,
 	//'connect'		: dbm.createcoll
 	//'closedb' 		: dbm.closeMongoDB,
 	// make this take a data piece and a collection name or map it to the right shit based on an insertion 'type'
